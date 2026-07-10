@@ -1,0 +1,770 @@
+[
+  {
+    "code": "ARG",
+    "iso2": "ar",
+    "name": "Argentina",
+    "confederation": "CONMEBOL",
+    "group": "C",
+    "pot": 1,
+    "elo0": 2103.0,
+    "fifaRank": 1,
+    "host": false,
+    "colors": {
+      "primary": "#6CACE4",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 2089.3
+  },
+  {
+    "code": "FRA",
+    "iso2": "fr",
+    "name": "France",
+    "confederation": "UEFA",
+    "group": "E",
+    "pot": 1,
+    "elo0": 2048.0,
+    "fifaRank": 2,
+    "host": false,
+    "colors": {
+      "primary": "#1E3A8A",
+      "secondary": "#EF4444"
+    },
+    "latent": 2057.7
+  },
+  {
+    "code": "ESP",
+    "iso2": "es",
+    "name": "Spain",
+    "confederation": "UEFA",
+    "group": "F",
+    "pot": 1,
+    "elo0": 2046.0,
+    "fifaRank": 3,
+    "host": false,
+    "colors": {
+      "primary": "#C60B1E",
+      "secondary": "#FFC400"
+    },
+    "latent": 2061.1
+  },
+  {
+    "code": "BRA",
+    "iso2": "br",
+    "name": "Brazil",
+    "confederation": "CONMEBOL",
+    "group": "G",
+    "pot": 1,
+    "elo0": 2018.0,
+    "fifaRank": 4,
+    "host": false,
+    "colors": {
+      "primary": "#FEDF00",
+      "secondary": "#009B3A"
+    },
+    "latent": 2022.0
+  },
+  {
+    "code": "ENG",
+    "iso2": "gb-eng",
+    "name": "England",
+    "confederation": "UEFA",
+    "group": "H",
+    "pot": 1,
+    "elo0": 1981.0,
+    "fifaRank": 5,
+    "host": false,
+    "colors": {
+      "primary": "#FFFFFF",
+      "secondary": "#CE1124"
+    },
+    "latent": 1975.3
+  },
+  {
+    "code": "POR",
+    "iso2": "pt",
+    "name": "Portugal",
+    "confederation": "UEFA",
+    "group": "I",
+    "pot": 1,
+    "elo0": 1979.0,
+    "fifaRank": 6,
+    "host": false,
+    "colors": {
+      "primary": "#DA020E",
+      "secondary": "#006600"
+    },
+    "latent": 2011.5
+  },
+  {
+    "code": "NED",
+    "iso2": "nl",
+    "name": "Netherlands",
+    "confederation": "UEFA",
+    "group": "J",
+    "pot": 1,
+    "elo0": 1962.0,
+    "fifaRank": 7,
+    "host": false,
+    "colors": {
+      "primary": "#F36C21",
+      "secondary": "#21468B"
+    },
+    "latent": 1957.9
+  },
+  {
+    "code": "GER",
+    "iso2": "de",
+    "name": "Germany",
+    "confederation": "UEFA",
+    "group": "K",
+    "pot": 1,
+    "elo0": 1934.0,
+    "fifaRank": 8,
+    "host": false,
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#DD0000"
+    },
+    "latent": 1961.5
+  },
+  {
+    "code": "BEL",
+    "iso2": "be",
+    "name": "Belgium",
+    "confederation": "UEFA",
+    "group": "L",
+    "pot": 1,
+    "elo0": 1907.0,
+    "fifaRank": 9,
+    "host": false,
+    "colors": {
+      "primary": "#E30613",
+      "secondary": "#FDDA24"
+    },
+    "latent": 1891.2
+  },
+  {
+    "code": "ITA",
+    "iso2": "it",
+    "name": "Italy",
+    "confederation": "UEFA",
+    "group": "C",
+    "pot": 2,
+    "elo0": 1901.0,
+    "fifaRank": 10,
+    "host": false,
+    "colors": {
+      "primary": "#0064AA",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1891.8
+  },
+  {
+    "code": "URU",
+    "iso2": "uy",
+    "name": "Uruguay",
+    "confederation": "CONMEBOL",
+    "group": "H",
+    "pot": 2,
+    "elo0": 1885.0,
+    "fifaRank": 11,
+    "host": false,
+    "colors": {
+      "primary": "#5CBFEB",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1850.5
+  },
+  {
+    "code": "COL",
+    "iso2": "co",
+    "name": "Colombia",
+    "confederation": "CONMEBOL",
+    "group": "J",
+    "pot": 2,
+    "elo0": 1852.0,
+    "fifaRank": 12,
+    "host": false,
+    "colors": {
+      "primary": "#FCD116",
+      "secondary": "#003893"
+    },
+    "latent": 1877.0
+  },
+  {
+    "code": "CRO",
+    "iso2": "hr",
+    "name": "Croatia",
+    "confederation": "UEFA",
+    "group": "I",
+    "pot": 2,
+    "elo0": 1849.0,
+    "fifaRank": 13,
+    "host": false,
+    "colors": {
+      "primary": "#FF0000",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1820.9
+  },
+  {
+    "code": "MAR",
+    "iso2": "ma",
+    "name": "Morocco",
+    "confederation": "CAF",
+    "group": "G",
+    "pot": 2,
+    "elo0": 1832.0,
+    "fifaRank": 14,
+    "host": false,
+    "colors": {
+      "primary": "#C1272D",
+      "secondary": "#006233"
+    },
+    "latent": 1811.3
+  },
+  {
+    "code": "JPN",
+    "iso2": "jp",
+    "name": "Japan",
+    "confederation": "AFC",
+    "group": "E",
+    "pot": 2,
+    "elo0": 1828.0,
+    "fifaRank": 15,
+    "host": false,
+    "colors": {
+      "primary": "#0A2472",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1806.4
+  },
+  {
+    "code": "SUI",
+    "iso2": "ch",
+    "name": "Switzerland",
+    "confederation": "UEFA",
+    "group": "A",
+    "pot": 2,
+    "elo0": 1821.0,
+    "fifaRank": 16,
+    "host": false,
+    "colors": {
+      "primary": "#FF0000",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1820.0
+  },
+  {
+    "code": "DEN",
+    "iso2": "dk",
+    "name": "Denmark",
+    "confederation": "UEFA",
+    "group": "F",
+    "pot": 2,
+    "elo0": 1820.0,
+    "fifaRank": 17,
+    "host": false,
+    "colors": {
+      "primary": "#C60C30",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1788.7
+  },
+  {
+    "code": "SEN",
+    "iso2": "sn",
+    "name": "Senegal",
+    "confederation": "CAF",
+    "group": "D",
+    "pot": 2,
+    "elo0": 1810.0,
+    "fifaRank": 18,
+    "host": false,
+    "colors": {
+      "primary": "#00853F",
+      "secondary": "#FDEF42"
+    },
+    "latent": 1798.4
+  },
+  {
+    "code": "USA",
+    "iso2": "us",
+    "name": "United States",
+    "confederation": "CONCACAF",
+    "group": "D",
+    "pot": 1,
+    "elo0": 1798.0,
+    "fifaRank": 19,
+    "host": true,
+    "colors": {
+      "primary": "#0A3161",
+      "secondary": "#B31942"
+    },
+    "latent": 1813.9
+  },
+  {
+    "code": "MEX",
+    "iso2": "mx",
+    "name": "Mexico",
+    "confederation": "CONCACAF",
+    "group": "A",
+    "pot": 1,
+    "elo0": 1792.0,
+    "fifaRank": 20,
+    "host": true,
+    "colors": {
+      "primary": "#006847",
+      "secondary": "#CE1126"
+    },
+    "latent": 1816.3
+  },
+  {
+    "code": "IRN",
+    "iso2": "ir",
+    "name": "Iran",
+    "confederation": "AFC",
+    "group": "K",
+    "pot": 2,
+    "elo0": 1788.0,
+    "fifaRank": 22,
+    "host": false,
+    "colors": {
+      "primary": "#239F40",
+      "secondary": "#DA0000"
+    },
+    "latent": 1768.2
+  },
+  {
+    "code": "NOR",
+    "iso2": "no",
+    "name": "Norway",
+    "confederation": "UEFA",
+    "group": "L",
+    "pot": 2,
+    "elo0": 1786.0,
+    "fifaRank": 23,
+    "host": false,
+    "colors": {
+      "primary": "#BA0C2F",
+      "secondary": "#00205B"
+    },
+    "latent": 1747.5
+  },
+  {
+    "code": "SRB",
+    "iso2": "rs",
+    "name": "Serbia",
+    "confederation": "UEFA",
+    "group": "K",
+    "pot": 3,
+    "elo0": 1783.0,
+    "fifaRank": 24,
+    "host": false,
+    "colors": {
+      "primary": "#C6363C",
+      "secondary": "#0C4076"
+    },
+    "latent": 1791.4
+  },
+  {
+    "code": "AUT",
+    "iso2": "at",
+    "name": "Austria",
+    "confederation": "UEFA",
+    "group": "B",
+    "pot": 2,
+    "elo0": 1791.0,
+    "fifaRank": 21,
+    "host": false,
+    "colors": {
+      "primary": "#ED2939",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1784.2
+  },
+  {
+    "code": "ECU",
+    "iso2": "ec",
+    "name": "Ecuador",
+    "confederation": "CONMEBOL",
+    "group": "F",
+    "pot": 3,
+    "elo0": 1781.0,
+    "fifaRank": 25,
+    "host": false,
+    "colors": {
+      "primary": "#FFDD00",
+      "secondary": "#034EA2"
+    },
+    "latent": 1785.0
+  },
+  {
+    "code": "KOR",
+    "iso2": "kr",
+    "name": "South Korea",
+    "confederation": "AFC",
+    "group": "I",
+    "pot": 3,
+    "elo0": 1775.0,
+    "fifaRank": 27,
+    "host": false,
+    "colors": {
+      "primary": "#0047A0",
+      "secondary": "#CD2E3A"
+    },
+    "latent": 1732.3
+  },
+  {
+    "code": "TUR",
+    "iso2": "tr",
+    "name": "Turkey",
+    "confederation": "UEFA",
+    "group": "J",
+    "pot": 3,
+    "elo0": 1779.0,
+    "fifaRank": 26,
+    "host": false,
+    "colors": {
+      "primary": "#E30A17",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1775.2
+  },
+  {
+    "code": "UKR",
+    "iso2": "ua",
+    "name": "Ukraine",
+    "confederation": "UEFA",
+    "group": "G",
+    "pot": 3,
+    "elo0": 1772.0,
+    "fifaRank": 28,
+    "host": false,
+    "colors": {
+      "primary": "#005BBB",
+      "secondary": "#FFD500"
+    },
+    "latent": 1789.0
+  },
+  {
+    "code": "POL",
+    "iso2": "pl",
+    "name": "Poland",
+    "confederation": "UEFA",
+    "group": "H",
+    "pot": 3,
+    "elo0": 1762.0,
+    "fifaRank": 29,
+    "host": false,
+    "colors": {
+      "primary": "#FFFFFF",
+      "secondary": "#DC143C"
+    },
+    "latent": 1747.5
+  },
+  {
+    "code": "NGA",
+    "iso2": "ng",
+    "name": "Nigeria",
+    "confederation": "CAF",
+    "group": "B",
+    "pot": 3,
+    "elo0": 1760.0,
+    "fifaRank": 30,
+    "host": false,
+    "colors": {
+      "primary": "#008751",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1750.0
+  },
+  {
+    "code": "ALG",
+    "iso2": "dz",
+    "name": "Algeria",
+    "confederation": "CAF",
+    "group": "L",
+    "pot": 3,
+    "elo0": 1752.0,
+    "fifaRank": 31,
+    "host": false,
+    "colors": {
+      "primary": "#006233",
+      "secondary": "#D21034"
+    },
+    "latent": 1763.2
+  },
+  {
+    "code": "CAN",
+    "iso2": "ca",
+    "name": "Canada",
+    "confederation": "CONCACAF",
+    "group": "B",
+    "pot": 1,
+    "elo0": 1745.0,
+    "fifaRank": 32,
+    "host": true,
+    "colors": {
+      "primary": "#FF0000",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1778.3
+  },
+  {
+    "code": "EGY",
+    "iso2": "eg",
+    "name": "Egypt",
+    "confederation": "CAF",
+    "group": "E",
+    "pot": 3,
+    "elo0": 1743.0,
+    "fifaRank": 33,
+    "host": false,
+    "colors": {
+      "primary": "#CE1126",
+      "secondary": "#000000"
+    },
+    "latent": 1745.4
+  },
+  {
+    "code": "CIV",
+    "iso2": "ci",
+    "name": "Ivory Coast",
+    "confederation": "CAF",
+    "group": "C",
+    "pot": 3,
+    "elo0": 1741.0,
+    "fifaRank": 34,
+    "host": false,
+    "colors": {
+      "primary": "#F77F00",
+      "secondary": "#009E60"
+    },
+    "latent": 1740.5
+  },
+  {
+    "code": "PER",
+    "iso2": "pe",
+    "name": "Peru",
+    "confederation": "CONMEBOL",
+    "group": "A",
+    "pot": 3,
+    "elo0": 1722.0,
+    "fifaRank": 35,
+    "host": false,
+    "colors": {
+      "primary": "#D91023",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1757.7
+  },
+  {
+    "code": "PAR",
+    "iso2": "py",
+    "name": "Paraguay",
+    "confederation": "CONMEBOL",
+    "group": "D",
+    "pot": 3,
+    "elo0": 1720.0,
+    "fifaRank": 36,
+    "host": false,
+    "colors": {
+      "primary": "#DA121A",
+      "secondary": "#0038A8"
+    },
+    "latent": 1717.6
+  },
+  {
+    "code": "CMR",
+    "iso2": "cm",
+    "name": "Cameroon",
+    "confederation": "CAF",
+    "group": "F",
+    "pot": 4,
+    "elo0": 1719.0,
+    "fifaRank": 37,
+    "host": false,
+    "colors": {
+      "primary": "#007A5E",
+      "secondary": "#CE1126"
+    },
+    "latent": 1705.3
+  },
+  {
+    "code": "AUS",
+    "iso2": "au",
+    "name": "Australia",
+    "confederation": "AFC",
+    "group": "B",
+    "pot": 4,
+    "elo0": 1718.0,
+    "fifaRank": 38,
+    "host": false,
+    "colors": {
+      "primary": "#00843D",
+      "secondary": "#FFCD00"
+    },
+    "latent": 1736.5
+  },
+  {
+    "code": "TUN",
+    "iso2": "tn",
+    "name": "Tunisia",
+    "confederation": "CAF",
+    "group": "K",
+    "pot": 4,
+    "elo0": 1716.0,
+    "fifaRank": 39,
+    "host": false,
+    "colors": {
+      "primary": "#E70013",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1716.2
+  },
+  {
+    "code": "GHA",
+    "iso2": "gh",
+    "name": "Ghana",
+    "confederation": "CAF",
+    "group": "I",
+    "pot": 4,
+    "elo0": 1701.0,
+    "fifaRank": 40,
+    "host": false,
+    "colors": {
+      "primary": "#006B3F",
+      "secondary": "#FCD116"
+    },
+    "latent": 1693.8
+  },
+  {
+    "code": "SAU",
+    "iso2": "sa",
+    "name": "Saudi Arabia",
+    "confederation": "AFC",
+    "group": "H",
+    "pot": 4,
+    "elo0": 1683.0,
+    "fifaRank": 41,
+    "host": false,
+    "colors": {
+      "primary": "#006C35",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1682.5
+  },
+  {
+    "code": "QAT",
+    "iso2": "qa",
+    "name": "Qatar",
+    "confederation": "AFC",
+    "group": "G",
+    "pot": 4,
+    "elo0": 1681.0,
+    "fifaRank": 42,
+    "host": false,
+    "colors": {
+      "primary": "#8A1538",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1659.5
+  },
+  {
+    "code": "UZB",
+    "iso2": "uz",
+    "name": "Uzbekistan",
+    "confederation": "AFC",
+    "group": "A",
+    "pot": 4,
+    "elo0": 1662.0,
+    "fifaRank": 43,
+    "host": false,
+    "colors": {
+      "primary": "#1EB53A",
+      "secondary": "#0099B5"
+    },
+    "latent": 1634.9
+  },
+  {
+    "code": "CRC",
+    "iso2": "cr",
+    "name": "Costa Rica",
+    "confederation": "CONCACAF",
+    "group": "L",
+    "pot": 4,
+    "elo0": 1661.0,
+    "fifaRank": 44,
+    "host": false,
+    "colors": {
+      "primary": "#002B7F",
+      "secondary": "#CE1126"
+    },
+    "latent": 1647.3
+  },
+  {
+    "code": "PAN",
+    "iso2": "pa",
+    "name": "Panama",
+    "confederation": "CONCACAF",
+    "group": "E",
+    "pot": 4,
+    "elo0": 1659.0,
+    "fifaRank": 45,
+    "host": false,
+    "colors": {
+      "primary": "#DA121A",
+      "secondary": "#005293"
+    },
+    "latent": 1649.7
+  },
+  {
+    "code": "IRQ",
+    "iso2": "iq",
+    "name": "Iraq",
+    "confederation": "AFC",
+    "group": "D",
+    "pot": 4,
+    "elo0": 1651.0,
+    "fifaRank": 46,
+    "host": false,
+    "colors": {
+      "primary": "#CE1126",
+      "secondary": "#000000"
+    },
+    "latent": 1664.6
+  },
+  {
+    "code": "JAM",
+    "iso2": "jm",
+    "name": "Jamaica",
+    "confederation": "CONCACAF",
+    "group": "C",
+    "pot": 4,
+    "elo0": 1641.0,
+    "fifaRank": 47,
+    "host": false,
+    "colors": {
+      "primary": "#009B3A",
+      "secondary": "#FED100"
+    },
+    "latent": 1625.9
+  },
+  {
+    "code": "NZL",
+    "iso2": "nz",
+    "name": "New Zealand",
+    "confederation": "OFC",
+    "group": "J",
+    "pot": 4,
+    "elo0": 1601.0,
+    "fifaRank": 48,
+    "host": false,
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#FFFFFF"
+    },
+    "latent": 1621.6
+  }
+]
