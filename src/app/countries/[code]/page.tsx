@@ -289,7 +289,7 @@ export default async function CountryDetailPage({
                     href={`/players/${p.id}`}
                     className="flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-muted/50"
                   >
-                    <PlayerAvatar name={p.name} size="sm" />
+                    <PlayerAvatar name={p.name} src={p.headshot} size="sm" />
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium">{p.name}</p>
                       <p className="text-xs text-muted-foreground">{p.detailedPosition}</p>

@@ -164,6 +164,12 @@ export interface PlayerStats {
   goalsConceded: number | null;
 }
 
+export interface PhotoCredit {
+  author: string;
+  license: string;
+  sourceUrl: string;
+}
+
 export interface Player {
   id: string;
   name: string;
@@ -173,13 +179,20 @@ export interface Player {
   position: Position;
   detailedPosition: string;
   shirtNumber: number;
-  age: number;
+  age: number | null;
   club: string;
   clubCountry: string;
   rating: number;
   contribution: number;
   isCaptain: boolean;
   isKeyPlayer: boolean;
+  /** True when the identity (name, position, age, caps, club) is real (Wikipedia). */
+  real: boolean;
+  caps: number | null;
+  intlGoals: number | null;
+  /** Free-licensed headshot path (public/headshots/…), or null for an initials avatar. */
+  headshot: string | null;
+  photoCredit: PhotoCredit | null;
   stats: PlayerStats;
   form: { label: string; rating: number }[];
   bio: string;

@@ -3,7 +3,7 @@
   "host": "United States, Canada & Mexico",
   "asOf": "2026-07-12T01:00:00+00:00",
   "cutoff": "2026-06-11T00:00:00+00:00",
-  "generatedAt": "2026-07-13T05:36:14+00:00",
+  "generatedAt": "2026-07-13T07:57:55+00:00",
   "totalMatches": 104,
   "matchesCompleted": 100,
   "matchesUpcoming": 4,
@@ -17,32 +17,32 @@
     "code": "ARG",
     "name": "Argentina",
     "iso2": "ar",
-    "prob": 0.38275
+    "prob": 0.39845
   },
   "topContenders": [
     {
       "code": "ARG",
       "name": "Argentina",
       "iso2": "ar",
-      "prob": 0.38275
+      "prob": 0.39845
     },
     {
       "code": "ESP",
       "name": "Spain",
       "iso2": "es",
-      "prob": 0.2997
+      "prob": 0.2856
     },
     {
       "code": "FRA",
       "name": "France",
       "iso2": "fr",
-      "prob": 0.2041
+      "prob": 0.20625
     },
     {
       "code": "ENG",
       "name": "England",
       "iso2": "gb-eng",
-      "prob": 0.11345
+      "prob": 0.1097
     },
     {
       "code": "MEX",
@@ -61,9 +61,9 @@
   "bestModel": {
     "id": "logreg",
     "name": "Logistic Regression",
-    "accuracy": 0.63,
-    "logLoss": 0.8557,
-    "brier": 0.5101
+    "accuracy": 0.64,
+    "logLoss": 0.8563,
+    "brier": 0.5104
   },
   "ensembleAccuracy": 0.64,
   "dataMode": "cached"

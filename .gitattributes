@@ -6,3 +6,8 @@ data/source/** -text
 # Generated data blobs are large; treat them as-is to avoid CRLF churn.
 data/**/*.json -text
 public/data/*.json -text
+
+# Player headshots are binary images (Wikimedia Commons); never line-end convert.
+public/headshots/*.jpg -text
+*.jpg -text
+*.png -text

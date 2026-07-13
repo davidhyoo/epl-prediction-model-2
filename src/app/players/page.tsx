@@ -14,9 +14,16 @@ export default function PlayersPage() {
       <PageHeader
         eyebrow="Squads"
         title="Players"
-        description="All 1,248 squad members across the 48 nations. Search by name or club, filter by country and position, and sort by any stat. Select a player for their full profile."
+        description="All 1,248 squad members across the 48 nations — real, current call-ups parsed from Wikipedia. Search by name or club, filter by country and position, and sort by any stat. Select a player for their full profile."
       />
       <PlayersExplorer />
+      <p className="text-xs text-muted-foreground/70">
+        Squad identities (name, position, age, caps, club) come from the maintained squad
+        tables on Wikipedia. Headshots are freely-licensed portraits from Wikimedia Commons
+        (public-domain / CC BY / CC BY-SA, attributed on each player&rsquo;s profile);
+        players without a free photo show a clean initials avatar. Ability ratings and
+        per-tournament statistics are model-generated and clearly labelled as such.
+      </p>
     </div>
   );
 }

@@ -13,15 +13,21 @@ reproduces identical output.
                       a real result exists, so the app tracks the live tournament
   * qualification   — real group tables + the real Round-of-32 bracket + a
                       knockout tree (with W##/L## feeders) for the simulator
-  * squads          — 26 deterministically *generated* players per nation
-                      (no clean CC0 squad source exists — documented in README),
-                      keyed to the real teams
+  * squads          — the real, current 26-player squad for each nation, parsed
+                      from the maintained Wikipedia "national football team"
+                      squad templates by ml/fetch_players.py (names, shirt no.,
+                      position, age, caps, goals, club + a free-licensed headshot
+                      where one exists on Wikimedia Commons). Player *ratings* and
+                      per-tournament *statistics* remain model-generated (no free
+                      source exists) and are clearly flagged as such. Falls back
+                      to fully generated squads if the cache is unavailable.
 
 No World Cup match is ever used for training (leakage-free): history stops the
 day before the opener.
 """
 from __future__ import annotations
 
+import math
 import os
 
 import numpy as np
@@ -188,6 +194,109 @@ def _pos_bias(pos: str, generator) -> float:
 
 
 # --------------------------------------------------------------------------- #
+# Real squads (Wikipedia, cached by ml/fetch_players.py) with synthesised
+# player ratings. Wikipedia gives us verified identities (name, position, age,
+# caps, goals, club, headshot) but no ability rating, so we derive a transparent,
+# deterministic rating from the nation's strength + the player's role, caps and
+# goals. Ratings/statistics are always labelled model-generated in the UI.
+# --------------------------------------------------------------------------- #
+_ROLE_BONUS = {"GK": -1.0, "DEF": -0.5, "MID": 0.4, "FWD": 0.6}
+
+
+def _synth_rating(team_base: float, pos: str, caps, goals, is_captain: bool, gen) -> float:
+    rating = team_base + _ROLE_BONUS[pos]
+    # International experience, centred so ~20 caps is neutral: fringe players sit
+    # below their nation's base, seasoned internationals above it (keeps a real
+    # spread instead of everyone piling on the ceiling).
+    rating += (math.log1p(caps or 0) - 3.2) * 1.5
+    if pos == "FWD":
+        rating += min(goals or 0, 60) * 0.06              # proven goalscorers
+    if is_captain:
+        rating += 1.0                                     # first-choice leaders
+    rating += gen.normal(0.0, 1.1)                        # per-player variation
+    return round(float(np.clip(rating, 50, 95)), 1)
+
+
+def _real_row(src: dict, team_base: float, gen) -> dict:
+    pos = src["position"]
+    age = src.get("age")
+    return {
+        "id": src["id"],
+        "name": src["name"],
+        "countryCode": src["countryCode"],
+        "country": src["country"],
+        "iso2": src["iso2"],
+        "position": pos,
+        "detailedPosition": src.get("detailedPosition") or pos.title(),
+        "age": int(age) if isinstance(age, (int, float)) else None,
+        "club": src.get("club"),
+        "clubCountry": src.get("clubCountry"),
+        "rating": _synth_rating(team_base, pos, src.get("caps"), src.get("intlGoals"),
+                                bool(src.get("isCaptain")), gen),
+        "isCaptain": bool(src.get("isCaptain")),
+        "shirtNumber": src.get("shirtNumber") or 0,
+        "caps": src.get("caps"),
+        "intlGoals": src.get("intlGoals"),
+        "headshot": src.get("headshot"),
+        "photoCredit": src.get("photoCredit"),
+        "real": True,
+    }
+
+
+def _fill_team(team, team_base: float, gen, start: int, need: int) -> list[dict]:
+    """Generate ``need`` placeholder players (real=False) to top up a short or
+    missing squad, so downstream size expectations stay satisfied even if a
+    nation's Wikipedia squad could not be parsed."""
+    culture = NAME_CULTURE.get(team.code, "english")
+    used: set = set()
+    fill_pos = (["DEF", "MID", "FWD", "DEF", "MID", "GK"] * 6)[:need]
+    out: list[dict] = []
+    for k, pos in enumerate(fill_pos):
+        rating = float(np.clip(team_base + _pos_bias(pos, gen), 55, 90))
+        club, club_country = pick_club(rating, gen)
+        detail = POSITION_DETAIL[pos][int(gen.integers(0, len(POSITION_DETAIL[pos])))]
+        out.append({
+            "id": f"{team.code}-{start + k + 1:02d}",
+            "name": unique_name(culture, used, gen),
+            "countryCode": team.code, "country": team.name, "iso2": team.iso2,
+            "position": pos, "detailedPosition": detail,
+            "age": int(np.clip(gen.normal(26.5, 3.6), 18, 39)),
+            "club": club, "clubCountry": club_country,
+            "rating": round(rating, 1), "isCaptain": False, "shirtNumber": 0,
+            "caps": None, "intlGoals": None,
+            "headshot": None, "photoCredit": None, "real": False,
+        })
+    return out
+
+
+def build_squads(teams) -> list[dict]:
+    """Real squads from the Wikipedia cache (see ml/fetch_players.py), with a
+    deterministic generated fallback when the cache is missing/unreadable."""
+    real = S.load_squads()
+    if not real:
+        players = generate_squads(teams)
+        for p in players:  # keep the frontend contract uniform
+            p.update(real=False, caps=None, intlGoals=None, headshot=None, photoCredit=None)
+        return players
+
+    base = team_base_rating(teams)
+    gen = rng("real-ratings")
+    players: list[dict] = []
+    for t in teams:
+        rows = [r for r in (real.get(t.code) or [])
+                if r.get("position") in ("GK", "DEF", "MID", "FWD") and r.get("name")]
+        if len(rows) >= 18:
+            team_players = [_real_row(r, base[t.code], gen) for r in rows[:26]]
+            if len(team_players) < 23:  # rare short squad → top up with fillers
+                team_players += _fill_team(t, base[t.code], gen,
+                                           start=len(team_players), need=23 - len(team_players))
+        else:                            # unparsed nation → fully generated squad
+            team_players = _fill_team(t, base[t.code], gen, start=0, need=26)
+        players.extend(team_players)
+    return players
+
+
+# --------------------------------------------------------------------------- #
 # Entry point
 # --------------------------------------------------------------------------- #
 def main() -> None:
@@ -196,7 +305,7 @@ def main() -> None:
     history = build_history()
     (wc_matches, records, tables, ranked32,
      bracket_positions, knockout_tree) = build_world_cup(teams)
-    squads = generate_squads(teams)
+    squads = build_squads(teams)
 
     teams_raw = []
     for t in teams:
@@ -220,9 +329,11 @@ def main() -> None:
     })
 
     completed = sum(1 for m in wc_matches if m["played"])
+    real_players = sum(1 for p in squads if p.get("real"))
     print(f"[ingest] teams={len(teams_raw)} history={len(history)} "
           f"wc_matches={len(wc_matches)} (completed={completed}, "
-          f"upcoming={len(wc_matches) - completed}) players={len(squads)}")
+          f"upcoming={len(wc_matches) - completed}) players={len(squads)} "
+          f"(real={real_players}, generated={len(squads) - real_players})")
 
 
 if __name__ == "__main__":

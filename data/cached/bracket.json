@@ -550,8 +550,8 @@
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.4775,
-          "awayProb": 0.5225
+          "homeProb": 0.4879,
+          "awayProb": 0.5121
         },
         {
           "id": "K102",
@@ -565,8 +565,8 @@
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.3898,
-          "awayProb": 0.6102
+          "homeProb": 0.3922,
+          "awayProb": 0.6078
         }
       ]
     },
@@ -586,8 +586,8 @@
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.5412,
-          "awayProb": 0.4588
+          "homeProb": 0.5472,
+          "awayProb": 0.4528
         }
       ]
     },
@@ -607,8 +607,8 @@
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.4725,
-          "awayProb": 0.5275
+          "homeProb": 0.4472,
+          "awayProb": 0.5528
         }
       ]
     }

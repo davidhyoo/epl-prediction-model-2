@@ -61,7 +61,7 @@ export function SquadTable({ players }: { players: Player[] }) {
                         href={`/players/${p.id}`}
                         className="flex items-center gap-2.5 font-medium hover:underline"
                       >
-                        <PlayerAvatar name={p.name} size="sm" />
+                        <PlayerAvatar name={p.name} src={p.headshot} size="sm" />
                         <span className="flex items-center gap-1.5">
                           {p.name}
                           {p.isCaptain && (
@@ -76,7 +76,7 @@ export function SquadTable({ players }: { players: Player[] }) {
                     <TableCell className="hidden text-sm text-muted-foreground md:table-cell">
                       {p.club}
                     </TableCell>
-                    <TableCell className="text-right text-sm tabular-nums">{p.age}</TableCell>
+                    <TableCell className="text-right text-sm tabular-nums">{p.age ?? "—"}</TableCell>
                     <TableCell className="text-right text-sm tabular-nums">
                       {p.stats.appearances}
                     </TableCell>

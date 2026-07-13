@@ -3,12 +3,13 @@
     {
       "id": "ingest",
       "title": "Raw ingestion",
-      "description": "Parses the cached CC0 sources: every men's international 1872→2026 (martj42) and the real 2026 group draw, fixtures, results & knockout bracket (openfootball). Emits the 48-team field, training history and the World Cup schedule.",
+      "description": "Parses the cached CC0 sources: every men's international 1872→2026 (martj42) and the real 2026 group draw, fixtures, results & knockout bracket (openfootball). Emits the 48-team field, training history, the World Cup schedule and the real 26-player squads (Wikipedia) with free-licensed headshots (Wikimedia Commons).",
       "outputs": [
         "data/raw/teams.json",
         "data/raw/history.json",
         "data/raw/wc_matches.json",
-        "data/raw/qualification.json"
+        "data/raw/qualification.json",
+        "data/raw/squads.json"
       ]
     },
     {
@@ -72,10 +73,16 @@
       "license": "CC0 1.0 (public domain)"
     },
     {
-      "name": "Squads & player statistics",
-      "kind": "generated",
-      "description": "26 deterministically-generated players per nation with culturally-plausible names, plus minutes-aware tournament stats keyed to the real group results. No clean CC0 squad/headshot source exists, so no real player data or photos are used.",
-      "license": "Generated (this project)"
+      "name": "National-team squads",
+      "kind": "cached",
+      "description": "The real, current 26-player squad for each nation, parsed from the maintained '{{nat fs}}' squad templates on the English Wikipedia team articles (player name, shirt number, position, age, caps, international goals and club). Cached locally as data/source/squads_wikipedia.json. Player ability ratings and per-tournament statistics are model-generated (no free source exists) and are labelled as such throughout the UI.",
+      "license": "Wikipedia text CC BY-SA 4.0 (facts are not copyrightable)"
+    },
+    {
+      "name": "Player headshots",
+      "kind": "cached",
+      "description": "Freely-licensed player portraits from Wikimedia Commons (only public-domain / CC0 / CC BY / CC BY-SA files are kept; each is stored with its author + licence for attribution). Players without a free image fall back to a clean initials avatar. Cached under public/headshots/ with credits in data/source/headshot_credits.json.",
+      "license": "Per-file free licences (PD / CC0 / CC BY / CC BY-SA)"
     },
     {
       "name": "Country flags",
@@ -161,5 +168,5 @@
     "The final and third-place play-off are shown as projected matchups (most-likely participants) until the semi-finals are played.",
     "104 World Cup matches are covered end-to-end."
   ],
-  "generatedAt": "2026-07-13T05:36:14+00:00"
+  "generatedAt": "2026-07-13T07:57:55+00:00"
 }

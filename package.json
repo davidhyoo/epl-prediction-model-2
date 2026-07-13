@@ -13,6 +13,8 @@
     "data:refresh": "python ml/pipeline.py",
     "data:fetch": "python ml/refresh.py",
     "data:fetch:offline": "python ml/refresh.py --offline",
+    "data:fetch:players": "python ml/refresh.py --players",
+    "data:players": "python ml/fetch_players.py",
     "ml:ingest": "python ml/ingest.py",
     "ml:transform": "python ml/transform.py",
     "ml:features": "python ml/features.py",

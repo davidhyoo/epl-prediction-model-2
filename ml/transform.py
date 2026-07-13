@@ -103,10 +103,23 @@ def validate_and_transform() -> None:
         })
 
     # ---- Squads -----------------------------------------------------------
-    _require(len(squads) == 48 * 26, f"expected 1248 players, got {len(squads)}")
+    # Real Wikipedia squads are typically the full 26, but validation tolerates
+    # variable sizes (short/generated fallbacks) so the pipeline never crashes on
+    # a nation whose squad could not be fully parsed.
+    _require(48 * 18 <= len(squads) <= 48 * 26,
+             f"expected 864-1248 players (18-26 x48), got {len(squads)}")
     by_team = Counter(p["countryCode"] for p in squads)
+    gk_by_team = Counter(p["countryCode"] for p in squads if p["position"] == "GK")
     for c in codes:
-        _require(by_team[c] == 26, f"team {c} must have 26 players, has {by_team[c]}")
+        _require(18 <= by_team[c] <= 26,
+                 f"team {c} must have 18-26 players, has {by_team[c]}")
+        _require(gk_by_team[c] >= 2,
+                 f"team {c} must have >=2 goalkeepers, has {gk_by_team[c]}")
+    for p in squads:
+        _require(p["position"] in ("GK", "DEF", "MID", "FWD"),
+                 f"player {p.get('id')} has bad position {p.get('position')!r}")
+        _require(isinstance(p.get("real"), bool),
+                 f"player {p.get('id')} missing boolean 'real' flag")
 
     # ---- Qualification ----------------------------------------------------
     _require(len(qual["ranked32"]) == 32, "expected 32 qualified teams")

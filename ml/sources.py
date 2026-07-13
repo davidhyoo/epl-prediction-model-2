@@ -18,6 +18,7 @@ See the README "Data Sources" section for licensing notes.
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 import unicodedata
@@ -31,6 +32,7 @@ SOURCE_DIR = os.path.join(DATA_DIR, "source")
 MARTJ42_RESULTS = os.path.join(SOURCE_DIR, "martj42_results.csv")
 OPENFOOTBALL_GROUPS = os.path.join(SOURCE_DIR, "openfootball_cup.txt")
 OPENFOOTBALL_FINALS = os.path.join(SOURCE_DIR, "openfootball_cup_finals.txt")
+SQUADS_WIKIPEDIA = os.path.join(SOURCE_DIR, "squads_wikipedia.json")
 
 # The World Cup opener — any earlier international is training history; the
 # tournament itself is never used to train (leakage-free).
@@ -437,3 +439,31 @@ def _host_adv(home_code: str | None, away_code: str | None) -> int:
     if away_code in _HOSTS and home_code not in _HOSTS:
         return -1
     return 0
+
+
+# --------------------------------------------------------------------------- #
+# Real national-team squads (cached from Wikipedia by ml/fetch_players.py)
+# --------------------------------------------------------------------------- #
+def load_squads(path: str = SQUADS_WIKIPEDIA) -> dict | None:
+    """Return the cached real squads as ``{code: [player_row, ...]}``.
+
+    Each player row carries the fields ``ml/fetch_players.py`` wrote: ``id``,
+    ``name``, ``position`` (GK/DEF/MID/FWD), ``detailedPosition``,
+    ``shirtNumber``, ``age``, ``caps``, ``intlGoals``, ``club``, ``clubCountry``,
+    ``isCaptain``, ``headshot`` and ``photoCredit``.
+
+    Returns ``None`` when the cache is missing or unreadable so the pipeline can
+    fall back to deterministically generated squads (keeping the app runnable
+    fully offline even if the fetch has never been run).
+    """
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return None
+    squads = data.get("squads")
+    if not isinstance(squads, dict) or not squads:
+        return None
+    return squads

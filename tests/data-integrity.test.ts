@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import type { Match, Team, ModelInfo, Summary, Rankings, Bracket } from "@/lib/types";
+import type { Match, Team, ModelInfo, Summary, Rankings, Bracket, Player } from "@/lib/types";
 
 const DATA = path.join(process.cwd(), "public", "data");
 const read = <T>(file: string): T =>
@@ -13,6 +13,7 @@ const models = read<ModelInfo[]>("models.json");
 const summary = read<Summary>("summary.json");
 const rankings = read<Rankings>("rankings.json");
 const bracket = read<Bracket>("bracket.json");
+const players = read<Player[]>("players.json");
 
 const sumsToOne = (a: number, b: number, c: number, tol = 0.02) =>
   Math.abs(a + b + c - 1) < tol;
@@ -128,6 +129,34 @@ describe("summary.json", () => {
   it("names a top champion that exists in the field", () => {
     const codes = new Set(teams.map((t) => t.code));
     expect(codes.has(summary.topChampion.code)).toBe(true);
+  });
+});
+
+describe("players.json", () => {
+  it("carries the full 1,248-strong field of real squads", () => {
+    expect(players).toHaveLength(1248);
+    const real = players.filter((p) => p.real).length;
+    expect(real).toBeGreaterThan(1248 * 0.9);
+  });
+
+  it("attaches free-licensed headshots to most players, with attribution", () => {
+    const withPhoto = players.filter((p) => p.headshot);
+    expect(withPhoto.length).toBeGreaterThan(800);
+    for (const p of withPhoto) {
+      expect(p.headshot).toMatch(/^\/headshots\/[A-Z]{3}-\d{2}\.jpg$/);
+      expect(p.photoCredit?.author).toBeTruthy();
+      expect(p.photoCredit?.license).toBeTruthy();
+      expect(p.photoCredit?.sourceUrl).toMatch(/^https?:\/\//);
+    }
+  });
+
+  it("keeps model-generated ratings in a sane, spread-out range", () => {
+    for (const p of players) {
+      expect(p.rating).toBeGreaterThanOrEqual(50);
+      expect(p.rating).toBeLessThanOrEqual(95);
+    }
+    const distinct = new Set(players.map((p) => p.rating)).size;
+    expect(distinct).toBeGreaterThan(50); // not all clamped to a single ceiling value
   });
 });
 

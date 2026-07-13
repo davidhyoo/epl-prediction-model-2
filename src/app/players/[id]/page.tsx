@@ -50,7 +50,7 @@ export default async function PlayerProfilePage({
       <Card className="overflow-hidden">
         <div className="border-b border-border bg-muted/30 p-6">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-            <PlayerAvatar name={player.name} size="xl" />
+            <PlayerAvatar name={player.name} src={player.headshot} size="xl" />
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{player.name}</h1>
@@ -74,10 +74,23 @@ export default async function PlayerProfilePage({
                 <span className="flex items-center gap-1">
                   <Shirt className="size-3.5" /> {player.shirtNumber}
                 </span>
-                <span>·</span>
-                <span>Age {player.age}</span>
+                {player.age != null && (
+                  <>
+                    <span>·</span>
+                    <span>Age {player.age}</span>
+                  </>
+                )}
                 <span>·</span>
                 <span>{player.club}</span>
+                {player.caps != null && (
+                  <>
+                    <span>·</span>
+                    <span>
+                      {player.caps} cap{player.caps === 1 ? "" : "s"}
+                      {player.intlGoals ? `, ${player.intlGoals} goal${player.intlGoals === 1 ? "" : "s"}` : ""}
+                    </span>
+                  </>
+                )}
               </div>
             </div>
             <div className="flex gap-6 sm:flex-col sm:items-end sm:gap-1">
@@ -90,6 +103,20 @@ export default async function PlayerProfilePage({
         </div>
         <CardContent className="p-6">
           <p className="text-sm text-muted-foreground">{player.bio}</p>
+          {player.photoCredit && (
+            <p className="mt-3 text-xs text-muted-foreground/70">
+              Photo:{" "}
+              <a
+                href={player.photoCredit.sourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-foreground"
+              >
+                {player.photoCredit.author}
+              </a>{" "}
+              · {player.photoCredit.license} · via Wikimedia Commons
+            </p>
+          )}
         </CardContent>
       </Card>
 

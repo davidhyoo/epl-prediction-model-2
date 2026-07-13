@@ -8,12 +8,14 @@ real results.
     python ml/refresh.py                 # fetch sources, then run the pipeline
     python ml/refresh.py --offline       # skip fetching; rebuild from caches
     python ml/refresh.py --no-pipeline   # only refresh the source caches
+    python ml/refresh.py --players       # also refresh real squads + headshots
     python ml/refresh.py --from features # (passed through to pipeline)
 
 Design goals
 ------------
 * **No secrets / no paid APIs.** Everything is fetched over plain HTTPS from
-  public GitHub raw URLs with the Python standard library only.
+  public GitHub raw URLs (and, with ``--players``, the public MediaWiki APIs)
+  with the Python standard library only.
 * **Never corrupts the cache.** Each file is downloaded to a temp path, sanity
   checked (size + expected header/marker), and only then atomically swapped in.
 * **Offline fallback.** If a download fails (no network, GitHub down, rate
@@ -21,10 +23,12 @@ Design goals
   warning is printed. The pipeline still runs end-to-end from the caches, so the
   app is always reproducible offline.
 
-Sources (all public domain / CC0 — see the README "Data Sources" section):
+Sources (all public domain / CC0 / free-licensed — see README "Data Sources"):
 * martj42/international_results — men's international results 1872→present.
 * openfootball/worldcup ``2026--usa`` — the real 2026 draw, fixtures, results
   and knockout bracket.
+* (opt-in, ``--players``) English Wikipedia squad templates + Wikimedia Commons
+  free-licensed headshots — see ``ml/fetch_players.py``.
 """
 from __future__ import annotations
 
@@ -140,6 +144,11 @@ def main() -> None:
                     help="skip downloads; rebuild from the committed caches")
     ap.add_argument("--no-pipeline", action="store_true",
                     help="only refresh the source caches, don't run the pipeline")
+    ap.add_argument("--players", action="store_true",
+                    help="also refresh real squads + free headshots (Wikipedia / "
+                         "Wikimedia Commons) before rebuilding — slower, needs network")
+    ap.add_argument("--players-no-images", action="store_true",
+                    help="with --players, refresh squad facts only (skip headshot downloads)")
     ap.add_argument("--from", dest="start", default=None,
                     help="resume the pipeline from this stage")
     args = ap.parse_args()
@@ -155,6 +164,21 @@ def main() -> None:
         print(f"[refresh] fetching {len(SOURCES)} CC0 source files -> {SOURCE_DIR}")
         updated, kept = refresh_sources()
         print(f"[refresh] {updated} updated, {kept} kept from cache")
+
+    # Real squads + free headshots are opt-in: they hit the public MediaWiki APIs
+    # (slower, network-bound) and change infrequently, so the committed cache is
+    # used by default. A failure here never blocks the rebuild — the pipeline
+    # falls back to the previously cached squads.
+    if args.players and not args.offline:
+        mode = "squads only" if args.players_no_images else "squads + headshots"
+        print(f"[refresh] refreshing real players ({mode}) from Wikipedia / Wikimedia Commons")
+        try:
+            import fetch_players
+            fetch_players.main(["--no-images"] if args.players_no_images else [])
+        except Exception as exc:  # noqa: BLE001 - keep the committed squad cache
+            print(f"  ! player refresh failed ({exc.__class__.__name__}: {exc}) — keeping cache")
+    elif args.players and args.offline:
+        print("[refresh] --offline given: skipping player refresh, using committed squad cache")
 
     if args.no_pipeline:
         print(f"[refresh] done in {time.time() - t0:0.1f}s (sources only)")

@@ -270,10 +270,24 @@ def allocate_player_stats(team_players, record, gen) -> None:
 def _player_bio(p: dict) -> str:
     pos_word = {"GK": "goalkeeper", "DEF": "defender", "MID": "midfielder",
                 "FWD": "forward"}[p["position"]]
+    detail = (p.get("detailedPosition") or pos_word).lower()
+    role = detail if detail != pos_word else pos_word     # avoid "defender (defender)"
     cap = " and captains the side" if p.get("isCaptain") else ""
-    return (f"{p['name']} is a {p['age']}-year-old {p['detailedPosition'].lower()} "
-            f"({pos_word}) for {p['country']}, playing club football at "
-            f"{p['club']}{cap}. Ratings and statistics are model-generated demo data.")
+    age_txt = f"{p['age']}-year-old " if p.get("age") else ""
+    club = p.get("club") or "his club"
+    if p.get("real"):
+        caps, intl = p.get("caps"), p.get("intlGoals")
+        exp = ""
+        if caps:
+            exp = f" He has {caps} senior cap{'s' if caps != 1 else ''} for {p['country']}"
+            exp += (f" and {intl} international goal{'s' if intl != 1 else ''}."
+                    if intl else ".")
+        return (f"{p['name']} is a {age_txt}{role} for {p['country']}, playing club "
+                f"football at {club}{cap}.{exp} Squad details are real (via Wikipedia); "
+                f"ability ratings and per-tournament statistics are model-generated.")
+    return (f"{p['name']} is a {age_txt}{role} for {p['country']}, playing club football "
+            f"at {club}{cap}. Generated placeholder profile — no verified squad data "
+            f"was available for this nation.")
 
 
 # --------------------------------------------------------------------------- #
@@ -464,6 +478,9 @@ def main() -> None:
                 "age": p["age"], "club": p["club"], "clubCountry": p["clubCountry"],
                 "rating": p["rating"], "contribution": p["contribution"],
                 "isCaptain": p["isCaptain"], "isKeyPlayer": p["isKeyPlayer"],
+                "caps": p.get("caps"), "intlGoals": p.get("intlGoals"),
+                "real": bool(p.get("real")), "headshot": p.get("headshot"),
+                "photoCredit": p.get("photoCredit"),
                 "stats": p["stats"], "form": p["form"], "bio": p["bio"],
             })
     players_out.sort(key=lambda x: (-x["rating"], x["name"]))
@@ -593,8 +610,8 @@ def build_methodology(meta, n_matches) -> None:
     methodology = {
         "pipeline": [
             {"id": "ingest", "title": "Raw ingestion",
-             "description": "Parses the cached CC0 sources: every men's international 1872→2026 (martj42) and the real 2026 group draw, fixtures, results & knockout bracket (openfootball). Emits the 48-team field, training history and the World Cup schedule.",
-             "outputs": ["data/raw/teams.json", "data/raw/history.json", "data/raw/wc_matches.json", "data/raw/qualification.json"]},
+             "description": "Parses the cached CC0 sources: every men's international 1872→2026 (martj42) and the real 2026 group draw, fixtures, results & knockout bracket (openfootball). Emits the 48-team field, training history, the World Cup schedule and the real 26-player squads (Wikipedia) with free-licensed headshots (Wikimedia Commons).",
+             "outputs": ["data/raw/teams.json", "data/raw/history.json", "data/raw/wc_matches.json", "data/raw/qualification.json", "data/raw/squads.json"]},
             {"id": "transform", "title": "Validation & cleaning",
              "description": "Schema, range and referential-integrity checks; chronological ordering; outcome labelling. Match status is derived from whether a real result exists, so the app tracks the live tournament. Fails loudly on malformed data.",
              "outputs": ["data/processed/*.json"]},
@@ -618,9 +635,12 @@ def build_methodology(meta, n_matches) -> None:
             {"name": "2026 World Cup fixtures, results & bracket", "kind": "cached",
              "description": "openfootball/worldcup (2026--usa) — the real group draw, kickoff times, scores and knockout bracket in the Football.TXT format. Cached locally as data/source/openfootball_cup*.txt.",
              "license": "CC0 1.0 (public domain)"},
-            {"name": "Squads & player statistics", "kind": "generated",
-             "description": "26 deterministically-generated players per nation with culturally-plausible names, plus minutes-aware tournament stats keyed to the real group results. No clean CC0 squad/headshot source exists, so no real player data or photos are used.",
-             "license": "Generated (this project)"},
+            {"name": "National-team squads", "kind": "cached",
+             "description": "The real, current 26-player squad for each nation, parsed from the maintained '{{nat fs}}' squad templates on the English Wikipedia team articles (player name, shirt number, position, age, caps, international goals and club). Cached locally as data/source/squads_wikipedia.json. Player ability ratings and per-tournament statistics are model-generated (no free source exists) and are labelled as such throughout the UI.",
+             "license": "Wikipedia text CC BY-SA 4.0 (facts are not copyrightable)"},
+            {"name": "Player headshots", "kind": "cached",
+             "description": "Freely-licensed player portraits from Wikimedia Commons (only public-domain / CC0 / CC BY / CC BY-SA files are kept; each is stored with its author + licence for attribution). Players without a free image fall back to a clean initials avatar. Cached under public/headshots/ with credits in data/source/headshot_credits.json.",
+             "license": "Per-file free licences (PD / CC0 / CC BY / CC BY-SA)"},
             {"name": "Country flags", "kind": "static",
              "description": "SVG flags rendered via the open-source flag-icons library.",
              "license": "flag-icons — MIT (code) / public-domain (flags)"},

@@ -21,7 +21,7 @@
       "form": 73.3,
       "squad": 99.0,
       "momentum": 55.6,
-      "experience": 46.2
+      "experience": 78.2
     },
     "record": {
       "played": 3,
@@ -34,14 +34,14 @@
       "points": 9,
       "groupRank": 1
     },
-    "championProb": 0.38275,
+    "championProb": 0.39845,
     "advance": {
       "roundOf32": 1.0,
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6856,
-      "champion": 0.38275
+      "final": 0.69585,
+      "champion": 0.39845
     },
     "strengths": [
       "Potent, high-scoring attack",
@@ -53,27 +53,27 @@
       "Few obvious weaknesses"
     ],
     "keyPlayerIds": [
-      "ARG-10",
-      "ARG-01",
-      "ARG-05",
-      "ARG-02"
+      "ARG-22",
+      "ARG-15",
+      "ARG-26",
+      "ARG-23"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.3175
+        "prob": 0.334
       },
       {
         "label": "Round of 32",
-        "prob": 0.31712
+        "prob": 0.33063
       },
       {
         "label": "Round of 16",
-        "prob": 0.3675
+        "prob": 0.37925
       },
       {
         "label": "Quarter-finals",
-        "prob": 0.38275
+        "prob": 0.39845
       }
     ]
   },
@@ -93,13 +93,13 @@
     "status": "active",
     "eliminatedRound": null,
     "strength": {
-      "overall": 97.8,
-      "attack": 97.5,
-      "defense": 95.6,
+      "overall": 95.5,
+      "attack": 88.8,
+      "defense": 89.1,
       "form": 99,
-      "squad": 96.8,
+      "squad": 89.0,
       "momentum": 99,
-      "experience": 60.9
+      "experience": 36.5
     },
     "record": {
       "played": 3,
@@ -112,14 +112,14 @@
       "points": 7,
       "groupRank": 1
     },
-    "championProb": 0.2997,
+    "championProb": 0.2856,
     "advance": {
       "roundOf32": 1.0,
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.56405,
-      "champion": 0.2997
+      "final": 0.5536,
+      "champion": 0.2856
     },
     "strengths": [
       "Potent, high-scoring attack",
@@ -128,30 +128,30 @@
       "Strong recent form"
     ],
     "weaknesses": [
-      "Few obvious weaknesses"
+      "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "ESP-02",
-      "ESP-01",
-      "ESP-08",
-      "ESP-03"
+      "ESP-18",
+      "ESP-22",
+      "ESP-21",
+      "ESP-24"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.188
+        "prob": 0.17713
       },
       {
         "label": "Round of 32",
-        "prob": 0.1855
+        "prob": 0.175
       },
       {
         "label": "Round of 16",
-        "prob": 0.26787
+        "prob": 0.25725
       },
       {
         "label": "Quarter-finals",
-        "prob": 0.2997
+        "prob": 0.2856
       }
     ]
   },
@@ -171,13 +171,13 @@
     "status": "active",
     "eliminatedRound": null,
     "strength": {
-      "overall": 92.9,
-      "attack": 93.4,
-      "defense": 90.7,
+      "overall": 91.9,
+      "attack": 88.5,
+      "defense": 87.6,
       "form": 99,
-      "squad": 91.6,
+      "squad": 88.2,
       "momentum": 99,
-      "experience": 27.6
+      "experience": 42.9
     },
     "record": {
       "played": 3,
@@ -190,14 +190,14 @@
       "points": 9,
       "groupRank": 1
     },
-    "championProb": 0.2041,
+    "championProb": 0.20625,
     "advance": {
       "roundOf32": 1.0,
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.43595,
-      "champion": 0.2041
+      "final": 0.4464,
+      "champion": 0.20625
     },
     "strengths": [
       "Potent, high-scoring attack",
@@ -206,30 +206,30 @@
       "Strong recent form"
     ],
     "weaknesses": [
-      "Relatively inexperienced squad"
+      "Few obvious weaknesses"
     ],
     "keyPlayerIds": [
-      "FRA-01",
-      "FRA-02",
-      "FRA-07",
-      "FRA-13"
+      "FRA-22",
+      "FRA-24",
+      "FRA-20",
+      "FRA-07"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.1395
+        "prob": 0.14388
       },
       {
         "label": "Round of 32",
-        "prob": 0.19175
+        "prob": 0.1965
       },
       {
         "label": "Round of 16",
-        "prob": 0.16912
+        "prob": 0.17813
       },
       {
         "label": "Quarter-finals",
-        "prob": 0.2041
+        "prob": 0.20625
       }
     ]
   },
@@ -249,13 +249,13 @@
     "status": "active",
     "eliminatedRound": null,
     "strength": {
-      "overall": 80.7,
-      "attack": 79.6,
-      "defense": 82.0,
+      "overall": 79.2,
+      "attack": 77.4,
+      "defense": 72.0,
       "form": 73.3,
-      "squad": 81.9,
+      "squad": 76.9,
       "momentum": 77.8,
-      "experience": 23.1
+      "experience": 45.5
     },
     "record": {
       "played": 3,
@@ -268,46 +268,46 @@
       "points": 7,
       "groupRank": 1
     },
-    "championProb": 0.11345,
+    "championProb": 0.1097,
     "advance": {
       "roundOf32": 1.0,
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3144,
-      "champion": 0.11345
+      "final": 0.30415,
+      "champion": 0.1097
     },
     "strengths": [
       "Potent, high-scoring attack",
       "Miserly, well-drilled defense",
-      "Elite squad depth",
-      "Strong recent form"
+      "Strong recent form",
+      "Riding positive momentum"
     ],
     "weaknesses": [
-      "Relatively inexperienced squad"
+      "Few obvious weaknesses"
     ],
     "keyPlayerIds": [
-      "ENG-01",
-      "ENG-04",
-      "ENG-05",
-      "ENG-02"
+      "ENG-21",
+      "ENG-20",
+      "ENG-06",
+      "ENG-18"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.05588
+        "prob": 0.056
       },
       {
         "label": "Round of 32",
-        "prob": 0.05038
+        "prob": 0.05075
       },
       {
         "label": "Round of 16",
-        "prob": 0.10575
+        "prob": 0.1025
       },
       {
         "label": "Quarter-finals",
-        "prob": 0.11345
+        "prob": 0.1097
       }
     ]
   },
@@ -327,13 +327,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 63.2,
-      "attack": 54.9,
-      "defense": 54.7,
+      "overall": 59.9,
+      "attack": 41.5,
+      "defense": 40.7,
       "form": 80.0,
-      "squad": 52.3,
+      "squad": 41.4,
       "momentum": 66.7,
-      "experience": 39.7
+      "experience": 58.3
     },
     "record": {
       "played": 3,
@@ -361,22 +361,24 @@
     ],
     "weaknesses": [
       "Knocked out in the round of 16",
-      "Relatively inexperienced squad"
+      "Struggles to create clear chances",
+      "Defensively vulnerable",
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "MEX-01",
-      "MEX-02",
+      "MEX-21",
+      "MEX-20",
       "MEX-12",
-      "MEX-04"
+      "MEX-22"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00788
+        "prob": 0.0065
       },
       {
         "label": "Round of 32",
-        "prob": 0.01075
+        "prob": 0.00962
       },
       {
         "label": "Round of 16",
@@ -404,13 +406,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 23.4,
-      "attack": 18.2,
-      "defense": 20.2,
+      "overall": 23.1,
+      "attack": 21.3,
+      "defense": 16.1,
       "form": 46.7,
-      "squad": 20.4,
+      "squad": 19.5,
       "momentum": 44.4,
-      "experience": 21.8
+      "experience": 39.7
     },
     "record": {
       "played": 3,
@@ -442,10 +444,10 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "RSA-01",
-      "RSA-02",
-      "RSA-03",
-      "RSA-04"
+      "RSA-25",
+      "RSA-23",
+      "RSA-19",
+      "RSA-26"
     ],
     "championProbHistory": [
       {
@@ -482,13 +484,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 42.0,
-      "attack": 28.9,
-      "defense": 29.7,
+      "overall": 41.3,
+      "attack": 28.0,
+      "defense": 24.7,
       "form": 60.0,
-      "squad": 28.8,
+      "squad": 26.4,
       "momentum": 33.3,
-      "experience": 46.2
+      "experience": 57.7
     },
     "record": {
       "played": 3,
@@ -520,10 +522,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "KOR-01",
+      "KOR-24",
       "KOR-15",
-      "KOR-02",
-      "KOR-03"
+      "KOR-01",
+      "KOR-26"
     ],
     "championProbHistory": []
   },
@@ -543,13 +545,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 36.8,
-      "attack": 36.4,
-      "defense": 38.8,
+      "overall": 34.5,
+      "attack": 30.2,
+      "defense": 26.4,
       "form": 46.7,
-      "squad": 37.1,
+      "squad": 29.6,
       "momentum": 11.1,
-      "experience": 27.6
+      "experience": 53.8
     },
     "record": {
       "played": 3,
@@ -578,13 +580,13 @@
       "Eliminated in the group stage",
       "Struggles to create clear chances",
       "Defensively vulnerable",
-      "Relatively inexperienced squad"
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "CZE-01",
-      "CZE-02",
-      "CZE-04",
-      "CZE-12"
+      "CZE-24",
+      "CZE-26",
+      "CZE-18",
+      "CZE-23"
     ],
     "championProbHistory": []
   },
@@ -604,13 +606,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 44.1,
-      "attack": 41.1,
-      "defense": 41.5,
+      "overall": 42.7,
+      "attack": 36.7,
+      "defense": 35.9,
       "form": 46.7,
-      "squad": 41.1,
+      "squad": 36.2,
       "momentum": 33.3,
-      "experience": 34.0
+      "experience": 41.0
     },
     "record": {
       "played": 3,
@@ -639,22 +641,22 @@
       "Knocked out in the round of 16",
       "Struggles to create clear chances",
       "Defensively vulnerable",
-      "Relatively inexperienced squad"
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "CAN-01",
-      "CAN-02",
-      "CAN-07",
-      "CAN-04"
+      "CAN-14",
+      "CAN-24",
+      "CAN-18",
+      "CAN-20"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0015
+        "prob": 0.00137
       },
       {
         "label": "Round of 32",
-        "prob": 0.003
+        "prob": 0.00287
       },
       {
         "label": "Round of 16",
@@ -682,13 +684,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 21.6,
-      "attack": 28.6,
-      "defense": 27.6,
+      "overall": 19.1,
+      "attack": 18.7,
+      "defense": 20.5,
       "form": 33.3,
-      "squad": 27.2,
+      "squad": 19.1,
       "momentum": 33.3,
-      "experience": 39.1
+      "experience": 32.7
     },
     "record": {
       "played": 3,
@@ -720,10 +722,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "BIH-01",
-      "BIH-04",
-      "BIH-02",
-      "BIH-05"
+      "BIH-15",
+      "BIH-24",
+      "BIH-18",
+      "BIH-23"
     ],
     "championProbHistory": [
       {
@@ -760,13 +762,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 10.0,
-      "attack": 27.5,
-      "defense": 24.9,
+      "overall": 8.2,
+      "attack": 20.0,
+      "defense": 15.5,
       "form": 13.3,
-      "squad": 24.8,
+      "squad": 18.9,
       "momentum": 11.1,
-      "experience": 32.1
+      "experience": 81.4
     },
     "record": {
       "played": 3,
@@ -789,7 +791,7 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
       "Eliminated in the group stage",
@@ -798,10 +800,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "QAT-01",
-      "QAT-04",
-      "QAT-02",
-      "QAT-03"
+      "QAT-21",
+      "QAT-18",
+      "QAT-22",
+      "QAT-25"
     ],
     "championProbHistory": []
   },
@@ -821,13 +823,13 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 61.5,
-      "attack": 55.7,
-      "defense": 52.4,
+      "overall": 60.8,
+      "attack": 49.5,
+      "defense": 53.4,
       "form": 73.3,
-      "squad": 52.6,
+      "squad": 50.3,
       "momentum": 55.6,
-      "experience": 42.9
+      "experience": 63.5
     },
     "record": {
       "played": 3,
@@ -856,23 +858,23 @@
       "Knocked out in the quarter-finals"
     ],
     "keyPlayerIds": [
-      "SUI-01",
-      "SUI-12",
-      "SUI-02",
-      "SUI-04"
+      "SUI-21",
+      "SUI-22",
+      "SUI-23",
+      "SUI-13"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00363
+        "prob": 0.00375
       },
       {
         "label": "Round of 32",
-        "prob": 0.00588
+        "prob": 0.00625
       },
       {
         "label": "Round of 16",
-        "prob": 0.0125
+        "prob": 0.01275
       },
       {
         "label": "Quarter-finals",
@@ -896,13 +898,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 82.2,
-      "attack": 29.6,
-      "defense": 90.6,
+      "overall": 80.1,
+      "attack": 85.6,
+      "defense": 86.1,
       "form": 66.7,
-      "squad": 92.8,
+      "squad": 85.6,
       "momentum": 66.7,
-      "experience": 30.1
+      "experience": 80.1
     },
     "record": {
       "played": 3,
@@ -925,28 +927,28 @@
       "champion": 0.0
     },
     "strengths": [
+      "Potent, high-scoring attack",
       "Miserly, well-drilled defense",
-      "Elite squad depth"
+      "Elite squad depth",
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
-      "Knocked out in the round of 16",
-      "Struggles to create clear chances",
-      "Relatively inexperienced squad"
+      "Knocked out in the round of 16"
     ],
     "keyPlayerIds": [
-      "BRA-01",
-      "BRA-02",
-      "BRA-03",
-      "BRA-04"
+      "BRA-20",
+      "BRA-19",
+      "BRA-18",
+      "BRA-17"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.088
+        "prob": 0.083
       },
       {
         "label": "Round of 32",
-        "prob": 0.1075
+        "prob": 0.10387
       },
       {
         "label": "Round of 16",
@@ -974,13 +976,13 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 67.3,
-      "attack": 68.9,
-      "defense": 67.4,
+      "overall": 63.4,
+      "attack": 53.7,
+      "defense": 54.1,
       "form": 66.7,
-      "squad": 66.7,
+      "squad": 53.6,
       "momentum": 44.4,
-      "experience": 21.2
+      "experience": 34.6
     },
     "record": {
       "played": 3,
@@ -1010,23 +1012,23 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "MAR-01",
-      "MAR-12",
+      "MAR-25",
+      "MAR-22",
       "MAR-13",
-      "MAR-02"
+      "MAR-04"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.009
+        "prob": 0.00762
       },
       {
         "label": "Round of 32",
-        "prob": 0.01762
+        "prob": 0.01525
       },
       {
         "label": "Round of 16",
-        "prob": 0.02813
+        "prob": 0.023
       },
       {
         "label": "Quarter-finals",
@@ -1050,13 +1052,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 13.2,
-      "attack": 13.2,
-      "defense": 6.4,
+      "overall": 12.1,
+      "attack": 6.1,
+      "defense": 3.0,
       "form": 20.0,
-      "squad": 7.4,
+      "squad": 3.9,
       "momentum": 3,
-      "experience": 33.3
+      "experience": 50.0
     },
     "record": {
       "played": 3,
@@ -1088,10 +1090,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "HAI-01",
-      "HAI-02",
-      "HAI-05",
-      "HAI-04"
+      "HAI-19",
+      "HAI-25",
+      "HAI-20",
+      "HAI-06"
     ],
     "championProbHistory": []
   },
@@ -1111,13 +1113,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 42.9,
-      "attack": 46.1,
-      "defense": 49.1,
+      "overall": 39.5,
+      "attack": 36.2,
+      "defense": 36.6,
       "form": 60.0,
-      "squad": 47.2,
+      "squad": 36.0,
       "momentum": 33.3,
-      "experience": 33.3
+      "experience": 78.8
     },
     "record": {
       "played": 3,
@@ -1140,17 +1142,19 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
       "Eliminated in the group stage",
-      "Relatively inexperienced squad"
+      "Struggles to create clear chances",
+      "Defensively vulnerable",
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "SCO-01",
-      "SCO-02",
-      "SCO-09",
-      "SCO-04"
+      "SCO-08",
+      "SCO-05",
+      "SCO-22",
+      "SCO-07"
     ],
     "championProbHistory": []
   },
@@ -1170,13 +1174,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 51.2,
-      "attack": 29.6,
-      "defense": 54.9,
+      "overall": 48.7,
+      "attack": 46.1,
+      "defense": 50.6,
       "form": 60.0,
-      "squad": 55.9,
+      "squad": 47.5,
       "momentum": 33.3,
-      "experience": 23.7
+      "experience": 40.4
     },
     "record": {
       "played": 3,
@@ -1202,24 +1206,22 @@
       "Home-tournament advantage"
     ],
     "weaknesses": [
-      "Knocked out in the round of 16",
-      "Struggles to create clear chances",
-      "Relatively inexperienced squad"
+      "Knocked out in the round of 16"
     ],
     "keyPlayerIds": [
-      "USA-01",
-      "USA-02",
-      "USA-09",
-      "USA-05"
+      "USA-20",
+      "USA-22",
+      "USA-25",
+      "USA-19"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00475
+        "prob": 0.00425
       },
       {
         "label": "Round of 32",
-        "prob": 0.00375
+        "prob": 0.0035
       },
       {
         "label": "Round of 16",
@@ -1247,13 +1249,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 40.8,
-      "attack": 36.8,
-      "defense": 38.0,
+      "overall": 39.0,
+      "attack": 29.3,
+      "defense": 33.4,
       "form": 33.3,
-      "squad": 36.7,
+      "squad": 30.6,
       "momentum": 22.2,
-      "experience": 23.1
+      "experience": 75.0
     },
     "record": {
       "played": 3,
@@ -1276,7 +1278,7 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
       "Knocked out in the round of 16",
@@ -1285,10 +1287,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "PAR-01",
-      "PAR-02",
-      "PAR-03",
-      "PAR-05"
+      "PAR-23",
+      "PAR-17",
+      "PAR-10",
+      "PAR-14"
     ],
     "championProbHistory": [
       {
@@ -1297,7 +1299,7 @@
       },
       {
         "label": "Round of 32",
-        "prob": 0.001
+        "prob": 0.00075
       },
       {
         "label": "Round of 16",
@@ -1325,13 +1327,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 44.8,
-      "attack": 29.6,
-      "defense": 39.7,
+      "overall": 43.3,
+      "attack": 35.1,
+      "defense": 36.5,
       "form": 40.0,
-      "squad": 40.1,
+      "squad": 35.2,
       "momentum": 22.2,
-      "experience": 11.5
+      "experience": 48.1
     },
     "record": {
       "played": 3,
@@ -1360,13 +1362,13 @@
       "Knocked out in the round of 32",
       "Struggles to create clear chances",
       "Defensively vulnerable",
-      "Relatively inexperienced squad"
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "AUS-01",
-      "AUS-02",
-      "AUS-04",
-      "AUS-05"
+      "AUS-20",
+      "AUS-22",
+      "AUS-21",
+      "AUS-04"
     ],
     "championProbHistory": [
       {
@@ -1403,13 +1405,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 52.2,
-      "attack": 58.9,
-      "defense": 48.7,
+      "overall": 51.3,
+      "attack": 47.1,
+      "defense": 46.5,
       "form": 60.0,
-      "squad": 50.9,
+      "squad": 47.8,
       "momentum": 33.3,
-      "experience": 37.8
+      "experience": 53.8
     },
     "record": {
       "played": 3,
@@ -1435,14 +1437,13 @@
       "Balanced, hard-to-break-down side"
     ],
     "weaknesses": [
-      "Eliminated in the group stage",
-      "Relatively inexperienced squad"
+      "Eliminated in the group stage"
     ],
     "keyPlayerIds": [
-      "TUR-01",
-      "TUR-02",
-      "TUR-03",
-      "TUR-11"
+      "TUR-16",
+      "TUR-14",
+      "TUR-17",
+      "TUR-24"
     ],
     "championProbHistory": []
   },
@@ -1462,13 +1463,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 70.7,
-      "attack": 74.6,
-      "defense": 75.7,
+      "overall": 68.7,
+      "attack": 68.1,
+      "defense": 70.1,
       "form": 66.7,
-      "squad": 75.6,
+      "squad": 69.1,
       "momentum": 44.4,
-      "experience": 27.6
+      "experience": 60.3
     },
     "record": {
       "played": 3,
@@ -1491,23 +1492,21 @@
       "champion": 0.0
     },
     "strengths": [
-      "Potent, high-scoring attack",
-      "Miserly, well-drilled defense"
+      "Balanced, hard-to-break-down side"
     ],
     "weaknesses": [
-      "Knocked out in the round of 32",
-      "Relatively inexperienced squad"
+      "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "GER-01",
-      "GER-04",
-      "GER-06",
-      "GER-07"
+      "GER-23",
+      "GER-19",
+      "GER-13",
+      "GER-14"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.024
+        "prob": 0.023
       },
       {
         "label": "Round of 32",
@@ -1545,7 +1544,7 @@
       "form": 26.7,
       "squad": 1.0,
       "momentum": 11.1,
-      "experience": 9.6
+      "experience": 59.0
     },
     "record": {
       "played": 3,
@@ -1577,10 +1576,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "CUW-01",
-      "CUW-02",
-      "CUW-05",
-      "CUW-04"
+      "CUW-24",
+      "CUW-13",
+      "CUW-20",
+      "CUW-01"
     ],
     "championProbHistory": []
   },
@@ -1600,11 +1599,11 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 45.0,
-      "attack": 40.2,
-      "defense": 45.3,
+      "overall": 44.2,
+      "attack": 41.0,
+      "defense": 41.5,
       "form": 60.0,
-      "squad": 43.8,
+      "squad": 41.1,
       "momentum": 33.3,
       "experience": 23.1
     },
@@ -1634,19 +1633,19 @@
     "weaknesses": [
       "Knocked out in the round of 32",
       "Struggles to create clear chances",
-      "Relatively inexperienced squad",
-      "Limited strength in depth"
+      "Defensively vulnerable",
+      "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "CIV-01",
-      "CIV-02",
-      "CIV-03",
-      "CIV-12"
+      "CIV-22",
+      "CIV-12",
+      "CIV-13",
+      "CIV-17"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0005
+        "prob": 0.00063
       },
       {
         "label": "Round of 32",
@@ -1678,13 +1677,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 56.3,
-      "attack": 29.6,
-      "defense": 54.7,
+      "overall": 53.8,
+      "attack": 46.9,
+      "defense": 47.3,
       "form": 46.7,
-      "squad": 55.9,
+      "squad": 47.6,
       "momentum": 44.4,
-      "experience": 34.0
+      "experience": 26.3
     },
     "record": {
       "played": 3,
@@ -1711,19 +1710,18 @@
     ],
     "weaknesses": [
       "Knocked out in the round of 32",
-      "Struggles to create clear chances",
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "ECU-01",
-      "ECU-02",
-      "ECU-03",
-      "ECU-04"
+      "ECU-23",
+      "ECU-18",
+      "ECU-20",
+      "ECU-16"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0045
+        "prob": 0.00413
       },
       {
         "label": "Round of 32",
@@ -1755,13 +1753,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 76.6,
-      "attack": 83.2,
-      "defense": 84.9,
+      "overall": 74.4,
+      "attack": 79.3,
+      "defense": 77.7,
       "form": 73.3,
-      "squad": 85.7,
+      "squad": 78.4,
       "momentum": 77.8,
-      "experience": 35.9
+      "experience": 55.1
     },
     "record": {
       "played": 3,
@@ -1790,19 +1788,18 @@
       "Strong recent form"
     ],
     "weaknesses": [
-      "Knocked out in the round of 32",
-      "Relatively inexperienced squad"
+      "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "NED-01",
-      "NED-04",
-      "NED-02",
-      "NED-05"
+      "NED-14",
+      "NED-22",
+      "NED-18",
+      "NED-21"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0385
+        "prob": 0.03762
       },
       {
         "label": "Round of 32",
@@ -1834,13 +1831,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 60.9,
-      "attack": 29.6,
-      "defense": 55.4,
+      "overall": 60.0,
+      "attack": 52.1,
+      "defense": 54.0,
       "form": 53.3,
-      "squad": 56.0,
+      "squad": 52.9,
       "momentum": 44.4,
-      "experience": 42.3
+      "experience": 48.7
     },
     "record": {
       "played": 3,
@@ -1866,19 +1863,18 @@
       "Balanced, hard-to-break-down side"
     ],
     "weaknesses": [
-      "Knocked out in the round of 32",
-      "Struggles to create clear chances"
+      "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "JPN-01",
-      "JPN-02",
-      "JPN-03",
-      "JPN-05"
+      "JPN-14",
+      "JPN-25",
+      "JPN-17",
+      "JPN-13"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.006
+        "prob": 0.0065
       },
       {
         "label": "Round of 32",
@@ -1910,13 +1906,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 37.7,
-      "attack": 40.7,
-      "defense": 40.3,
+      "overall": 35.6,
+      "attack": 34.0,
+      "defense": 31.4,
       "form": 33.3,
-      "squad": 40.0,
+      "squad": 33.0,
       "momentum": 11.1,
-      "experience": 21.2
+      "experience": 50.0
     },
     "record": {
       "played": 3,
@@ -1948,15 +1944,15 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "SWE-01",
-      "SWE-02",
-      "SWE-05",
-      "SWE-03"
+      "SWE-19",
+      "SWE-18",
+      "SWE-22",
+      "SWE-16"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0005
+        "prob": 0.00038
       },
       {
         "label": "Round of 32",
@@ -1988,13 +1984,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 24.7,
-      "attack": 29.6,
-      "defense": 41.4,
+      "overall": 22.7,
+      "attack": 36.3,
+      "defense": 35.1,
       "form": 3,
-      "squad": 41.8,
+      "squad": 35.0,
       "momentum": 3,
-      "experience": 28.2
+      "experience": 35.9
     },
     "record": {
       "played": 3,
@@ -2026,10 +2022,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "TUN-01",
-      "TUN-02",
-      "TUN-06",
-      "TUN-03"
+      "TUN-25",
+      "TUN-18",
+      "TUN-14",
+      "TUN-21"
     ],
     "championProbHistory": []
   },
@@ -2049,13 +2045,13 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 70.0,
-      "attack": 72.9,
-      "defense": 79.3,
+      "overall": 67.6,
+      "attack": 67.9,
+      "defense": 23.0,
       "form": 53.3,
-      "squad": 77.0,
+      "squad": 68.9,
       "momentum": 44.4,
-      "experience": 23.1
+      "experience": 51.9
     },
     "record": {
       "played": 3,
@@ -2078,31 +2074,30 @@
       "champion": 0.0
     },
     "strengths": [
-      "Potent, high-scoring attack",
-      "Miserly, well-drilled defense"
+      "Balanced, hard-to-break-down side"
     ],
     "weaknesses": [
       "Knocked out in the quarter-finals",
-      "Relatively inexperienced squad"
+      "Defensively vulnerable"
     ],
     "keyPlayerIds": [
-      "BEL-02",
-      "BEL-01",
-      "BEL-03",
-      "BEL-04"
+      "BEL-18",
+      "BEL-23",
+      "BEL-13",
+      "BEL-20"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0205
+        "prob": 0.02
       },
       {
         "label": "Round of 32",
-        "prob": 0.02388
+        "prob": 0.02275
       },
       {
         "label": "Round of 16",
-        "prob": 0.03325
+        "prob": 0.03112
       },
       {
         "label": "Quarter-finals",
@@ -2126,13 +2121,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 38.6,
-      "attack": 32.5,
-      "defense": 35.6,
+      "overall": 39.1,
+      "attack": 36.8,
+      "defense": 34.7,
       "form": 40.0,
-      "squad": 33.9,
+      "squad": 35.6,
       "momentum": 22.2,
-      "experience": 39.1
+      "experience": 78.2
     },
     "record": {
       "played": 3,
@@ -2155,19 +2150,19 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
       "Knocked out in the round of 16",
       "Struggles to create clear chances",
       "Defensively vulnerable",
-      "Relatively inexperienced squad"
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "EGY-01",
-      "EGY-04",
-      "EGY-02",
-      "EGY-03"
+      "EGY-20",
+      "EGY-22",
+      "EGY-13",
+      "EGY-19"
     ],
     "championProbHistory": [
       {
@@ -2204,13 +2199,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 54.1,
-      "attack": 56.4,
-      "defense": 56.2,
+      "overall": 52.5,
+      "attack": 49.2,
+      "defense": 52.2,
       "form": 60.0,
-      "squad": 55.3,
+      "squad": 49.8,
       "momentum": 33.3,
-      "experience": 28.2
+      "experience": 97.4
     },
     "record": {
       "played": 3,
@@ -2233,17 +2228,16 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
-      "Eliminated in the group stage",
-      "Relatively inexperienced squad"
+      "Eliminated in the group stage"
     ],
     "keyPlayerIds": [
-      "IRN-01",
-      "IRN-02",
-      "IRN-03",
-      "IRN-09"
+      "IRN-14",
+      "IRN-18",
+      "IRN-13",
+      "IRN-05"
     ],
     "championProbHistory": []
   },
@@ -2263,13 +2257,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 14.8,
-      "attack": 14.3,
-      "defense": 9.7,
+      "overall": 13.4,
+      "attack": 6.4,
+      "defense": 4.8,
       "form": 6.7,
-      "squad": 10.9,
+      "squad": 6.2,
       "momentum": 11.1,
-      "experience": 31.4
+      "experience": 62.8
     },
     "record": {
       "played": 3,
@@ -2301,10 +2295,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "NZL-01",
-      "NZL-02",
-      "NZL-06",
-      "NZL-05"
+      "NZL-24",
+      "NZL-18",
+      "NZL-23",
+      "NZL-13"
     ],
     "championProbHistory": []
   },
@@ -2324,13 +2318,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 19.5,
-      "attack": 21.8,
-      "defense": 22.0,
+      "overall": 17.5,
+      "attack": 15.7,
+      "defense": 13.9,
       "form": 26.7,
-      "squad": 21.7,
+      "squad": 15.0,
       "momentum": 33.3,
-      "experience": 31.4
+      "experience": 86.5
     },
     "record": {
       "played": 3,
@@ -2353,7 +2347,7 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
       "Knocked out in the round of 32",
@@ -2362,10 +2356,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "CPV-01",
-      "CPV-02",
-      "CPV-03",
-      "CPV-04"
+      "CPV-25",
+      "CPV-13",
+      "CPV-23",
+      "CPV-16"
     ],
     "championProbHistory": [
       {
@@ -2402,13 +2396,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 24.4,
-      "attack": 26.4,
-      "defense": 25.8,
+      "overall": 24.0,
+      "attack": 23.3,
+      "defense": 24.0,
       "form": 40.0,
-      "squad": 25.3,
+      "squad": 24.0,
       "momentum": 22.2,
-      "experience": 34.6
+      "experience": 66.0
     },
     "record": {
       "played": 3,
@@ -2437,13 +2431,13 @@
       "Eliminated in the group stage",
       "Struggles to create clear chances",
       "Defensively vulnerable",
-      "Relatively inexperienced squad"
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "SAU-01",
-      "SAU-02",
-      "SAU-04",
-      "SAU-03"
+      "SAU-22",
+      "SAU-17",
+      "SAU-26",
+      "SAU-08"
     ],
     "championProbHistory": []
   },
@@ -2463,13 +2457,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 55.7,
-      "attack": 72.9,
-      "defense": 69.3,
+      "overall": 54.0,
+      "attack": 63.8,
+      "defense": 64.0,
       "form": 26.7,
-      "squad": 70.1,
+      "squad": 64.5,
       "momentum": 22.2,
-      "experience": 53.2
+      "experience": 69.9
     },
     "record": {
       "played": 3,
@@ -2492,17 +2486,17 @@
       "champion": 0.0
     },
     "strengths": [
-      "Potent, high-scoring attack"
+      "Balanced, hard-to-break-down side"
     ],
     "weaknesses": [
       "Eliminated in the group stage",
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "URU-01",
-      "URU-09",
-      "URU-06",
-      "URU-02"
+      "URU-08",
+      "URU-16",
+      "URU-24",
+      "URU-25"
     ],
     "championProbHistory": []
   },
@@ -2522,13 +2516,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 48.9,
-      "attack": 54.6,
-      "defense": 59.1,
+      "overall": 47.0,
+      "attack": 51.2,
+      "defense": 48.7,
       "form": 33.3,
-      "squad": 57.4,
+      "squad": 50.8,
       "momentum": 44.4,
-      "experience": 13.5
+      "experience": 43.6
     },
     "record": {
       "played": 3,
@@ -2555,19 +2549,18 @@
     ],
     "weaknesses": [
       "Knocked out in the round of 32",
-      "Patchy recent results",
-      "Relatively inexperienced squad"
+      "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "SEN-01",
+      "SEN-24",
       "SEN-12",
-      "SEN-02",
-      "SEN-05"
+      "SEN-25",
+      "SEN-22"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.001
+        "prob": 0.00088
       },
       {
         "label": "Round of 32",
@@ -2599,13 +2592,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 18.2,
-      "attack": 24.5,
-      "defense": 26.0,
+      "overall": 15.0,
+      "attack": 14.1,
+      "defense": 11.6,
       "form": 6.7,
-      "squad": 23.8,
+      "squad": 13.2,
       "momentum": 3,
-      "experience": 38.5
+      "experience": 40.4
     },
     "record": {
       "played": 3,
@@ -2637,10 +2630,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "IRQ-01",
-      "IRQ-02",
-      "IRQ-03",
-      "IRQ-06"
+      "IRQ-24",
+      "IRQ-26",
+      "IRQ-14",
+      "IRQ-18"
     ],
     "championProbHistory": []
   },
@@ -2660,13 +2653,13 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 61.0,
-      "attack": 54.3,
-      "defense": 59.3,
+      "overall": 60.0,
+      "attack": 54.9,
+      "defense": 52.5,
       "form": 66.7,
-      "squad": 57.3,
+      "squad": 54.0,
       "momentum": 77.8,
-      "experience": 33.3
+      "experience": 39.1
     },
     "record": {
       "played": 3,
@@ -2696,23 +2689,23 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "NOR-04",
+      "NOR-13",
       "NOR-16",
-      "NOR-01",
-      "NOR-06"
+      "NOR-06",
+      "NOR-04"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00413
+        "prob": 0.00425
       },
       {
         "label": "Round of 32",
-        "prob": 0.006
+        "prob": 0.00625
       },
       {
         "label": "Round of 16",
-        "prob": 0.01588
+        "prob": 0.016
       },
       {
         "label": "Quarter-finals",
@@ -2736,13 +2729,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 49.6,
-      "attack": 46.4,
-      "defense": 50.9,
+      "overall": 47.4,
+      "attack": 42.9,
+      "defense": 44.2,
       "form": 46.7,
-      "squad": 50.3,
+      "squad": 42.9,
       "momentum": 44.4,
-      "experience": 34.6
+      "experience": 41.0
     },
     "record": {
       "played": 3,
@@ -2769,13 +2762,15 @@
     ],
     "weaknesses": [
       "Knocked out in the round of 32",
-      "Relatively inexperienced squad"
+      "Struggles to create clear chances",
+      "Defensively vulnerable",
+      "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "ALG-01",
-      "ALG-02",
-      "ALG-13",
-      "ALG-03"
+      "ALG-20",
+      "ALG-17",
+      "ALG-24",
+      "ALG-11"
     ],
     "championProbHistory": [
       {
@@ -2812,13 +2807,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 51.4,
-      "attack": 56.1,
-      "defense": 52.5,
+      "overall": 50.8,
+      "attack": 50.2,
+      "defense": 49.1,
       "form": 46.7,
-      "squad": 52.0,
+      "squad": 50.0,
       "momentum": 11.1,
-      "experience": 15.4
+      "experience": 69.9
     },
     "record": {
       "played": 3,
@@ -2844,19 +2839,18 @@
       "Balanced, hard-to-break-down side"
     ],
     "weaknesses": [
-      "Knocked out in the round of 32",
-      "Relatively inexperienced squad"
+      "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "AUT-01",
-      "AUT-02",
-      "AUT-06",
-      "AUT-13"
+      "AUT-25",
+      "AUT-24",
+      "AUT-15",
+      "AUT-26"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00187
+        "prob": 0.002
       },
       {
         "label": "Round of 32",
@@ -2888,13 +2882,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 18.3,
-      "attack": 16.4,
-      "defense": 20.2,
+      "overall": 16.6,
+      "attack": 13.3,
+      "defense": 13.2,
       "form": 3,
-      "squad": 18.6,
+      "squad": 13.0,
       "momentum": 3,
-      "experience": 37.8
+      "experience": 67.3
     },
     "record": {
       "played": 3,
@@ -2926,10 +2920,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "JOR-01",
-      "JOR-02",
-      "JOR-03",
-      "JOR-12"
+      "JOR-16",
+      "JOR-11",
+      "JOR-23",
+      "JOR-22"
     ],
     "championProbHistory": []
   },
@@ -2949,13 +2943,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 75.3,
-      "attack": 83.2,
-      "defense": 82.9,
+      "overall": 74.5,
+      "attack": 80.9,
+      "defense": 79.3,
       "form": 53.3,
-      "squad": 84.0,
+      "squad": 81.4,
       "momentum": 44.4,
-      "experience": 41.0
+      "experience": 59.0
     },
     "record": {
       "played": 3,
@@ -2986,19 +2980,19 @@
       "Knocked out in the round of 16"
     ],
     "keyPlayerIds": [
-      "POR-05",
-      "POR-01",
-      "POR-02",
-      "POR-09"
+      "POR-19",
+      "POR-13",
+      "POR-04",
+      "POR-14"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.03325
+        "prob": 0.03625
       },
       {
         "label": "Round of 32",
-        "prob": 0.03887
+        "prob": 0.04125
       },
       {
         "label": "Round of 16",
@@ -3026,13 +3020,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 30.0,
-      "attack": 34.3,
-      "defense": 37.6,
+      "overall": 27.7,
+      "attack": 27.3,
+      "defense": 31.5,
       "form": 26.7,
-      "squad": 36.5,
+      "squad": 28.6,
       "momentum": 33.3,
-      "experience": 12.2
+      "experience": 75.0
     },
     "record": {
       "played": 3,
@@ -3055,7 +3049,7 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
       "Knocked out in the round of 32",
@@ -3064,10 +3058,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "COD-01",
-      "COD-02",
-      "COD-04",
-      "COD-03"
+      "COD-22",
+      "COD-25",
+      "COD-09",
+      "COD-18"
     ],
     "championProbHistory": [
       {
@@ -3104,13 +3098,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 24.5,
-      "attack": 28.7,
-      "defense": 31.7,
+      "overall": 23.3,
+      "attack": 25.6,
+      "defense": 23.8,
       "form": 3,
-      "squad": 28.6,
+      "squad": 24.6,
       "momentum": 3,
-      "experience": 24.4
+      "experience": 61.5
     },
     "record": {
       "played": 3,
@@ -3142,10 +3136,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "UZB-01",
-      "UZB-02",
-      "UZB-03",
-      "UZB-12"
+      "UZB-19",
+      "UZB-24",
+      "UZB-18",
+      "UZB-15"
     ],
     "championProbHistory": []
   },
@@ -3165,13 +3159,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 73.4,
-      "attack": 60.9,
-      "defense": 68.4,
+      "overall": 71.6,
+      "attack": 58.4,
+      "defense": 59.6,
       "form": 73.3,
-      "squad": 65.3,
+      "squad": 59.4,
       "momentum": 55.6,
-      "experience": 26.3
+      "experience": 93.6
     },
     "record": {
       "played": 3,
@@ -3194,26 +3188,26 @@
       "champion": 0.0
     },
     "strengths": [
-      "Strong recent form"
+      "Strong recent form",
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
-      "Knocked out in the round of 16",
-      "Relatively inexperienced squad"
+      "Knocked out in the round of 16"
     ],
     "keyPlayerIds": [
-      "COL-01",
-      "COL-02",
-      "COL-05",
-      "COL-03"
+      "COL-11",
+      "COL-13",
+      "COL-15",
+      "COL-07"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.04275
+        "prob": 0.04025
       },
       {
         "label": "Round of 32",
-        "prob": 0.03662
+        "prob": 0.03438
       },
       {
         "label": "Round of 16",
@@ -3241,13 +3235,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 62.1,
-      "attack": 63.6,
-      "defense": 68.5,
+      "overall": 59.5,
+      "attack": 59.9,
+      "defense": 55.6,
       "form": 60.0,
-      "squad": 67.6,
+      "squad": 59.2,
       "momentum": 66.7,
-      "experience": 41.7
+      "experience": 64.7
     },
     "record": {
       "played": 3,
@@ -3276,15 +3270,15 @@
       "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "CRO-01",
-      "CRO-02",
-      "CRO-12",
-      "CRO-04"
+      "CRO-24",
+      "CRO-15",
+      "CRO-14",
+      "CRO-23"
     ],
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0045
+        "prob": 0.00425
       },
       {
         "label": "Round of 32",
@@ -3316,13 +3310,13 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 25.9,
-      "attack": 45.0,
-      "defense": 41.8,
+      "overall": 21.9,
+      "attack": 29.6,
+      "defense": 28.3,
       "form": 33.3,
-      "squad": 42.4,
+      "squad": 29.3,
       "momentum": 11.1,
-      "experience": 25.0
+      "experience": 40.4
     },
     "record": {
       "played": 3,
@@ -3349,15 +3343,15 @@
     ],
     "weaknesses": [
       "Knocked out in the round of 32",
+      "Struggles to create clear chances",
       "Defensively vulnerable",
-      "Patchy recent results",
-      "Relatively inexperienced squad"
+      "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "GHA-01",
-      "GHA-02",
-      "GHA-03",
-      "GHA-05"
+      "GHA-21",
+      "GHA-14",
+      "GHA-07",
+      "GHA-23"
     ],
     "championProbHistory": [
       {
@@ -3394,13 +3388,13 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 25.9,
-      "attack": 21.4,
-      "defense": 20.1,
+      "overall": 24.9,
+      "attack": 16.2,
+      "defense": 14.5,
       "form": 26.7,
-      "squad": 20.5,
+      "squad": 17.0,
       "momentum": 3,
-      "experience": 20.5
+      "experience": 99
     },
     "record": {
       "played": 3,
@@ -3423,7 +3417,7 @@
       "champion": 0.0
     },
     "strengths": [
-      "Balanced, hard-to-break-down side"
+      "Tournament-tested, experienced core"
     ],
     "weaknesses": [
       "Eliminated in the group stage",
@@ -3432,10 +3426,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "PAN-01",
-      "PAN-03",
-      "PAN-02",
-      "PAN-04"
+      "PAN-16",
+      "PAN-20",
+      "PAN-21",
+      "PAN-24"
     ],
     "championProbHistory": []
   }

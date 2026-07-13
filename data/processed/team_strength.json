@@ -1,340 +1,340 @@
 {
   "strength": {
     "MEX": {
-      "squad": 52.3,
-      "attack": 54.9,
-      "defense": 54.7,
-      "experience": 39.7,
-      "squad_raw": 77.44
+      "squad": 41.4,
+      "attack": 41.5,
+      "defense": 40.7,
+      "experience": 58.3,
+      "squad_raw": 74.8
     },
     "RSA": {
-      "squad": 20.4,
-      "attack": 18.2,
-      "defense": 20.2,
-      "experience": 21.8,
-      "squad_raw": 68.66
+      "squad": 19.5,
+      "attack": 21.3,
+      "defense": 16.1,
+      "experience": 39.7,
+      "squad_raw": 68.58
     },
     "KOR": {
-      "squad": 28.8,
-      "attack": 28.9,
-      "defense": 29.7,
-      "experience": 46.2,
-      "squad_raw": 70.96
+      "squad": 26.4,
+      "attack": 28.0,
+      "defense": 24.7,
+      "experience": 57.7,
+      "squad_raw": 70.54
     },
     "CZE": {
-      "squad": 37.1,
-      "attack": 36.4,
-      "defense": 38.8,
-      "experience": 27.6,
-      "squad_raw": 73.25
+      "squad": 29.6,
+      "attack": 30.2,
+      "defense": 26.4,
+      "experience": 53.8,
+      "squad_raw": 71.45
     },
     "CAN": {
-      "squad": 41.1,
-      "attack": 41.1,
-      "defense": 41.5,
-      "experience": 34.0,
-      "squad_raw": 74.35
+      "squad": 36.2,
+      "attack": 36.7,
+      "defense": 35.9,
+      "experience": 41.0,
+      "squad_raw": 73.33
     },
     "BIH": {
-      "squad": 27.2,
-      "attack": 28.6,
-      "defense": 27.6,
-      "experience": 39.1,
-      "squad_raw": 70.52
+      "squad": 19.1,
+      "attack": 18.7,
+      "defense": 20.5,
+      "experience": 32.7,
+      "squad_raw": 68.46
     },
     "QAT": {
-      "squad": 24.8,
-      "attack": 27.5,
-      "defense": 24.9,
-      "experience": 32.1,
-      "squad_raw": 69.88
+      "squad": 18.9,
+      "attack": 20.0,
+      "defense": 15.5,
+      "experience": 81.4,
+      "squad_raw": 68.42
     },
     "SUI": {
-      "squad": 52.6,
-      "attack": 55.7,
-      "defense": 52.4,
-      "experience": 42.9,
-      "squad_raw": 77.52
+      "squad": 50.3,
+      "attack": 49.5,
+      "defense": 53.4,
+      "experience": 63.5,
+      "squad_raw": 77.34
     },
     "BRA": {
-      "squad": 92.8,
-      "attack": 29.6,
-      "defense": 90.6,
-      "experience": 30.1,
-      "squad_raw": 88.6
+      "squad": 85.6,
+      "attack": 85.6,
+      "defense": 86.1,
+      "experience": 80.1,
+      "squad_raw": 87.38
     },
     "MAR": {
-      "squad": 66.7,
-      "attack": 68.9,
-      "defense": 67.4,
-      "experience": 21.2,
-      "squad_raw": 81.41
+      "squad": 53.6,
+      "attack": 53.7,
+      "defense": 54.1,
+      "experience": 34.6,
+      "squad_raw": 78.29
     },
     "HAI": {
-      "squad": 7.4,
-      "attack": 13.2,
-      "defense": 6.4,
-      "experience": 33.3,
-      "squad_raw": 65.06
+      "squad": 3.9,
+      "attack": 6.1,
+      "defense": 3.0,
+      "experience": 50.0,
+      "squad_raw": 64.14
     },
     "SCO": {
-      "squad": 47.2,
-      "attack": 46.1,
-      "defense": 49.1,
-      "experience": 33.3,
-      "squad_raw": 76.04
+      "squad": 36.0,
+      "attack": 36.2,
+      "defense": 36.6,
+      "experience": 78.8,
+      "squad_raw": 73.27
     },
     "USA": {
-      "squad": 55.9,
-      "attack": 29.6,
-      "defense": 54.9,
-      "experience": 23.7,
-      "squad_raw": 78.44
+      "squad": 47.5,
+      "attack": 46.1,
+      "defense": 50.6,
+      "experience": 40.4,
+      "squad_raw": 76.55
     },
     "PAR": {
-      "squad": 36.7,
-      "attack": 36.8,
-      "defense": 38.0,
-      "experience": 23.1,
-      "squad_raw": 73.14
+      "squad": 30.6,
+      "attack": 29.3,
+      "defense": 33.4,
+      "experience": 75.0,
+      "squad_raw": 71.74
     },
     "AUS": {
-      "squad": 40.1,
-      "attack": 29.6,
-      "defense": 39.7,
-      "experience": 11.5,
-      "squad_raw": 74.07
+      "squad": 35.2,
+      "attack": 35.1,
+      "defense": 36.5,
+      "experience": 48.1,
+      "squad_raw": 73.04
     },
     "TUR": {
-      "squad": 50.9,
-      "attack": 58.9,
-      "defense": 48.7,
-      "experience": 37.8,
-      "squad_raw": 77.05
+      "squad": 47.8,
+      "attack": 47.1,
+      "defense": 46.5,
+      "experience": 53.8,
+      "squad_raw": 76.63
     },
     "GER": {
-      "squad": 75.6,
-      "attack": 74.6,
-      "defense": 75.7,
-      "experience": 27.6,
-      "squad_raw": 83.87
+      "squad": 69.1,
+      "attack": 68.1,
+      "defense": 70.1,
+      "experience": 60.3,
+      "squad_raw": 82.69
     },
     "CUW": {
       "squad": 1.0,
       "attack": 1.0,
       "defense": 1.0,
-      "experience": 9.6,
+      "experience": 59.0,
       "squad_raw": 63.03
     },
     "CIV": {
-      "squad": 43.8,
-      "attack": 40.2,
-      "defense": 45.3,
+      "squad": 41.1,
+      "attack": 41.0,
+      "defense": 41.5,
       "experience": 23.1,
-      "squad_raw": 75.09
+      "squad_raw": 74.74
     },
     "ECU": {
-      "squad": 55.9,
-      "attack": 29.6,
-      "defense": 54.7,
-      "experience": 34.0,
-      "squad_raw": 78.45
+      "squad": 47.6,
+      "attack": 46.9,
+      "defense": 47.3,
+      "experience": 26.3,
+      "squad_raw": 76.57
     },
     "NED": {
-      "squad": 85.7,
-      "attack": 83.2,
-      "defense": 84.9,
-      "experience": 35.9,
-      "squad_raw": 86.64
+      "squad": 78.4,
+      "attack": 79.3,
+      "defense": 77.7,
+      "experience": 55.1,
+      "squad_raw": 85.34
     },
     "JPN": {
-      "squad": 56.0,
-      "attack": 29.6,
-      "defense": 55.4,
-      "experience": 42.3,
-      "squad_raw": 78.47
+      "squad": 52.9,
+      "attack": 52.1,
+      "defense": 54.0,
+      "experience": 48.7,
+      "squad_raw": 78.07
     },
     "SWE": {
-      "squad": 40.0,
-      "attack": 40.7,
-      "defense": 40.3,
-      "experience": 21.2,
-      "squad_raw": 74.04
+      "squad": 33.0,
+      "attack": 34.0,
+      "defense": 31.4,
+      "experience": 50.0,
+      "squad_raw": 72.43
     },
     "TUN": {
-      "squad": 41.8,
-      "attack": 29.6,
-      "defense": 41.4,
-      "experience": 28.2,
-      "squad_raw": 74.54
+      "squad": 35.0,
+      "attack": 36.3,
+      "defense": 35.1,
+      "experience": 35.9,
+      "squad_raw": 72.99
     },
     "BEL": {
-      "squad": 77.0,
-      "attack": 72.9,
-      "defense": 79.3,
-      "experience": 23.1,
-      "squad_raw": 84.24
+      "squad": 68.9,
+      "attack": 67.9,
+      "defense": 23.0,
+      "experience": 51.9,
+      "squad_raw": 82.64
     },
     "EGY": {
-      "squad": 33.9,
-      "attack": 32.5,
-      "defense": 35.6,
-      "experience": 39.1,
-      "squad_raw": 72.37
+      "squad": 35.6,
+      "attack": 36.8,
+      "defense": 34.7,
+      "experience": 78.2,
+      "squad_raw": 73.16
     },
     "IRN": {
-      "squad": 55.3,
-      "attack": 56.4,
-      "defense": 56.2,
-      "experience": 28.2,
-      "squad_raw": 78.27
+      "squad": 49.8,
+      "attack": 49.2,
+      "defense": 52.2,
+      "experience": 97.4,
+      "squad_raw": 77.21
     },
     "NZL": {
-      "squad": 10.9,
-      "attack": 14.3,
-      "defense": 9.7,
-      "experience": 31.4,
-      "squad_raw": 66.02
+      "squad": 6.2,
+      "attack": 6.4,
+      "defense": 4.8,
+      "experience": 62.8,
+      "squad_raw": 64.8
     },
     "ESP": {
-      "squad": 96.8,
-      "attack": 97.5,
-      "defense": 95.6,
-      "experience": 60.9,
-      "squad_raw": 89.71
+      "squad": 89.0,
+      "attack": 88.8,
+      "defense": 89.1,
+      "experience": 36.5,
+      "squad_raw": 88.35
     },
     "CPV": {
-      "squad": 21.7,
-      "attack": 21.8,
-      "defense": 22.0,
-      "experience": 31.4,
-      "squad_raw": 69.0
+      "squad": 15.0,
+      "attack": 15.7,
+      "defense": 13.9,
+      "experience": 86.5,
+      "squad_raw": 67.31
     },
     "SAU": {
-      "squad": 25.3,
-      "attack": 26.4,
-      "defense": 25.8,
-      "experience": 34.6,
-      "squad_raw": 70.01
+      "squad": 24.0,
+      "attack": 23.3,
+      "defense": 24.0,
+      "experience": 66.0,
+      "squad_raw": 69.85
     },
     "URU": {
-      "squad": 70.1,
-      "attack": 72.9,
-      "defense": 69.3,
-      "experience": 53.2,
-      "squad_raw": 82.36
+      "squad": 64.5,
+      "attack": 63.8,
+      "defense": 64.0,
+      "experience": 69.9,
+      "squad_raw": 81.39
     },
     "FRA": {
-      "squad": 91.6,
-      "attack": 93.4,
-      "defense": 90.7,
-      "experience": 27.6,
-      "squad_raw": 88.27
+      "squad": 88.2,
+      "attack": 88.5,
+      "defense": 87.6,
+      "experience": 42.9,
+      "squad_raw": 88.12
     },
     "SEN": {
-      "squad": 57.4,
-      "attack": 54.6,
-      "defense": 59.1,
-      "experience": 13.5,
-      "squad_raw": 78.86
+      "squad": 50.8,
+      "attack": 51.2,
+      "defense": 48.7,
+      "experience": 43.6,
+      "squad_raw": 77.47
     },
     "IRQ": {
-      "squad": 23.8,
-      "attack": 24.5,
-      "defense": 26.0,
-      "experience": 38.5,
-      "squad_raw": 69.58
+      "squad": 13.2,
+      "attack": 14.1,
+      "defense": 11.6,
+      "experience": 40.4,
+      "squad_raw": 66.8
     },
     "NOR": {
-      "squad": 57.3,
-      "attack": 54.3,
-      "defense": 59.3,
-      "experience": 33.3,
-      "squad_raw": 78.82
+      "squad": 54.0,
+      "attack": 54.9,
+      "defense": 52.5,
+      "experience": 39.1,
+      "squad_raw": 78.39
     },
     "ARG": {
       "squad": 99.0,
       "attack": 99.0,
       "defense": 99.0,
-      "experience": 46.2,
-      "squad_raw": 90.59
+      "experience": 78.2,
+      "squad_raw": 91.48
     },
     "ALG": {
-      "squad": 50.3,
-      "attack": 46.4,
-      "defense": 50.9,
-      "experience": 34.6,
-      "squad_raw": 76.9
+      "squad": 42.9,
+      "attack": 42.9,
+      "defense": 44.2,
+      "experience": 41.0,
+      "squad_raw": 75.23
     },
     "AUT": {
-      "squad": 52.0,
-      "attack": 56.1,
-      "defense": 52.5,
-      "experience": 15.4,
-      "squad_raw": 77.37
+      "squad": 50.0,
+      "attack": 50.2,
+      "defense": 49.1,
+      "experience": 69.9,
+      "squad_raw": 77.26
     },
     "JOR": {
-      "squad": 18.6,
-      "attack": 16.4,
-      "defense": 20.2,
-      "experience": 37.8,
-      "squad_raw": 68.17
+      "squad": 13.0,
+      "attack": 13.3,
+      "defense": 13.2,
+      "experience": 67.3,
+      "squad_raw": 66.72
     },
     "POR": {
-      "squad": 84.0,
-      "attack": 83.2,
-      "defense": 82.9,
-      "experience": 41.0,
+      "squad": 81.4,
+      "attack": 80.9,
+      "defense": 79.3,
+      "experience": 59.0,
       "squad_raw": 86.19
     },
     "COD": {
-      "squad": 36.5,
-      "attack": 34.3,
-      "defense": 37.6,
-      "experience": 12.2,
-      "squad_raw": 73.08
+      "squad": 28.6,
+      "attack": 27.3,
+      "defense": 31.5,
+      "experience": 75.0,
+      "squad_raw": 71.18
     },
     "UZB": {
-      "squad": 28.6,
-      "attack": 28.7,
-      "defense": 31.7,
-      "experience": 24.4,
-      "squad_raw": 70.91
+      "squad": 24.6,
+      "attack": 25.6,
+      "defense": 23.8,
+      "experience": 61.5,
+      "squad_raw": 70.03
     },
     "COL": {
-      "squad": 65.3,
-      "attack": 60.9,
-      "defense": 68.4,
-      "experience": 26.3,
-      "squad_raw": 81.02
+      "squad": 59.4,
+      "attack": 58.4,
+      "defense": 59.6,
+      "experience": 93.6,
+      "squad_raw": 79.94
     },
     "ENG": {
-      "squad": 81.9,
-      "attack": 79.6,
-      "defense": 82.0,
-      "experience": 23.1,
-      "squad_raw": 85.59
+      "squad": 76.9,
+      "attack": 77.4,
+      "defense": 72.0,
+      "experience": 45.5,
+      "squad_raw": 84.9
     },
     "CRO": {
-      "squad": 67.6,
-      "attack": 63.6,
-      "defense": 68.5,
-      "experience": 41.7,
-      "squad_raw": 81.67
+      "squad": 59.2,
+      "attack": 59.9,
+      "defense": 55.6,
+      "experience": 64.7,
+      "squad_raw": 79.88
     },
     "GHA": {
-      "squad": 42.4,
-      "attack": 45.0,
-      "defense": 41.8,
-      "experience": 25.0,
-      "squad_raw": 74.71
+      "squad": 29.3,
+      "attack": 29.6,
+      "defense": 28.3,
+      "experience": 40.4,
+      "squad_raw": 71.37
     },
     "PAN": {
-      "squad": 20.5,
-      "attack": 21.4,
-      "defense": 20.1,
-      "experience": 20.5,
-      "squad_raw": 68.67
+      "squad": 17.0,
+      "attack": 16.2,
+      "defense": 14.5,
+      "experience": 99,
+      "squad_raw": 67.86
     }
   },
   "form": {

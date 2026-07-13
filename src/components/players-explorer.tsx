@@ -226,7 +226,7 @@ export function PlayersExplorer() {
                         href={`/players/${p.id}`}
                         className="flex items-center gap-2.5 font-medium hover:underline"
                       >
-                        <PlayerAvatar name={p.name} size="sm" />
+                        <PlayerAvatar name={p.name} src={p.headshot} size="sm" />
                         <span className="truncate">{p.name}</span>
                       </Link>
                     </TableCell>
@@ -248,7 +248,7 @@ export function PlayersExplorer() {
                       {p.club}
                     </TableCell>
                     <TableCell className="hidden text-right text-sm tabular-nums md:table-cell">
-                      {p.age}
+                      {p.age ?? "—"}
                     </TableCell>
                     <TableCell className="text-right text-sm tabular-nums">{p.stats.goals}</TableCell>
                     <TableCell className="text-right text-sm tabular-nums">
