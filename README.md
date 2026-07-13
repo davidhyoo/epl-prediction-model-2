@@ -40,8 +40,8 @@ reproducible, **offline-first** Python machine-learning pipeline.
 
 The dashboard covers the real **48-team, 104-match** 2026 World Cup format (12 groups
 of 4 → 72 group matches, then a 32-match knockout bracket from the Round of 32 to the
-Final). A single seeded simulation fills the tournament so the app always has a
-coherent, end-to-end state to render.
+Final). Real fixtures and results drive the app's state; matches with no result yet are
+treated as upcoming and predicted, so the dashboard tracks the tournament as it unfolds.
 
 Predictions are produced by **five independent models**. Each model scores *every*
 match **before** any real result is read; completed matches are then used **only** for
@@ -49,23 +49,26 @@ backtesting and re-ranking (see [Leakage prevention](#leakage-prevention--self-i
 Championship odds come from a **20,000-run Monte Carlo** simulation of the remaining
 knockout stage; eliminated teams are pinned to **0%**.
 
-Because live football data behind a login/paywall isn't used, all match history,
-squads and player statistics are **deterministically generated demo data**. This keeps
-the project reproducible and legally clean while still exercising a realistic
-data-engineering + ML workflow. See [Data sources](#data-sources).
+The tournament field, group draw, fixtures, results and knockout bracket are **real**,
+sourced from openly-licensed **public-domain (CC0)** datasets and cached in the repo so
+the whole thing is reproducible offline. The models train on **real men's international
+results since 2002** (martj42, CC0). Only **squads and player statistics remain
+deterministically generated** — no clean, openly-licensed full-squad dataset exists — and
+this is clearly flagged everywhere it appears. See [Data sources](#data-sources).
 
-Current generated snapshot (regenerate any time with `python ml/pipeline.py`):
+Current snapshot (refresh any time with `python ml/refresh.py`):
 
 | Metric | Value |
 | --- | --- |
 | Tournament | 2026 FIFA World Cup (USA · Canada · Mexico) |
-| Matches | 104 total — 72 completed, 32 upcoming |
+| As of | 2026-07-11 (semi-final stage — real results through the quarter-finals) |
+| Matches | 104 total — 100 completed, 4 upcoming |
 | Teams / Players | 48 / 1,248 |
 | Models | 5 (Elo, Logistic Regression, Random Forest, XGBoost, Ensemble) |
 | Engineered features | 10 |
-| Training matches (synthetic history) | 4,200 |
-| Top predicted champion | 🇪🇸 Spain (~28%) |
-| Best backtest model | Random Forest |
+| Training matches (real internationals, 2002→2026) | 2,948 |
+| Top predicted champion | 🇦🇷 Argentina (~38%) |
+| Best backtest model | Logistic Regression (63% acc, lowest log loss) |
 
 ---
 
@@ -164,19 +167,22 @@ every render.
 │  └─ lib/                     # types (data contract), data loaders, formatters
 ├─ ml/
 │  ├─ common.py                # constants, seeds, Elo/goal helpers, IO
-│  ├─ tournament.py            # 48-team schedule + knockout structure
-│  ├─ ingest.py                # raw data generation (history, WC, squads)
+│  ├─ sources.py               # parsers for the cached CC0 source files
+│  ├─ tournament.py            # standings + general Monte-Carlo bracket simulator
+│  ├─ ingest.py                # build raw inputs from real CC0 sources (+ gen squads)
 │  ├─ transform.py             # validation + cleaning
-│  ├─ features.py              # feature engineering (leakage-safe)
+│  ├─ features.py              # feature engineering (leakage-safe, real Elo)
 │  ├─ modeling.py              # Elo baseline, ensemble, metrics, calibration
 │  ├─ train.py                 # train LogReg / RF / XGB (+ draw model)
 │  ├─ predict.py               # per-model predictions, factors, rankings, Monte Carlo
 │  ├─ evaluate.py              # backtest, re-weight ensemble, assemble frontend JSON
-│  ├─ pipeline.py              # one-command orchestrator
+│  ├─ pipeline.py              # one-command orchestrator (ingest → evaluate)
+│  ├─ refresh.py               # re-download CC0 sources (offline fallback) + rebuild
 │  ├─ models/                  # trained model artifacts (git-ignored)
 │  └─ tests/test_ml.py         # Python unit tests
 ├─ data/
-│  ├─ raw/  processed/  cached/  # pipeline stages (generated)
+│  ├─ source/                    # cached CC0 source files (martj42, openfootball)
+│  ├─ raw/  processed/  cached/  # pipeline stages
 ├─ public/
 │  └─ data/                    # cached JSON the frontend reads
 ├─ tests/                      # Vitest unit + data-integrity tests
@@ -203,22 +209,25 @@ npm install
 pip install numpy pandas scikit-learn xgboost
 ```
 
-The repo ships with pre-generated data in `public/data/`, so **you can run the app
-immediately** without running the Python pipeline.
+The repo ships with the cached source data (`data/source/`) **and** the pre-computed
+JSON the frontend reads (`public/data/`), so **you can run the app immediately** without
+any network access or running the Python pipeline.
 
 ---
 
 ## Environment variables
 
-**None are required.** The app runs fully offline out of the box.
+**None are required.** The app runs fully offline out of the box, and even the data
+refresh (`python ml/refresh.py`) needs **no API keys** — it pulls public-domain files
+from public GitHub raw URLs over HTTPS.
 
-A [`.env.example`](.env.example) documents *optional* variables for experimenting with
-live-data ingestion (all blank/disabled by default). Copy it to `.env.local` if you
-want to try them — `.env.local` is git-ignored and no secrets are ever committed.
+A [`.env.example`](.env.example) documents *optional* variables reserved for future
+live-data experiments (all blank/disabled by default). Copy it to `.env.local` if you
+want to use them — `.env.local` is git-ignored and no secrets are ever committed.
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `FOOTBALL_DATA_API_KEY` | *(empty)* | Optional free football-data API key |
+| `FOOTBALL_DATA_API_KEY` | *(empty)* | Optional free football-data API key (not needed for the CC0 refresh) |
 | `ELO_RATINGS_SOURCE_URL` | *(empty)* | Optional open Elo ratings source override |
 | `ENABLE_LIVE_DATA` | `0` | Set `1` to allow optional network fetches |
 
@@ -236,13 +245,30 @@ npm test         # Vitest unit + data-integrity tests
 
 ### Refresh the data
 
-Regenerate every cached JSON file the frontend reads (fully deterministic):
+Two entry points:
 
 ```bash
+# A) Re-download the real CC0 sources, then rebuild everything.
+#    No API keys. Falls back to the committed caches if you're offline.
+npm run data:fetch            # === python ml/refresh.py
+
+# B) Rebuild from the committed source caches only (fully offline, deterministic).
 npm run data:refresh          # === python ml/pipeline.py
 ```
 
-Run a single stage, or resume from a stage:
+`python ml/refresh.py` downloads five public-domain files (martj42 results +
+shootouts, openfootball 2026 cup / cup_finals / stadiums) into `data/source/` using the
+Python standard library only. Each file is validated and swapped in atomically, so a
+failed or partial download never corrupts the cache — if a fetch fails, the previously
+committed copy is kept and the pipeline still runs. Useful flags:
+
+```bash
+python ml/refresh.py --offline       # skip downloads, rebuild from caches
+python ml/refresh.py --no-pipeline   # only refresh the source caches
+python ml/refresh.py --from features # pass a resume-stage through to the pipeline
+```
+
+Run a single pipeline stage, or resume from a stage:
 
 ```bash
 python ml/pipeline.py --from features    # resume at feature engineering
@@ -254,8 +280,10 @@ npm run ml:predict      # generate predictions + Monte Carlo odds
 npm run ml:evaluate     # backtest, re-weight ensemble, write frontend JSON
 ```
 
-Because everything is seeded (`SEED = 2026`), re-running the pipeline reproduces
-identical outputs.
+The real sources are the single source of truth: parsing is pure and the generated
+squads are seeded (`SEED = 2026`), so re-running the pipeline on the same source files
+reproduces identical outputs. As the real tournament advances, refresh to pull the
+latest results and the app tracks the live state automatically.
 
 ---
 
@@ -267,7 +295,7 @@ consumes.
 
 | # | Stage | Script | Output |
 | --- | --- | --- | --- |
-| 1 | **Ingest** | `ingest.py` | Raw synthetic history, WC schedule, squads → `data/raw/` |
+| 1 | **Ingest** | `ingest.py` + `sources.py` | Parse real CC0 sources → history, WC schedule/results, knockout tree (+ generated squads) → `data/raw/` |
 | 2 | **Transform** | `transform.py` | Validated & cleaned tables → `data/processed/` |
 | 3 | **Features** | `features.py` | Leakage-safe feature matrix (rolling form, Elo, xG, rest, squad strength) |
 | 4 | **Train** | `train.py` | Logistic Regression, Random Forest, XGBoost, draw model → `ml/models/` |
@@ -284,30 +312,41 @@ consumes.
 
 | Source | Type | Description | License / notes |
 | --- | --- | --- | --- |
-| 48-team field, Elo ratings & colours | **Static (curated)** | Publicly known qualified nations, approximate Elo ratings and brand colours | Curated from public knowledge; used for demo purposes |
-| International match history (2019–2025) | **Generated** | ~4,200 deterministically simulated internationals used to *train* the models | Synthetic — no real fixtures |
-| Squads & player statistics | **Generated** | 1,248 players with positions, clubs, ratings and stats | Synthetic — names/clubs are generated, not real people |
+| [`openfootball/worldcup`](https://github.com/openfootball/worldcup) — `2026--usa` | **Real · cached** | The actual 2026 field, 12-group draw, fixtures, results and knockout bracket (`cup.txt`, `cup_finals.txt`, `cup_stadiums.csv`) | **Public domain (CC0)** |
+| [`martj42/international_results`](https://github.com/martj42/international_results) | **Real · cached** | Every men's international 1872→present (`results.csv`, `shootouts.csv`) — used to train the models and grow real Elo ratings | **Public domain (CC0)** |
+| 48-team Elo priors & brand colours | **Curated** | Approximate starting Elo and team colours in `ml/common.py` | Curated from public knowledge |
+| Squads & player statistics | **Generated** | 1,248 players (26 per nation) with positions, clubs, ratings and stats, keyed to the real teams | Synthetic — deterministic (`SEED = 2026`); names/clubs are **not** real people |
 | Country flags | **Static** | `flag-icons` public-domain SVG sprites | MIT / public domain |
 | Player headshots | **Placeholder** | Clean initials-based avatars | No real photos used (see below) |
 
 **Are these live, cached, sample or generated?**
-All modelling data is **generated** (deterministically, from `SEED = 2026`) and shipped
-**cached** in `public/data/`. Nothing is scraped and no login-gated or paid dataset is
-used.
+The tournament data (field, draw, fixtures, results, bracket) and the training history are
+**real** and shipped **cached** in `data/source/` as their original public-domain files.
+Nothing is scraped, and no login-gated or paid dataset is used. Only **squads and player
+statistics are generated** (deterministically) because no clean, openly-licensed
+full-squad + stats dataset exists that can be redistributed without manual login. Refresh
+with `python ml/refresh.py` to pull the latest results from the public repos.
+
+**Known limitation — squads/players.** Player names, clubs and per-player stats are
+demonstration data. They exercise the players/profile UI and feed a simple squad-strength
+feature, but they are **not** real rosters. Everything else the app shows about *matches
+and outcomes* is derived from real results.
 
 **Player headshots.** Per the build requirements, real headshots are only used when
 legally and openly licensed. Reliable, openly licensed headshots for a full 1,248-player
 field are not available, so the app shows **clean placeholder avatars** (coloured
 initials) everywhere. This never breaks the UI when an image is missing.
 
-**How to refresh.** Run `python ml/pipeline.py` (or `npm run data:refresh`). To wire in
-a real, free/open source, implement the fetch in `ml/ingest.py` behind the optional
-`.env` flags and re-run the pipeline — the downstream stages and the frontend contract
-stay the same.
+**How to refresh.** Run `python ml/refresh.py` (downloads the CC0 sources, then rebuilds),
+or `npm run data:refresh` to rebuild from the committed caches offline. The refresh script
+uses **no API keys** and **no paid services** — just public GitHub raw files over HTTPS,
+with an offline fallback to the committed caches.
 
 **Licensing note.** This project respects site terms of service, `robots.txt`, rate
-limits and dataset licensing. Because it uses only generated + public-domain assets, it
-carries no third-party data-licensing obligations.
+limits and dataset licensing. Both real datasets are released under **CC0 1.0 (public
+domain)**, which permits redistribution and modification without attribution; they are
+credited here anyway. The generated squads and public-domain flag sprites carry no
+third-party data-licensing obligations.
 
 ---
 
@@ -349,12 +388,14 @@ Models are scored with **accuracy**, multiclass **log loss**, **Brier score**, a
 
 ### Leakage prevention & self-improvement
 
-- **Train/evaluate separation.** Models are trained on the synthetic 2019–2025 history,
-  never on World Cup matches.
+- **Train/evaluate separation.** Models train on **real** men's internationals since
+  2002 (martj42, CC0), never on 2026 World Cup matches — the training history stops the
+  day before the opener.
 - **Predict before scoring.** Every model predicts *all* 104 matches before any real
-  result is read. Only the 72 **completed** group matches are used for evaluation;
-  upcoming knockout matches carry `score: null` in the cached data, so results can't
-  leak into the UI either.
+  result is read. Only **completed** matches (currently 100) are used for evaluation;
+  a match counts as completed only when a real result exists in the source data, and
+  upcoming matches carry `score: null` in the cached data, so results can't leak into
+  the UI either.
 - **Self-improvement loop** (documented on the Methodology page):
   1. Score each model on completed matches.
   2. Re-rank models by log loss and flag persistent under-performers.
@@ -391,17 +432,20 @@ npm run build                              # production build (58 routes)
 
 ## Known limitations
 
-- **Generated data.** Match history, squads and player stats are synthetic. Absolute
-  numbers (e.g., a player's goal tally) are illustrative, not real. The *methods* —
-  pipeline, features, models, evaluation — are the point.
+- **Generated squads & player stats.** The tournament data and training history are real
+  (CC0), but player names, clubs and per-player statistics are **deterministically
+  generated** — no clean, redistributable open dataset of full 2026 squads + stats
+  exists. Absolute player numbers are illustrative; they are flagged as demo data in the
+  UI and README.
 - **Placeholder headshots.** No real player photos are used (licensing); avatars are
   coloured initials.
-- **Fixed cutoff.** The tournament state is frozen at the end of the group stage
-  (2026-06-27): 72 completed, 32 upcoming. There is no live in-tournament updating.
-- **Backtest size.** Model metrics are computed on 72 completed matches, so differences
-  between models are modest and can shift when the data is regenerated with a new seed.
-- **Knockout participants are projected.** Round-of-16-and-beyond slots marked *(proj.)*
-  depend on results not yet played and update as the bracket resolves.
+- **Live-tracked state.** The tournament state reflects whatever results are present in
+  the cached source (currently the semi-final stage: 100 completed, 4 upcoming). Run
+  `python ml/refresh.py` to pull newer results as they're published upstream.
+- **Backtest size.** Model metrics are computed on the completed World Cup matches (100
+  so far), so differences between models are modest and can shift as more results arrive.
+- **Knockout participants are projected.** Slots that depend on results not yet played
+  are marked *(proj.)* and resolve as the bracket completes.
 
 ---
 
@@ -871,7 +915,8 @@ The most important priorities are:
 ## Disclaimer
 
 This project is an independent **portfolio demonstration**. It is not affiliated with,
-endorsed by, or associated with FIFA or any football federation. Team, player and match
-data are **generated for demonstration** and predictions are **statistical estimates,
-not guarantees**. Country flags are public-domain assets from `flag-icons`; no real
+endorsed by, or associated with FIFA or any football federation. Match results and the
+tournament bracket come from **public-domain (CC0)** datasets; **player rosters and stats
+are generated for demonstration**, and predictions are **statistical estimates, not
+guarantees**. Country flags are public-domain assets from `flag-icons`; no real
 player photographs are used.

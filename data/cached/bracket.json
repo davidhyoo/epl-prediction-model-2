@@ -5,244 +5,301 @@
       "label": "Round of 32",
       "matches": [
         {
-          "id": "R3200",
+          "id": "K073",
           "stage": "round-of-32",
           "slot": 0,
-          "home": "BEL",
-          "away": "PAN",
-          "homeProjected": false,
-          "awayProjected": false,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.6554,
-          "awayProb": 0.3446
-        },
-        {
-          "id": "R3201",
-          "stage": "round-of-32",
-          "slot": 1,
-          "home": "USA",
-          "away": "SRB",
-          "homeProjected": false,
-          "awayProjected": false,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.5708,
-          "awayProb": 0.4292
-        },
-        {
-          "id": "R3202",
-          "stage": "round-of-32",
-          "slot": 2,
-          "home": "ARG",
+          "home": "RSA",
           "away": "CAN",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7625,
-          "awayProb": 0.2375
+          "winner": "CAN",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3203",
+          "id": "K074",
           "stage": "round-of-32",
-          "slot": 3,
-          "home": "KOR",
-          "away": "JPN",
+          "slot": 1,
+          "home": "GER",
+          "away": "PAR",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.5097,
-          "awayProb": 0.4903
+          "score": {
+            "home": 1,
+            "away": 1
+          },
+          "penalties": {
+            "home": 3,
+            "away": 4
+          },
+          "winner": "PAR",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3204",
+          "id": "K075",
           "stage": "round-of-32",
-          "slot": 4,
+          "slot": 2,
           "home": "NED",
-          "away": "PER",
-          "homeProjected": false,
-          "awayProjected": false,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7002,
-          "awayProb": 0.2998
-        },
-        {
-          "id": "R3205",
-          "stage": "round-of-32",
-          "slot": 5,
-          "home": "TUR",
           "away": "MAR",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4808,
-          "awayProb": 0.5192
+          "score": {
+            "home": 1,
+            "away": 1
+          },
+          "penalties": {
+            "home": 2,
+            "away": 3
+          },
+          "winner": "MAR",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3206",
+          "id": "K076",
+          "stage": "round-of-32",
+          "slot": 3,
+          "home": "BRA",
+          "away": "JPN",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 2,
+            "away": 1
+          },
+          "penalties": null,
+          "winner": "BRA",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
+        },
+        {
+          "id": "K077",
+          "stage": "round-of-32",
+          "slot": 4,
+          "home": "FRA",
+          "away": "SWE",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 3,
+            "away": 0
+          },
+          "penalties": null,
+          "winner": "FRA",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
+        },
+        {
+          "id": "K078",
+          "stage": "round-of-32",
+          "slot": 5,
+          "home": "CIV",
+          "away": "NOR",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 1,
+            "away": 2
+          },
+          "penalties": null,
+          "winner": "NOR",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
+        },
+        {
+          "id": "K079",
           "stage": "round-of-32",
           "slot": 6,
-          "home": "GER",
-          "away": "JAM",
+          "home": "MEX",
+          "away": "ECU",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 2,
+            "away": 0
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.755,
-          "awayProb": 0.245
+          "winner": "MEX",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3207",
+          "id": "K080",
           "stage": "round-of-32",
           "slot": 7,
-          "home": "AUT",
-          "away": "URU",
+          "home": "ENG",
+          "away": "COD",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 2,
+            "away": 1
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4378,
-          "awayProb": 0.5622
+          "winner": "ENG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3208",
+          "id": "K081",
           "stage": "round-of-32",
           "slot": 8,
-          "home": "FRA",
-          "away": "ALG",
+          "home": "USA",
+          "away": "BIH",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 2,
+            "away": 0
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7203,
-          "awayProb": 0.2797
+          "winner": "USA",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3209",
+          "id": "K082",
           "stage": "round-of-32",
           "slot": 9,
-          "home": "NOR",
-          "away": "NGA",
-          "homeProjected": false,
-          "awayProjected": false,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.5316,
-          "awayProb": 0.4684
-        },
-        {
-          "id": "R3210",
-          "stage": "round-of-32",
-          "slot": 10,
-          "home": "SAU",
+          "home": "BEL",
           "away": "SEN",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 3,
+            "away": 2
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4194,
-          "awayProb": 0.5806
+          "winner": "BEL",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3211",
+          "id": "K083",
+          "stage": "round-of-32",
+          "slot": 10,
+          "home": "POR",
+          "away": "CRO",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 2,
+            "away": 1
+          },
+          "penalties": null,
+          "winner": "POR",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
+        },
+        {
+          "id": "K084",
           "stage": "round-of-32",
           "slot": 11,
-          "home": "PAR",
-          "away": "ITA",
+          "home": "ESP",
+          "away": "AUT",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 3,
+            "away": 0
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.3956,
-          "awayProb": 0.6044
+          "winner": "ESP",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3212",
+          "id": "K085",
           "stage": "round-of-32",
           "slot": 12,
-          "home": "ESP",
-          "away": "QAT",
+          "home": "SUI",
+          "away": "ALG",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 2,
+            "away": 0
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7084,
-          "awayProb": 0.2916
+          "winner": "SUI",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3213",
+          "id": "K086",
           "stage": "round-of-32",
           "slot": 13,
-          "home": "CMR",
-          "away": "MEX",
+          "home": "ARG",
+          "away": "CPV",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 3,
+            "away": 2
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4295,
-          "awayProb": 0.5705
+          "winner": "ARG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R3214",
+          "id": "K087",
           "stage": "round-of-32",
           "slot": 14,
-          "home": "UKR",
-          "away": "POR",
-          "homeProjected": false,
-          "awayProjected": false,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.3885,
-          "awayProb": 0.6115
-        },
-        {
-          "id": "R3215",
-          "stage": "round-of-32",
-          "slot": 15,
-          "home": "UZB",
+          "home": "COL",
           "away": "GHA",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4662,
-          "awayProb": 0.5338
+          "winner": "COL",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
+        },
+        {
+          "id": "K088",
+          "stage": "round-of-32",
+          "slot": 15,
+          "home": "AUS",
+          "away": "EGY",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 1,
+            "away": 1
+          },
+          "penalties": {
+            "home": 2,
+            "away": 4
+          },
+          "winner": "EGY",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         }
       ]
     },
@@ -251,124 +308,151 @@
       "label": "Round of 16",
       "matches": [
         {
-          "id": "R1600",
+          "id": "K089",
           "stage": "round-of-16",
           "slot": 0,
-          "home": "BEL",
-          "away": "USA",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "PAR",
+          "away": "FRA",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.5542,
-          "awayProb": 0.4458
+          "winner": "FRA",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R1601",
+          "id": "K090",
           "stage": "round-of-16",
           "slot": 1,
           "home": "CAN",
-          "away": "JPN",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "away": "MAR",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 0,
+            "away": 3
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.5482,
-          "awayProb": 0.4518
+          "winner": "MAR",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R1602",
+          "id": "K091",
           "stage": "round-of-16",
           "slot": 2,
-          "home": "NED",
-          "away": "TUR",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "BRA",
+          "away": "NOR",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 1,
+            "away": 2
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7204,
-          "awayProb": 0.2796
+          "winner": "NOR",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R1603",
+          "id": "K092",
           "stage": "round-of-16",
           "slot": 3,
-          "home": "GER",
-          "away": "URU",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "MEX",
+          "away": "ENG",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 2,
+            "away": 3
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.5383,
-          "awayProb": 0.4617
+          "winner": "ENG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R1604",
+          "id": "K093",
           "stage": "round-of-16",
           "slot": 4,
-          "home": "FRA",
-          "away": "NGA",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "POR",
+          "away": "ESP",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 0,
+            "away": 1
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7479,
-          "awayProb": 0.2521
+          "winner": "ESP",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R1605",
+          "id": "K094",
           "stage": "round-of-16",
           "slot": 5,
-          "home": "SAU",
-          "away": "ITA",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "USA",
+          "away": "BEL",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 1,
+            "away": 4
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.3678,
-          "awayProb": 0.6322
+          "winner": "BEL",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R1606",
+          "id": "K095",
           "stage": "round-of-16",
           "slot": 6,
-          "home": "ESP",
-          "away": "MEX",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "ARG",
+          "away": "EGY",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 3,
+            "away": 2
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7191,
-          "awayProb": 0.2809
+          "winner": "ARG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "R1607",
+          "id": "K096",
           "stage": "round-of-16",
           "slot": 7,
-          "home": "POR",
-          "away": "GHA",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
-          "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.7759,
-          "awayProb": 0.2241
+          "home": "SUI",
+          "away": "COL",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 0,
+            "away": 0
+          },
+          "penalties": {
+            "home": 4,
+            "away": 3
+          },
+          "winner": "SUI",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         }
       ]
     },
@@ -377,64 +461,76 @@
       "label": "Quarter-final",
       "matches": [
         {
-          "id": "QF00",
+          "id": "K097",
           "stage": "quarter-final",
           "slot": 0,
-          "home": "USA",
-          "away": "CAN",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "FRA",
+          "away": "MAR",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 2,
+            "away": 0
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.6392,
-          "awayProb": 0.3608
+          "winner": "FRA",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "QF01",
+          "id": "K098",
           "stage": "quarter-final",
           "slot": 1,
-          "home": "TUR",
-          "away": "URU",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "ESP",
+          "away": "BEL",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 2,
+            "away": 1
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.3701,
-          "awayProb": 0.6299
+          "winner": "ESP",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "QF02",
+          "id": "K099",
           "stage": "quarter-final",
           "slot": 2,
-          "home": "FRA",
-          "away": "ITA",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "NOR",
+          "away": "ENG",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 1,
+            "away": 2
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.6245,
-          "awayProb": 0.3755
+          "winner": "ENG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
-          "id": "QF03",
+          "id": "K100",
           "stage": "quarter-final",
           "slot": 3,
-          "home": "MEX",
-          "away": "POR",
-          "homeProjected": true,
-          "awayProjected": true,
-          "score": null,
+          "home": "ARG",
+          "away": "SUI",
+          "homeProjected": false,
+          "awayProjected": false,
+          "score": {
+            "home": 3,
+            "away": 1
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4035,
-          "awayProb": 0.5965
+          "winner": "ARG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         }
       ]
     },
@@ -443,34 +539,34 @@
       "label": "Semi-final",
       "matches": [
         {
-          "id": "SF00",
+          "id": "K101",
           "stage": "semi-final",
           "slot": 0,
-          "home": "CAN",
-          "away": "URU",
-          "homeProjected": true,
-          "awayProjected": true,
+          "home": "FRA",
+          "away": "ESP",
+          "homeProjected": false,
+          "awayProjected": false,
           "score": null,
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.4691,
-          "awayProb": 0.5309
+          "homeProb": 0.4775,
+          "awayProb": 0.5225
         },
         {
-          "id": "SF01",
+          "id": "K102",
           "stage": "semi-final",
           "slot": 1,
-          "home": "FRA",
-          "away": "POR",
-          "homeProjected": true,
-          "awayProjected": true,
+          "home": "ENG",
+          "away": "ARG",
+          "homeProjected": false,
+          "awayProjected": false,
           "score": null,
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.5582,
-          "awayProb": 0.4418
+          "homeProb": 0.3898,
+          "awayProb": 0.6102
         }
       ]
     },
@@ -479,19 +575,19 @@
       "label": "Third-place Play-off",
       "matches": [
         {
-          "id": "TP00",
+          "id": "K103",
           "stage": "third-place",
           "slot": 0,
-          "home": "URU",
-          "away": "POR",
+          "home": "FRA",
+          "away": "ENG",
           "homeProjected": true,
           "awayProjected": true,
           "score": null,
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.4367,
-          "awayProb": 0.5633
+          "homeProb": 0.5412,
+          "awayProb": 0.4588
         }
       ]
     },
@@ -500,19 +596,19 @@
       "label": "Final",
       "matches": [
         {
-          "id": "FN00",
+          "id": "K104",
           "stage": "final",
           "slot": 0,
-          "home": "CAN",
-          "away": "FRA",
+          "home": "ESP",
+          "away": "ARG",
           "homeProjected": true,
           "awayProjected": true,
           "score": null,
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.32,
-          "awayProb": 0.68
+          "homeProb": 0.4725,
+          "awayProb": 0.5275
         }
       ]
     }

@@ -1,376 +1,530 @@
 {
   "tables": {
     "A": [
-      "UZB",
       "MEX",
-      "PER",
-      "SUI"
+      "RSA",
+      "KOR",
+      "CZE"
     ],
     "B": [
-      "AUT",
-      "NGA",
+      "SUI",
       "CAN",
-      "AUS"
+      "BIH",
+      "QAT"
     ],
     "C": [
-      "ARG",
-      "ITA",
-      "JAM",
-      "CIV"
+      "BRA",
+      "MAR",
+      "SCO",
+      "HAI"
     ],
     "D": [
-      "PAR",
       "USA",
+      "AUS",
+      "PAR",
+      "TUR"
+    ],
+    "E": [
+      "GER",
+      "CIV",
+      "ECU",
+      "CUW"
+    ],
+    "F": [
+      "NED",
+      "JPN",
+      "SWE",
+      "TUN"
+    ],
+    "G": [
+      "BEL",
+      "EGY",
+      "IRN",
+      "NZL"
+    ],
+    "H": [
+      "ESP",
+      "CPV",
+      "URU",
+      "SAU"
+    ],
+    "I": [
+      "FRA",
+      "NOR",
       "SEN",
       "IRQ"
     ],
-    "E": [
-      "FRA",
-      "JPN",
-      "PAN",
-      "EGY"
-    ],
-    "F": [
-      "ESP",
-      "CMR",
-      "DEN",
-      "ECU"
-    ],
-    "G": [
-      "UKR",
-      "MAR",
-      "QAT",
-      "BRA"
-    ],
-    "H": [
-      "SAU",
-      "URU",
-      "ENG",
-      "POL"
-    ],
-    "I": [
-      "KOR",
-      "GHA",
-      "POR",
-      "CRO"
-    ],
     "J": [
-      "NED",
-      "TUR",
-      "COL",
-      "NZL"
+      "ARG",
+      "AUT",
+      "ALG",
+      "JOR"
     ],
     "K": [
-      "GER",
-      "SRB",
-      "TUN",
-      "IRN"
+      "COL",
+      "POR",
+      "COD",
+      "UZB"
     ],
     "L": [
-      "BEL",
-      "NOR",
-      "ALG",
-      "CRC"
+      "ENG",
+      "CRO",
+      "GHA",
+      "PAN"
     ]
   },
   "ranked32": [
-    "BEL",
-    "FRA",
-    "ESP",
-    "NED",
-    "GER",
-    "UKR",
-    "SAU",
-    "ARG",
-    "KOR",
-    "PAR",
-    "UZB",
-    "AUT",
-    "TUR",
-    "CMR",
-    "NOR",
-    "USA",
-    "SRB",
-    "NGA",
-    "MEX",
-    "MAR",
-    "URU",
-    "GHA",
-    "ITA",
-    "JPN",
+    "RSA",
     "CAN",
+    "GER",
+    "PAR",
+    "NED",
+    "MAR",
+    "BRA",
+    "JPN",
+    "FRA",
+    "SWE",
+    "CIV",
+    "NOR",
+    "MEX",
+    "ECU",
+    "ENG",
+    "COD",
+    "USA",
+    "BIH",
+    "BEL",
     "SEN",
     "POR",
-    "JAM",
-    "PER",
-    "QAT",
+    "CRO",
+    "ESP",
+    "AUT",
+    "SUI",
     "ALG",
-    "PAN"
+    "ARG",
+    "CPV",
+    "COL",
+    "GHA",
+    "AUS",
+    "EGY"
   ],
   "bracketPositions": [
-    "BEL",
-    "PAN",
-    "USA",
-    "SRB",
-    "ARG",
+    "RSA",
     "CAN",
-    "KOR",
-    "JPN",
-    "NED",
-    "PER",
-    "TUR",
-    "MAR",
     "GER",
-    "JAM",
-    "AUT",
-    "URU",
-    "FRA",
-    "ALG",
-    "NOR",
-    "NGA",
-    "SAU",
-    "SEN",
     "PAR",
-    "ITA",
-    "ESP",
-    "QAT",
-    "CMR",
+    "NED",
+    "MAR",
+    "BRA",
+    "JPN",
+    "FRA",
+    "SWE",
+    "CIV",
+    "NOR",
     "MEX",
-    "UKR",
+    "ECU",
+    "ENG",
+    "COD",
+    "USA",
+    "BIH",
+    "BEL",
+    "SEN",
     "POR",
-    "UZB",
-    "GHA"
+    "CRO",
+    "ESP",
+    "AUT",
+    "SUI",
+    "ALG",
+    "ARG",
+    "CPV",
+    "COL",
+    "GHA",
+    "AUS",
+    "EGY"
   ],
   "records": {
-    "ARG": {
+    "MEX": {
+      "played": 3,
+      "won": 3,
+      "drawn": 0,
+      "lost": 0,
+      "gf": 6,
+      "ga": 0,
+      "gd": 6,
+      "points": 9,
+      "groupRank": 1
+    },
+    "RSA": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 2,
+      "ga": 3,
+      "gd": -1,
+      "points": 4,
+      "groupRank": 2
+    },
+    "KOR": {
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 2,
+      "ga": 3,
+      "gd": -1,
+      "points": 3,
+      "groupRank": 3
+    },
+    "CZE": {
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 2,
+      "ga": 6,
+      "gd": -4,
+      "points": 1,
+      "groupRank": 4
+    },
+    "CAN": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 8,
+      "ga": 3,
+      "gd": 5,
+      "points": 4,
+      "groupRank": 2
+    },
+    "BIH": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 5,
+      "ga": 6,
+      "gd": -1,
+      "points": 4,
+      "groupRank": 3
+    },
+    "QAT": {
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 2,
+      "ga": 10,
+      "gd": -8,
+      "points": 1,
+      "groupRank": 4
+    },
+    "SUI": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 7,
+      "ga": 3,
+      "gd": 4,
+      "points": 7,
+      "groupRank": 1
+    },
+    "BRA": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 7,
+      "ga": 1,
+      "gd": 6,
+      "points": 7,
+      "groupRank": 1
+    },
+    "MAR": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 6,
+      "ga": 3,
+      "gd": 3,
+      "points": 7,
+      "groupRank": 2
+    },
+    "HAI": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 2,
+      "ga": 8,
+      "gd": -6,
+      "points": 0,
+      "groupRank": 4
+    },
+    "SCO": {
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 1,
+      "ga": 4,
+      "gd": -3,
+      "points": 3,
+      "groupRank": 3
+    },
+    "USA": {
       "played": 3,
       "won": 2,
       "drawn": 0,
       "lost": 1,
       "gf": 8,
+      "ga": 4,
+      "gd": 4,
+      "points": 6,
+      "groupRank": 1
+    },
+    "PAR": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 2,
+      "ga": 4,
+      "gd": -2,
+      "points": 4,
+      "groupRank": 3
+    },
+    "AUS": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 2,
       "ga": 2,
+      "gd": 0,
+      "points": 4,
+      "groupRank": 2
+    },
+    "TUR": {
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 3,
+      "ga": 5,
+      "gd": -2,
+      "points": 3,
+      "groupRank": 4
+    },
+    "GER": {
+      "played": 3,
+      "won": 2,
+      "drawn": 0,
+      "lost": 1,
+      "gf": 10,
+      "ga": 4,
       "gd": 6,
       "points": 6,
       "groupRank": 1
+    },
+    "CUW": {
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 1,
+      "ga": 9,
+      "gd": -8,
+      "points": 1,
+      "groupRank": 4
+    },
+    "CIV": {
+      "played": 3,
+      "won": 2,
+      "drawn": 0,
+      "lost": 1,
+      "gf": 4,
+      "ga": 2,
+      "gd": 2,
+      "points": 6,
+      "groupRank": 2
+    },
+    "ECU": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 2,
+      "ga": 2,
+      "gd": 0,
+      "points": 4,
+      "groupRank": 3
+    },
+    "NED": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 10,
+      "ga": 4,
+      "gd": 6,
+      "points": 7,
+      "groupRank": 1
+    },
+    "JPN": {
+      "played": 3,
+      "won": 1,
+      "drawn": 2,
+      "lost": 0,
+      "gf": 7,
+      "ga": 3,
+      "gd": 4,
+      "points": 5,
+      "groupRank": 2
+    },
+    "SWE": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 7,
+      "ga": 7,
+      "gd": 0,
+      "points": 4,
+      "groupRank": 3
+    },
+    "TUN": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 2,
+      "ga": 12,
+      "gd": -10,
+      "points": 0,
+      "groupRank": 4
+    },
+    "BEL": {
+      "played": 3,
+      "won": 1,
+      "drawn": 2,
+      "lost": 0,
+      "gf": 6,
+      "ga": 2,
+      "gd": 4,
+      "points": 5,
+      "groupRank": 1
+    },
+    "EGY": {
+      "played": 3,
+      "won": 1,
+      "drawn": 2,
+      "lost": 0,
+      "gf": 5,
+      "ga": 3,
+      "gd": 2,
+      "points": 5,
+      "groupRank": 2
+    },
+    "IRN": {
+      "played": 3,
+      "won": 0,
+      "drawn": 3,
+      "lost": 0,
+      "gf": 3,
+      "ga": 3,
+      "gd": 0,
+      "points": 3,
+      "groupRank": 3
+    },
+    "NZL": {
+      "played": 3,
+      "won": 0,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 4,
+      "ga": 10,
+      "gd": -6,
+      "points": 1,
+      "groupRank": 4
+    },
+    "ESP": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 5,
+      "ga": 0,
+      "gd": 5,
+      "points": 7,
+      "groupRank": 1
+    },
+    "CPV": {
+      "played": 3,
+      "won": 0,
+      "drawn": 3,
+      "lost": 0,
+      "gf": 2,
+      "ga": 2,
+      "gd": 0,
+      "points": 3,
+      "groupRank": 2
+    },
+    "SAU": {
+      "played": 3,
+      "won": 0,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 1,
+      "ga": 5,
+      "gd": -4,
+      "points": 2,
+      "groupRank": 4
+    },
+    "URU": {
+      "played": 3,
+      "won": 0,
+      "drawn": 2,
+      "lost": 1,
+      "gf": 3,
+      "ga": 4,
+      "gd": -1,
+      "points": 2,
+      "groupRank": 3
     },
     "FRA": {
       "played": 3,
       "won": 3,
       "drawn": 0,
       "lost": 0,
-      "gf": 9,
-      "ga": 1,
+      "gf": 10,
+      "ga": 2,
       "gd": 8,
       "points": 9,
       "groupRank": 1
-    },
-    "ESP": {
-      "played": 3,
-      "won": 3,
-      "drawn": 0,
-      "lost": 0,
-      "gf": 9,
-      "ga": 2,
-      "gd": 7,
-      "points": 9,
-      "groupRank": 1
-    },
-    "BRA": {
-      "played": 3,
-      "won": 0,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 3,
-      "ga": 4,
-      "gd": -1,
-      "points": 2,
-      "groupRank": 4
-    },
-    "ENG": {
-      "played": 3,
-      "won": 0,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 1,
-      "ga": 2,
-      "gd": -1,
-      "points": 2,
-      "groupRank": 3
-    },
-    "POR": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 1,
-      "ga": 2,
-      "gd": -1,
-      "points": 4,
-      "groupRank": 3
-    },
-    "NED": {
-      "played": 3,
-      "won": 3,
-      "drawn": 0,
-      "lost": 0,
-      "gf": 7,
-      "ga": 0,
-      "gd": 7,
-      "points": 9,
-      "groupRank": 1
-    },
-    "GER": {
-      "played": 3,
-      "won": 2,
-      "drawn": 1,
-      "lost": 0,
-      "gf": 6,
-      "ga": 0,
-      "gd": 6,
-      "points": 7,
-      "groupRank": 1
-    },
-    "BEL": {
-      "played": 3,
-      "won": 3,
-      "drawn": 0,
-      "lost": 0,
-      "gf": 11,
-      "ga": 3,
-      "gd": 8,
-      "points": 9,
-      "groupRank": 1
-    },
-    "ITA": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 6,
-      "ga": 7,
-      "gd": -1,
-      "points": 4,
-      "groupRank": 2
-    },
-    "URU": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 4,
-      "ga": 4,
-      "gd": 0,
-      "points": 4,
-      "groupRank": 2
-    },
-    "COL": {
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 1,
-      "ga": 5,
-      "gd": -4,
-      "points": 1,
-      "groupRank": 3
-    },
-    "CRO": {
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 4,
-      "ga": 6,
-      "gd": -2,
-      "points": 3,
-      "groupRank": 4
-    },
-    "MAR": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 5,
-      "ga": 5,
-      "gd": 0,
-      "points": 4,
-      "groupRank": 2
-    },
-    "JPN": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 3,
-      "ga": 4,
-      "gd": -1,
-      "points": 4,
-      "groupRank": 2
-    },
-    "SUI": {
-      "played": 3,
-      "won": 0,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 2,
-      "ga": 4,
-      "gd": -2,
-      "points": 2,
-      "groupRank": 4
-    },
-    "DEN": {
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 3,
-      "ga": 7,
-      "gd": -4,
-      "points": 1,
-      "groupRank": 3
     },
     "SEN": {
       "played": 3,
       "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 5,
-      "ga": 5,
-      "gd": 0,
-      "points": 4,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 8,
+      "ga": 6,
+      "gd": 2,
+      "points": 3,
       "groupRank": 3
     },
-    "USA": {
-      "played": 3,
-      "won": 1,
-      "drawn": 2,
-      "lost": 0,
-      "gf": 6,
-      "ga": 4,
-      "gd": 2,
-      "points": 5,
-      "groupRank": 2
-    },
-    "MEX": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 5,
-      "ga": 4,
-      "gd": 1,
-      "points": 4,
-      "groupRank": 2
-    },
-    "IRN": {
+    "IRQ": {
       "played": 3,
       "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 4,
-      "ga": 9,
-      "gd": -5,
-      "points": 1,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 1,
+      "ga": 12,
+      "gd": -11,
+      "points": 0,
       "groupRank": 4
     },
     "NOR": {
@@ -379,197 +533,120 @@
       "drawn": 0,
       "lost": 1,
       "gf": 8,
-      "ga": 8,
-      "gd": 0,
+      "ga": 7,
+      "gd": 1,
       "points": 6,
       "groupRank": 2
     },
-    "SRB": {
+    "ARG": {
       "played": 3,
-      "won": 1,
-      "drawn": 2,
-      "lost": 0,
-      "gf": 4,
-      "ga": 2,
-      "gd": 2,
-      "points": 5,
-      "groupRank": 2
-    },
-    "AUT": {
-      "played": 3,
-      "won": 1,
-      "drawn": 2,
-      "lost": 0,
-      "gf": 4,
-      "ga": 3,
-      "gd": 1,
-      "points": 5,
-      "groupRank": 1
-    },
-    "ECU": {
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 2,
-      "ga": 6,
-      "gd": -4,
-      "points": 1,
-      "groupRank": 4
-    },
-    "KOR": {
-      "played": 3,
-      "won": 2,
+      "won": 3,
       "drawn": 0,
-      "lost": 1,
-      "gf": 5,
-      "ga": 2,
-      "gd": 3,
-      "points": 6,
-      "groupRank": 1
-    },
-    "TUR": {
-      "played": 3,
-      "won": 2,
-      "drawn": 0,
-      "lost": 1,
-      "gf": 7,
-      "ga": 6,
-      "gd": 1,
-      "points": 6,
-      "groupRank": 2
-    },
-    "UKR": {
-      "played": 3,
-      "won": 2,
-      "drawn": 1,
       "lost": 0,
-      "gf": 7,
-      "ga": 4,
-      "gd": 3,
-      "points": 7,
+      "gf": 8,
+      "ga": 1,
+      "gd": 7,
+      "points": 9,
       "groupRank": 1
-    },
-    "POL": {
-      "played": 3,
-      "won": 0,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 3,
-      "ga": 5,
-      "gd": -2,
-      "points": 2,
-      "groupRank": 4
-    },
-    "NGA": {
-      "played": 3,
-      "won": 1,
-      "drawn": 2,
-      "lost": 0,
-      "gf": 3,
-      "ga": 2,
-      "gd": 1,
-      "points": 5,
-      "groupRank": 2
     },
     "ALG": {
       "played": 3,
       "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 4,
-      "ga": 6,
-      "gd": -2,
-      "points": 3,
-      "groupRank": 3
-    },
-    "CAN": {
-      "played": 3,
-      "won": 1,
       "drawn": 1,
       "lost": 1,
-      "gf": 6,
-      "ga": 5,
-      "gd": 1,
-      "points": 4,
-      "groupRank": 3
-    },
-    "EGY": {
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 4,
-      "ga": 7,
-      "gd": -3,
-      "points": 1,
-      "groupRank": 4
-    },
-    "CIV": {
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
       "gf": 5,
       "ga": 7,
       "gd": -2,
-      "points": 3,
-      "groupRank": 4
-    },
-    "PER": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 3,
-      "ga": 6,
-      "gd": -3,
       "points": 4,
       "groupRank": 3
     },
-    "PAR": {
+    "AUT": {
       "played": 3,
-      "won": 2,
-      "drawn": 0,
+      "won": 1,
+      "drawn": 1,
       "lost": 1,
       "gf": 6,
       "ga": 6,
       "gd": 0,
-      "points": 6,
+      "points": 4,
+      "groupRank": 2
+    },
+    "JOR": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 3,
+      "ga": 8,
+      "gd": -5,
+      "points": 0,
+      "groupRank": 4
+    },
+    "POR": {
+      "played": 3,
+      "won": 1,
+      "drawn": 2,
+      "lost": 0,
+      "gf": 6,
+      "ga": 1,
+      "gd": 5,
+      "points": 5,
+      "groupRank": 2
+    },
+    "COD": {
+      "played": 3,
+      "won": 1,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 4,
+      "ga": 3,
+      "gd": 1,
+      "points": 4,
+      "groupRank": 3
+    },
+    "UZB": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 2,
+      "ga": 11,
+      "gd": -9,
+      "points": 0,
+      "groupRank": 4
+    },
+    "COL": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 4,
+      "ga": 1,
+      "gd": 3,
+      "points": 7,
       "groupRank": 1
     },
-    "CMR": {
+    "ENG": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 6,
+      "ga": 2,
+      "gd": 4,
+      "points": 7,
+      "groupRank": 1
+    },
+    "CRO": {
       "played": 3,
       "won": 2,
       "drawn": 0,
       "lost": 1,
-      "gf": 7,
-      "ga": 6,
-      "gd": 1,
+      "gf": 5,
+      "ga": 5,
+      "gd": 0,
       "points": 6,
       "groupRank": 2
-    },
-    "AUS": {
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 1,
-      "ga": 4,
-      "gd": -3,
-      "points": 1,
-      "groupRank": 4
-    },
-    "TUN": {
-      "played": 3,
-      "won": 0,
-      "drawn": 2,
-      "lost": 1,
-      "gf": 4,
-      "ga": 7,
-      "gd": -3,
-      "points": 2,
-      "groupRank": 3
     },
     "GHA": {
       "played": 3,
@@ -580,95 +657,468 @@
       "ga": 2,
       "gd": 0,
       "points": 4,
-      "groupRank": 2
-    },
-    "SAU": {
-      "played": 3,
-      "won": 2,
-      "drawn": 1,
-      "lost": 0,
-      "gf": 5,
-      "ga": 2,
-      "gd": 3,
-      "points": 7,
-      "groupRank": 1
-    },
-    "QAT": {
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 5,
-      "ga": 7,
-      "gd": -2,
-      "points": 3,
       "groupRank": 3
     },
-    "UZB": {
-      "played": 3,
-      "won": 1,
-      "drawn": 2,
-      "lost": 0,
-      "gf": 5,
-      "ga": 1,
-      "gd": 4,
-      "points": 5,
-      "groupRank": 1
-    },
-    "CRC": {
+    "PAN": {
       "played": 3,
       "won": 0,
       "drawn": 0,
       "lost": 3,
-      "gf": 3,
-      "ga": 9,
-      "gd": -6,
-      "points": 0,
-      "groupRank": 4
-    },
-    "PAN": {
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 2,
-      "ga": 6,
-      "gd": -4,
-      "points": 3,
-      "groupRank": 3
-    },
-    "IRQ": {
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
-      "gf": 4,
-      "ga": 6,
-      "gd": -2,
-      "points": 1,
-      "groupRank": 4
-    },
-    "JAM": {
-      "played": 3,
-      "won": 1,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 4,
-      "ga": 7,
-      "gd": -3,
-      "points": 4,
-      "groupRank": 3
-    },
-    "NZL": {
-      "played": 3,
-      "won": 0,
-      "drawn": 1,
-      "lost": 2,
       "gf": 0,
       "ga": 4,
       "gd": -4,
-      "points": 1,
+      "points": 0,
       "groupRank": 4
     }
-  }
+  },
+  "knockout": [
+    {
+      "num": 73,
+      "stage": "round-of-32",
+      "slot": 0,
+      "homeCode": "RSA",
+      "awayCode": "CAN",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 74,
+      "stage": "round-of-32",
+      "slot": 1,
+      "homeCode": "GER",
+      "awayCode": "PAR",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 75,
+      "stage": "round-of-32",
+      "slot": 2,
+      "homeCode": "NED",
+      "awayCode": "MAR",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 76,
+      "stage": "round-of-32",
+      "slot": 3,
+      "homeCode": "BRA",
+      "awayCode": "JPN",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 77,
+      "stage": "round-of-32",
+      "slot": 4,
+      "homeCode": "FRA",
+      "awayCode": "SWE",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 78,
+      "stage": "round-of-32",
+      "slot": 5,
+      "homeCode": "CIV",
+      "awayCode": "NOR",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 79,
+      "stage": "round-of-32",
+      "slot": 6,
+      "homeCode": "MEX",
+      "awayCode": "ECU",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 80,
+      "stage": "round-of-32",
+      "slot": 7,
+      "homeCode": "ENG",
+      "awayCode": "COD",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 81,
+      "stage": "round-of-32",
+      "slot": 8,
+      "homeCode": "USA",
+      "awayCode": "BIH",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 82,
+      "stage": "round-of-32",
+      "slot": 9,
+      "homeCode": "BEL",
+      "awayCode": "SEN",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 83,
+      "stage": "round-of-32",
+      "slot": 10,
+      "homeCode": "POR",
+      "awayCode": "CRO",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 84,
+      "stage": "round-of-32",
+      "slot": 11,
+      "homeCode": "ESP",
+      "awayCode": "AUT",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 85,
+      "stage": "round-of-32",
+      "slot": 12,
+      "homeCode": "SUI",
+      "awayCode": "ALG",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 86,
+      "stage": "round-of-32",
+      "slot": 13,
+      "homeCode": "ARG",
+      "awayCode": "CPV",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 87,
+      "stage": "round-of-32",
+      "slot": 14,
+      "homeCode": "COL",
+      "awayCode": "GHA",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 88,
+      "stage": "round-of-32",
+      "slot": 15,
+      "homeCode": "AUS",
+      "awayCode": "EGY",
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 89,
+      "stage": "round-of-16",
+      "slot": 0,
+      "homeCode": "PAR",
+      "awayCode": "FRA",
+      "feedHome": [
+        "W",
+        74
+      ],
+      "feedAway": [
+        "W",
+        77
+      ],
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 90,
+      "stage": "round-of-16",
+      "slot": 1,
+      "homeCode": "CAN",
+      "awayCode": "MAR",
+      "feedHome": [
+        "W",
+        73
+      ],
+      "feedAway": [
+        "W",
+        75
+      ],
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 91,
+      "stage": "round-of-16",
+      "slot": 2,
+      "homeCode": "BRA",
+      "awayCode": "NOR",
+      "feedHome": [
+        "W",
+        76
+      ],
+      "feedAway": [
+        "W",
+        78
+      ],
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 92,
+      "stage": "round-of-16",
+      "slot": 3,
+      "homeCode": "MEX",
+      "awayCode": "ENG",
+      "feedHome": [
+        "W",
+        79
+      ],
+      "feedAway": [
+        "W",
+        80
+      ],
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 93,
+      "stage": "round-of-16",
+      "slot": 4,
+      "homeCode": "POR",
+      "awayCode": "ESP",
+      "feedHome": [
+        "W",
+        83
+      ],
+      "feedAway": [
+        "W",
+        84
+      ],
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 94,
+      "stage": "round-of-16",
+      "slot": 5,
+      "homeCode": "USA",
+      "awayCode": "BEL",
+      "feedHome": [
+        "W",
+        81
+      ],
+      "feedAway": [
+        "W",
+        82
+      ],
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 95,
+      "stage": "round-of-16",
+      "slot": 6,
+      "homeCode": "ARG",
+      "awayCode": "EGY",
+      "feedHome": [
+        "W",
+        86
+      ],
+      "feedAway": [
+        "W",
+        88
+      ],
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 96,
+      "stage": "round-of-16",
+      "slot": 7,
+      "homeCode": "SUI",
+      "awayCode": "COL",
+      "feedHome": [
+        "W",
+        85
+      ],
+      "feedAway": [
+        "W",
+        87
+      ],
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 97,
+      "stage": "quarter-final",
+      "slot": 0,
+      "homeCode": "FRA",
+      "awayCode": "MAR",
+      "feedHome": [
+        "W",
+        89
+      ],
+      "feedAway": [
+        "W",
+        90
+      ],
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 98,
+      "stage": "quarter-final",
+      "slot": 1,
+      "homeCode": "ESP",
+      "awayCode": "BEL",
+      "feedHome": [
+        "W",
+        93
+      ],
+      "feedAway": [
+        "W",
+        94
+      ],
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 99,
+      "stage": "quarter-final",
+      "slot": 2,
+      "homeCode": "NOR",
+      "awayCode": "ENG",
+      "feedHome": [
+        "W",
+        91
+      ],
+      "feedAway": [
+        "W",
+        92
+      ],
+      "played": true,
+      "winnerSide": 2
+    },
+    {
+      "num": 100,
+      "stage": "quarter-final",
+      "slot": 3,
+      "homeCode": "ARG",
+      "awayCode": "SUI",
+      "feedHome": [
+        "W",
+        96
+      ],
+      "feedAway": [
+        "W",
+        95
+      ],
+      "played": true,
+      "winnerSide": 0
+    },
+    {
+      "num": 101,
+      "stage": "semi-final",
+      "slot": 0,
+      "homeCode": "FRA",
+      "awayCode": "ESP",
+      "feedHome": [
+        "W",
+        97
+      ],
+      "feedAway": [
+        "W",
+        98
+      ],
+      "played": false,
+      "winnerSide": null
+    },
+    {
+      "num": 102,
+      "stage": "semi-final",
+      "slot": 1,
+      "homeCode": "ENG",
+      "awayCode": "ARG",
+      "feedHome": [
+        "W",
+        99
+      ],
+      "feedAway": [
+        "W",
+        100
+      ],
+      "played": false,
+      "winnerSide": null
+    },
+    {
+      "num": 103,
+      "stage": "third-place",
+      "slot": 0,
+      "homeCode": null,
+      "awayCode": null,
+      "feedHome": [
+        "L",
+        101
+      ],
+      "feedAway": [
+        "L",
+        102
+      ],
+      "played": false,
+      "winnerSide": null
+    },
+    {
+      "num": 104,
+      "stage": "final",
+      "slot": 0,
+      "homeCode": null,
+      "awayCode": null,
+      "feedHome": [
+        "W",
+        101
+      ],
+      "feedAway": [
+        "W",
+        102
+      ],
+      "played": false,
+      "winnerSide": null
+    }
+  ]
 }

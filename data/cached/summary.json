@@ -1,70 +1,70 @@
 {
   "tournament": "2026 FIFA World Cup",
   "host": "United States, Canada & Mexico",
-  "asOf": "2026-06-27T23:59:00+00:00",
-  "cutoff": "2026-06-27T23:59:00+00:00",
-  "generatedAt": "2026-07-10T07:12:12+00:00",
+  "asOf": "2026-07-12T01:00:00+00:00",
+  "cutoff": "2026-06-11T00:00:00+00:00",
+  "generatedAt": "2026-07-13T05:36:14+00:00",
   "totalMatches": 104,
-  "matchesCompleted": 72,
-  "matchesUpcoming": 32,
+  "matchesCompleted": 100,
+  "matchesUpcoming": 4,
   "matchesLive": 0,
   "teamCount": 48,
   "playerCount": 1248,
   "modelCount": 5,
   "featureCount": 10,
-  "trainingMatches": 4200,
+  "trainingMatches": 2948,
   "topChampion": {
-    "code": "ESP",
-    "name": "Spain",
-    "iso2": "es",
-    "prob": 0.27975
+    "code": "ARG",
+    "name": "Argentina",
+    "iso2": "ar",
+    "prob": 0.38275
   },
   "topContenders": [
+    {
+      "code": "ARG",
+      "name": "Argentina",
+      "iso2": "ar",
+      "prob": 0.38275
+    },
     {
       "code": "ESP",
       "name": "Spain",
       "iso2": "es",
-      "prob": 0.27975
+      "prob": 0.2997
     },
     {
       "code": "FRA",
       "name": "France",
       "iso2": "fr",
-      "prob": 0.1932
+      "prob": 0.2041
     },
     {
-      "code": "ARG",
-      "name": "Argentina",
-      "iso2": "ar",
-      "prob": 0.14755
+      "code": "ENG",
+      "name": "England",
+      "iso2": "gb-eng",
+      "prob": 0.11345
     },
     {
-      "code": "POR",
-      "name": "Portugal",
-      "iso2": "pt",
-      "prob": 0.1008
+      "code": "MEX",
+      "name": "Mexico",
+      "iso2": "mx",
+      "prob": 0.0
     },
     {
-      "code": "NED",
-      "name": "Netherlands",
-      "iso2": "nl",
-      "prob": 0.08505
-    },
-    {
-      "code": "BEL",
-      "name": "Belgium",
-      "iso2": "be",
-      "prob": 0.0546
+      "code": "RSA",
+      "name": "South Africa",
+      "iso2": "za",
+      "prob": 0.0
     }
   ],
-  "highestConfidenceMatchId": "R1607",
+  "highestConfidenceMatchId": "K102",
   "bestModel": {
-    "id": "rf",
-    "name": "Random Forest",
-    "accuracy": 0.5,
-    "logLoss": 1.0324,
-    "brier": 0.6192
+    "id": "logreg",
+    "name": "Logistic Regression",
+    "accuracy": 0.63,
+    "logLoss": 0.8557,
+    "brier": 0.5101
   },
-  "ensembleAccuracy": 0.4861,
-  "dataMode": "generated"
+  "ensembleAccuracy": 0.64,
+  "dataMode": "cached"
 }

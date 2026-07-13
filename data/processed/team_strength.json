@@ -1,778 +1,778 @@
 {
   "strength": {
+    "MEX": {
+      "squad": 52.3,
+      "attack": 54.9,
+      "defense": 54.7,
+      "experience": 39.7,
+      "squad_raw": 77.44
+    },
+    "RSA": {
+      "squad": 20.4,
+      "attack": 18.2,
+      "defense": 20.2,
+      "experience": 21.8,
+      "squad_raw": 68.66
+    },
+    "KOR": {
+      "squad": 28.8,
+      "attack": 28.9,
+      "defense": 29.7,
+      "experience": 46.2,
+      "squad_raw": 70.96
+    },
+    "CZE": {
+      "squad": 37.1,
+      "attack": 36.4,
+      "defense": 38.8,
+      "experience": 27.6,
+      "squad_raw": 73.25
+    },
+    "CAN": {
+      "squad": 41.1,
+      "attack": 41.1,
+      "defense": 41.5,
+      "experience": 34.0,
+      "squad_raw": 74.35
+    },
+    "BIH": {
+      "squad": 27.2,
+      "attack": 28.6,
+      "defense": 27.6,
+      "experience": 39.1,
+      "squad_raw": 70.52
+    },
+    "QAT": {
+      "squad": 24.8,
+      "attack": 27.5,
+      "defense": 24.9,
+      "experience": 32.1,
+      "squad_raw": 69.88
+    },
+    "SUI": {
+      "squad": 52.6,
+      "attack": 55.7,
+      "defense": 52.4,
+      "experience": 42.9,
+      "squad_raw": 77.52
+    },
+    "BRA": {
+      "squad": 92.8,
+      "attack": 29.6,
+      "defense": 90.6,
+      "experience": 30.1,
+      "squad_raw": 88.6
+    },
+    "MAR": {
+      "squad": 66.7,
+      "attack": 68.9,
+      "defense": 67.4,
+      "experience": 21.2,
+      "squad_raw": 81.41
+    },
+    "HAI": {
+      "squad": 7.4,
+      "attack": 13.2,
+      "defense": 6.4,
+      "experience": 33.3,
+      "squad_raw": 65.06
+    },
+    "SCO": {
+      "squad": 47.2,
+      "attack": 46.1,
+      "defense": 49.1,
+      "experience": 33.3,
+      "squad_raw": 76.04
+    },
+    "USA": {
+      "squad": 55.9,
+      "attack": 29.6,
+      "defense": 54.9,
+      "experience": 23.7,
+      "squad_raw": 78.44
+    },
+    "PAR": {
+      "squad": 36.7,
+      "attack": 36.8,
+      "defense": 38.0,
+      "experience": 23.1,
+      "squad_raw": 73.14
+    },
+    "AUS": {
+      "squad": 40.1,
+      "attack": 29.6,
+      "defense": 39.7,
+      "experience": 11.5,
+      "squad_raw": 74.07
+    },
+    "TUR": {
+      "squad": 50.9,
+      "attack": 58.9,
+      "defense": 48.7,
+      "experience": 37.8,
+      "squad_raw": 77.05
+    },
+    "GER": {
+      "squad": 75.6,
+      "attack": 74.6,
+      "defense": 75.7,
+      "experience": 27.6,
+      "squad_raw": 83.87
+    },
+    "CUW": {
+      "squad": 1.0,
+      "attack": 1.0,
+      "defense": 1.0,
+      "experience": 9.6,
+      "squad_raw": 63.03
+    },
+    "CIV": {
+      "squad": 43.8,
+      "attack": 40.2,
+      "defense": 45.3,
+      "experience": 23.1,
+      "squad_raw": 75.09
+    },
+    "ECU": {
+      "squad": 55.9,
+      "attack": 29.6,
+      "defense": 54.7,
+      "experience": 34.0,
+      "squad_raw": 78.45
+    },
+    "NED": {
+      "squad": 85.7,
+      "attack": 83.2,
+      "defense": 84.9,
+      "experience": 35.9,
+      "squad_raw": 86.64
+    },
+    "JPN": {
+      "squad": 56.0,
+      "attack": 29.6,
+      "defense": 55.4,
+      "experience": 42.3,
+      "squad_raw": 78.47
+    },
+    "SWE": {
+      "squad": 40.0,
+      "attack": 40.7,
+      "defense": 40.3,
+      "experience": 21.2,
+      "squad_raw": 74.04
+    },
+    "TUN": {
+      "squad": 41.8,
+      "attack": 29.6,
+      "defense": 41.4,
+      "experience": 28.2,
+      "squad_raw": 74.54
+    },
+    "BEL": {
+      "squad": 77.0,
+      "attack": 72.9,
+      "defense": 79.3,
+      "experience": 23.1,
+      "squad_raw": 84.24
+    },
+    "EGY": {
+      "squad": 33.9,
+      "attack": 32.5,
+      "defense": 35.6,
+      "experience": 39.1,
+      "squad_raw": 72.37
+    },
+    "IRN": {
+      "squad": 55.3,
+      "attack": 56.4,
+      "defense": 56.2,
+      "experience": 28.2,
+      "squad_raw": 78.27
+    },
+    "NZL": {
+      "squad": 10.9,
+      "attack": 14.3,
+      "defense": 9.7,
+      "experience": 31.4,
+      "squad_raw": 66.02
+    },
+    "ESP": {
+      "squad": 96.8,
+      "attack": 97.5,
+      "defense": 95.6,
+      "experience": 60.9,
+      "squad_raw": 89.71
+    },
+    "CPV": {
+      "squad": 21.7,
+      "attack": 21.8,
+      "defense": 22.0,
+      "experience": 31.4,
+      "squad_raw": 69.0
+    },
+    "SAU": {
+      "squad": 25.3,
+      "attack": 26.4,
+      "defense": 25.8,
+      "experience": 34.6,
+      "squad_raw": 70.01
+    },
+    "URU": {
+      "squad": 70.1,
+      "attack": 72.9,
+      "defense": 69.3,
+      "experience": 53.2,
+      "squad_raw": 82.36
+    },
+    "FRA": {
+      "squad": 91.6,
+      "attack": 93.4,
+      "defense": 90.7,
+      "experience": 27.6,
+      "squad_raw": 88.27
+    },
+    "SEN": {
+      "squad": 57.4,
+      "attack": 54.6,
+      "defense": 59.1,
+      "experience": 13.5,
+      "squad_raw": 78.86
+    },
+    "IRQ": {
+      "squad": 23.8,
+      "attack": 24.5,
+      "defense": 26.0,
+      "experience": 38.5,
+      "squad_raw": 69.58
+    },
+    "NOR": {
+      "squad": 57.3,
+      "attack": 54.3,
+      "defense": 59.3,
+      "experience": 33.3,
+      "squad_raw": 78.82
+    },
     "ARG": {
       "squad": 99.0,
       "attack": 99.0,
       "defense": 99.0,
-      "experience": 39.7,
-      "squad_raw": 92.13
-    },
-    "FRA": {
-      "squad": 79.8,
-      "attack": 72.7,
-      "defense": 79.5,
-      "experience": 21.8,
-      "squad_raw": 86.51
-    },
-    "ESP": {
-      "squad": 83.5,
-      "attack": 78.8,
-      "defense": 84.4,
       "experience": 46.2,
-      "squad_raw": 87.54
-    },
-    "BRA": {
-      "squad": 80.6,
-      "attack": 75.8,
-      "defense": 82.2,
-      "experience": 27.6,
-      "squad_raw": 86.74
-    },
-    "ENG": {
-      "squad": 75.3,
-      "attack": 70.7,
-      "defense": 76.0,
-      "experience": 34.0,
-      "squad_raw": 85.26
-    },
-    "POR": {
-      "squad": 75.3,
-      "attack": 71.3,
-      "defense": 76.1,
-      "experience": 39.1,
-      "squad_raw": 85.27
-    },
-    "NED": {
-      "squad": 75.9,
-      "attack": 73.2,
-      "defense": 76.2,
-      "experience": 32.1,
-      "squad_raw": 85.43
-    },
-    "GER": {
-      "squad": 62.5,
-      "attack": 61.5,
-      "defense": 62.8,
-      "experience": 42.9,
-      "squad_raw": 81.71
-    },
-    "BEL": {
-      "squad": 62.4,
-      "attack": 22.4,
-      "defense": 61.3,
-      "experience": 30.1,
-      "squad_raw": 81.68
-    },
-    "ITA": {
-      "squad": 63.1,
-      "attack": 61.5,
-      "defense": 64.5,
-      "experience": 21.2,
-      "squad_raw": 81.9
-    },
-    "URU": {
-      "squad": 54.3,
-      "attack": 55.9,
-      "defense": 53.7,
-      "experience": 33.3,
-      "squad_raw": 79.46
-    },
-    "COL": {
-      "squad": 55.1,
-      "attack": 50.3,
-      "defense": 57.5,
-      "experience": 33.3,
-      "squad_raw": 79.67
-    },
-    "CRO": {
-      "squad": 52.3,
-      "attack": 22.4,
-      "defense": 51.8,
-      "experience": 23.7,
-      "squad_raw": 78.9
-    },
-    "MAR": {
-      "squad": 43.9,
-      "attack": 40.8,
-      "defense": 45.7,
-      "experience": 23.1,
-      "squad_raw": 76.56
-    },
-    "JPN": {
-      "squad": 43.4,
-      "attack": 22.4,
-      "defense": 43.6,
-      "experience": 11.5,
-      "squad_raw": 76.44
-    },
-    "SUI": {
-      "squad": 40.5,
-      "attack": 45.2,
-      "defense": 38.9,
-      "experience": 37.8,
-      "squad_raw": 75.61
-    },
-    "DEN": {
-      "squad": 41.6,
-      "attack": 38.4,
-      "defense": 42.4,
-      "experience": 27.6,
-      "squad_raw": 75.92
-    },
-    "SEN": {
-      "squad": 35.7,
-      "attack": 32.6,
-      "defense": 35.9,
-      "experience": 9.6,
-      "squad_raw": 74.29
-    },
-    "USA": {
-      "squad": 35.1,
-      "attack": 29.0,
-      "defense": 37.1,
-      "experience": 23.1,
-      "squad_raw": 74.11
-    },
-    "MEX": {
-      "squad": 39.9,
-      "attack": 34.3,
-      "defense": 40.4,
-      "experience": 34.0,
-      "squad_raw": 75.44
-    },
-    "IRN": {
-      "squad": 40.8,
-      "attack": 34.7,
-      "defense": 41.5,
-      "experience": 35.9,
-      "squad_raw": 75.7
-    },
-    "NOR": {
-      "squad": 34.1,
-      "attack": 22.4,
-      "defense": 34.1,
-      "experience": 42.3,
-      "squad_raw": 73.84
-    },
-    "SRB": {
-      "squad": 36.2,
-      "attack": 34.2,
-      "defense": 37.1,
-      "experience": 21.2,
-      "squad_raw": 74.42
-    },
-    "AUT": {
-      "squad": 39.5,
-      "attack": 22.4,
-      "defense": 39.6,
-      "experience": 28.2,
-      "squad_raw": 75.33
-    },
-    "ECU": {
-      "squad": 38.5,
-      "attack": 32.4,
-      "defense": 41.6,
-      "experience": 23.1,
-      "squad_raw": 75.08
-    },
-    "KOR": {
-      "squad": 28.6,
-      "attack": 25.1,
-      "defense": 30.7,
-      "experience": 39.1,
-      "squad_raw": 72.31
-    },
-    "TUR": {
-      "squad": 36.6,
-      "attack": 35.0,
-      "defense": 38.1,
-      "experience": 28.2,
-      "squad_raw": 74.55
-    },
-    "UKR": {
-      "squad": 34.4,
-      "attack": 34.7,
-      "defense": 33.6,
-      "experience": 31.4,
-      "squad_raw": 73.93
-    },
-    "POL": {
-      "squad": 33.8,
-      "attack": 31.9,
-      "defense": 34.0,
-      "experience": 60.9,
-      "squad_raw": 73.76
-    },
-    "NGA": {
-      "squad": 33.5,
-      "attack": 30.9,
-      "defense": 34.3,
-      "experience": 31.4,
-      "squad_raw": 73.69
+      "squad_raw": 90.59
     },
     "ALG": {
-      "squad": 26.4,
-      "attack": 25.1,
-      "defense": 27.2,
+      "squad": 50.3,
+      "attack": 46.4,
+      "defense": 50.9,
       "experience": 34.6,
-      "squad_raw": 71.7
+      "squad_raw": 76.9
     },
-    "CAN": {
-      "squad": 27.9,
-      "attack": 28.5,
-      "defense": 28.5,
-      "experience": 53.2,
-      "squad_raw": 72.13
-    },
-    "EGY": {
-      "squad": 26.3,
-      "attack": 26.2,
-      "defense": 26.7,
-      "experience": 27.6,
-      "squad_raw": 71.67
-    },
-    "CIV": {
-      "squad": 28.3,
-      "attack": 23.6,
-      "defense": 30.7,
-      "experience": 13.5,
-      "squad_raw": 72.24
-    },
-    "PER": {
-      "squad": 28.3,
-      "attack": 26.7,
-      "defense": 30.9,
-      "experience": 38.5,
-      "squad_raw": 72.24
-    },
-    "PAR": {
-      "squad": 21.1,
-      "attack": 16.6,
-      "defense": 23.7,
-      "experience": 33.3,
-      "squad_raw": 70.22
-    },
-    "CMR": {
-      "squad": 22.6,
-      "attack": 19.4,
-      "defense": 24.6,
-      "experience": 46.2,
-      "squad_raw": 70.64
-    },
-    "AUS": {
-      "squad": 24.6,
-      "attack": 19.0,
-      "defense": 25.7,
-      "experience": 34.6,
-      "squad_raw": 71.2
-    },
-    "TUN": {
-      "squad": 19.7,
-      "attack": 22.1,
-      "defense": 20.7,
+    "AUT": {
+      "squad": 52.0,
+      "attack": 56.1,
+      "defense": 52.5,
       "experience": 15.4,
-      "squad_raw": 69.83
+      "squad_raw": 77.37
     },
-    "GHA": {
-      "squad": 22.2,
-      "attack": 18.0,
-      "defense": 24.1,
+    "JOR": {
+      "squad": 18.6,
+      "attack": 16.4,
+      "defense": 20.2,
       "experience": 37.8,
-      "squad_raw": 70.54
+      "squad_raw": 68.17
     },
-    "SAU": {
-      "squad": 14.2,
-      "attack": 12.6,
-      "defense": 13.9,
+    "POR": {
+      "squad": 84.0,
+      "attack": 83.2,
+      "defense": 82.9,
       "experience": 41.0,
-      "squad_raw": 68.31
+      "squad_raw": 86.19
     },
-    "QAT": {
-      "squad": 19.0,
-      "attack": 14.9,
-      "defense": 20.6,
+    "COD": {
+      "squad": 36.5,
+      "attack": 34.3,
+      "defense": 37.6,
       "experience": 12.2,
-      "squad_raw": 69.65
+      "squad_raw": 73.08
     },
     "UZB": {
-      "squad": 12.2,
-      "attack": 10.6,
-      "defense": 15.8,
+      "squad": 28.6,
+      "attack": 28.7,
+      "defense": 31.7,
       "experience": 24.4,
-      "squad_raw": 67.76
+      "squad_raw": 70.91
     },
-    "CRC": {
-      "squad": 13.0,
-      "attack": 7.8,
-      "defense": 17.0,
+    "COL": {
+      "squad": 65.3,
+      "attack": 60.9,
+      "defense": 68.4,
       "experience": 26.3,
-      "squad_raw": 68.0
+      "squad_raw": 81.02
+    },
+    "ENG": {
+      "squad": 81.9,
+      "attack": 79.6,
+      "defense": 82.0,
+      "experience": 23.1,
+      "squad_raw": 85.59
+    },
+    "CRO": {
+      "squad": 67.6,
+      "attack": 63.6,
+      "defense": 68.5,
+      "experience": 41.7,
+      "squad_raw": 81.67
+    },
+    "GHA": {
+      "squad": 42.4,
+      "attack": 45.0,
+      "defense": 41.8,
+      "experience": 25.0,
+      "squad_raw": 74.71
     },
     "PAN": {
-      "squad": 10.5,
-      "attack": 7.8,
-      "defense": 11.4,
-      "experience": 23.1,
-      "squad_raw": 67.29
-    },
-    "IRQ": {
-      "squad": 13.3,
-      "attack": 8.5,
-      "defense": 14.9,
-      "experience": 41.7,
-      "squad_raw": 68.07
-    },
-    "JAM": {
-      "squad": 12.5,
-      "attack": 13.9,
-      "defense": 12.4,
-      "experience": 25.0,
-      "squad_raw": 67.86
-    },
-    "NZL": {
-      "squad": 1.0,
-      "attack": 1.0,
-      "defense": 1.0,
+      "squad": 20.5,
+      "attack": 21.4,
+      "defense": 20.1,
       "experience": 20.5,
-      "squad_raw": 64.38
+      "squad_raw": 68.67
     }
   },
   "form": {
-    "ARG": {
-      "form_ppg": 1.4,
-      "gf_recent": 2.0,
-      "ga_recent": 1.2,
-      "xg_recent": 1.76,
-      "momentum": 6.0
-    },
-    "FRA": {
-      "form_ppg": 3.0,
-      "gf_recent": 3.4,
-      "ga_recent": 0.2,
-      "xg_recent": 3.036,
-      "momentum": 9.0
-    },
-    "ESP": {
-      "form_ppg": 2.6,
-      "gf_recent": 2.6,
-      "ga_recent": 1.0,
-      "xg_recent": 2.463,
-      "momentum": 9.0
-    },
-    "BRA": {
-      "form_ppg": 0.8,
-      "gf_recent": 0.8,
-      "ga_recent": 1.0,
-      "xg_recent": 1.081,
-      "momentum": 2.0
-    },
-    "ENG": {
-      "form_ppg": 1.0,
-      "gf_recent": 0.4,
-      "ga_recent": 0.6,
-      "xg_recent": 0.963,
-      "momentum": 2.0
-    },
-    "POR": {
-      "form_ppg": 1.6,
-      "gf_recent": 1.2,
-      "ga_recent": 0.8,
-      "xg_recent": 1.343,
-      "momentum": 4.0
-    },
-    "NED": {
-      "form_ppg": 3.0,
-      "gf_recent": 2.4,
-      "ga_recent": 0.4,
-      "xg_recent": 2.306,
-      "momentum": 9.0
-    },
-    "GER": {
-      "form_ppg": 1.6,
-      "gf_recent": 1.4,
-      "ga_recent": 0.6,
-      "xg_recent": 1.518,
-      "momentum": 7.0
-    },
-    "BEL": {
-      "form_ppg": 2.4,
-      "gf_recent": 2.4,
-      "ga_recent": 1.0,
-      "xg_recent": 2.268,
-      "momentum": 9.0
-    },
-    "ITA": {
-      "form_ppg": 0.8,
-      "gf_recent": 1.4,
-      "ga_recent": 2.4,
-      "xg_recent": 1.602,
-      "momentum": 4.0
-    },
-    "URU": {
-      "form_ppg": 1.2,
-      "gf_recent": 1.4,
-      "ga_recent": 1.4,
-      "xg_recent": 1.451,
-      "momentum": 4.0
-    },
-    "COL": {
-      "form_ppg": 1.4,
-      "gf_recent": 1.0,
-      "ga_recent": 1.0,
-      "xg_recent": 1.352,
-      "momentum": 1.0
-    },
-    "CRO": {
-      "form_ppg": 0.8,
-      "gf_recent": 1.0,
-      "ga_recent": 1.8,
-      "xg_recent": 1.201,
-      "momentum": 3.0
-    },
-    "MAR": {
-      "form_ppg": 1.4,
-      "gf_recent": 1.2,
-      "ga_recent": 1.4,
-      "xg_recent": 1.48,
-      "momentum": 4.0
-    },
-    "JPN": {
-      "form_ppg": 2.0,
-      "gf_recent": 1.4,
-      "ga_recent": 1.0,
-      "xg_recent": 1.32,
-      "momentum": 4.0
-    },
-    "SUI": {
-      "form_ppg": 0.6,
-      "gf_recent": 1.0,
-      "ga_recent": 1.6,
-      "xg_recent": 1.291,
-      "momentum": 2.0
-    },
-    "DEN": {
-      "form_ppg": 0.2,
-      "gf_recent": 0.8,
-      "ga_recent": 2.2,
-      "xg_recent": 0.805,
-      "momentum": 1.0
-    },
-    "SEN": {
-      "form_ppg": 1.4,
-      "gf_recent": 1.4,
-      "ga_recent": 1.2,
-      "xg_recent": 1.512,
-      "momentum": 4.0
-    },
-    "USA": {
-      "form_ppg": 1.6,
-      "gf_recent": 1.8,
-      "ga_recent": 1.2,
-      "xg_recent": 1.818,
-      "momentum": 5.0
-    },
     "MEX": {
-      "form_ppg": 0.8,
-      "gf_recent": 1.0,
-      "ga_recent": 1.4,
-      "xg_recent": 1.067,
-      "momentum": 4.0
-    },
-    "IRN": {
-      "form_ppg": 1.4,
-      "gf_recent": 1.6,
-      "ga_recent": 2.0,
-      "xg_recent": 1.277,
-      "momentum": 1.0
-    },
-    "NOR": {
-      "form_ppg": 2.0,
-      "gf_recent": 2.8,
-      "ga_recent": 2.4,
-      "xg_recent": 2.274,
-      "momentum": 6.0
-    },
-    "SRB": {
-      "form_ppg": 1.4,
-      "gf_recent": 1.2,
-      "ga_recent": 0.8,
-      "xg_recent": 1.404,
-      "momentum": 5.0
-    },
-    "AUT": {
-      "form_ppg": 2.2,
-      "gf_recent": 1.6,
+      "form_ppg": 2.4,
+      "gf_recent": 2.0,
       "ga_recent": 0.6,
-      "xg_recent": 1.501,
-      "momentum": 5.0
-    },
-    "ECU": {
-      "form_ppg": 0.8,
-      "gf_recent": 1.0,
-      "ga_recent": 1.8,
-      "xg_recent": 1.468,
-      "momentum": 1.0
-    },
-    "KOR": {
-      "form_ppg": 1.4,
-      "gf_recent": 1.0,
-      "ga_recent": 1.0,
-      "xg_recent": 0.995,
+      "xg_recent": 1.837,
       "momentum": 6.0
     },
-    "TUR": {
-      "form_ppg": 2.0,
-      "gf_recent": 1.6,
-      "ga_recent": 1.2,
-      "xg_recent": 1.496,
-      "momentum": 6.0
-    },
-    "UKR": {
-      "form_ppg": 2.0,
-      "gf_recent": 2.0,
-      "ga_recent": 1.2,
-      "xg_recent": 1.755,
-      "momentum": 7.0
-    },
-    "POL": {
-      "form_ppg": 0.6,
-      "gf_recent": 1.6,
-      "ga_recent": 2.2,
-      "xg_recent": 1.852,
-      "momentum": 2.0
-    },
-    "NGA": {
-      "form_ppg": 1.6,
-      "gf_recent": 1.2,
-      "ga_recent": 1.0,
-      "xg_recent": 1.219,
-      "momentum": 5.0
-    },
-    "ALG": {
-      "form_ppg": 1.2,
-      "gf_recent": 1.2,
-      "ga_recent": 2.4,
-      "xg_recent": 1.37,
-      "momentum": 3.0
-    },
-    "CAN": {
-      "form_ppg": 1.0,
-      "gf_recent": 1.4,
-      "ga_recent": 1.6,
-      "xg_recent": 1.517,
-      "momentum": 4.0
-    },
-    "EGY": {
-      "form_ppg": 1.0,
-      "gf_recent": 1.6,
-      "ga_recent": 2.0,
-      "xg_recent": 1.717,
-      "momentum": 1.0
-    },
-    "CIV": {
-      "form_ppg": 1.2,
-      "gf_recent": 1.4,
-      "ga_recent": 1.6,
-      "xg_recent": 1.51,
-      "momentum": 3.0
-    },
-    "PER": {
-      "form_ppg": 2.0,
-      "gf_recent": 1.6,
-      "ga_recent": 1.6,
-      "xg_recent": 1.518,
-      "momentum": 4.0
-    },
-    "PAR": {
-      "form_ppg": 1.8,
-      "gf_recent": 2.0,
-      "ga_recent": 1.8,
-      "xg_recent": 1.57,
-      "momentum": 6.0
-    },
-    "CMR": {
-      "form_ppg": 2.0,
-      "gf_recent": 1.8,
-      "ga_recent": 1.4,
-      "xg_recent": 1.402,
-      "momentum": 6.0
-    },
-    "AUS": {
-      "form_ppg": 0.4,
-      "gf_recent": 0.2,
-      "ga_recent": 1.2,
-      "xg_recent": 0.783,
-      "momentum": 1.0
-    },
-    "TUN": {
-      "form_ppg": 0.8,
-      "gf_recent": 2.2,
-      "ga_recent": 2.8,
-      "xg_recent": 1.931,
-      "momentum": 2.0
-    },
-    "GHA": {
+    "RSA": {
       "form_ppg": 1.4,
       "gf_recent": 0.6,
       "ga_recent": 0.8,
-      "xg_recent": 0.871,
+      "xg_recent": 1.0,
       "momentum": 4.0
     },
-    "SAU": {
+    "KOR": {
+      "form_ppg": 1.8,
+      "gf_recent": 1.6,
+      "ga_recent": 0.6,
+      "xg_recent": 1.544,
+      "momentum": 3.0
+    },
+    "CZE": {
       "form_ppg": 1.4,
-      "gf_recent": 1.0,
-      "ga_recent": 1.0,
-      "xg_recent": 1.299,
-      "momentum": 7.0
+      "gf_recent": 1.8,
+      "ga_recent": 1.6,
+      "xg_recent": 1.663,
+      "momentum": 1.0
+    },
+    "CAN": {
+      "form_ppg": 1.4,
+      "gf_recent": 1.8,
+      "ga_recent": 1.2,
+      "xg_recent": 1.921,
+      "momentum": 3.0
+    },
+    "BIH": {
+      "form_ppg": 1.0,
+      "gf_recent": 1.2,
+      "ga_recent": 1.8,
+      "xg_recent": 1.293,
+      "momentum": 3.0
     },
     "QAT": {
+      "form_ppg": 0.4,
+      "gf_recent": 0.4,
+      "ga_recent": 2.2,
+      "xg_recent": 1.035,
+      "momentum": 1.0
+    },
+    "SUI": {
+      "form_ppg": 2.2,
+      "gf_recent": 1.8,
+      "ga_recent": 0.6,
+      "xg_recent": 1.719,
+      "momentum": 5.0
+    },
+    "BRA": {
+      "form_ppg": 2.0,
+      "gf_recent": 2.0,
+      "ga_recent": 0.8,
+      "xg_recent": 1.944,
+      "momentum": 6.0
+    },
+    "MAR": {
+      "form_ppg": 2.0,
+      "gf_recent": 1.8,
+      "ga_recent": 1.0,
+      "xg_recent": 1.49,
+      "momentum": 4.0
+    },
+    "HAI": {
       "form_ppg": 0.6,
       "gf_recent": 1.4,
-      "ga_recent": 2.2,
-      "xg_recent": 1.261,
+      "ga_recent": 2.0,
+      "xg_recent": 1.469,
+      "momentum": 0.0
+    },
+    "SCO": {
+      "form_ppg": 1.8,
+      "gf_recent": 1.8,
+      "ga_recent": 1.0,
+      "xg_recent": 1.418,
+      "momentum": 3.0
+    },
+    "USA": {
+      "form_ppg": 1.8,
+      "gf_recent": 2.2,
+      "ga_recent": 1.6,
+      "xg_recent": 1.854,
+      "momentum": 3.0
+    },
+    "PAR": {
+      "form_ppg": 1.0,
+      "gf_recent": 0.6,
+      "ga_recent": 1.2,
+      "xg_recent": 0.822,
+      "momentum": 2.0
+    },
+    "AUS": {
+      "form_ppg": 1.2,
+      "gf_recent": 0.8,
+      "ga_recent": 0.8,
+      "xg_recent": 0.962,
+      "momentum": 2.0
+    },
+    "TUR": {
+      "form_ppg": 1.8,
+      "gf_recent": 1.8,
+      "ga_recent": 1.2,
+      "xg_recent": 1.749,
+      "momentum": 3.0
+    },
+    "GER": {
+      "form_ppg": 2.0,
+      "gf_recent": 2.6,
+      "ga_recent": 1.2,
+      "xg_recent": 2.229,
+      "momentum": 4.0
+    },
+    "CUW": {
+      "form_ppg": 0.8,
+      "gf_recent": 1.2,
+      "ga_recent": 2.6,
+      "xg_recent": 1.27,
+      "momentum": 1.0
+    },
+    "CIV": {
+      "form_ppg": 1.8,
+      "gf_recent": 1.4,
+      "ga_recent": 1.0,
+      "xg_recent": 1.196,
+      "momentum": 3.0
+    },
+    "ECU": {
+      "form_ppg": 1.4,
+      "gf_recent": 1.0,
+      "ga_recent": 0.8,
+      "xg_recent": 1.463,
+      "momentum": 4.0
+    },
+    "NED": {
+      "form_ppg": 2.2,
+      "gf_recent": 2.6,
+      "ga_recent": 1.2,
+      "xg_recent": 2.194,
+      "momentum": 7.0
+    },
+    "JPN": {
+      "form_ppg": 1.6,
+      "gf_recent": 1.8,
+      "ga_recent": 1.0,
+      "xg_recent": 1.6,
+      "momentum": 4.0
+    },
+    "SWE": {
+      "form_ppg": 1.0,
+      "gf_recent": 1.8,
+      "ga_recent": 2.4,
+      "xg_recent": 1.655,
+      "momentum": 1.0
+    },
+    "TUN": {
+      "form_ppg": 0.0,
+      "gf_recent": 0.4,
+      "ga_recent": 3.6,
+      "xg_recent": 0.729,
+      "momentum": 0.0
+    },
+    "BEL": {
+      "form_ppg": 1.6,
+      "gf_recent": 2.4,
+      "ga_recent": 1.2,
+      "xg_recent": 1.943,
+      "momentum": 4.0
+    },
+    "EGY": {
+      "form_ppg": 1.2,
+      "gf_recent": 1.6,
+      "ga_recent": 1.4,
+      "xg_recent": 1.52,
+      "momentum": 2.0
+    },
+    "IRN": {
+      "form_ppg": 1.8,
+      "gf_recent": 1.6,
+      "ga_recent": 0.8,
+      "xg_recent": 1.538,
+      "momentum": 3.0
+    },
+    "NZL": {
+      "form_ppg": 0.2,
+      "gf_recent": 0.8,
+      "ga_recent": 3.0,
+      "xg_recent": 0.912,
+      "momentum": 1.0
+    },
+    "ESP": {
+      "form_ppg": 3.0,
+      "gf_recent": 2.2,
+      "ga_recent": 0.2,
+      "xg_recent": 1.909,
+      "momentum": 9.0
+    },
+    "CPV": {
+      "form_ppg": 0.8,
+      "gf_recent": 0.6,
+      "ga_recent": 1.2,
+      "xg_recent": 0.781,
+      "momentum": 3.0
+    },
+    "SAU": {
+      "form_ppg": 1.2,
+      "gf_recent": 0.8,
+      "ga_recent": 1.0,
+      "xg_recent": 1.11,
+      "momentum": 2.0
+    },
+    "URU": {
+      "form_ppg": 0.8,
+      "gf_recent": 0.8,
+      "ga_recent": 1.0,
+      "xg_recent": 0.828,
+      "momentum": 2.0
+    },
+    "FRA": {
+      "form_ppg": 3.0,
+      "gf_recent": 2.6,
+      "ga_recent": 0.2,
+      "xg_recent": 2.19,
+      "momentum": 9.0
+    },
+    "SEN": {
+      "form_ppg": 1.0,
+      "gf_recent": 2.0,
+      "ga_recent": 1.6,
+      "xg_recent": 1.768,
+      "momentum": 4.0
+    },
+    "IRQ": {
+      "form_ppg": 0.2,
+      "gf_recent": 0.4,
+      "ga_recent": 3.0,
+      "xg_recent": 0.444,
+      "momentum": 0.0
+    },
+    "NOR": {
+      "form_ppg": 2.0,
+      "gf_recent": 1.8,
+      "ga_recent": 1.8,
+      "xg_recent": 1.738,
+      "momentum": 7.0
+    },
+    "ARG": {
+      "form_ppg": 2.2,
+      "gf_recent": 2.0,
+      "ga_recent": 1.0,
+      "xg_recent": 2.068,
+      "momentum": 5.0
+    },
+    "ALG": {
+      "form_ppg": 1.4,
+      "gf_recent": 1.8,
+      "ga_recent": 1.8,
+      "xg_recent": 1.649,
+      "momentum": 4.0
+    },
+    "AUT": {
+      "form_ppg": 1.4,
+      "gf_recent": 1.4,
+      "ga_recent": 1.8,
+      "xg_recent": 1.384,
+      "momentum": 1.0
+    },
+    "JOR": {
+      "form_ppg": 0.0,
+      "gf_recent": 0.8,
+      "ga_recent": 2.8,
+      "xg_recent": 0.979,
+      "momentum": 0.0
+    },
+    "POR": {
+      "form_ppg": 1.6,
+      "gf_recent": 1.6,
+      "ga_recent": 0.6,
+      "xg_recent": 1.659,
+      "momentum": 4.0
+    },
+    "COD": {
+      "form_ppg": 0.8,
+      "gf_recent": 1.2,
+      "ga_recent": 1.4,
+      "xg_recent": 1.125,
       "momentum": 3.0
     },
     "UZB": {
-      "form_ppg": 1.0,
-      "gf_recent": 1.2,
-      "ga_recent": 1.0,
-      "xg_recent": 1.458,
-      "momentum": 5.0
-    },
-    "CRC": {
-      "form_ppg": 0.2,
-      "gf_recent": 0.8,
-      "ga_recent": 2.4,
-      "xg_recent": 1.096,
+      "form_ppg": 0.0,
+      "gf_recent": 0.6,
+      "ga_recent": 3.0,
+      "xg_recent": 0.89,
       "momentum": 0.0
     },
-    "PAN": {
-      "form_ppg": 1.8,
-      "gf_recent": 1.2,
-      "ga_recent": 1.6,
-      "xg_recent": 1.225,
-      "momentum": 3.0
-    },
-    "IRQ": {
-      "form_ppg": 0.6,
-      "gf_recent": 2.2,
-      "ga_recent": 2.6,
-      "xg_recent": 2.003,
-      "momentum": 1.0
-    },
-    "JAM": {
-      "form_ppg": 1.0,
-      "gf_recent": 1.6,
-      "ga_recent": 2.6,
-      "xg_recent": 1.542,
-      "momentum": 4.0
-    },
-    "NZL": {
-      "form_ppg": 0.6,
+    "COL": {
+      "form_ppg": 2.2,
       "gf_recent": 1.0,
-      "ga_recent": 1.8,
-      "xg_recent": 1.015,
+      "ga_recent": 0.2,
+      "xg_recent": 1.288,
+      "momentum": 5.0
+    },
+    "ENG": {
+      "form_ppg": 2.2,
+      "gf_recent": 1.6,
+      "ga_recent": 0.8,
+      "xg_recent": 1.641,
+      "momentum": 7.0
+    },
+    "CRO": {
+      "form_ppg": 1.8,
+      "gf_recent": 1.6,
+      "ga_recent": 1.6,
+      "xg_recent": 1.543,
+      "momentum": 6.0
+    },
+    "GHA": {
+      "form_ppg": 1.0,
+      "gf_recent": 0.6,
+      "ga_recent": 0.8,
+      "xg_recent": 0.898,
       "momentum": 1.0
+    },
+    "PAN": {
+      "form_ppg": 0.8,
+      "gf_recent": 1.0,
+      "ga_recent": 1.4,
+      "xg_recent": 1.146,
+      "momentum": 0.0
     }
   },
   "elo_current": {
-    "ARG": 1950.0,
-    "FRA": 2021.2,
-    "ESP": 2067.8,
-    "BRA": 1922.1,
-    "ENG": 1893.2,
-    "POR": 1992.2,
-    "NED": 1941.1,
-    "GER": 1919.1,
-    "BEL": 1936.7,
-    "ITA": 1831.8,
-    "URU": 1875.8,
-    "COL": 1769.5,
-    "CRO": 1772.2,
-    "MAR": 1803.6,
-    "JPN": 1763.0,
-    "SUI": 1785.8,
-    "DEN": 1735.7,
-    "SEN": 1801.5,
-    "USA": 1857.6,
-    "MEX": 1819.4,
-    "IRN": 1801.5,
-    "NOR": 1804.3,
-    "SRB": 1802.1,
-    "AUT": 1800.3,
-    "ECU": 1835.5,
-    "KOR": 1785.7,
-    "TUR": 1770.8,
-    "UKR": 1917.1,
-    "POL": 1687.4,
-    "NGA": 1740.5,
-    "ALG": 1829.6,
-    "CAN": 1743.5,
-    "EGY": 1695.2,
-    "CIV": 1748.8,
-    "PER": 1779.1,
-    "PAR": 1760.5,
-    "CMR": 1776.2,
-    "AUS": 1741.0,
-    "TUN": 1674.0,
-    "GHA": 1756.3,
-    "SAU": 1735.1,
-    "QAT": 1715.1,
-    "UZB": 1690.5,
-    "CRC": 1642.7,
-    "PAN": 1810.9,
-    "IRQ": 1645.1,
-    "JAM": 1701.9,
-    "NZL": 1609.3
+    "MEX": 1955.2,
+    "RSA": 1672.0,
+    "KOR": 1830.7,
+    "CZE": 1766.3,
+    "CAN": 1835.9,
+    "BIH": 1651.7,
+    "QAT": 1557.0,
+    "SUI": 1946.6,
+    "BRA": 2055.8,
+    "MAR": 1976.0,
+    "HAI": 1646.5,
+    "SCO": 1778.7,
+    "USA": 1842.5,
+    "PAR": 1835.8,
+    "AUS": 1857.0,
+    "TUR": 1870.9,
+    "GER": 1984.2,
+    "CUW": 1560.7,
+    "CIV": 1814.2,
+    "ECU": 1922.9,
+    "NED": 2005.5,
+    "JPN": 1963.2,
+    "SWE": 1789.8,
+    "TUN": 1688.4,
+    "BEL": 1994.5,
+    "EGY": 1809.3,
+    "IRN": 1877.9,
+    "NZL": 1675.3,
+    "ESP": 2162.4,
+    "CPV": 1657.5,
+    "SAU": 1677.9,
+    "URU": 1901.8,
+    "FRA": 2125.5,
+    "SEN": 1857.3,
+    "IRQ": 1669.9,
+    "NOR": 1937.1,
+    "ARG": 2174.8,
+    "ALG": 1866.2,
+    "AUT": 1879.9,
+    "JOR": 1694.5,
+    "POR": 2029.7,
+    "COD": 1726.5,
+    "UZB": 1731.3,
+    "COL": 2037.4,
+    "ENG": 2064.0,
+    "CRO": 1924.9,
+    "GHA": 1648.6,
+    "PAN": 1734.0
   },
   "elo_pre": {
-    "ARG": 1940.9,
-    "FRA": 1986.3,
-    "ESP": 2041.3,
-    "BRA": 1954.2,
-    "ENG": 1929.2,
-    "POR": 2033.3,
-    "NED": 1901.5,
-    "GER": 1890.0,
-    "BEL": 1880.3,
-    "ITA": 1844.5,
-    "URU": 1898.1,
-    "COL": 1818.8,
-    "CRO": 1781.5,
-    "MAR": 1794.1,
-    "JPN": 1754.6,
-    "SUI": 1810.9,
-    "DEN": 1765.9,
-    "SEN": 1806.5,
-    "USA": 1862.3,
-    "MEX": 1829.8,
-    "IRN": 1856.6,
-    "NOR": 1793.7,
-    "SRB": 1777.4,
-    "AUT": 1789.1,
-    "ECU": 1875.2,
-    "KOR": 1745.9,
-    "TUR": 1744.9,
-    "UKR": 1892.3,
-    "POL": 1685.6,
-    "NGA": 1716.7,
-    "ALG": 1860.0,
-    "CAN": 1741.2,
-    "EGY": 1711.8,
-    "CIV": 1760.5,
-    "PER": 1809.8,
-    "PAR": 1740.1,
-    "CMR": 1732.8,
-    "AUS": 1778.3,
-    "TUN": 1672.7,
-    "GHA": 1745.8,
-    "SAU": 1678.6,
-    "QAT": 1717.2,
-    "UZB": 1624.4,
-    "CRC": 1679.2,
-    "PAN": 1837.6,
-    "IRQ": 1655.7,
-    "JAM": 1686.5,
-    "NZL": 1625.4
+    "MEX": 1924.8,
+    "RSA": 1654.3,
+    "KOR": 1852.2,
+    "CZE": 1797.9,
+    "CAN": 1867.4,
+    "BIH": 1642.0,
+    "QAT": 1573.9,
+    "SUI": 1919.7,
+    "BRA": 2056.9,
+    "MAR": 1944.6,
+    "HAI": 1668.6,
+    "SCO": 1786.9,
+    "USA": 1833.4,
+    "PAR": 1838.4,
+    "AUS": 1856.1,
+    "TUR": 1893.7,
+    "GER": 1995.7,
+    "CUW": 1563.0,
+    "CIV": 1803.9,
+    "ECU": 1955.5,
+    "NED": 1984.3,
+    "JPN": 1970.8,
+    "SWE": 1778.7,
+    "TUN": 1735.1,
+    "BEL": 1970.6,
+    "EGY": 1783.4,
+    "IRN": 1885.4,
+    "NZL": 1694.9,
+    "ESP": 2132.5,
+    "CPV": 1633.5,
+    "SAU": 1673.8,
+    "URU": 1929.5,
+    "FRA": 2064.9,
+    "SEN": 1870.4,
+    "IRQ": 1711.4,
+    "NOR": 1902.8,
+    "ARG": 2137.8,
+    "ALG": 1886.1,
+    "AUT": 1887.6,
+    "JOR": 1717.9,
+    "POR": 2025.4,
+    "COD": 1699.2,
+    "UZB": 1779.6,
+    "COL": 2026.0,
+    "ENG": 2021.7,
+    "CRO": 1939.2,
+    "GHA": 1621.7,
+    "PAN": 1772.2
   }
 }

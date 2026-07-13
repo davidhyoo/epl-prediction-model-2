@@ -6,7 +6,12 @@ per-model win/draw/loss probabilities plus transparent "top contributing
 factors" for the explanation modal. It also:
 
   * runs a vectorised Monte-Carlo championship simulation (20k tournaments)
-    for title odds & round-by-round advancement probabilities,
+    that FIXES every completed knockout result and simulates only the matches
+    still to be played — so title odds & advancement probabilities reflect the
+    live tournament state,
+  * projects the two not-yet-scheduled matches (third-place play-off & final)
+    from their most-likely participants and predicts them with the full model
+    stack,
   * derives team strength / form / momentum metrics,
   * allocates realistic per-player tournament statistics,
   * builds the countries, players, rankings and methodology datasets.
@@ -25,14 +30,15 @@ import joblib
 from common import (
     PROCESSED_DIR, OUTPUTS_DIR, MODELS_DIR, FEATURE_ORDER, FEATURE_LABELS,
     read_json, write_json_pretty, publish, now_iso, scale_0_100, clamp, rng,
-    load_teams, TOURNAMENT, HOST, CUTOFF, HOME_ADV,
+    TOURNAMENT, HOST, HOME_ADV,
 )
 from modeling import elo_baseline_proba
-from tournament import simulate_knockouts
+from tournament import simulate_bracket
 
 N_SIMS = 20000
-N_SIMS_HISTORY = 6000
+N_SIMS_HISTORY = 8000
 CLASS_NAMES = ["home", "draw", "away"]
+HOSTS = {"USA", "CAN", "MEX"}
 
 
 # --------------------------------------------------------------------------- #
@@ -121,7 +127,7 @@ def _factor_detail(f: str, val: float, favors: str, fav: str) -> str:
 
 
 # --------------------------------------------------------------------------- #
-# Championship Monte-Carlo
+# Championship Monte-Carlo (respects completed knockout results)
 # --------------------------------------------------------------------------- #
 def build_eff(team_dicts, elo_by_code, squad_by_code):
     idx = {t["code"]: i for i, t in enumerate(team_dicts)}
@@ -134,22 +140,43 @@ def build_eff(team_dicts, elo_by_code, squad_by_code):
     return eff, idx
 
 
-def run_championship(team_dicts, bracket_codes, elo_by_code, squad_by_code,
-                     n_sims, generator):
-    eff, idx = build_eff(team_dicts, elo_by_code, squad_by_code)
-    positions_idx = np.array([idx[c] for c in bracket_codes], dtype=int)
-    counts = simulate_knockouts(positions_idx, eff, n_sims, generator)
-    inv = {i: t["code"] for i, t in enumerate(team_dicts)}
-    probs = {}
-    for i, code in inv.items():
-        probs[code] = {
-            "roundOf16": counts["round-of-16"][i] / n_sims,
-            "quarter": counts["quarter-final"][i] / n_sims,
-            "semi": counts["semi-final"][i] / n_sims,
-            "final": counts["final"][i] / n_sims,
-            "champion": counts["champion"][i] / n_sims,
-        }
-    return probs
+def _advance_from_reach(reach: dict, champion: np.ndarray, i: int, n: int) -> dict:
+    return {
+        "roundOf32": round(reach["round-of-32"][i] / n, 5),
+        "roundOf16": round(reach["round-of-16"][i] / n, 5),
+        "quarter": round(reach["quarter-final"][i] / n, 5),
+        "semi": round(reach["semi-final"][i] / n, 5),
+        "final": round(reach["final"][i] / n, 5),
+        "champion": round(champion[i] / n, 5),
+    }
+
+
+# --------------------------------------------------------------------------- #
+# Feature vector for a PROJECTED matchup (final / third place, teams unknown
+# until the semis are played). Built from the same current team-state metrics
+# used everywhere else; head-to-head & rest are neutral approximations, which is
+# transparent and only affects these two look-ahead fixtures.
+# --------------------------------------------------------------------------- #
+def projected_features(h: str, a: str, ts: dict, squad_score: dict) -> tuple[list, dict]:
+    fm = ts["form"]
+    elo = ts["elo_current"]
+    host_adv = 1.0 if (h in HOSTS and a not in HOSTS) else (
+        -1.0 if (a in HOSTS and h not in HOSTS) else 0.0)
+    feats = {
+        "elo_diff": elo[h] - elo[a],
+        "form_diff": fm[h]["form_ppg"] - fm[a]["form_ppg"],
+        "gf_diff": fm[h]["gf_recent"] - fm[a]["gf_recent"],
+        "ga_diff": fm[a]["ga_recent"] - fm[h]["ga_recent"],
+        "xg_diff": fm[h]["xg_recent"] - fm[a]["xg_recent"],
+        "squad_diff": (squad_score[h] - squad_score[a]) / 10.0,
+        "rest_diff": 0.0,
+        "h2h_diff": 0.0,
+        "host_adv": host_adv,
+        "stage_knockout": 1.0,
+    }
+    vec = [round(float(feats[f]), 4) for f in FEATURE_ORDER]
+    feats = {k: round(v, 4) for k, v in feats.items()}
+    return vec, feats
 
 
 # --------------------------------------------------------------------------- #
@@ -163,7 +190,6 @@ def allocate_player_stats(team_players, record, gen) -> None:
     starters = sorted(team_players, key=lambda p: -p["rating"])[:11]
     starter_ids = {p["id"] for p in starters}
 
-    # goal / assist distribution weights
     def goal_w(p):
         return {"FWD": 1.0, "MID": 0.5, "DEF": 0.12, "GK": 0.0}[p["position"]] * \
             (0.4 + (p["rating"] - 60) / 40)
@@ -234,7 +260,6 @@ def allocate_player_stats(team_players, record, gen) -> None:
         p["stats"] = stats
         p["contribution"] = round(float(contribution), 1)
         p["isKeyPlayer"] = False  # set later (top per team)
-        # short form trend around rating
         p["form"] = [
             {"label": f"M{k+1}", "rating": round(float(clamp(gen.normal(rating / 10, 0.6), 4.5, 9.9)), 1)}
             for k in range(min(apps, 5) or 1)
@@ -254,7 +279,19 @@ def _player_bio(p: dict) -> str:
 # --------------------------------------------------------------------------- #
 # Team narrative
 # --------------------------------------------------------------------------- #
-def team_narrative(strength: dict, status: str, host: bool) -> tuple[list[str], list[str]]:
+_ELIM_TEXT = {
+    "group": "Eliminated in the group stage",
+    "round-of-32": "Knocked out in the round of 32",
+    "round-of-16": "Knocked out in the round of 16",
+    "quarter-final": "Knocked out in the quarter-finals",
+    "semi-final": "Beaten in the semi-finals",
+    "third-place": "Finished fourth",
+    "final": "Runners-up",
+}
+
+
+def team_narrative(strength: dict, active: bool, host: bool,
+                   elim_round: str | None) -> tuple[list[str], list[str]]:
     strengths, weaknesses = [], []
     if strength["attack"] >= 72:
         strengths.append("Potent, high-scoring attack")
@@ -281,8 +318,8 @@ def team_narrative(strength: dict, status: str, host: bool) -> tuple[list[str], 
         weaknesses.append("Relatively inexperienced squad")
     if strength["squad"] < 45:
         weaknesses.append("Limited strength in depth")
-    if status == "eliminated":
-        weaknesses.append("Eliminated in the group stage")
+    if not active and elim_round:
+        weaknesses.insert(0, _ELIM_TEXT.get(elim_round, "Eliminated"))
 
     if not strengths:
         strengths.append("Balanced, hard-to-break-down side")
@@ -292,12 +329,39 @@ def team_narrative(strength: dict, status: str, host: bool) -> tuple[list[str], 
 
 
 # --------------------------------------------------------------------------- #
+# Elimination / advancement from the REAL knockout results
+# --------------------------------------------------------------------------- #
+def compute_status(wc_matches, ranked32):
+    """Return (active:set, eliminated_round:dict[code -> stage])."""
+    active: set[str] = set()
+    elim: dict[str, str] = {}
+    ranked = set(ranked32)
+    # All 48 start active; the 16 who didn't reach the round of 32 go out in the
+    # group stage, then every completed knockout eliminates its loser.
+    for m in wc_matches:
+        for side in ("home", "away"):
+            if m[side]:
+                active.add(m[side])
+    for code in list(active):
+        if code not in ranked:
+            elim[code] = "group"
+    for m in wc_matches:
+        if m["knockout"] and m["status"] == "completed" and m["winner"]:
+            loser = m["away"] if m["winner"] == "home" else m["home"]
+            if loser:
+                elim[loser] = m["stage"]
+    active = {c for c in active if c not in elim}
+    return active, elim
+
+
+# --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
 def main() -> None:
     teams_raw = read_json(os.path.join(PROCESSED_DIR, "teams.json"))
     squads = read_json(os.path.join(PROCESSED_DIR, "squads.json"))
     wc_feat = read_json(os.path.join(PROCESSED_DIR, "wc_features.json"))
+    wc_matches = read_json(os.path.join(PROCESSED_DIR, "wc_matches.json"))
     ts = read_json(os.path.join(PROCESSED_DIR, "team_strength.json"))
     qual = read_json(os.path.join(PROCESSED_DIR, "qualification.json"))
     meta = read_json(os.path.join(MODELS_DIR, "meta.json"))
@@ -307,7 +371,6 @@ def main() -> None:
     X = np.array([m["X"] for m in feat_matches], dtype=float)
     probs = per_model_probs(models, X)
 
-    # average importance across models -> a representative "why" signal
     avg_importance = {f: 0.0 for f in FEATURE_ORDER}
     for mdl in ("elo", "logreg", "rf", "xgb"):
         for item in meta["importances"][mdl]:
@@ -315,8 +378,16 @@ def main() -> None:
     stats = meta["feature_stats"]
 
     name_by_code = {t["code"]: t["name"] for t in teams_raw}
+    squad_score = {c: ts["strength"][c]["squad"] for c in ts["strength"]}
 
-    # ---- raw predictions (per match, per model) + factors ----------------
+    # ---- Championship Monte-Carlo (fixes completed knockout results) ------
+    knockout = qual["knockout"]
+    eff_cur, idx = build_eff(teams_raw, ts["elo_current"], squad_score)
+    inv = {i: t["code"] for i, t in enumerate(teams_raw)}
+    champ = simulate_bracket(knockout, eff_cur, idx, N_SIMS, rng("mc"))
+    reach, champion, proj = champ["reach"], champ["champion"], champ["proj"]
+
+    # ---- raw predictions (per match, per model) + factors -----------------
     pred_rows = []
     for i, m in enumerate(feat_matches):
         home, away = m["home"], m["away"]
@@ -326,29 +397,52 @@ def main() -> None:
             "probs": {k: [round(float(x), 5) for x in probs[k][i]] for k in probs},
             "factors": build_factors(m["feats"], avg_importance, stats,
                                      name_by_code[home], name_by_code[away]),
+            "projected": False,
         })
+
+    # ---- Projected look-ahead fixtures (third-place & final) --------------
+    # These have no confirmed teams yet, so we take the most-likely participants
+    # from the simulation and predict them with the full model stack.
+    wc_by_num = {m["num"]: m for m in wc_matches if m["num"] is not None}
+    have_ids = {r["id"] for r in pred_rows}
+    proj_rows = []
+    for num in sorted(proj):
+        wm = wc_by_num.get(num)
+        if wm is None or wm["id"] in have_ids or wm["home"] or wm["away"]:
+            continue  # only the genuinely TBD matches (final / third place)
+        h, a = inv[proj[num]["homeIdx"]], inv[proj[num]["awayIdx"]]
+        vec, feats = projected_features(h, a, ts, squad_score)
+        proj_rows.append({"id": wm["id"], "home": h, "away": a,
+                          "stage": wm["stage"], "feats": feats, "X": vec})
+    if proj_rows:
+        Xp = np.array([r["X"] for r in proj_rows], dtype=float)
+        pprobs = per_model_probs(models, Xp)
+        for j, r in enumerate(proj_rows):
+            pred_rows.append({
+                "id": r["id"], "home": r["home"], "away": r["away"],
+                "stage": r["stage"], "status": "upcoming", "y": None,
+                "probs": {k: [round(float(x), 5) for x in pprobs[k][j]] for k in pprobs},
+                "factors": build_factors(r["feats"], avg_importance, stats,
+                                         name_by_code[r["home"]], name_by_code[r["away"]]),
+                "projected": True,
+            })
+
     write_json_pretty(os.path.join(OUTPUTS_DIR, "predictions.json"),
                       {"feature_order": FEATURE_ORDER, "matches": pred_rows})
 
-    # ---- Championship Monte-Carlo ----------------------------------------
-    ranked32 = set(qual["ranked32"])
-    bracket_codes = qual["bracketPositions"]
-    squad_score = {c: ts["strength"][c]["squad"] for c in ts["strength"]}
-    gen = rng("mc")
-    champ_now = run_championship(teams_raw, bracket_codes, ts["elo_current"],
-                                 squad_score, N_SIMS, gen)
-
-    # champion-odds history across Elo snapshots (active teams only)
-    snap_labels = [("pre", "Pre-tournament"), ("md1", "Matchday 1"),
-                   ("md2", "Matchday 2"), ("md3", "Group stage")]
-    snapshots = dict(wc_feat["elo_snapshots"])
-    snapshots["md3"] = wc_feat["elo_current"]
-    history_probs = {}
-    for key, _label in snap_labels:
+    # ---- Champion-odds history: rewind the sim to each completed round -----
+    snapshots = wc_feat["elo_snapshots"]
+    snap_specs = [("group", "Group stage", -1),
+                  ("round-of-32", "Round of 32", 0),
+                  ("round-of-16", "Round of 16", 1)]
+    history_champ = {}
+    for key, _label, rank in snap_specs:
         elo_snap = snapshots.get(key, ts["elo_current"])
-        gh = rng(f"mc-{key}")
-        history_probs[key] = run_championship(teams_raw, bracket_codes, elo_snap,
-                                              squad_score, N_SIMS_HISTORY, gh)
+        eff_s, _ = build_eff(teams_raw, elo_snap, squad_score)
+        res = simulate_bracket(knockout, eff_s, idx, N_SIMS_HISTORY,
+                               rng(f"mc-{key}"), as_of_rank=rank)
+        history_champ[key] = res["champion"] / N_SIMS_HISTORY
+    hist_labels = [(k, lbl) for k, lbl, _ in snap_specs] + [("now", "Quarter-finals")]
 
     # ---- Player stats -----------------------------------------------------
     by_team_players: dict[str, list] = {}
@@ -357,8 +451,7 @@ def main() -> None:
     records = qual["records"]
     for code, plist in by_team_players.items():
         allocate_player_stats(plist, records[code], rng(f"players-{code}"))
-        top = sorted(plist, key=lambda x: -x["contribution"])[:4]
-        for p in top:
+        for p in sorted(plist, key=lambda x: -x["contribution"])[:4]:
             p["isKeyPlayer"] = True
 
     players_out = []
@@ -377,7 +470,11 @@ def main() -> None:
     publish("players.json", players_out)
 
     # ---- Teams ------------------------------------------------------------
-    elos = [t["elo0"] for t in teams_raw]
+    active, elim_round = compute_status(wc_matches, qual["ranked32"])
+    elo_pre = ts["elo_pre"]
+    pre_rank = {c: r for r, (c, _v) in enumerate(
+        sorted(elo_pre.items(), key=lambda kv: -kv[1]), start=1)}
+
     elo_cur_vals = list(ts["elo_current"].values())
     lo_e, hi_e = min(elo_cur_vals), max(elo_cur_vals)
 
@@ -387,7 +484,8 @@ def main() -> None:
         st = ts["strength"][code]
         fm = ts["form"][code]
         elo_cur = ts["elo_current"][code]
-        active = code in ranked32
+        is_active = code in active
+        i = idx[code]
         form_100 = round(clamp(fm["form_ppg"] / 3.0 * 100, 3, 99), 1)
         momentum_100 = round(clamp(fm["momentum"] / 9.0 * 100, 3, 99), 1)
         elo_100 = scale_0_100(elo_cur, lo_e, hi_e)
@@ -397,38 +495,33 @@ def main() -> None:
             "form": form_100, "squad": st["squad"], "momentum": momentum_100,
             "experience": st["experience"],
         }
-        cp = champ_now[code]
         rec = records[code]
         record = {
             "played": rec["played"], "won": rec["won"], "drawn": rec["drawn"],
             "lost": rec["lost"], "gf": rec["gf"], "ga": rec["ga"], "gd": rec["gd"],
             "points": rec["points"], "groupRank": rec.get("groupRank"),
         }
+        champ_prob = round(champion[i] / N_SIMS, 5)
         champ_hist = []
-        if active:
-            for key, label in snap_labels:
-                champ_hist.append({"label": label,
-                                   "prob": round(history_probs[key][code]["champion"], 5)})
+        if code in set(qual["ranked32"]):
+            for key, label in hist_labels:
+                prob = (champ_prob if key == "now"
+                        else round(float(history_champ[key][i]), 5))
+                champ_hist.append({"label": label, "prob": prob})
         key_ids = [p["id"] for p in sorted(by_team_players[code],
                                            key=lambda x: -x["contribution"])[:4]]
-        strengths, weaknesses = team_narrative(strength, "active" if active else "eliminated", t["host"])
+        strengths, weaknesses = team_narrative(
+            strength, is_active, t["host"], elim_round.get(code))
         teams_out.append({
             "code": code, "iso2": t["iso2"], "name": t["name"],
             "confederation": t["confederation"], "group": t["group"],
-            "colors": t["colors"], "elo": round(elo_cur, 1), "eloInitial": t["elo0"],
-            "fifaRank": t["fifaRank"],
-            "status": "active" if active else "eliminated",
-            "eliminatedRound": None if active else "group",
+            "colors": t["colors"], "elo": round(elo_cur, 1),
+            "eloInitial": round(elo_pre[code], 1), "fifaRank": pre_rank[code],
+            "status": "active" if is_active else "eliminated",
+            "eliminatedRound": None if is_active else elim_round.get(code, "group"),
             "strength": strength, "record": record,
-            "championProb": round(cp["champion"], 5),
-            "advance": {
-                "roundOf32": 1.0 if active else 0.0,
-                "roundOf16": round(cp["roundOf16"], 5),
-                "quarter": round(cp["quarter"], 5),
-                "semi": round(cp["semi"], 5),
-                "final": round(cp["final"], 5),
-                "champion": round(cp["champion"], 5),
-            },
+            "championProb": champ_prob,
+            "advance": _advance_from_reach(reach, champion, i, N_SIMS),
             "strengths": strengths, "weaknesses": weaknesses,
             "keyPlayerIds": key_ids, "championProbHistory": champ_hist,
         })
@@ -436,29 +529,28 @@ def main() -> None:
     publish("teams.json", teams_out)
 
     # ---- Rankings ---------------------------------------------------------
-    build_rankings(teams_out, pred_rows, feat_matches)
+    build_rankings(teams_out, pred_rows)
 
     # ---- Methodology ------------------------------------------------------
     build_methodology(meta, len(pred_rows))
 
+    top = teams_out[0]
     print(f"[predict] matches={len(pred_rows)} players={len(players_out)} "
-          f"top_champion={teams_out[0]['name']} ({teams_out[0]['championProb']*100:.1f}%)")
+          f"active={len(active)} top_champion={top['name']} "
+          f"({top['championProb']*100:.1f}%)")
 
 
-def build_rankings(teams_out, pred_rows, feat_matches) -> None:
-    # per-team average ensemble (equal weight) confidence in their own matches
+def build_rankings(teams_out, pred_rows) -> None:
     eq = np.array([0.25, 0.25, 0.25, 0.25])
     conf_sum: dict[str, list] = {}
-    for row, fm in zip(pred_rows, feat_matches):
+    for row in pred_rows:
         mats = np.array([row["probs"][k] for k in ("elo", "logreg", "rf", "xgb")])
         P = (eq[:, None] * mats).sum(axis=0)
         P = P / P.sum()
-        for side, code in (("home", fm["home"]), ("away", fm["away"])):
+        for side, code in (("home", row["home"]), ("away", row["away"])):
             win_p = P[0] if side == "home" else P[2]
             conf_sum.setdefault(code, []).append(win_p)
     model_conf = {c: float(np.mean(v)) * 100 for c, v in conf_sum.items()}
-
-    meta_by_code = {t["code"]: t for t in teams_out}
 
     def view(vid, name, desc, unit, fmt, valuefn):
         entries = []
@@ -479,7 +571,7 @@ def build_rankings(teams_out, pred_rows, feat_matches) -> None:
              "%", "percent", lambda t: t["championProb"] * 100),
         view("overall", "Team Strength", "Blended Elo + squad + form rating",
              "", "rating", lambda t: t["strength"]["overall"]),
-        view("elo", "Elo Rating", "Current Elo rating after the group stage",
+        view("elo", "Elo Rating", "Live Elo rating at the current tournament state",
              "", "number", lambda t: t["elo"]),
         view("form", "Recent Form", "Points-per-game form over the last five matches",
              "", "rating", lambda t: t["strength"]["form"]),
@@ -501,33 +593,33 @@ def build_methodology(meta, n_matches) -> None:
     methodology = {
         "pipeline": [
             {"id": "ingest", "title": "Raw ingestion",
-             "description": "Builds the 48-team field, a pot-based group draw, latent 'true' strengths, a synthetic 2019-2025 international match history (training data) and the canonical 2026 bracket.",
-             "outputs": ["data/raw/teams.json", "data/raw/history.json", "data/raw/wc_matches.json", "data/raw/squads.json"]},
+             "description": "Parses the cached CC0 sources: every men's international 1872→2026 (martj42) and the real 2026 group draw, fixtures, results & knockout bracket (openfootball). Emits the 48-team field, training history and the World Cup schedule.",
+             "outputs": ["data/raw/teams.json", "data/raw/history.json", "data/raw/wc_matches.json", "data/raw/qualification.json"]},
             {"id": "transform", "title": "Validation & cleaning",
-             "description": "Schema, range and referential-integrity checks; chronological ordering; outcome labelling. Fails loudly on malformed data.",
+             "description": "Schema, range and referential-integrity checks; chronological ordering; outcome labelling. Match status is derived from whether a real result exists, so the app tracks the live tournament. Fails loudly on malformed data.",
              "outputs": ["data/processed/*.json"]},
             {"id": "features", "title": "Feature engineering",
-             "description": "Leakage-free rolling features: Elo, recent form, goals for/against, xG trend, rest days, head-to-head, squad strength, host & stage flags.",
+             "description": "Leakage-free rolling features: real Elo (grown over the full match history), recent form, goals for/against, xG trend, rest days, head-to-head, squad strength, host & stage flags. Team Elo is snapshotted after each completed round.",
              "outputs": ["data/processed/train.json", "data/processed/wc_features.json"]},
             {"id": "train", "title": "Model training",
-             "description": "Trains Elo baseline, Logistic Regression, Random Forest and XGBoost on the synthetic history ONLY (no World Cup match is ever seen in training).",
+             "description": "Trains Elo baseline, Logistic Regression, Random Forest and XGBoost on real international matches from 2002 up to the opener ONLY (no World Cup match is ever seen in training).",
              "outputs": ["ml/models/*.joblib", "ml/models/meta.json"]},
             {"id": "predict", "title": "Prediction & simulation",
-             "description": "Per-match probabilities + explanation factors, a 20k-tournament Monte-Carlo for title odds, team metrics and player statistics.",
+             "description": "Per-match probabilities + explanation factors and a 20k-tournament Monte-Carlo that fixes completed knockout results and simulates only the matches still to play — producing live title odds, advancement probabilities, team metrics and player statistics.",
              "outputs": ["public/data/teams.json", "public/data/players.json", "public/data/rankings.json"]},
             {"id": "evaluate", "title": "Backtest & self-improvement",
              "description": "Scores every model against completed matches (accuracy, log-loss, Brier, calibration), re-ranks them and updates the ensemble weights (∝ 1/log-loss).",
              "outputs": ["public/data/models.json", "public/data/matches.json", "public/data/summary.json"]},
         ],
         "dataSources": [
-            {"name": "48-team field, Elo ratings & colours", "kind": "static",
-             "description": "Curated from publicly known FIFA/Elo values and national colours. The exact qualified field is a projection.",
-             "license": "Public facts / CC0-style reference data"},
-            {"name": "International match history 2019-2025", "kind": "generated",
-             "description": "Synthetic matches simulated from latent team strengths — used only for model training.",
-             "license": "Generated (this project)"},
+            {"name": "International match results (1872→2026)", "kind": "cached",
+             "description": "martj42/international_results — every men's full international. Used for model training and to compute each nation's real Elo. Cached locally as data/source/martj42_results.csv.",
+             "license": "CC0 1.0 (public domain)"},
+            {"name": "2026 World Cup fixtures, results & bracket", "kind": "cached",
+             "description": "openfootball/worldcup (2026--usa) — the real group draw, kickoff times, scores and knockout bracket in the Football.TXT format. Cached locally as data/source/openfootball_cup*.txt.",
+             "license": "CC0 1.0 (public domain)"},
             {"name": "Squads & player statistics", "kind": "generated",
-             "description": "26 generated players per nation with culturally-plausible names, plus minutes-aware tournament stats. No real player data or headshots are used.",
+             "description": "26 deterministically-generated players per nation with culturally-plausible names, plus minutes-aware tournament stats keyed to the real group results. No clean CC0 squad/headshot source exists, so no real player data or photos are used.",
              "license": "Generated (this project)"},
             {"name": "Country flags", "kind": "static",
              "description": "SVG flags rendered via the open-source flag-icons library.",
@@ -543,9 +635,10 @@ def build_methodology(meta, n_matches) -> None:
         ],
         "notes": [
             "Predictions are probabilistic estimates, not guarantees.",
-            "Models are trained only on historical (pre-tournament) data; completed matches are used exclusively for backtesting — preventing data leakage.",
-            "The Round-of-32 seeding uses a simplified strength seeding rather than FIFA's official pairing table.",
-            "Title odds come from a Monte-Carlo simulation using a calibrated Elo+squad model; per-match modal probabilities come from the full ML ensemble.",
+            "Models are trained only on real internationals played before the World Cup; completed tournament matches are used exclusively for backtesting — preventing data leakage.",
+            "Elo ratings are grown from a common 1500 baseline over the entire 1872→2026 match history, so each nation's pre-tournament strength is earned from real results.",
+            "Title odds come from a Monte-Carlo simulation that fixes every completed knockout result and simulates only the remaining matches; per-match modal probabilities come from the full ML ensemble.",
+            "The final and third-place play-off are shown as projected matchups (most-likely participants) until the semi-finals are played.",
             f"{n_matches} World Cup matches are covered end-to-end.",
         ],
         "generatedAt": now_iso(),

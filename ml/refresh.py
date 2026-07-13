@@ -1,0 +1,170 @@
+"""
+refresh.py  —  offline-friendly data refresh (no API keys, no paid services)
+============================================================================
+Re-downloads the openly-licensed (CC0) source files the pipeline is built on,
+then re-runs the full ML pipeline so ``public/data/*.json`` reflects the latest
+real results.
+
+    python ml/refresh.py                 # fetch sources, then run the pipeline
+    python ml/refresh.py --offline       # skip fetching; rebuild from caches
+    python ml/refresh.py --no-pipeline   # only refresh the source caches
+    python ml/refresh.py --from features # (passed through to pipeline)
+
+Design goals
+------------
+* **No secrets / no paid APIs.** Everything is fetched over plain HTTPS from
+  public GitHub raw URLs with the Python standard library only.
+* **Never corrupts the cache.** Each file is downloaded to a temp path, sanity
+  checked (size + expected header/marker), and only then atomically swapped in.
+* **Offline fallback.** If a download fails (no network, GitHub down, rate
+  limited) the previously committed cache in ``data/source/`` is kept and a
+  warning is printed. The pipeline still runs end-to-end from the caches, so the
+  app is always reproducible offline.
+
+Sources (all public domain / CC0 — see the README "Data Sources" section):
+* martj42/international_results — men's international results 1872→present.
+* openfootball/worldcup ``2026--usa`` — the real 2026 draw, fixtures, results
+  and knockout bracket.
+"""
+from __future__ import annotations
+
+import argparse
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+
+# Import the pipeline package regardless of how this file is invoked
+# (``python ml/refresh.py`` or ``python -m ml.refresh``).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import DATA_DIR  # noqa: E402
+
+SOURCE_DIR = os.path.join(DATA_DIR, "source")
+
+RAW = "https://raw.githubusercontent.com"
+
+# (url, local filename, minimum plausible size in bytes, required marker)
+# ``marker`` is a short string that MUST appear in a healthy download — a cheap
+# guard against fetching an error page / truncated file over the real data.
+SOURCES: list[tuple[str, str, int, str]] = [
+    (
+        f"{RAW}/martj42/international_results/master/results.csv",
+        "martj42_results.csv",
+        1_000_000,
+        "date,home_team,away_team",
+    ),
+    (
+        f"{RAW}/martj42/international_results/master/shootouts.csv",
+        "martj42_shootouts.csv",
+        5_000,
+        "date,home_team,away_team,winner",
+    ),
+    (
+        f"{RAW}/openfootball/worldcup/master/2026--usa/cup.txt",
+        "openfootball_cup.txt",
+        3_000,
+        "Group A",
+    ),
+    (
+        f"{RAW}/openfootball/worldcup/master/2026--usa/cup_finals.txt",
+        "openfootball_cup_finals.txt",
+        1_000,
+        "Round of 32",
+    ),
+    (
+        f"{RAW}/openfootball/worldcup/master/2026--usa/cup_stadiums.csv",
+        "openfootball_cup_stadiums.csv",
+        500,
+        "",
+    ),
+]
+
+_UA = "worldcup-2026-dashboard/1.0 (+https://github.com; offline-refresh script)"
+_TIMEOUT = 30
+
+
+def _fetch_one(url: str, dest: str, min_bytes: int, marker: str) -> bool:
+    """Download ``url`` into ``dest`` atomically. Return True on success.
+
+    On any failure the existing ``dest`` (committed cache) is left untouched.
+    """
+    tmp = dest + ".tmp"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": _UA})
+        with urllib.request.urlopen(req, timeout=_TIMEOUT) as resp:
+            data = resp.read()
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        print(f"  ! fetch failed ({exc.__class__.__name__}: {exc}) — keeping cache")
+        return False
+
+    # Validate BEFORE touching the real file so a bad response can't corrupt it.
+    if len(data) < min_bytes:
+        print(f"  ! suspiciously small ({len(data)} bytes < {min_bytes}) — keeping cache")
+        return False
+    text_head = data[:4096].decode("utf-8", "replace")
+    if marker and marker not in text_head:
+        print(f"  ! missing expected marker {marker!r} — keeping cache")
+        return False
+
+    with open(tmp, "wb") as fh:
+        fh.write(data)
+    os.replace(tmp, dest)  # atomic swap on the same filesystem
+    print(f"  ok {len(data):>9,} bytes")
+    return True
+
+
+def refresh_sources() -> tuple[int, int]:
+    """Fetch every source. Returns (updated, kept_from_cache)."""
+    os.makedirs(SOURCE_DIR, exist_ok=True)
+    updated = kept = 0
+    for url, name, min_bytes, marker in SOURCES:
+        dest = os.path.join(SOURCE_DIR, name)
+        print(f"- {name}")
+        if _fetch_one(url, dest, min_bytes, marker):
+            updated += 1
+        else:
+            if os.path.exists(dest):
+                kept += 1
+            else:
+                raise SystemExit(
+                    f"FATAL: {name} could not be downloaded and no cached copy "
+                    f"exists at {dest}. Connect to the internet once to seed it."
+                )
+    return updated, kept
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="Refresh CC0 source data and rebuild")
+    ap.add_argument("--offline", action="store_true",
+                    help="skip downloads; rebuild from the committed caches")
+    ap.add_argument("--no-pipeline", action="store_true",
+                    help="only refresh the source caches, don't run the pipeline")
+    ap.add_argument("--from", dest="start", default=None,
+                    help="resume the pipeline from this stage")
+    args = ap.parse_args()
+
+    t0 = time.time()
+    if args.offline:
+        print("[refresh] --offline: skipping downloads, using committed caches")
+        missing = [n for _, n, _, _ in SOURCES
+                   if not os.path.exists(os.path.join(SOURCE_DIR, n))]
+        if missing:
+            raise SystemExit(f"FATAL: offline but caches missing: {missing}")
+    else:
+        print(f"[refresh] fetching {len(SOURCES)} CC0 source files -> {SOURCE_DIR}")
+        updated, kept = refresh_sources()
+        print(f"[refresh] {updated} updated, {kept} kept from cache")
+
+    if args.no_pipeline:
+        print(f"[refresh] done in {time.time() - t0:0.1f}s (sources only)")
+        return
+
+    # Run the pipeline in-process so it shares the same interpreter/env.
+    import pipeline
+    pipeline.run(args.start)
+    print(f"[refresh] all done in {time.time() - t0:0.1f}s")
+
+
+if __name__ == "__main__":
+    main()

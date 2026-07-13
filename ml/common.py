@@ -3,11 +3,19 @@ common.py
 =========
 Shared constants and helpers for the 2026 World Cup data/ML pipeline.
 
-Everything here is deterministic (seeded) and fully offline. No network calls,
-no paid APIs. The 48-team field, Elo ratings and colours are curated from
-publicly known values; squads/players are *generated* demo data (documented in
-the README). Keeping this module free of side effects makes the pipeline
-reproducible: re-running `python ml/pipeline.py` always yields identical data.
+Data is built from REAL, openly-licensed (CC0) football datasets and cached
+locally so the pipeline stays fully offline & reproducible:
+
+  * martj42/international_results  — every men's international 1872→present
+    (used for training history and for computing real Elo ratings).
+  * openfootball/worldcup (2026--usa) — the real 2026 group draw, fixtures,
+    results and knockout bracket.
+
+See ml/sources.py for the parsers and the README "Data Sources" section for
+licensing. Player-level squad data has no clean CC0 source, so squads/player
+stats remain deterministically *generated* (documented in the README) and keyed
+to the real 48-team field. Re-running `python ml/pipeline.py` from the cached
+sources always yields identical data.
 """
 from __future__ import annotations
 
@@ -53,9 +61,12 @@ def rng(salt: str = "") -> np.random.Generator:
 TOURNAMENT = "2026 FIFA World Cup"
 HOST = "United States, Canada & Mexico"
 GROUP_START = datetime(2026, 6, 11, tzinfo=timezone.utc)
-# Cutoff = end of the group stage. Everything before is "completed"; the entire
-# knockout stage is "upcoming" and therefore predicted by the models.
-CUTOFF = datetime(2026, 6, 27, 23, 59, tzinfo=timezone.utc)
+# Any international match BEFORE the tournament opener is training history; the
+# World Cup itself is never used to train (leakage-free). Match *status*
+# (completed vs upcoming) is derived from whether a real result exists in the
+# source data — NOT from a fixed cutoff — so the app tracks the live tournament.
+HISTORY_END = GROUP_START
+CUTOFF = GROUP_START  # retained for backwards-compatible imports
 
 # Elo / goals model constants
 HOME_ADV = 55.0          # Elo-equivalent host advantage
@@ -67,60 +78,78 @@ ELO_K = 32.0             # Elo update factor for competitive matches
 GROUPS = list("ABCDEFGHIJKL")  # 12 groups
 
 # --------------------------------------------------------------------------- #
-# The 48-team field (projected). Values: FIFA code, ISO2 (for flag-icons),
-# display name, confederation, base Elo (approx. public world-football-elo),
-# primary/secondary national colours.
+# The real 48-team field for the 2026 FIFA World Cup, with the OFFICIAL group
+# draw (December 2025). Values: FIFA code, ISO2 (for flag-icons), display name,
+# confederation, an approximate Elo *prior* (only a display fallback — the real
+# rating shown in the app is computed from actual match history in features.py),
+# primary/secondary national colours, host flag, and group letter.
+#
+# Team membership & groups are parsed-verified against the CC0 openfootball
+# `2026--usa` dataset (see ml/sources.py). Do not hand-edit the groups here
+# without updating that source of truth.
 # --------------------------------------------------------------------------- #
 TEAMS_RAW = [
-    # code, iso2, name, confed, elo, primary, secondary, host
-    ("ARG", "ar", "Argentina", "CONMEBOL", 2103, "#6CACE4", "#FFFFFF", False),
-    ("FRA", "fr", "France", "UEFA", 2048, "#1E3A8A", "#EF4444", False),
-    ("ESP", "es", "Spain", "UEFA", 2046, "#C60B1E", "#FFC400", False),
-    ("BRA", "br", "Brazil", "CONMEBOL", 2018, "#FEDF00", "#009B3A", False),
-    ("ENG", "gb-eng", "England", "UEFA", 1981, "#FFFFFF", "#CE1124", False),
-    ("POR", "pt", "Portugal", "UEFA", 1979, "#DA020E", "#006600", False),
-    ("NED", "nl", "Netherlands", "UEFA", 1962, "#F36C21", "#21468B", False),
-    ("GER", "de", "Germany", "UEFA", 1934, "#000000", "#DD0000", False),
-    ("BEL", "be", "Belgium", "UEFA", 1907, "#E30613", "#FDDA24", False),
-    ("ITA", "it", "Italy", "UEFA", 1901, "#0064AA", "#FFFFFF", False),
-    ("URU", "uy", "Uruguay", "CONMEBOL", 1885, "#5CBFEB", "#FFFFFF", False),
-    ("COL", "co", "Colombia", "CONMEBOL", 1852, "#FCD116", "#003893", False),
-    ("CRO", "hr", "Croatia", "UEFA", 1849, "#FF0000", "#FFFFFF", False),
-    ("MAR", "ma", "Morocco", "CAF", 1832, "#C1272D", "#006233", False),
-    ("JPN", "jp", "Japan", "AFC", 1828, "#0A2472", "#FFFFFF", False),
-    ("SUI", "ch", "Switzerland", "UEFA", 1821, "#FF0000", "#FFFFFF", False),
-    ("DEN", "dk", "Denmark", "UEFA", 1820, "#C60C30", "#FFFFFF", False),
-    ("SEN", "sn", "Senegal", "CAF", 1810, "#00853F", "#FDEF42", False),
-    ("USA", "us", "United States", "CONCACAF", 1798, "#0A3161", "#B31942", True),
-    ("MEX", "mx", "Mexico", "CONCACAF", 1792, "#006847", "#CE1126", True),
-    ("IRN", "ir", "Iran", "AFC", 1788, "#239F40", "#DA0000", False),
-    ("NOR", "no", "Norway", "UEFA", 1786, "#BA0C2F", "#00205B", False),
-    ("SRB", "rs", "Serbia", "UEFA", 1783, "#C6363C", "#0C4076", False),
-    ("AUT", "at", "Austria", "UEFA", 1791, "#ED2939", "#FFFFFF", False),
-    ("ECU", "ec", "Ecuador", "CONMEBOL", 1781, "#FFDD00", "#034EA2", False),
-    ("KOR", "kr", "South Korea", "AFC", 1775, "#0047A0", "#CD2E3A", False),
-    ("TUR", "tr", "Turkey", "UEFA", 1779, "#E30A17", "#FFFFFF", False),
-    ("UKR", "ua", "Ukraine", "UEFA", 1772, "#005BBB", "#FFD500", False),
-    ("POL", "pl", "Poland", "UEFA", 1762, "#FFFFFF", "#DC143C", False),
-    ("NGA", "ng", "Nigeria", "CAF", 1760, "#008751", "#FFFFFF", False),
-    ("ALG", "dz", "Algeria", "CAF", 1752, "#006233", "#D21034", False),
-    ("CAN", "ca", "Canada", "CONCACAF", 1745, "#FF0000", "#FFFFFF", True),
-    ("EGY", "eg", "Egypt", "CAF", 1743, "#CE1126", "#000000", False),
-    ("CIV", "ci", "Ivory Coast", "CAF", 1741, "#F77F00", "#009E60", False),
-    ("PER", "pe", "Peru", "CONMEBOL", 1722, "#D91023", "#FFFFFF", False),
-    ("PAR", "py", "Paraguay", "CONMEBOL", 1720, "#DA121A", "#0038A8", False),
-    ("CMR", "cm", "Cameroon", "CAF", 1719, "#007A5E", "#CE1126", False),
-    ("AUS", "au", "Australia", "AFC", 1718, "#00843D", "#FFCD00", False),
-    ("TUN", "tn", "Tunisia", "CAF", 1716, "#E70013", "#FFFFFF", False),
-    ("GHA", "gh", "Ghana", "CAF", 1701, "#006B3F", "#FCD116", False),
-    ("SAU", "sa", "Saudi Arabia", "AFC", 1683, "#006C35", "#FFFFFF", False),
-    ("QAT", "qa", "Qatar", "AFC", 1681, "#8A1538", "#FFFFFF", False),
-    ("UZB", "uz", "Uzbekistan", "AFC", 1662, "#1EB53A", "#0099B5", False),
-    ("CRC", "cr", "Costa Rica", "CONCACAF", 1661, "#002B7F", "#CE1126", False),
-    ("PAN", "pa", "Panama", "CONCACAF", 1659, "#DA121A", "#005293", False),
-    ("IRQ", "iq", "Iraq", "AFC", 1651, "#CE1126", "#000000", False),
-    ("JAM", "jm", "Jamaica", "CONCACAF", 1641, "#009B3A", "#FED100", False),
-    ("NZL", "nz", "New Zealand", "OFC", 1601, "#000000", "#FFFFFF", False),
+    # code, iso2, name, confed, elo_prior, primary, secondary, host, group
+    # Group A
+    ("MEX", "mx", "Mexico", "CONCACAF", 1732, "#006847", "#CE1126", True, "A"),
+    ("RSA", "za", "South Africa", "CAF", 1610, "#007A4D", "#FFB915", False, "A"),
+    ("KOR", "kr", "South Korea", "AFC", 1637, "#C70039", "#041E42", False, "A"),
+    ("CZE", "cz", "Czech Republic", "UEFA", 1670, "#11457E", "#D7141A", False, "A"),
+    # Group B
+    ("CAN", "ca", "Canada", "CONCACAF", 1690, "#FF0000", "#FFFFFF", True, "B"),
+    ("BIH", "ba", "Bosnia & Herzegovina", "UEFA", 1600, "#002F6C", "#FFCE00", False, "B"),
+    ("QAT", "qa", "Qatar", "AFC", 1560, "#8A1538", "#FFFFFF", False, "B"),
+    ("SUI", "ch", "Switzerland", "UEFA", 1790, "#FF0000", "#FFFFFF", False, "B"),
+    # Group C
+    ("BRA", "br", "Brazil", "CONMEBOL", 2020, "#FEDF00", "#009B3A", False, "C"),
+    ("MAR", "ma", "Morocco", "CAF", 1835, "#C1272D", "#006233", False, "C"),
+    ("HAI", "ht", "Haiti", "CONCACAF", 1490, "#00209F", "#D21034", False, "C"),
+    ("SCO", "gb-sct", "Scotland", "UEFA", 1700, "#0065BF", "#FFFFFF", False, "C"),
+    # Group D
+    ("USA", "us", "United States", "CONCACAF", 1770, "#0A3161", "#B31942", True, "D"),
+    ("PAR", "py", "Paraguay", "CONMEBOL", 1680, "#DA121A", "#0038A8", False, "D"),
+    ("AUS", "au", "Australia", "AFC", 1700, "#00843D", "#FFCD00", False, "D"),
+    ("TUR", "tr", "Turkey", "UEFA", 1780, "#E30A17", "#FFFFFF", False, "D"),
+    # Group E
+    ("GER", "de", "Germany", "UEFA", 1930, "#000000", "#DD0000", False, "E"),
+    ("CUW", "cw", "Curaçao", "CONCACAF", 1470, "#002B7F", "#F9E814", False, "E"),
+    ("CIV", "ci", "Ivory Coast", "CAF", 1740, "#F77F00", "#009E60", False, "E"),
+    ("ECU", "ec", "Ecuador", "CONMEBOL", 1780, "#FFDD00", "#034EA2", False, "E"),
+    # Group F
+    ("NED", "nl", "Netherlands", "UEFA", 1970, "#F36C21", "#21468B", False, "F"),
+    ("JPN", "jp", "Japan", "AFC", 1810, "#BC002D", "#FFFFFF", False, "F"),
+    ("SWE", "se", "Sweden", "UEFA", 1690, "#006AA7", "#FECC00", False, "F"),
+    ("TUN", "tn", "Tunisia", "CAF", 1690, "#E70013", "#FFFFFF", False, "F"),
+    # Group G
+    ("BEL", "be", "Belgium", "UEFA", 1910, "#E30613", "#FDDA24", False, "G"),
+    ("EGY", "eg", "Egypt", "CAF", 1690, "#CE1126", "#000000", False, "G"),
+    ("IRN", "ir", "Iran", "AFC", 1780, "#239F40", "#DA0000", False, "G"),
+    ("NZL", "nz", "New Zealand", "OFC", 1500, "#000000", "#FFFFFF", False, "G"),
+    # Group H
+    ("ESP", "es", "Spain", "UEFA", 2050, "#C60B1E", "#FFC400", False, "H"),
+    ("CPV", "cv", "Cape Verde", "CAF", 1560, "#003893", "#CF2027", False, "H"),
+    ("SAU", "sa", "Saudi Arabia", "AFC", 1620, "#006C35", "#FFFFFF", False, "H"),
+    ("URU", "uy", "Uruguay", "CONMEBOL", 1890, "#5CBFEB", "#FFFFFF", False, "H"),
+    # Group I
+    ("FRA", "fr", "France", "UEFA", 2040, "#1E3A8A", "#EF4444", False, "I"),
+    ("SEN", "sn", "Senegal", "CAF", 1800, "#00853F", "#FDEF42", False, "I"),
+    ("IRQ", "iq", "Iraq", "AFC", 1560, "#CE1126", "#000000", False, "I"),
+    ("NOR", "no", "Norway", "UEFA", 1820, "#BA0C2F", "#00205B", False, "I"),
+    # Group J
+    ("ARG", "ar", "Argentina", "CONMEBOL", 2100, "#6CACE4", "#FFFFFF", False, "J"),
+    ("ALG", "dz", "Algeria", "CAF", 1750, "#006233", "#D21034", False, "J"),
+    ("AUT", "at", "Austria", "UEFA", 1790, "#ED2939", "#FFFFFF", False, "J"),
+    ("JOR", "jo", "Jordan", "AFC", 1540, "#007A3D", "#CE1126", False, "J"),
+    # Group K
+    ("POR", "pt", "Portugal", "UEFA", 1990, "#DA020E", "#006600", False, "K"),
+    ("COD", "cd", "DR Congo", "CAF", 1650, "#007FFF", "#F7D618", False, "K"),
+    ("UZB", "uz", "Uzbekistan", "AFC", 1620, "#1EB53A", "#0099B5", False, "K"),
+    ("COL", "co", "Colombia", "CONMEBOL", 1850, "#FCD116", "#003893", False, "K"),
+    # Group L
+    ("ENG", "gb-eng", "England", "UEFA", 1970, "#FFFFFF", "#CE1124", False, "L"),
+    ("CRO", "hr", "Croatia", "UEFA", 1850, "#FF0000", "#FFFFFF", False, "L"),
+    ("GHA", "gh", "Ghana", "CAF", 1680, "#006B3F", "#FCD116", False, "L"),
+    ("PAN", "pa", "Panama", "CONCACAF", 1570, "#DA121A", "#005293", False, "L"),
 ]
 
 CONFEDERATIONS = ["UEFA", "CONMEBOL", "CONCACAF", "CAF", "AFC", "OFC"]
@@ -418,10 +447,11 @@ class Team:
 def load_teams() -> list[Team]:
     teams = [
         Team(code=c, iso2=i, name=n, confederation=cf, elo0=float(e),
-             primary=p, secondary=s, host=h)
-        for (c, i, n, cf, e, p, s, h) in TEAMS_RAW
+             primary=p, secondary=s, host=h, group=g)
+        for (c, i, n, cf, e, p, s, h, g) in TEAMS_RAW
     ]
-    # FIFA rank by Elo (desc)
+    # Placeholder FIFA rank by Elo prior (desc). The app displays a rank derived
+    # from the REAL pre-tournament Elo computed in features.py / predict.py.
     for rank, t in enumerate(sorted(teams, key=lambda x: -x.elo0), start=1):
         t.fifa_rank = rank
     return teams

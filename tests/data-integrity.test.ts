@@ -121,8 +121,8 @@ describe("summary.json", () => {
     expect(summary.totalMatches).toBe(matches.length);
   });
 
-  it("documents the generated data mode", () => {
-    expect(summary.dataMode).toBe("generated");
+  it("documents the cached real-data mode", () => {
+    expect(summary.dataMode).toBe("cached");
   });
 
   it("names a top champion that exists in the field", () => {

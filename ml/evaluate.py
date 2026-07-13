@@ -17,7 +17,7 @@ import numpy as np
 
 from common import (
     PROCESSED_DIR, OUTPUTS_DIR, MODELS_DIR, PUBLIC_DATA_DIR, FEATURE_ORDER,
-    read_json, publish, now_iso, CUTOFF, TOURNAMENT, HOST,
+    read_json, publish, now_iso, GROUP_START, TOURNAMENT, HOST,
 )
 from modeling import evaluate_model, normalize_importance
 
@@ -170,13 +170,15 @@ def main() -> None:
             "datetime": wm["date"], "venue": wm["venue"], "city": wm["city"],
             "status": wm["status"],
             "home": ref[home_code], "away": ref[away_code],
-            "score": {"home": wm["gh"], "away": wm["ga"]} if completed else None,
+            # Displayed score is the real final on-pitch result (incl. extra time);
+            # model outcomes are scored on the regulation-time result (no ET luck).
+            "score": {"home": wm["fh"], "away": wm["fa"]} if completed else None,
             "penalties": ({"home": wm["pens"][0], "away": wm["pens"][1]}
                           if (completed and wm.get("pens")) else None),
             "actualOutcome": actual_outcome,
             "ensemble": ensemble_pred, "models": model_preds, "factors": row["factors"],
             "predictedOutcome": predicted_outcome, "correct": correct,
-            "projectedMatchup": wm["stage"] in PROJECTED_STAGES,
+            "projectedMatchup": bool(row.get("projected", False)),
         })
     publish("matches.json", matches_out)
 
@@ -194,9 +196,13 @@ def main() -> None:
     hi_match = max(upcoming_idx, key=lambda i: P_ens[i].max()) if upcoming_idx else 0
     best_model = ranking[0]
 
+    completed_dates = [wc_by_id[row["id"]]["date"] for row in preds
+                       if row["status"] == "completed"]
+    as_of = max(completed_dates) if completed_dates else GROUP_START.isoformat()
+
     summary = {
         "tournament": TOURNAMENT, "host": HOST,
-        "asOf": CUTOFF.isoformat(), "cutoff": CUTOFF.isoformat(),
+        "asOf": as_of, "cutoff": GROUP_START.isoformat(),
         "generatedAt": now_iso(),
         "totalMatches": len(preds), "matchesCompleted": completed_n,
         "matchesUpcoming": upcoming_n, "matchesLive": 0,
@@ -210,7 +216,7 @@ def main() -> None:
                       "logLoss": all_metrics[best_model]["logLoss"],
                       "brier": all_metrics[best_model]["brier"]},
         "ensembleAccuracy": ens_metrics["accuracy"],
-        "dataMode": "generated",
+        "dataMode": "cached",
     }
     publish("summary.json", summary)
 
@@ -236,28 +242,38 @@ def main() -> None:
 def build_bracket(preds, wc_by_id, P_ens, idx_by_id) -> None:
     rounds_order = ["round-of-32", "round-of-16", "quarter-final",
                     "semi-final", "third-place", "final"]
+    # Projected participants for the still-TBD matches come from predict's rows.
+    proj_teams = {row["id"]: (row["home"], row["away"]) for row in preds}
     knockout = [m for m in wc_by_id.values() if m["stage"] != "group"]
     rounds = []
     for stage in rounds_order:
         stage_matches = sorted([m for m in knockout if m["stage"] == stage],
                                key=lambda m: m["slot"])
         out = []
-        projected = stage in PROJECTED_STAGES
         for m in stage_matches:
-            i = idx_by_id[m["id"]]
-            p = P_ens[i]
-            p_home = p[0] + 0.5 * p[1]
-            p_away = p[2] + 0.5 * p[1]
-            s = p_home + p_away
-            out.append({
+            i = idx_by_id.get(m["id"])
+            completed = m["status"] == "completed"
+            home_code = m["home"] or (proj_teams[m["id"]][0] if m["id"] in proj_teams else None)
+            away_code = m["away"] or (proj_teams[m["id"]][1] if m["id"] in proj_teams else None)
+            entry = {
                 "id": m["id"], "stage": stage, "slot": m["slot"],
-                "home": m["home"], "away": m["away"],
-                "homeProjected": projected, "awayProjected": projected,
+                "home": home_code, "away": away_code,
+                "homeProjected": m["home"] is None, "awayProjected": m["away"] is None,
                 "score": None, "penalties": None, "winner": None,
-                "status": "upcoming",
-                "homeProb": round(float(p_home / s), 4),
-                "awayProb": round(float(p_away / s), 4),
-            })
+                "status": m["status"], "homeProb": None, "awayProb": None,
+            }
+            if completed:
+                entry["score"] = {"home": m["fh"], "away": m["fa"]}
+                if m.get("pens"):
+                    entry["penalties"] = {"home": m["pens"][0], "away": m["pens"][1]}
+                entry["winner"] = home_code if m["winner"] == "home" else away_code
+            elif i is not None:
+                p = P_ens[i]
+                p_home, p_away = p[0] + 0.5 * p[1], p[2] + 0.5 * p[1]
+                s = p_home + p_away
+                entry["homeProb"] = round(float(p_home / s), 4)
+                entry["awayProb"] = round(float(p_away / s), 4)
+            out.append(entry)
         rounds.append({"stage": stage, "label": STAGE_LABEL[stage], "matches": out})
     publish("bracket.json", {"rounds": rounds})
 

@@ -1,0 +1,8 @@
+# Cached upstream CC0 source files are stored byte-for-byte (LF, no CRLF
+# conversion) so that re-running `python ml/refresh.py` — which downloads and
+# writes them in binary — never produces spurious line-ending-only diffs.
+data/source/** -text
+
+# Generated data blobs are large; treat them as-is to avoid CRLF churn.
+data/**/*.json -text
+public/data/*.json -text

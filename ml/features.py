@@ -1,30 +1,44 @@
 """
 features.py  —  Stage 3: feature engineering
 =============================================
-Builds pre-match features for every match (history + World Cup). All features
-are computed from information available *before kick-off* (rolling Elo, form,
-goals, xG, rest days, head-to-head) so there is no target leakage:
+Builds pre-match features for every match (real history + World Cup). All
+features are computed from information available *before kick-off* (rolling Elo,
+form, goals, xG, rest days, head-to-head), so there is no target leakage:
 
-  * history matches (2019-2025)  -> TRAINING rows (X, y)
-  * WC matches                   -> PREDICTION rows (X, y only if completed)
+  * real internationals (martj42)  -> rolling Elo/form state for EVERY nation
+  * WC-vs-WC internationals ≥ 2002  -> TRAINING rows (X, y)
+  * 2026 WC matches                 -> PREDICTION rows (X; y only if completed)
 
-Also derives squad-strength / attack / defense scores from the generated
-squads and snapshots team Elo at several points (used for champion-odds
-trends). Outputs land in data/processed.
+Real Elo is grown by walking the *entire* history from a common 1500 baseline
+(World-Football-Elo style) — the pre-tournament rating of every 2026 side is
+therefore earned purely from real results, never hand-set. Squad-strength /
+attack / defense scores come from the generated squads, and team Elo is
+snapshotted at each completed stage (used for the champion-odds trend).
+Outputs land in data/processed.
 """
 from __future__ import annotations
 
 import os
 from collections import defaultdict, deque
-from datetime import datetime
+from datetime import datetime, timezone
 
 import numpy as np
 
 from common import (
-    PROCESSED_DIR, read_json, write_json_pretty, FEATURE_ORDER,
+    PROCESSED_DIR, read_json, write_json, write_json_pretty, FEATURE_ORDER,
     HOME_ADV, ELO_K, LEAGUE_AVG_GOALS, expected_goals, elo_win_prob,
     scale_0_100, clamp, rng,
 )
+
+# Only real World-Cup-vs-World-Cup matches from this year on become training
+# rows, so the squad-strength feature (a 2026-squad quantity) stays meaningful
+# and consistent between training and prediction.
+TRAIN_SINCE = datetime(2002, 1, 1, tzinfo=timezone.utc)
+BASELINE_ELO = 1500.0
+
+# Completed stages, in chronological order, that we snapshot Elo after.
+STAGE_ORDER = ["group", "round-of-32", "round-of-16", "quarter-final",
+               "semi-final", "third-place", "final"]
 
 
 # --------------------------------------------------------------------------- #
@@ -102,7 +116,10 @@ class TeamState:
 
 def _elo_update(state_h: TeamState, state_a: TeamState, gh: int, ga: int,
                 home_adv: int, k: float) -> None:
-    bonus = HOME_ADV if home_adv else 0.0
+    """Update Elo from the on-pitch result. ``home_adv`` is signed
+    (-1/0/+1) so hosting the away side correctly *subtracts* the bonus. A tie on
+    the given score (e.g. a penalty-shootout knockout) scores 0.5 for each."""
+    bonus = HOME_ADV * home_adv
     exp_h = elo_win_prob(state_h.elo + bonus, state_a.elo)
     score_h = 1.0 if gh > ga else (0.5 if gh == ga else 0.0)
     gd = abs(gh - ga)
@@ -158,14 +175,24 @@ def build_features() -> None:
 
     strength = compute_squad_strength(squads, teams)
     squad_score = {c: strength[c]["squad"] for c in strength}
+    codes = [t["code"] for t in teams]
 
     gen = rng("xg")
-    state = {t["code"]: TeamState(t["elo0"]) for t in teams}
+    # Every nation starts from a common baseline; real Elo is earned by walking
+    # the full history. The 48 finalists are seeded so snapshots always resolve.
+    state: dict[str, TeamState] = {c: TeamState(BASELINE_ELO) for c in codes}
+
+    def get_state(key: str) -> TeamState:
+        s = state.get(key)
+        if s is None:
+            s = TeamState(BASELINE_ELO)
+            state[key] = s
+        return s
+
     h2h_store: dict[tuple, list] = defaultdict(list)
 
     def h2h_avg(home: str, away: str) -> float:
-        key = tuple(sorted((home, away)))
-        rec = h2h_store[key]
+        rec = h2h_store[tuple(sorted((home, away)))]
         if not rec:
             return 0.0
         vals = [gd if hc == home else -gd for (hc, gd) in rec]
@@ -175,79 +202,95 @@ def build_features() -> None:
         exp, _ = expected_goals(elo_for + bonus, elo_against)
         return float(clamp(0.62 * g_for + 0.38 * exp + gen.normal(0, 0.33), 0.1, 6.0))
 
-    # ---- History (training) ----------------------------------------------
+    def snapshot() -> dict:
+        return {c: round(state[c].elo, 1) for c in codes}
+
+    # ---- History walk: real Elo/form for all nations + training rows --------
     train_X, train_y = [], []
     for m in history:
-        h, a = m["home"], m["away"]
-        sh, sa = state[h], state[a]
+        hk, ak = m["home"], m["away"]
+        sh, sa = get_state(hk), get_state(ak)
         date = datetime.fromisoformat(m["date"])
-        row = _feature_row(sh, sa, m["home_adv"], 0, h2h_avg(h, a), date,
-                           squad_score[h], squad_score[a])
-        train_X.append(_vec(row))
-        train_y.append(m["outcome"])
-        # update state
-        bonus = HOME_ADV if m["home_adv"] else 0.0
+        is_train = (m["home_code"] and m["away_code"] and date >= TRAIN_SINCE)
+        if is_train:
+            row = _feature_row(sh, sa, m["home_adv"], 0, h2h_avg(hk, ak), date,
+                               squad_score.get(m["home_code"], 50.0),
+                               squad_score.get(m["away_code"], 50.0))
+            train_X.append(_vec(row))
+            train_y.append(m["outcome"])
+        bonus = HOME_ADV * m["home_adv"]
         xg_h = synth_xg(m["gh"], sh.elo, sa.elo, bonus)
         xg_a = synth_xg(m["ga"], sa.elo, sh.elo, 0.0)
-        _elo_update(sh, sa, m["gh"], m["ga"], m["home_adv"], k=24.0)
+        _elo_update(sh, sa, m["fh"], m["fa"], m["home_adv"], k=24.0)
         _push_result(sh, m["gh"], m["ga"], xg_h, date)
         _push_result(sa, m["ga"], m["gh"], xg_a, date)
-        h2h_store[tuple(sorted((h, a)))].append((h, m["gh"] - m["ga"]))
+        h2h_store[tuple(sorted((hk, ak)))].append((hk, m["gh"] - m["ga"]))
 
-    elo_pre = {c: round(s.elo, 1) for c, s in state.items()}
-
-    # ---- WC group stage (completed) --------------------------------------
-    group_matches = [m for m in wc if m["stage"] == "group"]
-    group_matches.sort(key=lambda m: (m["matchday"], m["group"]))
-    knockout_matches = [m for m in wc if m["stage"] != "group"]
-    stage_rank = {"round-of-32": 0, "round-of-16": 1, "quarter-final": 2,
-                  "semi-final": 3, "third-place": 4, "final": 5}
-    knockout_matches.sort(key=lambda m: (stage_rank[m["stage"]], m["slot"]))
-
-    wc_features = []
+    elo_pre = snapshot()
     elo_snapshots = {"pre": elo_pre}
 
-    def process_wc(m, k):
+    # ---- 2026 World Cup: process completed matches in stage/chrono order ----
+    wc_features = []
+
+    def process_completed(m):
         h, a = m["home"], m["away"]
-        sh, sa = state[h], state[a]
+        sh, sa = get_state(h), get_state(a)
         date = datetime.fromisoformat(m["date"])
         row = _feature_row(sh, sa, m["home_adv"], m["knockout"], h2h_avg(h, a),
-                           date, squad_score[h], squad_score[a])
+                           date, squad_score.get(h, 50.0), squad_score.get(a, 50.0))
         wc_features.append({
             "id": m["id"], "stage": m["stage"], "knockout": m["knockout"],
             "status": m["status"], "home": h, "away": a,
             "X": _vec(row), "feats": {kk: round(vv, 4) for kk, vv in row.items()},
             "y": m["outcome"],
         })
-        bonus = HOME_ADV if m["home_adv"] else 0.0
+        bonus = HOME_ADV * m["home_adv"]
         xg_h = synth_xg(m["gh"], sh.elo, sa.elo, bonus)
         xg_a = synth_xg(m["ga"], sa.elo, sh.elo, 0.0)
-        _elo_update(sh, sa, m["gh"], m["ga"], m["home_adv"], k=k)
+        _elo_update(sh, sa, m["fh"], m["fa"], m["home_adv"], k=ELO_K)
         _push_result(sh, m["gh"], m["ga"], xg_h, date)
         _push_result(sa, m["ga"], m["gh"], xg_a, date)
         h2h_store[tuple(sorted((h, a)))].append((h, m["gh"] - m["ga"]))
 
-    for md in (1, 2, 3):
-        for m in [x for x in group_matches if x["matchday"] == md]:
-            process_wc(m, k=ELO_K)
-        elo_snapshots[f"md{md}"] = {c: round(s.elo, 1) for c, s in state.items()}
+    completed = [m for m in wc if m["status"] == "completed"]
+    by_stage: dict[str, list] = defaultdict(list)
+    for m in completed:
+        by_stage[m["stage"]].append(m)
+    for stage in STAGE_ORDER:
+        ms = sorted(by_stage.get(stage, []),
+                    key=lambda x: (x["date"], x["slot"] if x["slot"] is not None else 0))
+        for m in ms:
+            process_completed(m)
+        if ms:
+            elo_snapshots[stage] = snapshot()
 
-    elo_current = {c: round(s.elo, 1) for c, s in state.items()}
+    elo_current = snapshot()
 
-    # team rolling snapshot at end of group stage (for team strength/form)
-    team_form = {}
-    for c, s in state.items():
-        team_form[c] = {
-            "form_ppg": round(s.form(), 3),
-            "gf_recent": round(s.avg_gf(), 3),
-            "ga_recent": round(s.avg_ga(), 3),
-            "xg_recent": round(s.avg_xg(), 3),
-            "momentum": round(s.momentum(), 3),
-        }
+    # team rolling snapshot at the current tournament state (form/strength cards)
+    team_form = {c: {
+        "form_ppg": round(state[c].form(), 3),
+        "gf_recent": round(state[c].avg_gf(), 3),
+        "ga_recent": round(state[c].avg_ga(), 3),
+        "xg_recent": round(state[c].avg_xg(), 3),
+        "momentum": round(state[c].momentum(), 3),
+    } for c in codes}
 
-    # ---- WC knockout stage (upcoming: features only, no leakage into eval) -
-    for m in knockout_matches:
-        process_wc(m, k=ELO_K)
+    # ---- Upcoming matches with known teams: features only (no state update) -
+    upcoming_known = [m for m in wc
+                      if m["status"] != "completed" and m["home"] and m["away"]]
+    upcoming_known.sort(key=lambda x: (x["date"], x["num"] if x["num"] is not None else 0))
+    for m in upcoming_known:
+        h, a = m["home"], m["away"]
+        sh, sa = get_state(h), get_state(a)
+        date = datetime.fromisoformat(m["date"])
+        row = _feature_row(sh, sa, m["home_adv"], m["knockout"], h2h_avg(h, a),
+                           date, squad_score.get(h, 50.0), squad_score.get(a, 50.0))
+        wc_features.append({
+            "id": m["id"], "stage": m["stage"], "knockout": m["knockout"],
+            "status": m["status"], "home": h, "away": a,
+            "X": _vec(row), "feats": {kk: round(vv, 4) for kk, vv in row.items()},
+            "y": None,
+        })
 
     write_json_pretty(os.path.join(PROCESSED_DIR, "train.json"),
                       {"feature_order": FEATURE_ORDER, "X": train_X, "y": train_y})
@@ -255,6 +298,7 @@ def build_features() -> None:
         "feature_order": FEATURE_ORDER,
         "matches": wc_features,
         "elo_current": elo_current,
+        "elo_pre": elo_pre,
         "elo_snapshots": elo_snapshots,
     })
     write_json_pretty(os.path.join(PROCESSED_DIR, "team_strength.json"), {
@@ -263,7 +307,8 @@ def build_features() -> None:
     })
 
     print(f"[features] train_rows={len(train_X)} wc_rows={len(wc_features)} "
-          f"features={len(FEATURE_ORDER)}")
+          f"(completed={sum(1 for r in wc_features if r['y'] is not None)}) "
+          f"snapshots={list(elo_snapshots)}")
 
 
 def main() -> None:
