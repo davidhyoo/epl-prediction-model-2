@@ -46,7 +46,7 @@ export function SquadTable({ players }: { players: Player[] }) {
                   <TableHead className="w-12 text-right">Age</TableHead>
                   <TableHead className="w-14 text-right">Apps</TableHead>
                   <TableHead className="w-12 text-right">G</TableHead>
-                  <TableHead className="w-12 text-right">A</TableHead>
+                  <TableHead className="w-16 text-right">Min</TableHead>
                   <TableHead className="w-16 text-right">Rating</TableHead>
                 </TableRow>
               </TableHeader>
@@ -82,7 +82,7 @@ export function SquadTable({ players }: { players: Player[] }) {
                     </TableCell>
                     <TableCell className="text-right text-sm tabular-nums">{p.stats.goals}</TableCell>
                     <TableCell className="text-right text-sm tabular-nums">
-                      {p.stats.assists}
+                      {p.stats.minutes.toLocaleString()}
                     </TableCell>
                     <TableCell className="text-right">
                       <RatingPill rating={p.rating} />

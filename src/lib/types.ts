@@ -143,23 +143,15 @@ export interface Match {
 }
 
 export interface PlayerStats {
+  /** Real 2026 World Cup tournament stats (Wikipedia / FIFA match reports). */
   appearances: number;
   minutes: number;
   goals: number;
-  assists: number;
-  xg: number;
-  xa: number;
-  shots: number;
-  shotsOnTarget: number;
-  passes: number;
-  passAccuracy: number;
-  keyPasses: number;
-  tackles: number;
-  interceptions: number;
-  duelsWon: number;
+  /** Not published in any free World Cup source — always null, shown as "—". */
+  assists: number | null;
   yellowCards: number;
   redCards: number;
-  saves: number | null;
+  /** Goalkeepers only (null for outfield players). */
   cleanSheets: number | null;
   goalsConceded: number | null;
 }
@@ -194,8 +186,22 @@ export interface Player {
   headshot: string | null;
   photoCredit: PhotoCredit | null;
   stats: PlayerStats;
-  form: { label: string; rating: number }[];
+  /** Real per-match tournament log (most recent first-to-last), Wikipedia. */
+  matchLog: PlayerMatch[];
   bio: string;
+}
+
+export interface PlayerMatch {
+  date: string | null;
+  /** Opponent 3-letter code. */
+  opponent: string;
+  goalsFor: number;
+  goalsAgainst: number;
+  minutes: number;
+  goals: number;
+  yellow: number;
+  red: number;
+  started: boolean;
 }
 
 export interface CalibrationBin {

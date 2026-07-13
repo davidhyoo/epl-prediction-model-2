@@ -467,3 +467,41 @@ def load_squads(path: str = SQUADS_WIKIPEDIA) -> dict | None:
     if not isinstance(squads, dict) or not squads:
         return None
     return squads
+
+
+PLAYER_STATS_WIKIPEDIA = os.path.join(SOURCE_DIR, "player_stats_wikipedia.json")
+
+
+def norm_wiki_title(t: str) -> str:
+    """Normalise a Wikipedia article title so the squad ``wiki`` field and the
+    match-article links join exactly (titles are case-insensitive on the first
+    character and treat spaces/underscores as equivalent)."""
+    t = (t or "").replace("_", " ").strip()
+    t = re.sub(r"\s+", " ", t)
+    return t[:1].upper() + t[1:] if t else t
+
+
+def load_player_stats(path: str = PLAYER_STATS_WIKIPEDIA) -> dict | None:
+    """Return **real** 2026 World Cup per-player tournament stats keyed by the
+    normalised Wikipedia article title (the squad ``wiki`` field), or ``None`` if
+    the cache is missing/unreadable so the pipeline can fall back to zero stats
+    and stay runnable fully offline.
+
+    See ``ml/fetch_stats.py`` for how these are derived from the public English
+    Wikipedia match articles (which transcribe the official FIFA match reports).
+    Per-player fields: ``appearances``, ``minutes``, ``goals``, ``ownGoals``,
+    ``yellowCards``, ``redCards`` and — for goalkeepers — ``gkCleanSheets`` /
+    ``gkGoalsConceded`` / ``gkStarts``, plus a compact per-match ``log``. Assists
+    and advanced metrics are intentionally absent (not published in open data).
+    """
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return None
+    players = data.get("players")
+    if not isinstance(players, dict) or not players:
+        return None
+    return {norm_wiki_title(k): v for k, v in players.items()}

@@ -182,88 +182,70 @@ def projected_features(h: str, a: str, ts: dict, squad_score: dict) -> tuple[lis
 # --------------------------------------------------------------------------- #
 # Player tournament statistics (generated, minutes-aware)
 # --------------------------------------------------------------------------- #
-def allocate_player_stats(team_players, record, gen) -> None:
-    played = max(1, record["played"])
-    team_gf = record["gf"]
-    team_ga = record["ga"]
+def _to_match_log(rs: dict | None) -> list[dict]:
+    """Convert the cached per-match ``log`` into the frontend match-log shape."""
+    if not rs:
+        return []
+    out = []
+    for e in rs.get("log", []):
+        out.append({
+            "date": e.get("date"),
+            "opponent": e.get("opp") or "",
+            "goalsFor": int(e.get("gf") or 0),
+            "goalsAgainst": int(e.get("ga") or 0),
+            "minutes": int(e.get("min") or 0),
+            "goals": int(e.get("g") or 0),
+            "yellow": int(e.get("y") or 0),
+            "red": int(e.get("r") or 0),
+            "started": bool(e.get("started")),
+        })
+    return out
 
-    starters = sorted(team_players, key=lambda p: -p["rating"])[:11]
-    starter_ids = {p["id"] for p in starters}
 
-    def goal_w(p):
-        return {"FWD": 1.0, "MID": 0.5, "DEF": 0.12, "GK": 0.0}[p["position"]] * \
-            (0.4 + (p["rating"] - 60) / 40)
+def allocate_player_stats(team_players) -> None:
+    """Attach **real** 2026 World Cup tournament stats to each squad player.
 
-    def assist_w(p):
-        return {"FWD": 0.7, "MID": 1.0, "DEF": 0.35, "GK": 0.02}[p["position"]] * \
-            (0.4 + (p["rating"] - 60) / 40)
+    The stats were derived from the public Wikipedia match articles (official FIFA
+    match reports) by ``ml/fetch_stats.py`` and joined onto the squad by exact
+    Wikipedia article title in ``ml/ingest.py`` (``realStats``). Players who have
+    not featured yet get **real zeros** (they genuinely have not played).
 
-    gw = np.array([max(0.0, goal_w(p)) for p in team_players])
-    gw = gw / gw.sum() if gw.sum() > 0 else gw
-    goals_alloc = gen.multinomial(team_gf, gw) if team_gf > 0 else np.zeros(len(team_players), int)
-
-    n_assists = int(round(team_gf * 0.72))
-    aw = np.array([max(0.0, assist_w(p)) for p in team_players])
-    aw = aw / aw.sum() if aw.sum() > 0 else aw
-    assists_alloc = gen.multinomial(n_assists, aw) if n_assists > 0 else np.zeros(len(team_players), int)
-
-    clean_sheets = sum(1 for _ in range(played) if team_ga == 0)  # coarse
-    for i, p in enumerate(team_players):
-        is_starter = p["id"] in starter_ids
-        if is_starter:
-            apps = played
-            minutes = int(clamp(gen.normal(0.92, 0.06) * played * 90, played * 55, played * 92))
-        else:
-            apps = int(gen.integers(0, played + 1))
-            minutes = int(apps * gen.integers(8, 42)) if apps else 0
-
-        goals = int(goals_alloc[i])
-        assists = int(assists_alloc[i])
-        pos = p["position"]
-        rating = p["rating"]
-        m90 = max(0.3, minutes / 90)
-
-        xg = round(max(0.0, goals * 0.85 + gen.normal(0.08, 0.05) * m90), 2)
-        xa = round(max(0.0, assists * 0.8 + gen.normal(0.06, 0.04) * m90), 2)
-        shots = int(max(goals, gen.poisson({"FWD": 2.2, "MID": 1.1, "DEF": 0.4, "GK": 0.0}[pos] * m90)))
-        sot = int(clamp(round(shots * gen.uniform(0.34, 0.5)), goals, max(goals, shots)))
-        pass_rate = {"FWD": 22, "MID": 42, "DEF": 46, "GK": 24}[pos]
-        passes = int(max(0, gen.normal(pass_rate, 6) * m90))
-        pass_acc = round(clamp(gen.normal(78 + (rating - 70) * 0.4, 4), 55, 95), 1)
-        key_passes = int(max(0, gen.poisson((assist_w(p) + 0.2) * m90)))
-        tackles = int(max(0, gen.poisson({"FWD": 0.6, "MID": 1.6, "DEF": 2.2, "GK": 0.1}[pos] * m90)))
-        interceptions = int(max(0, gen.poisson({"FWD": 0.3, "MID": 1.1, "DEF": 1.8, "GK": 0.2}[pos] * m90)))
-        duels = int(max(0, gen.poisson(2.4 * m90)))
-        yellows = int(gen.poisson(0.25 * apps))
-        reds = 1 if gen.random() < 0.02 * apps else 0
+    Assists, xG/xA, shots, passing and tackling data are *not* published in any
+    free World Cup source, so those are deliberately omitted (``assists`` is left
+    null and labelled "not tracked in open data" in the UI) rather than
+    fabricated. Only the 0–100 ability ``rating`` and the derived team
+    ``contribution`` score are model-generated.
+    """
+    for p in team_players:
+        rs = p.get("realStats") or {}
+        is_gk = p["position"] == "GK"
+        apps = int(rs.get("appearances", 0) or 0)
+        minutes = int(rs.get("minutes", 0) or 0)
+        goals = int(rs.get("goals", 0) or 0)
+        yellows = int(rs.get("yellowCards", 0) or 0)
+        reds = int(rs.get("redCards", 0) or 0)
 
         stats = {
-            "appearances": apps, "minutes": minutes, "goals": goals, "assists": assists,
-            "xg": xg, "xa": xa, "shots": shots, "shotsOnTarget": sot,
-            "passes": passes, "passAccuracy": pass_acc, "keyPasses": key_passes,
-            "tackles": tackles, "interceptions": interceptions, "duelsWon": duels,
-            "yellowCards": min(yellows, apps if apps else 0), "redCards": reds,
-            "saves": None, "cleanSheets": None, "goalsConceded": None,
+            "appearances": apps,
+            "minutes": minutes,
+            "goals": goals,
+            "assists": None,            # not published in open World Cup data
+            "yellowCards": yellows,
+            "redCards": reds,
+            "cleanSheets": int(rs.get("gkCleanSheets", 0) or 0) if is_gk else None,
+            "goalsConceded": int(rs.get("gkGoalsConceded", 0) or 0) if is_gk else None,
         }
-        if pos == "GK":
-            gk_apps = apps
-            stats["saves"] = int(max(0, gen.poisson(3.0 * gk_apps)))
-            stats["goalsConceded"] = team_ga if is_starter else int(gen.integers(0, 3))
-            stats["cleanSheets"] = clean_sheets if is_starter else 0
-            stats["goals"] = 0
-            stats["assists"] = min(stats["assists"], 0)
 
-        contribution = clamp(
-            (rating - 55) / 39 * 55 + goals * 6 + assists * 4 +
-            (minutes / (played * 90)) * 14 + (5 if is_starter else 0),
-            8, 99)
+        rating = p["rating"]
+        # Team-contribution score — a transparent blend of ability and *real*
+        # tournament output (goals + minutes played). Clearly a derived metric.
+        contribution = clamp((rating - 50) * 0.6 + goals * 8 + minutes / 90 * 2.5,
+                             5, 99)
+
         p["stats"] = stats
         p["contribution"] = round(float(contribution), 1)
         p["isKeyPlayer"] = False  # set later (top per team)
-        p["form"] = [
-            {"label": f"M{k+1}", "rating": round(float(clamp(gen.normal(rating / 10, 0.6), 4.5, 9.9)), 1)}
-            for k in range(min(apps, 5) or 1)
-        ]
+        p["matchLog"] = _to_match_log(p.get("realStats"))
         p["bio"] = _player_bio(p)
 
 
@@ -282,9 +264,18 @@ def _player_bio(p: dict) -> str:
             exp = f" He has {caps} senior cap{'s' if caps != 1 else ''} for {p['country']}"
             exp += (f" and {intl} international goal{'s' if intl != 1 else ''}."
                     if intl else ".")
+        st = p.get("stats") or {}
+        apps = st.get("appearances") or 0
+        wc = ""
+        if apps:
+            g = st.get("goals") or 0
+            wc = (f" At the 2026 World Cup he has made {apps} appearance"
+                  f"{'s' if apps != 1 else ''}")
+            wc += (f" and scored {g} goal{'s' if g != 1 else ''}." if g else ".")
         return (f"{p['name']} is a {age_txt}{role} for {p['country']}, playing club "
-                f"football at {club}{cap}.{exp} Squad details are real (via Wikipedia); "
-                f"ability ratings and per-tournament statistics are model-generated.")
+                f"football at {club}{cap}.{exp}{wc} Squad details and World Cup match "
+                f"statistics are real (via Wikipedia / FIFA match reports); only the "
+                f"0–100 ability rating is model-generated.")
     return (f"{p['name']} is a {age_txt}{role} for {p['country']}, playing club football "
             f"at {club}{cap}. Generated placeholder profile — no verified squad data "
             f"was available for this nation.")
@@ -458,13 +449,12 @@ def main() -> None:
         history_champ[key] = res["champion"] / N_SIMS_HISTORY
     hist_labels = [(k, lbl) for k, lbl, _ in snap_specs] + [("now", "Quarter-finals")]
 
-    # ---- Player stats -----------------------------------------------------
+    # ---- Player stats (REAL, from ml/fetch_stats.py, joined in ingest) --------
     by_team_players: dict[str, list] = {}
     for p in squads:
         by_team_players.setdefault(p["countryCode"], []).append(p)
-    records = qual["records"]
     for code, plist in by_team_players.items():
-        allocate_player_stats(plist, records[code], rng(f"players-{code}"))
+        allocate_player_stats(plist)
         for p in sorted(plist, key=lambda x: -x["contribution"])[:4]:
             p["isKeyPlayer"] = True
 
@@ -481,13 +471,14 @@ def main() -> None:
                 "caps": p.get("caps"), "intlGoals": p.get("intlGoals"),
                 "real": bool(p.get("real")), "headshot": p.get("headshot"),
                 "photoCredit": p.get("photoCredit"),
-                "stats": p["stats"], "form": p["form"], "bio": p["bio"],
+                "stats": p["stats"], "matchLog": p["matchLog"], "bio": p["bio"],
             })
     players_out.sort(key=lambda x: (-x["rating"], x["name"]))
     publish("players.json", players_out)
 
     # ---- Teams ------------------------------------------------------------
     active, elim_round = compute_status(wc_matches, qual["ranked32"])
+    records = qual["records"]
     elo_pre = ts["elo_pre"]
     pre_rank = {c: r for r, (c, _v) in enumerate(
         sorted(elo_pre.items(), key=lambda kv: -kv[1]), start=1)}
@@ -610,7 +601,7 @@ def build_methodology(meta, n_matches) -> None:
     methodology = {
         "pipeline": [
             {"id": "ingest", "title": "Raw ingestion",
-             "description": "Parses the cached CC0 sources: every men's international 1872→2026 (martj42) and the real 2026 group draw, fixtures, results & knockout bracket (openfootball). Emits the 48-team field, training history, the World Cup schedule and the real 26-player squads (Wikipedia) with free-licensed headshots (Wikimedia Commons).",
+             "description": "Parses the cached CC0 sources: every men's international 1872→2026 (martj42) and the real 2026 group draw, fixtures, results & knockout bracket (openfootball). Emits the 48-team field, training history, the World Cup schedule and the real 26-player squads (Wikipedia) with free-licensed headshots (Wikimedia Commons) and each player's real World Cup match statistics (goals, appearances, minutes and cards) parsed from the Wikipedia match reports.",
              "outputs": ["data/raw/teams.json", "data/raw/history.json", "data/raw/wc_matches.json", "data/raw/qualification.json", "data/raw/squads.json"]},
             {"id": "transform", "title": "Validation & cleaning",
              "description": "Schema, range and referential-integrity checks; chronological ordering; outcome labelling. Match status is derived from whether a real result exists, so the app tracks the live tournament. Fails loudly on malformed data.",
@@ -622,7 +613,7 @@ def build_methodology(meta, n_matches) -> None:
              "description": "Trains Elo baseline, Logistic Regression, Random Forest and XGBoost on real international matches from 2002 up to the opener ONLY (no World Cup match is ever seen in training).",
              "outputs": ["ml/models/*.joblib", "ml/models/meta.json"]},
             {"id": "predict", "title": "Prediction & simulation",
-             "description": "Per-match probabilities + explanation factors and a 20k-tournament Monte-Carlo that fixes completed knockout results and simulates only the matches still to play — producing live title odds, advancement probabilities, team metrics and player statistics.",
+             "description": "Per-match probabilities + explanation factors and a 20k-tournament Monte-Carlo that fixes completed knockout results and simulates only the matches still to play — producing live title odds, advancement probabilities, team metrics and each player's real World Cup match statistics.",
              "outputs": ["public/data/teams.json", "public/data/players.json", "public/data/rankings.json"]},
             {"id": "evaluate", "title": "Backtest & self-improvement",
              "description": "Scores every model against completed matches (accuracy, log-loss, Brier, calibration), re-ranks them and updates the ensemble weights (∝ 1/log-loss).",
@@ -636,8 +627,11 @@ def build_methodology(meta, n_matches) -> None:
              "description": "openfootball/worldcup (2026--usa) — the real group draw, kickoff times, scores and knockout bracket in the Football.TXT format. Cached locally as data/source/openfootball_cup*.txt.",
              "license": "CC0 1.0 (public domain)"},
             {"name": "National-team squads", "kind": "cached",
-             "description": "The real, current 26-player squad for each nation, parsed from the maintained '{{nat fs}}' squad templates on the English Wikipedia team articles (player name, shirt number, position, age, caps, international goals and club). Cached locally as data/source/squads_wikipedia.json. Player ability ratings and per-tournament statistics are model-generated (no free source exists) and are labelled as such throughout the UI.",
+             "description": "The real, current 26-player squad for each nation, parsed from the maintained '{{nat fs}}' squad templates on the English Wikipedia team articles (player name, shirt number, position, age, caps, international goals and club). Cached locally as data/source/squads_wikipedia.json. Only the 0–100 player ability rating is model-generated (no free source exists) and is labelled as such throughout the UI.",
              "license": "Wikipedia text CC BY-SA 4.0 (facts are not copyrightable)"},
+            {"name": "Player World Cup match statistics", "kind": "cached",
+             "description": "Real per-player 2026 World Cup stats — appearances, minutes, goals, yellow/red cards and (for goalkeepers) clean sheets and goals conceded — derived from the goalscorer lists and starting-XI/substitution tables in the English Wikipedia match articles (which transcribe the official FIFA match reports), joined onto each squad player by exact Wikipedia article title. Refreshed by ml/fetch_stats.py and cached as data/source/player_stats_wikipedia.json. Assists, expected goals (xG/xA) and other advanced metrics are NOT published in any free World Cup source and are intentionally shown as “not tracked in open data” rather than fabricated.",
+             "license": "Wikipedia text CC BY-SA 4.0 (sporting facts are not copyrightable)"},
             {"name": "Player headshots", "kind": "cached",
              "description": "Freely-licensed player portraits from Wikimedia Commons (only public-domain / CC0 / CC BY / CC BY-SA files are kept; each is stored with its author + licence for attribution). Players without a free image fall back to a clean initials avatar. Cached under public/headshots/ with credits in data/source/headshot_credits.json.",
              "license": "Per-file free licences (PD / CC0 / CC BY / CC BY-SA)"},

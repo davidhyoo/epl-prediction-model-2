@@ -217,9 +217,10 @@ def _synth_rating(team_base: float, pos: str, caps, goals, is_captain: bool, gen
     return round(float(np.clip(rating, 50, 95)), 1)
 
 
-def _real_row(src: dict, team_base: float, gen) -> dict:
+def _real_row(src: dict, team_base: float, gen, stats_map: dict) -> dict:
     pos = src["position"]
     age = src.get("age")
+    wiki = src.get("wiki")
     return {
         "id": src["id"],
         "name": src["name"],
@@ -239,6 +240,10 @@ def _real_row(src: dict, team_base: float, gen) -> dict:
         "intlGoals": src.get("intlGoals"),
         "headshot": src.get("headshot"),
         "photoCredit": src.get("photoCredit"),
+        "wiki": wiki,
+        # Real WC-2026 tournament stats joined by exact Wikipedia title (or None
+        # when the player has not featured yet → real zeros downstream).
+        "realStats": stats_map.get(S.norm_wiki_title(wiki)) if wiki else None,
         "real": True,
     }
 
@@ -264,7 +269,8 @@ def _fill_team(team, team_base: float, gen, start: int, need: int) -> list[dict]
             "club": club, "clubCountry": club_country,
             "rating": round(rating, 1), "isCaptain": False, "shirtNumber": 0,
             "caps": None, "intlGoals": None,
-            "headshot": None, "photoCredit": None, "real": False,
+            "headshot": None, "photoCredit": None,
+            "wiki": None, "realStats": None, "real": False,
         })
     return out
 
@@ -276,9 +282,11 @@ def build_squads(teams) -> list[dict]:
     if not real:
         players = generate_squads(teams)
         for p in players:  # keep the frontend contract uniform
-            p.update(real=False, caps=None, intlGoals=None, headshot=None, photoCredit=None)
+            p.update(real=False, caps=None, intlGoals=None, headshot=None,
+                     photoCredit=None, wiki=None, realStats=None)
         return players
 
+    stats_map = S.load_player_stats() or {}
     base = team_base_rating(teams)
     gen = rng("real-ratings")
     players: list[dict] = []
@@ -286,7 +294,7 @@ def build_squads(teams) -> list[dict]:
         rows = [r for r in (real.get(t.code) or [])
                 if r.get("position") in ("GK", "DEF", "MID", "FWD") and r.get("name")]
         if len(rows) >= 18:
-            team_players = [_real_row(r, base[t.code], gen) for r in rows[:26]]
+            team_players = [_real_row(r, base[t.code], gen, stats_map) for r in rows[:26]]
             if len(team_players) < 23:  # rare short squad → top up with fillers
                 team_players += _fill_team(t, base[t.code], gen,
                                            start=len(team_players), need=23 - len(team_players))

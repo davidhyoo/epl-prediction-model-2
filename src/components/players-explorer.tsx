@@ -34,9 +34,8 @@ type SortKey =
   | "country"
   | "position"
   | "goals"
-  | "assists"
+  | "appearances"
   | "minutes"
-  | "xg"
   | "contribution";
 
 const POSITIONS: Position[] = ["GK", "DEF", "MID", "FWD"];
@@ -46,9 +45,8 @@ const SORTS: { key: SortKey; label: string }[] = [
   { key: "rating", label: "Rating" },
   { key: "contribution", label: "Contribution" },
   { key: "goals", label: "Goals" },
-  { key: "assists", label: "Assists" },
+  { key: "appearances", label: "Appearances" },
   { key: "minutes", label: "Minutes" },
-  { key: "xg", label: "Expected goals" },
   { key: "name", label: "Name" },
   { key: "country", label: "Country" },
   { key: "position", label: "Position" },
@@ -117,12 +115,10 @@ export function PlayersExplorer() {
           );
         case "goals":
           return b.stats.goals - a.stats.goals;
-        case "assists":
-          return b.stats.assists - a.stats.assists;
+        case "appearances":
+          return b.stats.appearances - a.stats.appearances || b.stats.minutes - a.stats.minutes;
         case "minutes":
           return b.stats.minutes - a.stats.minutes;
-        case "xg":
-          return b.stats.xg - a.stats.xg;
         case "contribution":
           return b.contribution - a.contribution;
         default:
@@ -210,7 +206,7 @@ export function PlayersExplorer() {
                   <TableHead className="hidden lg:table-cell">Club</TableHead>
                   <TableHead className="hidden w-12 text-right md:table-cell">Age</TableHead>
                   <TableHead className="w-12 text-right">G</TableHead>
-                  <TableHead className="w-12 text-right">A</TableHead>
+                  <TableHead className="w-12 text-right">Apps</TableHead>
                   <TableHead className="hidden w-16 text-right sm:table-cell">Min</TableHead>
                   <TableHead className="w-16 text-right">Rating</TableHead>
                 </TableRow>
@@ -252,7 +248,7 @@ export function PlayersExplorer() {
                     </TableCell>
                     <TableCell className="text-right text-sm tabular-nums">{p.stats.goals}</TableCell>
                     <TableCell className="text-right text-sm tabular-nums">
-                      {p.stats.assists}
+                      {p.stats.appearances}
                     </TableCell>
                     <TableCell className="hidden text-right text-sm tabular-nums sm:table-cell">
                       {p.stats.minutes.toLocaleString()}

@@ -12,7 +12,7 @@
     "ece": 0.1162,
     "weight": 0.2539,
     "rank": 1,
-    "lastUpdated": "2026-07-13T07:57:55+00:00",
+    "lastUpdated": "2026-07-13T16:50:19+00:00",
     "calibration": [
       {
         "predicted": 0.3825,
@@ -113,7 +113,7 @@
     "ece": 0.1474,
     "weight": 1.0,
     "rank": 2,
-    "lastUpdated": "2026-07-13T07:57:55+00:00",
+    "lastUpdated": "2026-07-13T16:50:19+00:00",
     "calibration": [
       {
         "predicted": 0.3823,
@@ -214,7 +214,7 @@
     "ece": 0.1384,
     "weight": 0.251,
     "rank": 3,
-    "lastUpdated": "2026-07-13T07:57:55+00:00",
+    "lastUpdated": "2026-07-13T16:50:19+00:00",
     "calibration": [
       {
         "predicted": 0.3735,
@@ -310,7 +310,7 @@
     "ece": 0.0575,
     "weight": 0.2509,
     "rank": 4,
-    "lastUpdated": "2026-07-13T07:57:55+00:00",
+    "lastUpdated": "2026-07-13T16:50:19+00:00",
     "calibration": [
       {
         "predicted": 0.379,
@@ -416,7 +416,7 @@
     "ece": 0.1348,
     "weight": 0.2442,
     "rank": 5,
-    "lastUpdated": "2026-07-13T07:57:55+00:00",
+    "lastUpdated": "2026-07-13T16:50:19+00:00",
     "calibration": [
       {
         "predicted": 0.3726,

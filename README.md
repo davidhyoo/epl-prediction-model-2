@@ -55,9 +55,12 @@ the whole thing is reproducible offline. The models train on **real men's intern
 results since 2002** (martj42, CC0). The **squads are real too** — current 26-player
 rosters for all 48 nations are pulled from the maintained **English Wikipedia** squad
 templates, with **free-licensed headshots from Wikimedia Commons** (1,047 of 1,248
-players; the rest fall back to clean initials avatars). Only **per-player performance
-statistics and ability ratings are model-generated** — no openly-licensed source for those
-exists — and this is clearly flagged wherever it appears. See [Data sources](#data-sources).
+players; the rest fall back to clean initials avatars). **Per-player tournament stats are
+real as well** — appearances, minutes, goals, cards and goalkeeper clean sheets / goals
+conceded are parsed from the official **FIFA match reports** (via Wikipedia). Only the
+0–100 ability **rating** is model-generated, and advanced metrics with no free source
+(assists, xG…) are omitted rather than faked — clearly flagged wherever it appears. See
+[Data sources](#data-sources).
 
 Current snapshot (refresh any time with `python ml/refresh.py`):
 
@@ -115,8 +118,9 @@ Screenshots are not committed to keep the repo lightweight. To capture your own:
   weaknesses, key players and a championship-probability trend.
 - **Players** — Searchable, sortable, filterable table of all 1,248 **real** players with
   **free-licensed headshots** (Wikimedia Commons; clean initials-avatar fallback), position,
-  club, age, caps and rich stats. Player profiles add a stats table, form trend, a
-  team-contribution score and photo attribution.
+  club, age, caps and **real World Cup stats** (goals, appearances, minutes). Player profiles
+  add a real per-match log (opponent, result, minutes, goals, cards), the tournament stat
+  table, a team-contribution score and photo attribution.
 - **Rankings** — Nine ranking views (title odds, team strength, form, attack, defense,
   squad strength, model confidence, momentum, Elo) with charts and confederation
   filtering.
@@ -163,7 +167,8 @@ every render.
 .
 ├─ src/
 │  ├─ app/                     # App Router pages (home, matches, predictions,
-│  │                           #   countries, players, rankings, models, methodology)
+│  │  │                        #   countries, players, rankings, models, methodology)
+│  │  ├─ api/refresh/          # POST route → runs ml/refresh.py (dev / ALLOW_DATA_REFRESH)
 │  │  ├─ loading.tsx / error.tsx / not-found.tsx
 │  ├─ components/              # UI + feature components (cards, tables, charts,
 │  │  ├─ ui/                   #   prediction modal, bracket, explorers, command palette)
@@ -171,9 +176,9 @@ every render.
 │  └─ lib/                     # types (data contract), data loaders, formatters
 ├─ ml/
 │  ├─ common.py                # constants, seeds, Elo/goal helpers, IO
-│  ├─ sources.py               # parsers for the cached CC0 source files
+│  ├─ sources.py               # parsers for the cached CC0 source files (+ player stats)
 │  ├─ tournament.py            # standings + general Monte-Carlo bracket simulator
-│  ├─ ingest.py                # build raw inputs from real CC0 sources (+ real squads)
+│  ├─ ingest.py                # build raw inputs from real CC0 sources (+ real squads/stats)
 │  ├─ transform.py             # validation + cleaning
 │  ├─ features.py              # feature engineering (leakage-safe, real Elo)
 │  ├─ modeling.py              # Elo baseline, ensemble, metrics, calibration
@@ -181,8 +186,9 @@ every render.
 │  ├─ predict.py               # per-model predictions, factors, rankings, Monte Carlo
 │  ├─ evaluate.py              # backtest, re-weight ensemble, assemble frontend JSON
 │  ├─ pipeline.py              # one-command orchestrator (ingest → evaluate)
-│  ├─ refresh.py               # re-download CC0 sources (offline fallback) + rebuild
+│  ├─ refresh.py               # re-download CC0 sources + real player stats + rebuild
 │  ├─ fetch_players.py         # real squads (Wikipedia) + free headshots (Commons)
+│  ├─ fetch_stats.py           # real per-player WC stats (Wikipedia FIFA match reports)
 │  ├─ models/                  # trained model artifacts (git-ignored)
 │  └─ tests/test_ml.py         # Python unit tests
 ├─ data/
@@ -236,6 +242,8 @@ want to use them — `.env.local` is git-ignored and no secrets are ever committ
 | `FOOTBALL_DATA_API_KEY` | *(empty)* | Optional free football-data API key (not needed for the CC0 refresh) |
 | `ELO_RATINGS_SOURCE_URL` | *(empty)* | Optional open Elo ratings source override |
 | `ENABLE_LIVE_DATA` | `0` | Set `1` to allow optional network fetches |
+| `ALLOW_DATA_REFRESH` | *(dev only)* | Set `1` to enable the in-app **Refresh data** button (`/api/refresh`) outside development |
+| `PYTHON_BIN` | `python` | Python executable used by `/api/refresh` (e.g. `python3` or an absolute venv path) |
 
 ---
 
@@ -264,16 +272,28 @@ npm run data:refresh          # === python ml/pipeline.py
 
 `python ml/refresh.py` downloads five public-domain files (martj42 results +
 shootouts, openfootball 2026 cup / cup_finals / stadiums) into `data/source/` using the
-Python standard library only. Each file is validated and swapped in atomically, so a
-failed or partial download never corrupts the cache — if a fetch fails, the previously
-committed copy is kept and the pipeline still runs. Useful flags:
+Python standard library only, then refreshes the **real per-player World Cup statistics**
+from the English-Wikipedia match articles (which transcribe the official FIFA match
+reports) via `ml/fetch_stats.py`. Those stats change after every match, so they are pulled
+on **every** run. Each file is validated and swapped in atomically, so a failed or partial
+download never corrupts the cache — if a fetch fails, the previously committed copy is kept
+and the pipeline still runs. Useful flags:
 
 ```bash
 python ml/refresh.py --offline       # skip downloads, rebuild from caches
 python ml/refresh.py --no-pipeline   # only refresh the source caches
 python ml/refresh.py --players        # also refresh real squads + free headshots
 python ml/refresh.py --from features # pass a resume-stage through to the pipeline
+
+python ml/fetch_stats.py             # refresh only the real player stats (npm run data:stats)
+python ml/fetch_stats.py --offline   # validate the stats cache without any network
 ```
+
+**Refresh from the app.** The **Data & Methodology** page has a **“Refresh data”** button
+that calls `POST /api/refresh`, which runs `python ml/refresh.py` on the server (pulling the
+latest results + real player stats and rebuilding the JSON) and then reloads the dashboard.
+Because it launches a local process, it is **enabled in development only** by default; set
+`ALLOW_DATA_REFRESH=1` to enable it elsewhere, and `PYTHON_BIN` if `python` isn't on `PATH`.
 
 **Real squads + headshots (opt-in).** Squads and headshots are cached in the repo and
 change infrequently, so they are **not** re-fetched on a normal refresh. To refresh them
@@ -300,10 +320,12 @@ npm run ml:predict      # generate predictions + Monte Carlo odds
 npm run ml:evaluate     # backtest, re-weight ensemble, write frontend JSON
 ```
 
-The real sources are the single source of truth: parsing is pure and the model-generated
-player stats/ratings are seeded (`SEED = 2026`), so re-running the pipeline on the same
-source files reproduces identical outputs. As the real tournament advances, refresh to pull
-the latest results and the app tracks the live state automatically.
+The real sources are the single source of truth: parsing is pure and the only
+model-generated player field — the 0–100 ability **rating** — is seeded (`SEED = 2026`), so
+re-running the pipeline on the same source files reproduces identical outputs. Per-player
+**tournament stats are real** (parsed from the FIFA match reports), so as the tournament
+advances a refresh pulls the latest results *and* the latest player numbers, and the app
+tracks the live state automatically.
 
 ---
 
@@ -315,7 +337,7 @@ consumes.
 
 | # | Stage | Script | Output |
 | --- | --- | --- | --- |
-| 1 | **Ingest** | `ingest.py` + `sources.py` | Parse real CC0 sources → history, WC schedule/results, knockout tree, real squads (Wikipedia cache) → `data/raw/` |
+| 1 | **Ingest** | `ingest.py` + `sources.py` | Parse real CC0 sources → history, WC schedule/results, knockout tree, real squads + **real player match stats** (Wikipedia cache) → `data/raw/` |
 | 2 | **Transform** | `transform.py` | Validated & cleaned tables → `data/processed/` |
 | 3 | **Features** | `features.py` | Leakage-safe feature matrix (rolling form, Elo, xG, rest, squad strength) |
 | 4 | **Train** | `train.py` | Logistic Regression, Random Forest, XGBoost, draw model → `ml/models/` |
@@ -335,24 +357,35 @@ consumes.
 | [`openfootball/worldcup`](https://github.com/openfootball/worldcup) — `2026--usa` | **Real · cached** | The actual 2026 field, 12-group draw, fixtures, results and knockout bracket (`cup.txt`, `cup_finals.txt`, `cup_stadiums.csv`) | **Public domain (CC0)** |
 | [`martj42/international_results`](https://github.com/martj42/international_results) | **Real · cached** | Every men's international 1872→present (`results.csv`, `shootouts.csv`) — used to train the models and grow real Elo ratings | **Public domain (CC0)** |
 | [English **Wikipedia**](https://en.wikipedia.org/) national-team squad templates | **Real · cached** | Current 26-player rosters for all 48 nations — name, shirt no., position, DOB/age, caps, goals, club (`data/source/squads_wikipedia.json`) | Text CC BY-SA 4.0; facts aren't copyrightable — Wikipedia credited here + in the app |
+| [English **Wikipedia**](https://en.wikipedia.org/) 2026 World Cup **match articles** | **Real · cached (live-refreshable)** | Per-player tournament stats — appearances, minutes, goals, yellow/red cards, GK clean sheets & goals conceded — parsed from the goalscorer lists + starting-XI/substitution tables (official FIFA match reports) by `ml/fetch_stats.py` into `data/source/player_stats_wikipedia.json`. Refreshed every run via the key-less MediaWiki API | Sporting facts uncopyrightable; article text CC BY-SA 4.0 — credited in the app |
 | [Wikimedia **Commons**](https://commons.wikimedia.org/) portraits | **Real · cached** | 1,047 free-licensed player headshots (`public/headshots/`), each with author + licence + source page (`data/source/headshot_credits.json`) | **Only free licences kept** (CC0 / public domain / CC BY / CC BY-SA); per-photo attribution shown in the UI |
 | 48-team Elo priors & brand colours | **Curated** | Approximate starting Elo and team colours in `ml/common.py` | Curated from public knowledge |
-| Per-player stats & ability ratings | **Generated** | Goals, assists, xG, minutes, ratings etc., keyed to the **real** players — no openly-licensed source exists | Synthetic — deterministic (`SEED = 2026`); flagged in the UI |
+| Per-player ability **rating** (0–100) | **Generated** | A single seeded skill score per player (from caps, role, club), used only as one squad-strength input — clearly labelled in the UI. **Assists, xG/xA and other advanced metrics have no free source and are omitted (shown as “—”), never fabricated** | Synthetic — deterministic (`SEED = 2026`) |
 | Country flags | **Static** | `flag-icons` public-domain SVG sprites | MIT / public domain |
 
 **Are these live, cached, sample or generated?**
-The tournament data (field, draw, fixtures, results, bracket), the training history **and
-the squads** are **real** and shipped **cached** in `data/source/` (plus committed
-headshots in `public/headshots/`). Everything is fetched over plain HTTPS from public
-repos / MediaWiki APIs — nothing is scraped from disallowed endpoints, and no login-gated
-or paid dataset is used. Only **per-player performance statistics and ability ratings are
-generated** (deterministically), because no clean, openly-licensed source of those exists.
-Refresh with `python ml/refresh.py` (results) and `npm run data:players` (squads/headshots).
+The tournament data (field, draw, fixtures, results, bracket), the training history, **the
+squads and the per-player tournament stats** are all **real** and shipped **cached** in
+`data/source/` (plus committed headshots in `public/headshots/`). Everything is fetched over
+plain HTTPS from public repos / MediaWiki APIs — nothing is scraped from disallowed
+endpoints, and no login-gated or paid dataset is used. The **only** model-generated player
+field is the 0–100 ability **rating** (deterministic, seeded), used as one squad-strength
+input. Refresh with `python ml/refresh.py` (results **and** player stats) and
+`npm run data:players` (squads/headshots).
 
 **Real squads.** The 26-player roster for each of the 48 nations comes from that nation's
 maintained English-Wikipedia squad template (`{{nat fs … player}}`) — real names, shirt
 numbers, positions, dates of birth/ages, caps, international goals and clubs. Facts like a
 player's name or club aren't copyrightable; Wikipedia is credited regardless.
+
+**Real player stats.** Per-player tournament numbers — **appearances, minutes, goals,
+yellow/red cards, and goalkeeper clean sheets / goals conceded** — are parsed by
+`ml/fetch_stats.py` from the English-Wikipedia 2026 match articles, which transcribe the
+official FIFA match reports (goalscorer lists + starting-XI/substitution tables). Each
+scorer/lineup entry is joined to a squad player by exact Wikipedia article title, so the
+golden-boot race and every per-match log are the genuine results. Players who haven't
+featured show **real zeros**. A per-match log on each profile shows opponent, result,
+minutes, goals and cards for every appearance.
 
 **Player headshots.** Per the build requirements, headshots are used **only** when the
 Wikimedia Commons file carries a **free licence** (public domain / CC0 / CC BY / CC BY-SA).
@@ -361,24 +394,26 @@ avatars, so the UI never breaks on a missing image. Each kept photo stores its *
 licence and Commons source page**, shown as attribution on the player profile (CC BY-SA
 requires attribution). Non-free or missing images are never downloaded.
 
-**Known limitation — player stats.** Per-player statistics (goals, assists, xG, minutes,
-cards…) and the 0–100 ability rating are **model-generated** demonstration data seeded from
-the real identity (caps, position, club tier). They exercise the players/profile UI and
-feed a simple squad-strength feature, but the absolute numbers are illustrative and flagged
-as such. Player **identities and photos**, and everything about *matches and outcomes*, are
-real.
+**Known limitation — advanced stats.** **Assists, expected goals (xG/xA), shots, passing
+and tackling are not published in any free, openly-licensed World Cup source.** Rather than
+fabricate them, they are omitted and shown as “—” in the UI. Only the 0–100 ability
+**rating** is model-generated (seeded from the real identity: caps, position, club tier) —
+clearly flagged. Everything else about players (identity, photo, appearances, minutes,
+goals, cards, GK stats) and all match outcomes are real.
 
-**How to refresh.** Run `python ml/refresh.py` (downloads CC0 results, then rebuilds), or
-`npm run data:refresh` to rebuild from caches offline. For squads/headshots run
-`npm run data:players` (or `python ml/refresh.py --players` to fetch *and* rebuild). All
-refresh paths use **no API keys** and **no paid services**, with an offline fallback to the
-committed caches.
+**How to refresh.** Run `python ml/refresh.py` (downloads the CC0 results **and** the real
+player stats, then rebuilds), or `npm run data:refresh` to rebuild from caches offline; or
+click **Refresh data** on the Data & Methodology page (dev / `ALLOW_DATA_REFRESH=1`). For
+squads/headshots run `npm run data:players` (or `python ml/refresh.py --players` to fetch
+*and* rebuild). All refresh paths use **no API keys** and **no paid services**, with an
+offline fallback to the committed caches.
 
 **Licensing note.** This project respects site terms of service, `robots.txt`, rate limits
 and dataset licensing. The two match/result datasets are **CC0 1.0 (public domain)**;
-Wikipedia squad text is **CC BY-SA 4.0** (facts aren't copyrightable) and every headshot is
-**free-licensed with per-photo attribution retained**. The generated per-player stats and
-public-domain flag sprites carry no third-party data-licensing obligations.
+Wikipedia squad + match text is **CC BY-SA 4.0** (the underlying sporting facts aren't
+copyrightable) and every headshot is **free-licensed with per-photo attribution retained**.
+The seeded ability ratings and public-domain flag sprites carry no third-party
+data-licensing obligations.
 
 ---
 
@@ -464,16 +499,20 @@ npm run build                              # production build (58 routes)
 
 ## Known limitations
 
-- **Real squads, generated stats.** Squads (names, positions, ages, caps, clubs) and
-  headshots are **real** (Wikipedia / Wikimedia Commons), but per-player **statistics and
-  ability ratings are deterministically generated** — no clean, redistributable open dataset
-  of full 2026 per-player stats exists. Those numbers are illustrative and flagged as demo
-  data in the UI and README.
+- **Real stats, one generated field.** Squads, headshots **and** per-player tournament
+  stats (appearances, minutes, goals, cards, GK clean sheets / goals conceded) are **real**
+  — parsed from Wikipedia squad templates and the official FIFA match reports. The **only**
+  model-generated player field is the 0–100 ability **rating** (deterministic, seeded),
+  clearly flagged in the UI.
+- **No advanced metrics.** Assists, xG/xA, shots, passing and tackling are **not published
+  in any free World Cup source**, so they are omitted and shown as “—” rather than
+  fabricated.
 - **Partial headshot coverage.** 1,047 of 1,248 players have a free-licensed Commons photo;
   the remaining 201 show clean initials avatars (no non-free images are used).
 - **Live-tracked state.** The tournament state reflects whatever results are present in
   the cached source (currently the semi-final stage: 100 completed, 4 upcoming). Run
-  `python ml/refresh.py` to pull newer results as they're published upstream.
+  `python ml/refresh.py` — or the in-app **Refresh data** button — to pull newer results
+  and player stats as they're published upstream.
 - **Backtest size.** Model metrics are computed on the completed World Cup matches (100
   so far), so differences between models are modest and can shift as more results arrive.
 - **Knockout participants are projected.** Slots that depend on results not yet played
@@ -485,8 +524,9 @@ npm run build                              # production build (58 routes)
 
 - Optional live ingestion from a free/open football-data source (behind the `.env`
   flags already scaffolded).
-- Openly-licensed **per-player stats** (goals, xG, minutes) to replace the generated
-  demo numbers, keyed to the real squads already in place.
+- Openly-licensed **advanced** per-player metrics (assists, xG, shots) if a
+  redistributable source appears — the real base stats (goals, minutes, cards) are already
+  wired in.
 - Bayesian / hierarchical team-strength model and a Dixon-Coles goals model.
 - Team- and player-comparison tools, favourites, and downloadable CSV exports.
 - Prediction-history tracking across multiple pipeline runs.
@@ -949,10 +989,11 @@ The most important priorities are:
 
 This project is an independent **portfolio demonstration**. It is not affiliated with,
 endorsed by, or associated with FIFA or any football federation. Match results and the
-tournament bracket come from **public-domain (CC0)** datasets; **player squads and
-headshots are real** (English Wikipedia / Wikimedia Commons, free-licensed with
-attribution), while **per-player stats and ratings are generated for demonstration**, and
-predictions are **statistical estimates, not guarantees**. Country flags are public-domain
-assets from `flag-icons`. Player headshots are used only under free licences (CC0 / public
-domain / CC BY / CC BY-SA) with per-photo attribution shown in the app; players without a
-free-licensed photo show a clean initials avatar.
+tournament bracket come from **public-domain (CC0)** datasets; **player squads, headshots
+and tournament stats are real** (English Wikipedia / Wikimedia Commons, free-licensed with
+attribution — player stats parsed from the official FIFA match reports), while only the
+0–100 ability **rating** is generated for demonstration and predictions are **statistical
+estimates, not guarantees**. Country flags are public-domain assets from `flag-icons`.
+Player headshots are used only under free licences (CC0 / public domain / CC BY / CC BY-SA)
+with per-photo attribution shown in the app; players without a free-licensed photo show a
+clean initials avatar.

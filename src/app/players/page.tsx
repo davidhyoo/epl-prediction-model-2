@@ -5,7 +5,7 @@ import { PlayersExplorer } from "@/components/players-explorer";
 export const metadata: Metadata = {
   title: "Players",
   description:
-    "Browse every 2026 World Cup squad member with ratings, goals, assists and expected-goals stats. Search, filter and sort.",
+    "Browse every 2026 World Cup squad member with real tournament stats — goals, appearances, minutes and cards. Search, filter and sort.",
 };
 
 export default function PlayersPage() {
@@ -21,8 +21,11 @@ export default function PlayersPage() {
         Squad identities (name, position, age, caps, club) come from the maintained squad
         tables on Wikipedia. Headshots are freely-licensed portraits from Wikimedia Commons
         (public-domain / CC BY / CC BY-SA, attributed on each player&rsquo;s profile);
-        players without a free photo show a clean initials avatar. Ability ratings and
-        per-tournament statistics are model-generated and clearly labelled as such.
+        players without a free photo show a clean initials avatar. Tournament statistics
+        (goals, appearances, minutes, cards, clean sheets) are the real totals from the
+        official FIFA match reports via Wikipedia; assists and advanced metrics are not in
+        any free source and are omitted. Only the 0&ndash;100 ability rating is
+        model-generated.
       </p>
     </div>
   );

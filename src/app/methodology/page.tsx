@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/table";
 import { getMethodology, getSummary } from "@/lib/data";
 import { formatDateTime } from "@/lib/format";
+import { RefreshDataButton } from "@/components/refresh-data-button";
 
 export const metadata: Metadata = {
   title: "Data & Methodology",
@@ -46,6 +47,8 @@ const STAGE_ICON: Record<string, React.ElementType> = {
 
 export default async function MethodologyPage() {
   const [methodology, summary] = await Promise.all([getMethodology(), getSummary()]);
+  const refreshEnabled =
+    process.env.NODE_ENV !== "production" || process.env.ALLOW_DATA_REFRESH === "1";
 
   return (
     <div className="container-page space-y-8 py-8">
@@ -194,10 +197,28 @@ export default async function MethodologyPage() {
         </Card>
       </section>
 
-      <p className="text-center text-xs text-muted-foreground">
-        Pipeline last run {formatDateTime(methodology.generatedAt)} · reproduce with{" "}
-        <code>python ml/pipeline.py</code>
-      </p>
+      <div className="flex flex-col items-center gap-4 border-t border-border pt-6">
+        {refreshEnabled ? (
+          <>
+            <RefreshDataButton />
+            <p className="max-w-lg text-center text-xs text-muted-foreground">
+              Pulls the latest completed results and real player match stats from the open
+              sources, re-runs the ML pipeline and reloads the dashboard. Runs a local Python
+              process — enabled in development (or with <code>ALLOW_DATA_REFRESH=1</code>).
+            </p>
+          </>
+        ) : (
+          <p className="max-w-lg text-center text-xs text-muted-foreground">
+            Refresh the data locally with <code>npm run data:fetch</code> (<code>python
+            ml/refresh.py</code>), which pulls the latest results and real player match stats,
+            then rebuilds the cached predictions.
+          </p>
+        )}
+        <p className="text-center text-xs text-muted-foreground">
+          Pipeline last run {formatDateTime(methodology.generatedAt)} · reproduce with{" "}
+          <code>python ml/pipeline.py</code>
+        </p>
+      </div>
     </div>
   );
 }

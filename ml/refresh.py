@@ -27,6 +27,11 @@ Sources (all public domain / CC0 / free-licensed — see README "Data Sources"):
 * martj42/international_results — men's international results 1872→present.
 * openfootball/worldcup ``2026--usa`` — the real 2026 draw, fixtures, results
   and knockout bracket.
+* English Wikipedia 2026 World Cup **match articles** (official FIFA match
+  reports) — real per-player tournament stats (appearances, minutes, goals,
+  cards, GK clean sheets / goals conceded). Refreshed by default every run via
+  ``ml/fetch_stats.py`` (public MediaWiki API, no key). Assists / xG / advanced
+  metrics are not published in any free source and are intentionally omitted.
 * (opt-in, ``--players``) English Wikipedia squad templates + Wikimedia Commons
   free-licensed headshots — see ``ml/fetch_players.py``.
 """
@@ -164,6 +169,21 @@ def main() -> None:
         print(f"[refresh] fetching {len(SOURCES)} CC0 source files -> {SOURCE_DIR}")
         updated, kept = refresh_sources()
         print(f"[refresh] {updated} updated, {kept} kept from cache")
+
+    # Real per-player World Cup statistics are parsed from the public English
+    # Wikipedia match articles (which transcribe the official FIFA match reports).
+    # They change after *every* match, so — unlike squads — they are refreshed by
+    # default on each run. A failure here never blocks the rebuild: the committed
+    # ``data/source/player_stats_wikipedia.json`` cache is kept and reused.
+    if not args.offline:
+        print("[refresh] refreshing real player match stats (Wikipedia FIFA match reports)")
+        try:
+            import fetch_stats
+            fetch_stats.main([])
+        except Exception as exc:  # noqa: BLE001 - keep the committed stats cache
+            print(f"  ! stats refresh failed ({exc.__class__.__name__}: {exc}) — keeping cache")
+    else:
+        print("[refresh] --offline: skipping player-stats refresh, using committed cache")
 
     # Real squads + free headshots are opt-in: they hit the public MediaWiki APIs
     # (slower, network-bound) and change infrequently, so the committed cache is

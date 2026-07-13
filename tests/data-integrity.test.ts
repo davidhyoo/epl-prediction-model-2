@@ -158,6 +158,54 @@ describe("players.json", () => {
     const distinct = new Set(players.map((p) => p.rating)).size;
     expect(distinct).toBeGreaterThan(50); // not all clamped to a single ceiling value
   });
+
+  it("uses real, non-fabricated tournament stats", () => {
+    let totalGoals = 0;
+    let maxGoals = 0;
+    for (const p of players) {
+      const s = p.stats;
+      expect(s.appearances).toBeGreaterThanOrEqual(0);
+      expect(s.minutes).toBeGreaterThanOrEqual(0);
+      expect(s.goals).toBeGreaterThanOrEqual(0);
+      expect(s.yellowCards).toBeGreaterThanOrEqual(0);
+      expect(s.redCards).toBeGreaterThanOrEqual(0);
+      // Assists are not published in any free World Cup source — never fabricated.
+      expect(s.assists).toBeNull();
+      // Minutes can never exceed appearances × the longest match (120' with extra time).
+      expect(s.minutes).toBeLessThanOrEqual(s.appearances * 120);
+      if (p.position === "GK") {
+        expect(typeof s.goalsConceded).toBe("number");
+      } else {
+        // Goalkeeping-only stats are null for outfield players.
+        expect(s.cleanSheets).toBeNull();
+        expect(s.goalsConceded).toBeNull();
+      }
+      totalGoals += s.goals;
+      maxGoals = Math.max(maxGoals, s.goals);
+    }
+    // A real, deep-into-the-knockouts World Cup has a lot of goals and a clear
+    // golden-boot leader — a sanity check that we joined real data, not zeros.
+    expect(totalGoals).toBeGreaterThan(100);
+    expect(maxGoals).toBeGreaterThanOrEqual(5);
+    expect(players.some((p) => p.position === "GK" && (p.stats.cleanSheets ?? 0) > 0)).toBe(true);
+  });
+
+  it("attaches a real per-match log consistent with the season totals", () => {
+    for (const p of players) {
+      expect(Array.isArray(p.matchLog)).toBe(true);
+      expect(p.matchLog.length).toBeLessThanOrEqual(p.stats.appearances);
+      let logGoals = 0;
+      for (const m of p.matchLog) {
+        expect(m.opponent).toMatch(/^[A-Z]{3}$/);
+        expect(m.minutes).toBeGreaterThanOrEqual(0);
+        expect(m.minutes).toBeLessThanOrEqual(120);
+        expect(m.goals).toBeGreaterThanOrEqual(0);
+        logGoals += m.goals;
+      }
+      // Per-match goals can't add up to more than the tournament total.
+      expect(logGoals).toBeLessThanOrEqual(p.stats.goals);
+    }
+  });
 });
 
 describe("rankings.json + bracket.json", () => {

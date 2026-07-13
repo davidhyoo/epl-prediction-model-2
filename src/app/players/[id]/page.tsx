@@ -7,8 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Flag } from "@/components/flag";
 import { PlayerAvatar } from "@/components/player-avatar";
 import { RatingPill } from "@/components/rating-pill";
-import { TrendArea } from "@/components/charts/trend-area";
-import { getPlayerById, getTeamByCode } from "@/lib/data";
+import { getPlayerById, getTeamByCode, getTeams } from "@/lib/data";
 
 export async function generateMetadata({
   params,
@@ -20,7 +19,7 @@ export async function generateMetadata({
   if (!player) return { title: "Player not found" };
   return {
     title: player.name,
-    description: `${player.name} — ${player.detailedPosition} for ${player.country}. Stats, form and profile.`,
+    description: `${player.name} — ${player.detailedPosition} for ${player.country}. World Cup stats, match log and profile.`,
   };
 }
 
@@ -33,9 +32,11 @@ export default async function PlayerProfilePage({
   const player = await getPlayerById(id);
   if (!player) notFound();
   const team = await getTeamByCode(player.countryCode);
+  const teams = await getTeams();
+  const codeToTeam = new Map(teams.map((t) => [t.code, t]));
 
   const isGK = player.position === "GK";
-  const formData = player.form.map((f) => ({ label: f.label, value: f.rating }));
+  const matchLog = player.matchLog ?? [];
 
   return (
     <div className="container-page space-y-8 py-8">
@@ -141,43 +142,25 @@ export default async function PlayerProfilePage({
                 <StatGroup
                   title="Goalkeeping"
                   stats={[
-                    ["Saves", player.stats.saves ?? 0],
                     ["Clean sheets", player.stats.cleanSheets ?? 0],
                     ["Goals conceded", player.stats.goalsConceded ?? 0],
-                    ["Pass accuracy", `${player.stats.passAccuracy}%`],
                   ]}
                 />
               ) : (
-                <>
-                  <StatGroup
-                    title="Attacking"
-                    stats={[
-                      ["Goals", player.stats.goals],
-                      ["Assists", player.stats.assists],
-                      ["Expected goals (xG)", player.stats.xg.toFixed(1)],
-                      ["Expected assists (xA)", player.stats.xa.toFixed(1)],
-                      ["Shots", player.stats.shots],
-                      ["Shots on target", player.stats.shotsOnTarget],
-                    ]}
-                  />
-                  <StatGroup
-                    title="Passing & possession"
-                    stats={[
-                      ["Passes", player.stats.passes.toLocaleString()],
-                      ["Pass accuracy", `${player.stats.passAccuracy}%`],
-                      ["Key passes", player.stats.keyPasses],
-                    ]}
-                  />
-                  <StatGroup
-                    title="Defending"
-                    stats={[
-                      ["Tackles", player.stats.tackles],
-                      ["Interceptions", player.stats.interceptions],
-                      ["Duels won", player.stats.duelsWon],
-                    ]}
-                  />
-                </>
+                <StatGroup
+                  title="Attacking"
+                  stats={[
+                    ["Goals", player.stats.goals],
+                    ["Assists", player.stats.assists ?? "—"],
+                  ]}
+                />
               )}
+              <p className="text-xs text-muted-foreground">
+                Real tournament totals taken from the official FIFA match reports
+                (via Wikipedia). Assists, expected goals (xG/xA), shots, passing and
+                tackling are not published in any free World Cup data source, so they
+                are shown as &ldquo;&mdash;&rdquo; rather than estimated.
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -209,18 +192,63 @@ export default async function PlayerProfilePage({
             </CardContent>
           </Card>
 
-          {formData.length > 1 && (
+          {matchLog.length > 0 && (
             <Card>
-              <CardHeader className="pb-1">
-                <CardTitle className="text-sm">Recent match form</CardTitle>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm">World Cup match log</CardTitle>
               </CardHeader>
-              <CardContent>
-                <TrendArea
-                  data={formData}
-                  height={180}
-                  yDomain={[4, 10]}
-                  valueName="Match rating"
-                />
+              <CardContent className="space-y-1.5">
+                {matchLog.map((m, i) => {
+                  const opp = codeToTeam.get(m.opponent);
+                  const res =
+                    m.goalsFor > m.goalsAgainst
+                      ? "W"
+                      : m.goalsFor < m.goalsAgainst
+                        ? "L"
+                        : "D";
+                  const resClass =
+                    res === "W"
+                      ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+                      : res === "L"
+                        ? "bg-red-500/15 text-red-600 dark:text-red-400"
+                        : "bg-amber-500/15 text-amber-600 dark:text-amber-400";
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 rounded-lg border border-border px-2.5 py-1.5 text-sm"
+                    >
+                      <span
+                        className={`flex size-5 shrink-0 items-center justify-center rounded text-[11px] font-bold ${resClass}`}
+                        title={m.started ? "Started" : "Substitute"}
+                      >
+                        {res}
+                      </span>
+                      {opp ? <Flag iso2={opp.iso2} size="sm" /> : <span className="w-[18px]" />}
+                      <span className="flex-1 truncate text-muted-foreground">
+                        {opp?.name ?? m.opponent}
+                      </span>
+                      <span className="tabular-nums">
+                        {m.goalsFor}&ndash;{m.goalsAgainst}
+                      </span>
+                      <span className="w-9 text-right text-xs text-muted-foreground tabular-nums">
+                        {m.minutes}&rsquo;
+                      </span>
+                      <span className="flex w-10 items-center justify-end gap-1 text-xs">
+                        {m.goals > 0 && (
+                          <span className="font-semibold text-foreground">
+                            {m.goals}&nbsp;G
+                          </span>
+                        )}
+                        {m.yellow > 0 && (
+                          <span className="h-3 w-2 rounded-[1px] bg-amber-400" title="Yellow card" />
+                        )}
+                        {m.red > 0 && (
+                          <span className="h-3 w-2 rounded-[1px] bg-red-500" title="Red card" />
+                        )}
+                      </span>
+                    </div>
+                  );
+                })}
               </CardContent>
             </Card>
           )}

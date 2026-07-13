@@ -1,0 +1,129 @@
+import { spawn } from "node:child_process";
+import { NextResponse } from "next/server";
+
+// This route shells out to the Python refresh script, so it must run on the
+// Node.js runtime (not the Edge runtime) and must never be statically cached.
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+/**
+ * Refreshing the data runs a local Python process (`ml/refresh.py`) that hits
+ * public, key-less data sources and rebuilds `public/data/*.json`. Executing a
+ * child process from a web request is only safe on a trusted machine, so it is
+ * **disabled by default in production**. It is enabled automatically in local
+ * development, and can be explicitly enabled anywhere with `ALLOW_DATA_REFRESH=1`.
+ */
+function refreshEnabled(): boolean {
+  return process.env.NODE_ENV !== "production" || process.env.ALLOW_DATA_REFRESH === "1";
+}
+
+// Module-level guard so two clicks can't launch two overlapping pipelines.
+let running = false;
+
+const REFRESH_TIMEOUT_MS = 12 * 60 * 1000; // stats fetch + full pipeline
+
+export async function POST(request: Request) {
+  if (!refreshEnabled()) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "In-app refresh is disabled in this environment. Run `npm run data:fetch` " +
+          "(python ml/refresh.py) locally, or set ALLOW_DATA_REFRESH=1 to enable it.",
+      },
+      { status: 403 },
+    );
+  }
+  if (running) {
+    return NextResponse.json(
+      { ok: false, error: "A data refresh is already in progress. Please wait for it to finish." },
+      { status: 409 },
+    );
+  }
+
+  // `?mode=offline` rebuilds from the committed caches without any network calls;
+  // the default pulls the latest results + player match stats first.
+  const mode = new URL(request.url).searchParams.get("mode");
+  const args = ["ml/refresh.py"];
+  if (mode === "offline") args.push("--offline");
+
+  const python = process.env.PYTHON_BIN || process.env.PYTHON || "python";
+  const cwd = process.cwd();
+
+  running = true;
+  const startedAt = Date.now();
+  try {
+    const result = await runProcess(python, args, cwd, REFRESH_TIMEOUT_MS);
+    const tail = result.output.split(/\r?\n/).filter(Boolean).slice(-12);
+    if (result.code !== 0) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `refresh.py exited with code ${result.code}`,
+          durationMs: Date.now() - startedAt,
+          log: tail,
+        },
+        { status: 500 },
+      );
+    }
+    return NextResponse.json({
+      ok: true,
+      durationMs: Date.now() - startedAt,
+      mode: mode === "offline" ? "offline" : "live",
+      log: tail,
+    });
+  } catch (err) {
+    return NextResponse.json(
+      { ok: false, error: err instanceof Error ? err.message : String(err) },
+      { status: 500 },
+    );
+  } finally {
+    running = false;
+  }
+}
+
+function runProcess(
+  cmd: string,
+  args: string[],
+  cwd: string,
+  timeoutMs: number,
+): Promise<{ code: number | null; output: string }> {
+  return new Promise((resolve, reject) => {
+    // The command + args are constants defined in this repo; no user input is
+    // ever interpolated into them, and shell interpretation is disabled.
+    const child = spawn(cmd, args, {
+      cwd,
+      env: { ...process.env, PYTHONIOENCODING: "utf-8" },
+      shell: false,
+    });
+
+    let output = "";
+    const onData = (buf: Buffer) => {
+      output += buf.toString("utf-8");
+      if (output.length > 200_000) output = output.slice(-200_000); // cap memory
+    };
+    child.stdout.on("data", onData);
+    child.stderr.on("data", onData);
+
+    const timer = setTimeout(() => {
+      child.kill("SIGKILL");
+      reject(new Error(`refresh timed out after ${Math.round(timeoutMs / 1000)}s`));
+    }, timeoutMs);
+
+    child.on("error", (err) => {
+      clearTimeout(timer);
+      reject(
+        err.message.includes("ENOENT")
+          ? new Error(
+              `Could not launch Python ("${cmd}"). Ensure Python is installed and on PATH, ` +
+                `or set the PYTHON_BIN environment variable. (${err.message})`,
+            )
+          : err,
+      );
+    });
+    child.on("close", (code) => {
+      clearTimeout(timer);
+      resolve({ code, output });
+    });
+  });
+}

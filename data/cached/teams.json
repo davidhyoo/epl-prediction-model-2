@@ -54,9 +54,9 @@
     ],
     "keyPlayerIds": [
       "ARG-22",
-      "ARG-15",
       "ARG-26",
-      "ARG-23"
+      "ARG-19",
+      "ARG-20"
     ],
     "championProbHistory": [
       {
@@ -131,10 +131,10 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "ESP-18",
-      "ESP-22",
-      "ESP-21",
-      "ESP-24"
+      "ESP-24",
+      "ESP-12",
+      "ESP-23",
+      "ESP-08"
     ],
     "championProbHistory": [
       {
@@ -210,9 +210,9 @@
     ],
     "keyPlayerIds": [
       "FRA-22",
-      "FRA-24",
       "FRA-20",
-      "FRA-07"
+      "FRA-24",
+      "FRA-02"
     ],
     "championProbHistory": [
       {
@@ -288,9 +288,9 @@
     ],
     "keyPlayerIds": [
       "ENG-21",
-      "ENG-20",
-      "ENG-06",
-      "ENG-18"
+      "ENG-15",
+      "ENG-22",
+      "ENG-01"
     ],
     "championProbHistory": [
       {
@@ -366,10 +366,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "MEX-21",
+      "MEX-24",
       "MEX-20",
       "MEX-12",
-      "MEX-22"
+      "MEX-18"
     ],
     "championProbHistory": [
       {
@@ -444,10 +444,10 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "RSA-25",
-      "RSA-23",
-      "RSA-19",
-      "RSA-26"
+      "RSA-15",
+      "RSA-24",
+      "RSA-01",
+      "RSA-06"
     ],
     "championProbHistory": [
       {
@@ -522,10 +522,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
+      "KOR-14",
+      "KOR-26",
       "KOR-24",
-      "KOR-15",
-      "KOR-01",
-      "KOR-26"
+      "KOR-01"
     ],
     "championProbHistory": []
   },
@@ -583,10 +583,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "CZE-24",
-      "CZE-26",
-      "CZE-18",
-      "CZE-23"
+      "CZE-17",
+      "CZE-23",
+      "CZE-06",
+      "CZE-09"
     ],
     "championProbHistory": []
   },
@@ -644,10 +644,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "CAN-14",
+      "CAN-23",
       "CAN-24",
-      "CAN-18",
-      "CAN-20"
+      "CAN-14",
+      "CAN-02"
     ],
     "championProbHistory": [
       {
@@ -722,10 +722,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "BIH-15",
-      "BIH-24",
-      "BIH-18",
-      "BIH-23"
+      "BIH-19",
+      "BIH-21",
+      "BIH-23",
+      "BIH-07"
     ],
     "championProbHistory": [
       {
@@ -800,10 +800,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
+      "QAT-01",
       "QAT-21",
-      "QAT-18",
       "QAT-22",
-      "QAT-25"
+      "QAT-17"
     ],
     "championProbHistory": []
   },
@@ -860,8 +860,8 @@
     "keyPlayerIds": [
       "SUI-21",
       "SUI-22",
-      "SUI-23",
-      "SUI-13"
+      "SUI-15",
+      "SUI-23"
     ],
     "championProbHistory": [
       {
@@ -936,10 +936,10 @@
       "Knocked out in the round of 16"
     ],
     "keyPlayerIds": [
-      "BRA-20",
-      "BRA-19",
       "BRA-18",
-      "BRA-17"
+      "BRA-19",
+      "BRA-13",
+      "BRA-05"
     ],
     "championProbHistory": [
       {
@@ -1012,10 +1012,10 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "MAR-25",
-      "MAR-22",
-      "MAR-13",
-      "MAR-04"
+      "MAR-17",
+      "MAR-16",
+      "MAR-04",
+      "MAR-01"
     ],
     "championProbHistory": [
       {
@@ -1090,10 +1090,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "HAI-19",
-      "HAI-25",
-      "HAI-20",
-      "HAI-06"
+      "HAI-23",
+      "HAI-01",
+      "HAI-06",
+      "HAI-15"
     ],
     "championProbHistory": []
   },
@@ -1151,10 +1151,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "SCO-08",
+      "SCO-15",
       "SCO-05",
-      "SCO-22",
-      "SCO-07"
+      "SCO-19",
+      "SCO-08"
     ],
     "championProbHistory": []
   },
@@ -1209,10 +1209,10 @@
       "Knocked out in the round of 16"
     ],
     "keyPlayerIds": [
-      "USA-20",
-      "USA-22",
-      "USA-25",
-      "USA-19"
+      "USA-24",
+      "USA-19",
+      "USA-10",
+      "USA-16"
     ],
     "championProbHistory": [
       {
@@ -1288,9 +1288,9 @@
     ],
     "keyPlayerIds": [
       "PAR-23",
-      "PAR-17",
+      "PAR-20",
       "PAR-10",
-      "PAR-14"
+      "PAR-17"
     ],
     "championProbHistory": [
       {
@@ -1365,10 +1365,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "AUS-20",
-      "AUS-22",
-      "AUS-21",
-      "AUS-04"
+      "AUS-14",
+      "AUS-23",
+      "AUS-11",
+      "AUS-12"
     ],
     "championProbHistory": [
       {
@@ -1441,9 +1441,9 @@
     ],
     "keyPlayerIds": [
       "TUR-16",
-      "TUR-14",
-      "TUR-17",
-      "TUR-24"
+      "TUR-22",
+      "TUR-08",
+      "TUR-12"
     ],
     "championProbHistory": []
   },
@@ -1499,9 +1499,9 @@
     ],
     "keyPlayerIds": [
       "GER-23",
+      "GER-26",
       "GER-19",
-      "GER-13",
-      "GER-14"
+      "GER-16"
     ],
     "championProbHistory": [
       {
@@ -1576,10 +1576,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "CUW-24",
-      "CUW-13",
-      "CUW-20",
-      "CUW-01"
+      "CUW-14",
+      "CUW-01",
+      "CUW-15",
+      "CUW-13"
     ],
     "championProbHistory": []
   },
@@ -1637,10 +1637,10 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "CIV-22",
-      "CIV-12",
-      "CIV-13",
-      "CIV-17"
+      "CIV-24",
+      "CIV-23",
+      "CIV-14",
+      "CIV-20"
     ],
     "championProbHistory": [
       {
@@ -1713,10 +1713,10 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "ECU-23",
       "ECU-18",
-      "ECU-20",
-      "ECU-16"
+      "ECU-25",
+      "ECU-23",
+      "ECU-20"
     ],
     "championProbHistory": [
       {
@@ -1791,10 +1791,10 @@
       "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "NED-14",
       "NED-22",
-      "NED-18",
-      "NED-21"
+      "NED-25",
+      "NED-26",
+      "NED-05"
     ],
     "championProbHistory": [
       {
@@ -1866,10 +1866,10 @@
       "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "JPN-14",
-      "JPN-25",
-      "JPN-17",
-      "JPN-13"
+      "JPN-18",
+      "JPN-24",
+      "JPN-16",
+      "JPN-19"
     ],
     "championProbHistory": [
       {
@@ -1944,10 +1944,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "SWE-19",
       "SWE-18",
+      "SWE-23",
       "SWE-22",
-      "SWE-16"
+      "SWE-24"
     ],
     "championProbHistory": [
       {
@@ -2022,10 +2022,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "TUN-25",
       "TUN-18",
-      "TUN-14",
-      "TUN-21"
+      "TUN-22",
+      "TUN-06",
+      "TUN-14"
     ],
     "championProbHistory": []
   },
@@ -2081,10 +2081,10 @@
       "Defensively vulnerable"
     ],
     "keyPlayerIds": [
-      "BEL-18",
-      "BEL-23",
-      "BEL-13",
-      "BEL-20"
+      "BEL-24",
+      "BEL-20",
+      "BEL-21",
+      "BEL-15"
     ],
     "championProbHistory": [
       {
@@ -2159,10 +2159,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "EGY-20",
-      "EGY-22",
+      "EGY-06",
       "EGY-13",
-      "EGY-19"
+      "EGY-14",
+      "EGY-22"
     ],
     "championProbHistory": [
       {
@@ -2234,10 +2234,10 @@
       "Eliminated in the group stage"
     ],
     "keyPlayerIds": [
-      "IRN-14",
-      "IRN-18",
-      "IRN-13",
-      "IRN-05"
+      "IRN-11",
+      "IRN-15",
+      "IRN-21",
+      "IRN-13"
     ],
     "championProbHistory": []
   },
@@ -2295,10 +2295,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "NZL-24",
-      "NZL-18",
+      "NZL-16",
+      "NZL-10",
       "NZL-23",
-      "NZL-13"
+      "NZL-14"
     ],
     "championProbHistory": []
   },
@@ -2356,10 +2356,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "CPV-25",
-      "CPV-13",
-      "CPV-23",
-      "CPV-16"
+      "CPV-05",
+      "CPV-12",
+      "CPV-17",
+      "CPV-08"
     ],
     "championProbHistory": [
       {
@@ -2434,10 +2434,10 @@
       "Limited strength in depth"
     ],
     "keyPlayerIds": [
-      "SAU-22",
+      "SAU-06",
       "SAU-17",
-      "SAU-26",
-      "SAU-08"
+      "SAU-08",
+      "SAU-02"
     ],
     "championProbHistory": []
   },
@@ -2493,10 +2493,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "URU-08",
-      "URU-16",
-      "URU-24",
-      "URU-25"
+      "URU-21",
+      "URU-18",
+      "URU-13",
+      "URU-08"
     ],
     "championProbHistory": []
   },
@@ -2552,10 +2552,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "SEN-24",
-      "SEN-12",
       "SEN-25",
-      "SEN-22"
+      "SEN-18",
+      "SEN-16",
+      "SEN-21"
     ],
     "championProbHistory": [
       {
@@ -2630,10 +2630,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "IRQ-24",
       "IRQ-26",
       "IRQ-14",
-      "IRQ-18"
+      "IRQ-17",
+      "IRQ-10"
     ],
     "championProbHistory": []
   },
@@ -2689,10 +2689,10 @@
       "Relatively inexperienced squad"
     ],
     "keyPlayerIds": [
-      "NOR-13",
-      "NOR-16",
-      "NOR-06",
-      "NOR-04"
+      "NOR-21",
+      "NOR-23",
+      "NOR-24",
+      "NOR-08"
     ],
     "championProbHistory": [
       {
@@ -2768,9 +2768,9 @@
     ],
     "keyPlayerIds": [
       "ALG-20",
-      "ALG-17",
-      "ALG-24",
-      "ALG-11"
+      "ALG-10",
+      "ALG-21",
+      "ALG-04"
     ],
     "championProbHistory": [
       {
@@ -2842,9 +2842,9 @@
       "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "AUT-25",
       "AUT-24",
       "AUT-15",
+      "AUT-18",
       "AUT-26"
     ],
     "championProbHistory": [
@@ -2920,10 +2920,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "JOR-16",
-      "JOR-11",
       "JOR-23",
-      "JOR-22"
+      "JOR-22",
+      "JOR-06",
+      "JOR-19"
     ],
     "championProbHistory": []
   },
@@ -2981,9 +2981,9 @@
     ],
     "keyPlayerIds": [
       "POR-19",
-      "POR-13",
-      "POR-04",
-      "POR-14"
+      "POR-11",
+      "POR-15",
+      "POR-13"
     ],
     "championProbHistory": [
       {
@@ -3058,10 +3058,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "COD-22",
       "COD-25",
       "COD-09",
-      "COD-18"
+      "COD-15",
+      "COD-14"
     ],
     "championProbHistory": [
       {
@@ -3136,9 +3136,9 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "UZB-19",
       "UZB-24",
-      "UZB-18",
+      "UZB-21",
+      "UZB-02",
       "UZB-15"
     ],
     "championProbHistory": []
@@ -3195,10 +3195,10 @@
       "Knocked out in the round of 16"
     ],
     "keyPlayerIds": [
-      "COL-11",
-      "COL-13",
-      "COL-15",
-      "COL-07"
+      "COL-04",
+      "COL-22",
+      "COL-16",
+      "COL-11"
     ],
     "championProbHistory": [
       {
@@ -3270,10 +3270,10 @@
       "Knocked out in the round of 32"
     ],
     "keyPlayerIds": [
-      "CRO-24",
-      "CRO-15",
+      "CRO-23",
+      "CRO-16",
       "CRO-14",
-      "CRO-23"
+      "CRO-17"
     ],
     "championProbHistory": [
       {
@@ -3348,10 +3348,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
+      "GHA-13",
       "GHA-21",
-      "GHA-14",
-      "GHA-07",
-      "GHA-23"
+      "GHA-11",
+      "GHA-07"
     ],
     "championProbHistory": [
       {
@@ -3426,10 +3426,10 @@
       "Patchy recent results"
     ],
     "keyPlayerIds": [
-      "PAN-16",
-      "PAN-20",
-      "PAN-21",
-      "PAN-24"
+      "PAN-11",
+      "PAN-10",
+      "PAN-05",
+      "PAN-03"
     ],
     "championProbHistory": []
   }
