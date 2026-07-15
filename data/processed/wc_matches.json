@@ -2596,12 +2596,12 @@
     "home": "FRA",
     "away": "ESP",
     "home_adv": 0,
-    "gh": null,
-    "ga": null,
-    "fh": null,
-    "fa": null,
+    "gh": 0,
+    "ga": 2,
+    "fh": 0,
+    "fa": 2,
     "pens": null,
-    "winner": null,
+    "winner": "away",
     "feedHome": [
       "W",
       97
@@ -2611,8 +2611,8 @@
       98
     ],
     "knockout": 1,
-    "status": "upcoming",
-    "outcome": null
+    "status": "completed",
+    "outcome": 2
   },
   {
     "id": "K102",
@@ -2655,7 +2655,7 @@
     "date": "2026-07-18T21:00:00+00:00",
     "venue": "Hard Rock Stadium",
     "city": "Miami (Miami Gardens)",
-    "home": null,
+    "home": "FRA",
     "away": null,
     "home_adv": 0,
     "gh": null,
@@ -2664,10 +2664,7 @@
     "fa": null,
     "pens": null,
     "winner": null,
-    "feedHome": [
-      "L",
-      101
-    ],
+    "feedHome": null,
     "feedAway": [
       "L",
       102
@@ -2686,7 +2683,7 @@
     "date": "2026-07-19T19:00:00+00:00",
     "venue": "MetLife Stadium",
     "city": "New York/New Jersey (East Rutherford)",
-    "home": null,
+    "home": "ESP",
     "away": null,
     "home_adv": 0,
     "gh": null,
@@ -2695,10 +2692,7 @@
     "fa": null,
     "pens": null,
     "winner": null,
-    "feedHome": [
-      "W",
-      101
-    ],
+    "feedHome": null,
     "feedAway": [
       "W",
       102

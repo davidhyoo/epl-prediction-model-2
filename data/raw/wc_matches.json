@@ -2404,13 +2404,13 @@
     ],
     "home": "FRA",
     "away": "ESP",
-    "gh": null,
-    "ga": null,
-    "fh": null,
-    "fa": null,
+    "gh": 0,
+    "ga": 2,
+    "fh": 0,
+    "fa": 2,
     "pens": null,
-    "winner": null,
-    "played": false
+    "winner": "away",
+    "played": true
   },
   {
     "id": "K102",
@@ -2452,15 +2452,12 @@
     "venue": "Hard Rock Stadium",
     "city": "Miami (Miami Gardens)",
     "home_adv": 0,
-    "feedHome": [
-      "L",
-      101
-    ],
+    "feedHome": null,
     "feedAway": [
       "L",
       102
     ],
-    "home": null,
+    "home": "FRA",
     "away": null,
     "gh": null,
     "ga": null,
@@ -2481,15 +2478,12 @@
     "venue": "MetLife Stadium",
     "city": "New York/New Jersey (East Rutherford)",
     "home_adv": 0,
-    "feedHome": [
-      "W",
-      101
-    ],
+    "feedHome": null,
     "feedAway": [
       "W",
       102
     ],
-    "home": null,
+    "home": "ESP",
     "away": null,
     "gh": null,
     "ga": null,

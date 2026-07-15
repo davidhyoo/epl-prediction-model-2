@@ -1,32 +1,25 @@
 {
   "teams": [
     {
-      "code": "ARG",
-      "iso2": "ar",
-      "name": "Argentina",
-      "group": "J",
-      "championProb": 0.39845
-    },
-    {
       "code": "ESP",
       "iso2": "es",
       "name": "Spain",
       "group": "H",
-      "championProb": 0.2856
+      "championProb": 0.54955
     },
     {
-      "code": "FRA",
-      "iso2": "fr",
-      "name": "France",
-      "group": "I",
-      "championProb": 0.20625
+      "code": "ARG",
+      "iso2": "ar",
+      "name": "Argentina",
+      "group": "J",
+      "championProb": 0.3581
     },
     {
       "code": "ENG",
       "iso2": "gb-eng",
       "name": "England",
       "group": "L",
-      "championProb": 0.1097
+      "championProb": 0.09235
     },
     {
       "code": "MEX",
@@ -243,6 +236,13 @@
       "iso2": "uy",
       "name": "Uruguay",
       "group": "H",
+      "championProb": 0.0
+    },
+    {
+      "code": "FRA",
+      "iso2": "fr",
+      "name": "France",
+      "group": "I",
       "championProb": 0.0
     },
     {

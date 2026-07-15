@@ -6,6 +6,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { CommandPalette } from "@/components/command-palette";
+import { getSummary } from "@/lib/data";
+
+function refreshEnabled(): boolean {
+  return process.env.NODE_ENV !== "production" || process.env.ALLOW_DATA_REFRESH === "1";
+}
 
 export const metadata: Metadata = {
   title: {
@@ -33,14 +38,19 @@ export const viewport = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const summary = await getSummary();
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <TooltipProvider delayDuration={150}>
             <div className="flex min-h-screen flex-col">
-              <SiteNav />
+              <SiteNav
+                dataAsOf={summary.asOf}
+                dataGeneratedAt={summary.generatedAt}
+                refreshEnabled={refreshEnabled()}
+              />
               <main className="flex-1">{children}</main>
               <SiteFooter />
             </div>

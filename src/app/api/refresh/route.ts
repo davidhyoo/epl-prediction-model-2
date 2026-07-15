@@ -1,5 +1,6 @@
 import { spawn } from "node:child_process";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 // This route shells out to the Python refresh script, so it must run on the
 // Node.js runtime (not the Edge runtime) and must never be statically cached.
@@ -66,6 +67,11 @@ export async function POST(request: Request) {
         { status: 500 },
       );
     }
+    // The pipeline rewrote public/data/*.json. Purge the full route cache (every
+    // page under the root layout) so statically-prerendered pages re-read the
+    // new data on the next request — this is what makes the in-app refresh work
+    // "live" even in a production build, not just in `next dev`.
+    revalidatePath("/", "layout");
     return NextResponse.json({
       ok: true,
       durationMs: Date.now() - startedAt,

@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { openCommandPalette } from "@/components/command-palette";
+import { DataFreshnessControl } from "@/components/refresh-data-button";
 
 const LINKS = [
   { label: "Dashboard", href: "/" },
@@ -25,7 +26,15 @@ function isActive(pathname: string, href: string): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function SiteNav() {
+export function SiteNav({
+  dataAsOf,
+  dataGeneratedAt,
+  refreshEnabled,
+}: {
+  dataAsOf: string;
+  dataGeneratedAt: string;
+  refreshEnabled: boolean;
+}) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -59,6 +68,11 @@ export function SiteNav() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1.5">
+          <DataFreshnessControl
+            asOf={dataAsOf}
+            generatedAt={dataGeneratedAt}
+            enabled={refreshEnabled}
+          />
           <button
             onClick={openCommandPalette}
             className="hidden items-center gap-2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs text-muted-foreground shadow-sm transition-colors hover:bg-secondary sm:flex"

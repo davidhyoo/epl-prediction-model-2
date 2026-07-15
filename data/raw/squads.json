@@ -45604,15 +45604,15 @@
     },
     "wiki": "Unai Simón",
     "realStats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
-      "gkCleanSheets": 5,
+      "gkCleanSheets": 6,
       "gkGoalsConceded": 1,
-      "gkStarts": 6,
+      "gkStarts": 7,
       "log": [
         {
           "date": "2026-06-15",
@@ -45674,6 +45674,17 @@
           "opp": "BEL",
           "gf": 2,
           "ga": 1,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
           "min": 90,
           "g": 0,
           "y": 0,
@@ -45809,8 +45820,8 @@
     },
     "wiki": "Marcos Llorente",
     "realStats": {
-      "appearances": 2,
-      "minutes": 180,
+      "appearances": 3,
+      "minutes": 187,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -45840,6 +45851,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 7,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -45869,9 +45891,9 @@
     },
     "wiki": "Pedro Porro",
     "realStats": {
-      "appearances": 4,
-      "minutes": 360,
-      "goals": 1,
+      "appearances": 5,
+      "minutes": 443,
+      "goals": 2,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
@@ -45922,6 +45944,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 83,
+          "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -45951,8 +45984,8 @@
     },
     "wiki": "Aymeric Laporte",
     "realStats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -46024,6 +46057,17 @@
           "min": 90,
           "g": 0,
           "y": 1,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 90,
+          "g": 0,
+          "y": 0,
           "r": 0,
           "started": true
         }
@@ -46055,8 +46099,8 @@
     },
     "wiki": "Pau Cubarsí",
     "realStats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -46130,6 +46174,17 @@
           "y": 1,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -46159,11 +46214,11 @@
     },
     "wiki": "Marc Cucurella",
     "realStats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "ownGoals": 0,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "gkCleanSheets": 0,
       "gkGoalsConceded": 0,
@@ -46234,6 +46289,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 90,
+          "g": 0,
+          "y": 1,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -46263,8 +46329,8 @@
     },
     "wiki": "Mikel Merino",
     "realStats": {
-      "appearances": 6,
-      "minutes": 136,
+      "appearances": 7,
+      "minutes": 149,
       "goals": 2,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -46338,6 +46404,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 13,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -46367,8 +46444,8 @@
     },
     "wiki": "Fabián Ruiz",
     "realStats": {
-      "appearances": 6,
-      "minutes": 181,
+      "appearances": 7,
+      "minutes": 258,
       "goals": 1,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -46439,6 +46516,17 @@
           "ga": 1,
           "min": 55,
           "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 77,
+          "g": 0,
           "y": 0,
           "r": 0,
           "started": true
@@ -46527,8 +46615,8 @@
     },
     "wiki": "Dani Olmo",
     "realStats": {
-      "appearances": 6,
-      "minutes": 342,
+      "appearances": 7,
+      "minutes": 419,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -46598,6 +46686,17 @@
           "gf": 2,
           "ga": 1,
           "min": 86,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 77,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -46691,8 +46790,8 @@
     },
     "wiki": "Álex Baena",
     "realStats": {
-      "appearances": 5,
-      "minutes": 328,
+      "appearances": 6,
+      "minutes": 411,
       "goals": 1,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -46755,6 +46854,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 83,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -46784,8 +46894,8 @@
     },
     "wiki": "Rodri (footballer, born 1996)",
     "realStats": {
-      "appearances": 6,
-      "minutes": 537,
+      "appearances": 7,
+      "minutes": 627,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -46859,6 +46969,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -46914,8 +47035,8 @@
     },
     "wiki": "Pedri",
     "realStats": {
-      "appearances": 6,
-      "minutes": 430,
+      "appearances": 7,
+      "minutes": 443,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -46989,6 +47110,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 13,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -47018,8 +47150,8 @@
     },
     "wiki": "Ferran Torres",
     "realStats": {
-      "appearances": 6,
-      "minutes": 208,
+      "appearances": 7,
+      "minutes": 224,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -47093,6 +47225,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 16,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -47122,8 +47265,8 @@
     },
     "wiki": "Nico Williams",
     "realStats": {
-      "appearances": 4,
-      "minutes": 57,
+      "appearances": 5,
+      "minutes": 64,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -47175,6 +47318,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 7,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -47204,8 +47358,8 @@
     },
     "wiki": "Lamine Yamal",
     "realStats": {
-      "appearances": 6,
-      "minutes": 406,
+      "appearances": 7,
+      "minutes": 496,
       "goals": 1,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -47279,6 +47433,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -47308,9 +47473,9 @@
     },
     "wiki": "Mikel Oyarzabal",
     "realStats": {
-      "appearances": 6,
-      "minutes": 471,
-      "goals": 4,
+      "appearances": 7,
+      "minutes": 545,
+      "goals": 5,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
@@ -47380,6 +47545,17 @@
           "ga": 1,
           "min": 79,
           "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "FRA",
+          "gf": 2,
+          "ga": 0,
+          "min": 74,
+          "g": 1,
           "y": 0,
           "r": 0,
           "started": true
@@ -51859,15 +52035,15 @@
     },
     "wiki": "Mike Maignan",
     "realStats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
       "gkCleanSheets": 4,
-      "gkGoalsConceded": 2,
-      "gkStarts": 6,
+      "gkGoalsConceded": 4,
+      "gkStarts": 7,
       "log": [
         {
           "date": "2026-06-16",
@@ -51929,6 +52105,17 @@
           "opp": "MAR",
           "gf": 2,
           "ga": 0,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
           "min": 90,
           "g": 0,
           "y": 0,
@@ -52071,8 +52258,8 @@
     },
     "wiki": "Lucas Digne",
     "realStats": {
-      "appearances": 4,
-      "minutes": 348,
+      "appearances": 5,
+      "minutes": 420,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -52124,6 +52311,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 72,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -52153,8 +52351,8 @@
     },
     "wiki": "Dayot Upamecano",
     "realStats": {
-      "appearances": 6,
-      "minutes": 526,
+      "appearances": 7,
+      "minutes": 616,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -52228,6 +52426,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -52257,8 +52466,8 @@
     },
     "wiki": "Jules Koundé",
     "realStats": {
-      "appearances": 6,
-      "minutes": 511,
+      "appearances": 7,
+      "minutes": 601,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -52328,6 +52537,17 @@
           "gf": 2,
           "ga": 0,
           "min": 87,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 90,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -52410,8 +52630,8 @@
     },
     "wiki": "William Saliba",
     "realStats": {
-      "appearances": 5,
-      "minutes": 450,
+      "appearances": 6,
+      "minutes": 480,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -52474,6 +52694,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 30,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -52503,8 +52734,8 @@
     },
     "wiki": "Théo Hernandez",
     "realStats": {
-      "appearances": 3,
-      "minutes": 192,
+      "appearances": 4,
+      "minutes": 210,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -52541,6 +52772,17 @@
           "gf": 3,
           "ga": 0,
           "min": 12,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 18,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -52600,8 +52842,8 @@
     },
     "wiki": "Maxence Lacroix",
     "realStats": {
-      "appearances": 1,
-      "minutes": 90,
+      "appearances": 2,
+      "minutes": 150,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -52620,6 +52862,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 60,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -52649,8 +52902,8 @@
     },
     "wiki": "Manu Koné",
     "realStats": {
-      "appearances": 4,
-      "minutes": 341,
+      "appearances": 5,
+      "minutes": 385,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -52702,6 +52955,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 44,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -52731,8 +52995,8 @@
     },
     "wiki": "Aurélien Tchouaméni",
     "realStats": {
-      "appearances": 3,
-      "minutes": 270,
+      "appearances": 4,
+      "minutes": 360,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -52768,6 +53032,17 @@
           "opp": "SWE",
           "gf": 3,
           "ga": 0,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
           "min": 90,
           "g": 0,
           "y": 0,
@@ -52828,11 +53103,11 @@
     },
     "wiki": "Adrien Rabiot",
     "realStats": {
-      "appearances": 5,
-      "minutes": 450,
+      "appearances": 6,
+      "minutes": 496,
       "goals": 0,
       "ownGoals": 0,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "gkCleanSheets": 0,
       "gkGoalsConceded": 0,
@@ -52890,6 +53165,17 @@
           "min": 90,
           "g": 0,
           "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 46,
+          "g": 0,
+          "y": 1,
           "r": 0,
           "started": true
         }
@@ -52970,8 +53256,8 @@
     },
     "wiki": "Rayan Cherki",
     "realStats": {
-      "appearances": 5,
-      "minutes": 61,
+      "appearances": 6,
+      "minutes": 79,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -53030,6 +53316,17 @@
           "gf": 1,
           "ga": 0,
           "min": 6,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 18,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -53112,8 +53409,8 @@
     },
     "wiki": "Ousmane Dembélé",
     "realStats": {
-      "appearances": 6,
-      "minutes": 462,
+      "appearances": 7,
+      "minutes": 552,
       "goals": 2,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -53184,6 +53481,17 @@
           "ga": 0,
           "min": 90,
           "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
           "y": 0,
           "r": 0,
           "started": true
@@ -53265,11 +53573,11 @@
     },
     "wiki": "Kylian Mbappé",
     "realStats": {
-      "appearances": 6,
-      "minutes": 518,
+      "appearances": 7,
+      "minutes": 608,
       "goals": 8,
       "ownGoals": 0,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "gkCleanSheets": 0,
       "gkGoalsConceded": 0,
@@ -53340,6 +53648,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 1,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -53369,8 +53688,8 @@
     },
     "wiki": "Michael Olise",
     "realStats": {
-      "appearances": 6,
-      "minutes": 488,
+      "appearances": 7,
+      "minutes": 560,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -53444,6 +53763,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 72,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -53473,8 +53803,8 @@
     },
     "wiki": "Bradley Barcola",
     "realStats": {
-      "appearances": 6,
-      "minutes": 282,
+      "appearances": 7,
+      "minutes": 339,
       "goals": 2,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -53548,6 +53878,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 57,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -53577,8 +53918,8 @@
     },
     "wiki": "Désiré Doué",
     "realStats": {
-      "appearances": 6,
-      "minutes": 320,
+      "appearances": 7,
+      "minutes": 353,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -53652,6 +53993,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-14",
+          "opp": "ESP",
+          "gf": 0,
+          "ga": 2,
+          "min": 33,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },

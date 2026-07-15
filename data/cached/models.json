@@ -4,20 +4,20 @@
     "name": "Logistic Regression",
     "type": "linear",
     "description": "Multinomial logistic regression on standardised features.",
-    "accuracy": 0.64,
-    "logLoss": 0.8563,
-    "brier": 0.5104,
-    "gamesEvaluated": 100,
-    "avgConfidence": 0.5715,
-    "ece": 0.1162,
+    "accuracy": 0.6436,
+    "logLoss": 0.8578,
+    "brier": 0.5113,
+    "gamesEvaluated": 101,
+    "avgConfidence": 0.5694,
+    "ece": 0.1213,
     "weight": 0.2539,
     "rank": 1,
-    "lastUpdated": "2026-07-13T16:50:19+00:00",
+    "lastUpdated": "2026-07-15T18:38:37+00:00",
     "calibration": [
       {
-        "predicted": 0.3825,
-        "observed": 0.5556,
-        "count": 9
+        "predicted": 0.3809,
+        "observed": 0.6,
+        "count": 10
       },
       {
         "predicted": 0.4482,
@@ -105,20 +105,20 @@
     "name": "Weighted Ensemble",
     "type": "ensemble",
     "description": "Performance-weighted blend of all four base models.",
-    "accuracy": 0.64,
-    "logLoss": 0.8613,
-    "brier": 0.5117,
-    "gamesEvaluated": 100,
-    "avgConfidence": 0.5586,
-    "ece": 0.1474,
+    "accuracy": 0.6436,
+    "logLoss": 0.8628,
+    "brier": 0.5127,
+    "gamesEvaluated": 101,
+    "avgConfidence": 0.5567,
+    "ece": 0.1397,
     "weight": 1.0,
     "rank": 2,
-    "lastUpdated": "2026-07-13T16:50:19+00:00",
+    "lastUpdated": "2026-07-15T18:38:37+00:00",
     "calibration": [
       {
-        "predicted": 0.3823,
-        "observed": 0.3333,
-        "count": 15
+        "predicted": 0.3812,
+        "observed": 0.375,
+        "count": 16
       },
       {
         "predicted": 0.4522,
@@ -202,120 +202,24 @@
     "note": null
   },
   {
-    "id": "rf",
-    "name": "Random Forest",
-    "type": "tree",
-    "description": "400 bagged decision trees on the engineered features.",
-    "accuracy": 0.66,
-    "logLoss": 0.8665,
-    "brier": 0.5167,
-    "gamesEvaluated": 100,
-    "avgConfidence": 0.5557,
-    "ece": 0.1384,
-    "weight": 0.251,
-    "rank": 3,
-    "lastUpdated": "2026-07-13T16:50:19+00:00",
-    "calibration": [
-      {
-        "predicted": 0.3735,
-        "observed": 0.5,
-        "count": 14
-      },
-      {
-        "predicted": 0.446,
-        "observed": 0.6522,
-        "count": 23
-      },
-      {
-        "predicted": 0.5471,
-        "observed": 0.7391,
-        "count": 23
-      },
-      {
-        "predicted": 0.6581,
-        "observed": 0.7083,
-        "count": 24
-      },
-      {
-        "predicted": 0.7316,
-        "observed": 0.625,
-        "count": 16
-      }
-    ],
-    "featureImportance": [
-      {
-        "feature": "squad_diff",
-        "label": "Squad / player strength score",
-        "importance": 0.3199
-      },
-      {
-        "feature": "elo_diff",
-        "label": "Elo / FIFA-style rating difference",
-        "importance": 0.297
-      },
-      {
-        "feature": "h2h_diff",
-        "label": "Head-to-head history",
-        "importance": 0.1127
-      },
-      {
-        "feature": "xg_diff",
-        "label": "Expected goals (xG) trend",
-        "importance": 0.0906
-      },
-      {
-        "feature": "form_diff",
-        "label": "Recent form (points per game)",
-        "importance": 0.0517
-      },
-      {
-        "feature": "gf_diff",
-        "label": "Attacking output (goals scored trend)",
-        "importance": 0.0482
-      },
-      {
-        "feature": "ga_diff",
-        "label": "Defensive solidity (goals conceded trend)",
-        "importance": 0.045
-      },
-      {
-        "feature": "rest_diff",
-        "label": "Rest & recovery advantage",
-        "importance": 0.0191
-      },
-      {
-        "feature": "host_adv",
-        "label": "Host-nation advantage",
-        "importance": 0.0158
-      },
-      {
-        "feature": "stage_knockout",
-        "label": "Knockout-stage experience",
-        "importance": 0.0
-      }
-    ],
-    "strengths": "Captures non-linear interactions without much tuning.",
-    "note": null
-  },
-  {
     "id": "xgb",
     "name": "XGBoost",
     "type": "boosting",
     "description": "Gradient-boosted trees (350 rounds, depth 4).",
-    "accuracy": 0.62,
-    "logLoss": 0.8667,
-    "brier": 0.5153,
-    "gamesEvaluated": 100,
-    "avgConfidence": 0.5759,
-    "ece": 0.0575,
+    "accuracy": 0.6238,
+    "logLoss": 0.8681,
+    "brier": 0.5161,
+    "gamesEvaluated": 101,
+    "avgConfidence": 0.5739,
+    "ece": 0.0632,
     "weight": 0.2509,
-    "rank": 4,
-    "lastUpdated": "2026-07-13T16:50:19+00:00",
+    "rank": 3,
+    "lastUpdated": "2026-07-15T18:38:37+00:00",
     "calibration": [
       {
-        "predicted": 0.379,
-        "observed": 0.4375,
-        "count": 16
+        "predicted": 0.3783,
+        "observed": 0.4706,
+        "count": 17
       },
       {
         "predicted": 0.4582,
@@ -404,24 +308,120 @@
     "note": null
   },
   {
+    "id": "rf",
+    "name": "Random Forest",
+    "type": "tree",
+    "description": "400 bagged decision trees on the engineered features.",
+    "accuracy": 0.6535,
+    "logLoss": 0.8687,
+    "brier": 0.5182,
+    "gamesEvaluated": 101,
+    "avgConfidence": 0.5538,
+    "ece": 0.1334,
+    "weight": 0.2507,
+    "rank": 4,
+    "lastUpdated": "2026-07-15T18:38:37+00:00",
+    "calibration": [
+      {
+        "predicted": 0.3728,
+        "observed": 0.4667,
+        "count": 15
+      },
+      {
+        "predicted": 0.446,
+        "observed": 0.6522,
+        "count": 23
+      },
+      {
+        "predicted": 0.5471,
+        "observed": 0.7391,
+        "count": 23
+      },
+      {
+        "predicted": 0.6581,
+        "observed": 0.7083,
+        "count": 24
+      },
+      {
+        "predicted": 0.7316,
+        "observed": 0.625,
+        "count": 16
+      }
+    ],
+    "featureImportance": [
+      {
+        "feature": "squad_diff",
+        "label": "Squad / player strength score",
+        "importance": 0.3199
+      },
+      {
+        "feature": "elo_diff",
+        "label": "Elo / FIFA-style rating difference",
+        "importance": 0.297
+      },
+      {
+        "feature": "h2h_diff",
+        "label": "Head-to-head history",
+        "importance": 0.1127
+      },
+      {
+        "feature": "xg_diff",
+        "label": "Expected goals (xG) trend",
+        "importance": 0.0906
+      },
+      {
+        "feature": "form_diff",
+        "label": "Recent form (points per game)",
+        "importance": 0.0517
+      },
+      {
+        "feature": "gf_diff",
+        "label": "Attacking output (goals scored trend)",
+        "importance": 0.0482
+      },
+      {
+        "feature": "ga_diff",
+        "label": "Defensive solidity (goals conceded trend)",
+        "importance": 0.045
+      },
+      {
+        "feature": "rest_diff",
+        "label": "Rest & recovery advantage",
+        "importance": 0.0191
+      },
+      {
+        "feature": "host_adv",
+        "label": "Host-nation advantage",
+        "importance": 0.0158
+      },
+      {
+        "feature": "stage_knockout",
+        "label": "Knockout-stage experience",
+        "importance": 0.0
+      }
+    ],
+    "strengths": "Captures non-linear interactions without much tuning.",
+    "note": null
+  },
+  {
     "id": "elo",
     "name": "Elo Baseline",
     "type": "baseline",
     "description": "Analytic two-stage Elo with a fitted draw model.",
-    "accuracy": 0.62,
-    "logLoss": 0.8904,
-    "brier": 0.5293,
-    "gamesEvaluated": 100,
-    "avgConfidence": 0.5502,
-    "ece": 0.1348,
-    "weight": 0.2442,
+    "accuracy": 0.6238,
+    "logLoss": 0.8908,
+    "brier": 0.5295,
+    "gamesEvaluated": 101,
+    "avgConfidence": 0.5486,
+    "ece": 0.1275,
+    "weight": 0.2445,
     "rank": 5,
-    "lastUpdated": "2026-07-13T16:50:19+00:00",
+    "lastUpdated": "2026-07-15T18:38:37+00:00",
     "calibration": [
       {
-        "predicted": 0.3726,
-        "observed": 0.2222,
-        "count": 9
+        "predicted": 0.3748,
+        "observed": 0.3,
+        "count": 10
       },
       {
         "predicted": 0.4429,

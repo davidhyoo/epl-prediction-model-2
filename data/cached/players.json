@@ -130,11 +130,11 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_France_v_Senegal_16_June_2026-391_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 518,
+      "appearances": 7,
+      "minutes": 608,
       "goals": 8,
       "assists": null,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "cleanSheets": null,
       "goalsConceded": null
@@ -205,9 +205,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 1,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Kylian Mbappé is a 27-year-old forward for France, playing club football at Real Madrid and captains the side. He has 104 senior caps for France and 64 international goals. At the 2026 World Cup he has made 6 appearances and scored 8 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Kylian Mbappé is a 27-year-old forward for France, playing club football at Real Madrid and captains the side. He has 104 senior caps for France and 64 international goals. At the 2026 World Cup he has made 7 appearances and scored 8 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-26",
@@ -869,7 +880,7 @@
     "club": "Barcelona",
     "clubCountry": "Spain",
     "rating": 92.0,
-    "contribution": 31.0,
+    "contribution": 31.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 63,
@@ -882,8 +893,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ferran_torres_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 208,
+      "appearances": 7,
+      "minutes": 224,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -957,9 +968,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 16,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Ferran Torres is a 26-year-old forward for Spain, playing club football at Barcelona. He has 63 senior caps for Spain and 24 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Ferran Torres is a 26-year-old forward for Spain, playing club football at Barcelona. He has 63 senior caps for Spain and 24 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-15",
@@ -1378,7 +1400,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 91.1,
-    "contribution": 53.5,
+    "contribution": 56.0,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 65,
@@ -1391,8 +1413,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ousmane_Dembele_France_v_Senegal_16_June_2026-341_(cropped)_2.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 462,
+      "appearances": 7,
+      "minutes": 552,
       "goals": 2,
       "assists": null,
       "yellowCards": 0,
@@ -1466,9 +1488,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Ousmane Dembélé is a 29-year-old forward for France, playing club football at Paris Saint-Germain. He has 65 senior caps for France and 12 international goals. At the 2026 World Cup he has made 6 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Ousmane Dembélé is a 29-year-old forward for France, playing club football at Paris Saint-Germain. He has 65 senior caps for France and 12 international goals. At the 2026 World Cup he has made 7 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "NED-21",
@@ -1848,7 +1881,7 @@
     "club": "Manchester City",
     "clubCountry": "England",
     "rating": 90.4,
-    "contribution": 39.2,
+    "contribution": 41.7,
     "isCaptain": true,
     "isKeyPlayer": false,
     "caps": 68,
@@ -1861,8 +1894,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:RODRI_-_SWE_vs_ESP_-_UEFA_EURO_2020_QUALIFIERS_-_2019.10.15_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 537,
+      "appearances": 7,
+      "minutes": 627,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -1936,9 +1969,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Rodri is a 29-year-old midfielder for Spain, playing club football at Manchester City and captains the side. He has 68 senior caps for Spain and 4 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Rodri is a 29-year-old midfielder for Spain, playing club football at Manchester City and captains the side. He has 68 senior caps for Spain and 4 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-20",
@@ -2141,7 +2185,7 @@
     "club": "Athletic Bilbao",
     "clubCountry": "Spain",
     "rating": 89.9,
-    "contribution": 38.9,
+    "contribution": 41.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 64,
@@ -2154,13 +2198,13 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Unai_Sim%C3%B3n_2025_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
-      "cleanSheets": 5,
+      "cleanSheets": 6,
       "goalsConceded": 1
     },
     "matchLog": [
@@ -2229,9 +2273,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Unai Simón is a 29-year-old goalkeeper for Spain, playing club football at Athletic Bilbao. He has 64 senior caps for Spain. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Unai Simón is a 29-year-old goalkeeper for Spain, playing club football at Athletic Bilbao. He has 64 senior caps for Spain. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-24",
@@ -2246,7 +2301,7 @@
     "club": "Real Sociedad",
     "clubCountry": "Spain",
     "rating": 89.8,
-    "contribution": 69.0,
+    "contribution": 79.0,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 59,
@@ -2259,9 +2314,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 471,
-      "goals": 4,
+      "appearances": 7,
+      "minutes": 545,
+      "goals": 5,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
@@ -2334,9 +2389,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 74,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Mikel Oyarzabal is a 29-year-old forward for Spain, playing club football at Real Sociedad. He has 59 senior caps for Spain and 29 international goals. At the 2026 World Cup he has made 6 appearances and scored 4 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Mikel Oyarzabal is a 29-year-old forward for Spain, playing club football at Real Sociedad. He has 59 senior caps for Spain and 29 international goals. At the 2026 World Cup he has made 7 appearances and scored 5 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-12",
@@ -2445,7 +2511,7 @@
     "club": "AC Milan",
     "clubCountry": "Italy",
     "rating": 89.5,
-    "contribution": 36.2,
+    "contribution": 37.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 64,
@@ -2458,11 +2524,11 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adrien_Rabiot_France_v_Senegal_16_June_2026-371_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 450,
+      "appearances": 6,
+      "minutes": 496,
       "goals": 0,
       "assists": null,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "cleanSheets": null,
       "goalsConceded": null
@@ -2522,9 +2588,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 46,
+        "goals": 0,
+        "yellow": 1,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Adrien Rabiot is a 31-year-old midfielder for France, playing club football at AC Milan. He has 64 senior caps for France and 7 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Adrien Rabiot is a 31-year-old midfielder for France, playing club football at AC Milan. He has 64 senior caps for France and 7 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-06",
@@ -2622,7 +2699,7 @@
     "club": "Arsenal",
     "clubCountry": "England",
     "rating": 89.3,
-    "contribution": 43.4,
+    "contribution": 43.7,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 49,
@@ -2635,8 +2712,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spain_football_team_in_2025_Mikel_Merino.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 136,
+      "appearances": 7,
+      "minutes": 149,
       "goals": 2,
       "assists": null,
       "yellowCards": 0,
@@ -2710,9 +2787,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 13,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Mikel Merino is a 29-year-old midfielder for Spain, playing club football at Arsenal. He has 49 senior caps for Spain and 12 international goals. At the 2026 World Cup he has made 6 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Mikel Merino is a 29-year-old midfielder for Spain, playing club football at Arsenal. He has 49 senior caps for Spain and 12 international goals. At the 2026 World Cup he has made 7 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-18",
@@ -2976,7 +3064,7 @@
     "club": "Al-Hilal",
     "clubCountry": "KSA",
     "rating": 88.9,
-    "contribution": 28.7,
+    "contribution": 29.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 47,
@@ -2989,8 +3077,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Theo_Hernandez_France_v_Norway_26_June_26-122.jpg"
     },
     "stats": {
-      "appearances": 3,
-      "minutes": 192,
+      "appearances": 4,
+      "minutes": 210,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -3031,9 +3119,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 18,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Théo Hernandez is a 28-year-old defender for France, playing club football at Al-Hilal. He has 47 senior caps for France and 2 international goals. At the 2026 World Cup he has made 3 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Théo Hernandez is a 28-year-old defender for France, playing club football at Al-Hilal. He has 47 senior caps for France and 2 international goals. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-21",
@@ -3203,7 +3302,7 @@
     "club": "Athletic Bilbao",
     "clubCountry": "Spain",
     "rating": 88.7,
-    "contribution": 24.8,
+    "contribution": 25.0,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 34,
@@ -3216,8 +3315,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_(168)_(cropped).jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 57,
+      "appearances": 5,
+      "minutes": 64,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -3269,9 +3368,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 7,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Nico Williams is a 23-year-old forward for Spain, playing club football at Athletic Bilbao. He has 34 senior caps for Spain and 6 international goals. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Nico Williams is a 23-year-old forward for Spain, playing club football at Athletic Bilbao. He has 34 senior caps for Spain and 6 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-18",
@@ -3397,7 +3507,7 @@
     "club": "Barcelona",
     "clubCountry": "Spain",
     "rating": 88.3,
-    "contribution": 38.0,
+    "contribution": 40.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 18,
@@ -3410,8 +3520,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pau_Cubars%C3%AD_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -3485,9 +3595,20 @@
         "yellow": 1,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Pau Cubarsí is a 19-year-old defender for Spain, playing club football at Barcelona. He has 18 senior caps for Spain. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Pau Cubarsí is a 19-year-old defender for Spain, playing club football at Barcelona. He has 18 senior caps for Spain. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-23",
@@ -3502,7 +3623,7 @@
     "club": "Barcelona",
     "clubCountry": "Spain",
     "rating": 88.2,
-    "contribution": 42.2,
+    "contribution": 44.7,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 31,
@@ -3515,8 +3636,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lamine_Yamal_a_Xina_(2025).png"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 406,
+      "appearances": 7,
+      "minutes": 496,
       "goals": 1,
       "assists": null,
       "yellowCards": 0,
@@ -3590,9 +3711,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Lamine Yamal is a 18-year-old forward for Spain, playing club football at Barcelona. He has 31 senior caps for Spain and 7 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Lamine Yamal is a 18-year-old forward for Spain, playing club football at Barcelona. He has 31 senior caps for Spain and 7 international goals. At the 2026 World Cup he has made 7 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-05",
@@ -3607,7 +3739,7 @@
     "club": "Aston Villa",
     "clubCountry": "England",
     "rating": 88.2,
-    "contribution": 32.6,
+    "contribution": 34.6,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 62,
@@ -3620,8 +3752,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lucas_Digne_France_v_Norway_26_June_26-043.jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 348,
+      "appearances": 5,
+      "minutes": 420,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -3673,9 +3805,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 72,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Lucas Digne is a 32-year-old defender for France, playing club football at Aston Villa. He has 62 senior caps for France. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Lucas Digne is a 32-year-old defender for France, playing club football at Aston Villa. He has 62 senior caps for France. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-24",
@@ -3690,7 +3833,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 88.1,
-    "contribution": 46.7,
+    "contribution": 48.3,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 26,
@@ -3703,8 +3846,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bradley_Barcola_France_v_Norway_26_June_26-033_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 282,
+      "appearances": 7,
+      "minutes": 339,
       "goals": 2,
       "assists": null,
       "yellowCards": 1,
@@ -3778,9 +3921,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 57,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Bradley Barcola is a 23-year-old forward for France, playing club football at Paris Saint-Germain. He has 26 senior caps for France and 5 international goals. At the 2026 World Cup he has made 6 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Bradley Barcola is a 23-year-old forward for France, playing club football at Paris Saint-Germain. He has 26 senior caps for France and 5 international goals. At the 2026 World Cup he has made 7 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-09",
@@ -3795,7 +3949,7 @@
     "club": "Athletic Bilbao",
     "clubCountry": "Spain",
     "rating": 88.0,
-    "contribution": 37.8,
+    "contribution": 40.3,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 52,
@@ -3808,8 +3962,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aymeric_Laporte_2023_(cropped)_2.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -3883,9 +4037,20 @@
         "yellow": 1,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Aymeric Laporte is a 32-year-old defender for Spain, playing club football at Athletic Bilbao. He has 52 senior caps for Spain and 2 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Aymeric Laporte is a 32-year-old defender for Spain, playing club football at Athletic Bilbao. He has 52 senior caps for Spain and 2 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-13",
@@ -4182,7 +4347,7 @@
     "club": "Atlético Madrid",
     "clubCountry": "Spain",
     "rating": 87.9,
-    "contribution": 39.9,
+    "contribution": 42.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 22,
@@ -4195,8 +4360,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:%C3%81lex_Baena_2019.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 328,
+      "appearances": 6,
+      "minutes": 411,
       "goals": 1,
       "assists": null,
       "yellowCards": 1,
@@ -4259,9 +4424,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 83,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Álex Baena is a 24-year-old midfielder for Spain, playing club football at Atlético Madrid. He has 22 senior caps for Spain and 3 international goals. At the 2026 World Cup he has made 5 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Álex Baena is a 24-year-old midfielder for Spain, playing club football at Atlético Madrid. He has 22 senior caps for Spain and 3 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-07",
@@ -4276,7 +4452,7 @@
     "club": "Barcelona",
     "clubCountry": "Spain",
     "rating": 87.8,
-    "contribution": 36.9,
+    "contribution": 39.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 54,
@@ -4289,8 +4465,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jules_Kounde_France_v_Senegal_16_June_2026-449_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 511,
+      "appearances": 7,
+      "minutes": 601,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -4364,9 +4540,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Jules Koundé is a 27-year-old defender for France, playing club football at Barcelona. He has 54 senior caps for France. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Jules Koundé is a 27-year-old defender for France, playing club football at Barcelona. He has 54 senior caps for France. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ENG-22",
@@ -4558,7 +4745,7 @@
     "club": "Barcelona",
     "clubCountry": "Spain",
     "rating": 87.7,
-    "contribution": 32.1,
+    "contribution": 34.3,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 56,
@@ -4571,8 +4758,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dani_Olmo_2022.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 342,
+      "appearances": 7,
+      "minutes": 419,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -4646,9 +4833,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 77,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Dani Olmo is a 28-year-old midfielder for Spain, playing club football at Barcelona. He has 56 senior caps for Spain and 12 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Dani Olmo is a 28-year-old midfielder for Spain, playing club football at Barcelona. He has 56 senior caps for Spain and 12 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-07",
@@ -4663,7 +4861,7 @@
     "club": "Atlético Madrid",
     "clubCountry": "Spain",
     "rating": 87.7,
-    "contribution": 27.6,
+    "contribution": 27.8,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 26,
@@ -4676,8 +4874,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marcos_Llorente_2019.jpg"
     },
     "stats": {
-      "appearances": 2,
-      "minutes": 180,
+      "appearances": 3,
+      "minutes": 187,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -4707,9 +4905,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 7,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Marcos Llorente is a 31-year-old defender for Spain, playing club football at Atlético Madrid. He has 26 senior caps for Spain. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Marcos Llorente is a 31-year-old defender for Spain, playing club football at Atlético Madrid. He has 26 senior caps for Spain. At the 2026 World Cup he has made 3 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-20",
@@ -4724,7 +4933,7 @@
     "club": "Barcelona",
     "clubCountry": "Spain",
     "rating": 87.7,
-    "contribution": 34.6,
+    "contribution": 34.9,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 47,
@@ -4737,8 +4946,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pedri.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 430,
+      "appearances": 7,
+      "minutes": 443,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -4812,9 +5021,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 13,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Pedri is a 23-year-old midfielder for Spain, playing club football at Barcelona. He has 47 senior caps for Spain and 6 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Pedri is a 23-year-old midfielder for Spain, playing club football at Barcelona. He has 47 senior caps for Spain and 6 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-13",
@@ -4923,7 +5143,7 @@
     "club": "Bayern Munich",
     "clubCountry": "Germany",
     "rating": 87.6,
-    "contribution": 36.1,
+    "contribution": 38.1,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 23,
@@ -4936,8 +5156,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Olise_France_v_Senegal_16_June_2026-307_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 488,
+      "appearances": 7,
+      "minutes": 560,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -5011,9 +5231,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 72,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Michael Olise is a 24-year-old forward for France, playing club football at Bayern Munich. He has 23 senior caps for France and 7 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Michael Olise is a 24-year-old forward for France, playing club football at Bayern Munich. He has 23 senior caps for France and 7 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-24",
@@ -5122,7 +5353,7 @@
     "club": "Real Madrid",
     "clubCountry": "Spain",
     "rating": 87.4,
-    "contribution": 29.9,
+    "contribution": 32.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 49,
@@ -5135,8 +5366,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aurelien_Tchouameni_France_v_Senegal_16_June_2026-447_(cropped).jpg"
     },
     "stats": {
-      "appearances": 3,
-      "minutes": 270,
+      "appearances": 4,
+      "minutes": 360,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -5177,9 +5408,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Aurélien Tchouaméni is a 26-year-old midfielder for France, playing club football at Real Madrid. He has 49 senior caps for France and 3 international goals. At the 2026 World Cup he has made 3 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Aurélien Tchouaméni is a 26-year-old midfielder for France, playing club football at Real Madrid. He has 49 senior caps for France and 3 international goals. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-11",
@@ -5194,7 +5436,7 @@
     "club": "Real Madrid",
     "clubCountry": "Spain",
     "rating": 87.4,
-    "contribution": 37.4,
+    "contribution": 39.9,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 30,
@@ -5207,11 +5449,11 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spain_football_team_in_202_(Marc_Cucurella).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "assists": null,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "cleanSheets": null,
       "goalsConceded": null
@@ -5282,9 +5524,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 1,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Marc Cucurella is a 27-year-old defender for Spain, playing club football at Real Madrid. He has 30 senior caps for Spain and 1 international goal. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Marc Cucurella is a 27-year-old defender for Spain, playing club football at Real Madrid. He has 30 senior caps for Spain and 1 international goal. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-02",
@@ -5299,7 +5552,7 @@
     "club": "AC Milan",
     "clubCountry": "Italy",
     "rating": 87.4,
-    "contribution": 37.4,
+    "contribution": 39.9,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 46,
@@ -5312,14 +5565,14 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mike_Maignan_France_v_Norway_26_June_26-132_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
       "cleanSheets": 4,
-      "goalsConceded": 2
+      "goalsConceded": 4
     },
     "matchLog": [
       {
@@ -5387,9 +5640,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Mike Maignan is a 30-year-old goalkeeper for France, playing club football at AC Milan. He has 46 senior caps for France. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Mike Maignan is a 30-year-old goalkeeper for France, playing club football at AC Milan. He has 46 senior caps for France. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-15",
@@ -5525,7 +5789,7 @@
     "club": "Manchester City",
     "clubCountry": "England",
     "rating": 87.2,
-    "contribution": 24.0,
+    "contribution": 24.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 12,
@@ -5538,8 +5802,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rayan_Cherki_France_v_Norway_26_June_26-114.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 61,
+      "appearances": 6,
+      "minutes": 79,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -5602,9 +5866,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 18,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Rayan Cherki is a 22-year-old midfielder for France, playing club football at Manchester City. He has 12 senior caps for France and 2 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Rayan Cherki is a 22-year-old midfielder for France, playing club football at Manchester City. He has 12 senior caps for France and 2 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-10",
@@ -6179,7 +6454,7 @@
     "club": "Tottenham Hotspur",
     "clubCountry": "England",
     "rating": 86.8,
-    "contribution": 40.1,
+    "contribution": 50.4,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 22,
@@ -6192,9 +6467,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pedro_Porro_2021.png"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 360,
-      "goals": 1,
+      "appearances": 5,
+      "minutes": 443,
+      "goals": 2,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
@@ -6245,9 +6520,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 83,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Pedro Porro is a 26-year-old defender for Spain, playing club football at Tottenham Hotspur. He has 22 senior caps for Spain and 1 international goal. At the 2026 World Cup he has made 4 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Pedro Porro is a 26-year-old defender for Spain, playing club football at Tottenham Hotspur. He has 22 senior caps for Spain and 1 international goal. At the 2026 World Cup he has made 5 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-14",
@@ -6820,7 +7106,7 @@
     "club": "Arsenal",
     "clubCountry": "England",
     "rating": 86.4,
-    "contribution": 34.3,
+    "contribution": 35.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 37,
@@ -6833,8 +7119,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:William_Saliba_France_v_Norway_26_June_26-044_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 450,
+      "appearances": 6,
+      "minutes": 480,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -6897,9 +7183,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 30,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "William Saliba is a 25-year-old defender for France, playing club football at Arsenal. He has 37 senior caps for France. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "William Saliba is a 25-year-old defender for France, playing club football at Arsenal. He has 37 senior caps for France. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-22",
@@ -7058,7 +7355,7 @@
     "club": "Roma",
     "clubCountry": "Italy",
     "rating": 86.2,
-    "contribution": 31.2,
+    "contribution": 32.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 18,
@@ -7071,8 +7368,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Manu_Kone_France_v_Norway_26_June_26-066_(cropped).jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 341,
+      "appearances": 5,
+      "minutes": 385,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -7124,9 +7421,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 44,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Manu Koné is a 25-year-old midfielder for France, playing club football at Roma. He has 18 senior caps for France. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Manu Koné is a 25-year-old midfielder for France, playing club football at Roma. He has 18 senior caps for France. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-06",
@@ -7141,7 +7449,7 @@
     "club": "Bayern Munich",
     "clubCountry": "Germany",
     "rating": 86.1,
-    "contribution": 36.3,
+    "contribution": 38.8,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 44,
@@ -7154,8 +7462,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dayot_Upamecano_France_v_Senegal_16_June_2026-402_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 526,
+      "appearances": 7,
+      "minutes": 616,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -7229,9 +7537,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Dayot Upamecano is a 27-year-old defender for France, playing club football at Bayern Munich. He has 44 senior caps for France and 2 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Dayot Upamecano is a 27-year-old defender for France, playing club football at Bayern Munich. He has 44 senior caps for France and 2 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-25",
@@ -7511,7 +7830,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 86.0,
-    "contribution": 34.6,
+    "contribution": 36.8,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 48,
@@ -7524,8 +7843,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ruiz_asse_psg_2425.png"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 181,
+      "appearances": 7,
+      "minutes": 258,
       "goals": 1,
       "assists": null,
       "yellowCards": 0,
@@ -7599,9 +7918,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "FRA",
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "minutes": 77,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Fabián Ruiz is a 30-year-old midfielder for Spain, playing club football at Paris Saint-Germain. He has 48 senior caps for Spain and 7 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Fabián Ruiz is a 30-year-old midfielder for Spain, playing club football at Paris Saint-Germain. He has 48 senior caps for Spain and 7 international goals. At the 2026 World Cup he has made 7 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-10",
@@ -7920,7 +8250,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 85.6,
-    "contribution": 30.2,
+    "contribution": 31.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 13,
@@ -7933,8 +8263,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Desire_Doue_France_v_Norway_26_June_26-032.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 320,
+      "appearances": 7,
+      "minutes": 353,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -8008,9 +8338,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 33,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Désiré Doué is a 21-year-old forward for France, playing club football at Paris Saint-Germain. He has 13 senior caps for France and 3 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Désiré Doué is a 21-year-old forward for France, playing club football at Paris Saint-Germain. He has 13 senior caps for France and 3 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-04",
@@ -8290,7 +8631,7 @@
     "club": "Crystal Palace",
     "clubCountry": "England",
     "rating": 85.4,
-    "contribution": 23.7,
+    "contribution": 25.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 5,
@@ -8303,8 +8644,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maxence_Lacroix_France_v_Norway_26_June_26-031_(cropped).jpg"
     },
     "stats": {
-      "appearances": 1,
-      "minutes": 90,
+      "appearances": 2,
+      "minutes": 150,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -8323,9 +8664,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-14",
+        "opponent": "ESP",
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "minutes": 60,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Maxence Lacroix is a 26-year-old defender for France, playing club football at Crystal Palace. He has 5 senior caps for France. At the 2026 World Cup he has made 1 appearance. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Maxence Lacroix is a 26-year-old defender for France, playing club football at Crystal Palace. He has 5 senior caps for France. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-16",

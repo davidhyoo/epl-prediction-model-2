@@ -1066,8 +1066,8 @@
         "W",
         98
       ],
-      "played": false,
-      "winnerSide": null
+      "played": true,
+      "winnerSide": 2
     },
     {
       "num": 102,
@@ -1090,12 +1090,9 @@
       "num": 103,
       "stage": "third-place",
       "slot": 0,
-      "homeCode": null,
+      "homeCode": "FRA",
       "awayCode": null,
-      "feedHome": [
-        "L",
-        101
-      ],
+      "feedHome": null,
       "feedAway": [
         "L",
         102
@@ -1107,12 +1104,9 @@
       "num": 104,
       "stage": "final",
       "slot": 0,
-      "homeCode": null,
+      "homeCode": "ESP",
       "awayCode": null,
-      "feedHome": [
-        "W",
-        101
-      ],
+      "feedHome": null,
       "feedAway": [
         "W",
         102

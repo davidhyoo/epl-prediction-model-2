@@ -67,13 +67,13 @@ Current snapshot (refresh any time with `python ml/refresh.py`):
 | Metric | Value |
 | --- | --- |
 | Tournament | 2026 FIFA World Cup (USA · Canada · Mexico) |
-| As of | 2026-07-11 (semi-final stage — real results through the quarter-finals) |
-| Matches | 104 total — 100 completed, 4 upcoming |
+| As of | 2026-07-14 (final stage — real results through the first semi-final) |
+| Matches | 104 total — 101 completed, 3 upcoming |
 | Teams / Players | 48 / 1,248 (real squads, 1,047 free-licensed headshots) |
 | Models | 5 (Elo, Logistic Regression, Random Forest, XGBoost, Ensemble) |
 | Engineered features | 10 |
 | Training matches (real internationals, 2002→2026) | 2,948 |
-| Top predicted champion | 🇦🇷 Argentina (~40%) |
+| Top predicted champion | 🇪🇸 Spain (~55% — reached the final; France beaten 2–0) |
 | Best backtest model | Logistic Regression (64% acc, lowest log loss) |
 
 ---
@@ -289,11 +289,17 @@ python ml/fetch_stats.py             # refresh only the real player stats (npm r
 python ml/fetch_stats.py --offline   # validate the stats cache without any network
 ```
 
-**Refresh from the app.** The **Data & Methodology** page has a **“Refresh data”** button
-that calls `POST /api/refresh`, which runs `python ml/refresh.py` on the server (pulling the
-latest results + real player stats and rebuilding the JSON) and then reloads the dashboard.
-Because it launches a local process, it is **enabled in development only** by default; set
-`ALLOW_DATA_REFRESH=1` to enable it elsewhere, and `PYTHON_BIN` if `python` isn't on `PATH`.
+**Refresh from the app (live tracking).** A **“Data · &lt;date&gt;”** control lives in the top
+navigation bar on **every page** (with a green “live” dot and the date of the latest loaded
+result). Clicking it — or the larger **“Refresh data”** button at the bottom of the **Data &
+Methodology** page — calls `POST /api/refresh`, which runs `python ml/refresh.py` on the
+server: it pulls the latest completed results **and** real player match stats from the open
+sources, rebuilds every cached JSON, and then revalidates all pages so the whole dashboard
+reflects the new data instantly — **no code change, no restart, no redeploy**. Hover the
+control for a tooltip showing exactly how current the data is. Because it launches a local
+process, it is **enabled in development only** by default; set `ALLOW_DATA_REFRESH=1` to
+enable it elsewhere (it then revalidates the static pages too), and `PYTHON_BIN` if `python`
+isn't on `PATH`.
 
 **Real squads + headshots (opt-in).** Squads and headshots are cached in the repo and
 change infrequently, so they are **not** re-fetched on a normal refresh. To refresh them
@@ -403,7 +409,8 @@ goals, cards, GK stats) and all match outcomes are real.
 
 **How to refresh.** Run `python ml/refresh.py` (downloads the CC0 results **and** the real
 player stats, then rebuilds), or `npm run data:refresh` to rebuild from caches offline; or
-click **Refresh data** on the Data & Methodology page (dev / `ALLOW_DATA_REFRESH=1`). For
+click the **“Data · &lt;date&gt;”** control in the top nav (on any page) or **Refresh data** on
+the Data & Methodology page (dev / `ALLOW_DATA_REFRESH=1`). For
 squads/headshots run `npm run data:players` (or `python ml/refresh.py --players` to fetch
 *and* rebuild). All refresh paths use **no API keys** and **no paid services**, with an
 offline fallback to the committed caches.
@@ -510,9 +517,11 @@ npm run build                              # production build (58 routes)
 - **Partial headshot coverage.** 1,047 of 1,248 players have a free-licensed Commons photo;
   the remaining 201 show clean initials avatars (no non-free images are used).
 - **Live-tracked state.** The tournament state reflects whatever results are present in
-  the cached source (currently the semi-final stage: 100 completed, 4 upcoming). Run
-  `python ml/refresh.py` — or the in-app **Refresh data** button — to pull newer results
-  and player stats as they're published upstream.
+  the cached source (currently the final stage: 101 completed, 3 upcoming — Spain have
+  reached the final after beating France 2–0 in the semi-final). Click the **“Data · &lt;date&gt;”**
+  control in the top nav (on any page) — or run `python ml/refresh.py` — to pull newer
+  results and player stats as they're published upstream; the whole dashboard updates in
+  place, with no code change.
 - **Backtest size.** Model metrics are computed on the completed World Cup matches (100
   so far), so differences between models are modest and can shift as more results arrive.
 - **Knockout participants are projected.** Slots that depend on results not yet played

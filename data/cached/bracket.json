@@ -546,12 +546,15 @@
           "away": "ESP",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 0,
+            "away": 2
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4879,
-          "awayProb": 0.5121
+          "winner": "ESP",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         },
         {
           "id": "K102",
@@ -580,14 +583,14 @@
           "slot": 0,
           "home": "FRA",
           "away": "ENG",
-          "homeProjected": true,
+          "homeProjected": false,
           "awayProjected": true,
           "score": null,
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.5472,
-          "awayProb": 0.4528
+          "homeProb": 0.5627,
+          "awayProb": 0.4373
         }
       ]
     },
@@ -601,14 +604,14 @@
           "slot": 0,
           "home": "ESP",
           "away": "ARG",
-          "homeProjected": true,
+          "homeProjected": false,
           "awayProjected": true,
           "score": null,
           "penalties": null,
           "winner": null,
           "status": "upcoming",
-          "homeProb": 0.4472,
-          "awayProb": 0.5528
+          "homeProb": 0.4533,
+          "awayProb": 0.5467
         }
       ]
     }

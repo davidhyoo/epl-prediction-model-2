@@ -1,5 +1,83 @@
 [
   {
+    "code": "ESP",
+    "iso2": "es",
+    "name": "Spain",
+    "confederation": "UEFA",
+    "group": "H",
+    "colors": {
+      "primary": "#C60B1E",
+      "secondary": "#FFC400"
+    },
+    "elo": 2181.7,
+    "eloInitial": 2132.5,
+    "fifaRank": 2,
+    "status": "active",
+    "eliminatedRound": null,
+    "strength": {
+      "overall": 96.0,
+      "attack": 88.8,
+      "defense": 89.1,
+      "form": 99,
+      "squad": 89.0,
+      "momentum": 99,
+      "experience": 36.5
+    },
+    "record": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 5,
+      "ga": 0,
+      "gd": 5,
+      "points": 7,
+      "groupRank": 1
+    },
+    "championProb": 0.54955,
+    "advance": {
+      "roundOf32": 1.0,
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 1.0,
+      "champion": 0.54955
+    },
+    "strengths": [
+      "Potent, high-scoring attack",
+      "Miserly, well-drilled defense",
+      "Elite squad depth",
+      "Strong recent form"
+    ],
+    "weaknesses": [
+      "Relatively inexperienced squad"
+    ],
+    "keyPlayerIds": [
+      "ESP-24",
+      "ESP-08",
+      "ESP-23",
+      "ESP-12"
+    ],
+    "championProbHistory": [
+      {
+        "label": "Group stage",
+        "prob": 0.55963
+      },
+      {
+        "label": "Round of 32",
+        "prob": 0.543
+      },
+      {
+        "label": "Round of 16",
+        "prob": 0.55837
+      },
+      {
+        "label": "Quarter-finals",
+        "prob": 0.54955
+      }
+    ]
+  },
+  {
     "code": "ARG",
     "iso2": "ar",
     "name": "Argentina",
@@ -34,14 +112,14 @@
       "points": 9,
       "groupRank": 1
     },
-    "championProb": 0.39845,
+    "championProb": 0.3581,
     "advance": {
       "roundOf32": 1.0,
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.69585,
-      "champion": 0.39845
+      "final": 0.70015,
+      "champion": 0.3581
     },
     "strengths": [
       "Potent, high-scoring attack",
@@ -61,175 +139,19 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.334
+        "prob": 0.2815
       },
       {
         "label": "Round of 32",
-        "prob": 0.33063
+        "prob": 0.29175
       },
       {
         "label": "Round of 16",
-        "prob": 0.37925
+        "prob": 0.33463
       },
       {
         "label": "Quarter-finals",
-        "prob": 0.39845
-      }
-    ]
-  },
-  {
-    "code": "ESP",
-    "iso2": "es",
-    "name": "Spain",
-    "confederation": "UEFA",
-    "group": "H",
-    "colors": {
-      "primary": "#C60B1E",
-      "secondary": "#FFC400"
-    },
-    "elo": 2162.4,
-    "eloInitial": 2132.5,
-    "fifaRank": 2,
-    "status": "active",
-    "eliminatedRound": null,
-    "strength": {
-      "overall": 95.5,
-      "attack": 88.8,
-      "defense": 89.1,
-      "form": 99,
-      "squad": 89.0,
-      "momentum": 99,
-      "experience": 36.5
-    },
-    "record": {
-      "played": 3,
-      "won": 2,
-      "drawn": 1,
-      "lost": 0,
-      "gf": 5,
-      "ga": 0,
-      "gd": 5,
-      "points": 7,
-      "groupRank": 1
-    },
-    "championProb": 0.2856,
-    "advance": {
-      "roundOf32": 1.0,
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.5536,
-      "champion": 0.2856
-    },
-    "strengths": [
-      "Potent, high-scoring attack",
-      "Miserly, well-drilled defense",
-      "Elite squad depth",
-      "Strong recent form"
-    ],
-    "weaknesses": [
-      "Relatively inexperienced squad"
-    ],
-    "keyPlayerIds": [
-      "ESP-24",
-      "ESP-12",
-      "ESP-23",
-      "ESP-08"
-    ],
-    "championProbHistory": [
-      {
-        "label": "Group stage",
-        "prob": 0.17713
-      },
-      {
-        "label": "Round of 32",
-        "prob": 0.175
-      },
-      {
-        "label": "Round of 16",
-        "prob": 0.25725
-      },
-      {
-        "label": "Quarter-finals",
-        "prob": 0.2856
-      }
-    ]
-  },
-  {
-    "code": "FRA",
-    "iso2": "fr",
-    "name": "France",
-    "confederation": "UEFA",
-    "group": "I",
-    "colors": {
-      "primary": "#1E3A8A",
-      "secondary": "#EF4444"
-    },
-    "elo": 2125.5,
-    "eloInitial": 2064.9,
-    "fifaRank": 3,
-    "status": "active",
-    "eliminatedRound": null,
-    "strength": {
-      "overall": 91.9,
-      "attack": 88.5,
-      "defense": 87.6,
-      "form": 99,
-      "squad": 88.2,
-      "momentum": 99,
-      "experience": 42.9
-    },
-    "record": {
-      "played": 3,
-      "won": 3,
-      "drawn": 0,
-      "lost": 0,
-      "gf": 10,
-      "ga": 2,
-      "gd": 8,
-      "points": 9,
-      "groupRank": 1
-    },
-    "championProb": 0.20625,
-    "advance": {
-      "roundOf32": 1.0,
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.4464,
-      "champion": 0.20625
-    },
-    "strengths": [
-      "Potent, high-scoring attack",
-      "Miserly, well-drilled defense",
-      "Elite squad depth",
-      "Strong recent form"
-    ],
-    "weaknesses": [
-      "Few obvious weaknesses"
-    ],
-    "keyPlayerIds": [
-      "FRA-22",
-      "FRA-20",
-      "FRA-24",
-      "FRA-02"
-    ],
-    "championProbHistory": [
-      {
-        "label": "Group stage",
-        "prob": 0.14388
-      },
-      {
-        "label": "Round of 32",
-        "prob": 0.1965
-      },
-      {
-        "label": "Round of 16",
-        "prob": 0.17813
-      },
-      {
-        "label": "Quarter-finals",
-        "prob": 0.20625
+        "prob": 0.3581
       }
     ]
   },
@@ -249,7 +171,7 @@
     "status": "active",
     "eliminatedRound": null,
     "strength": {
-      "overall": 79.2,
+      "overall": 78.7,
       "attack": 77.4,
       "defense": 72.0,
       "form": 73.3,
@@ -268,14 +190,14 @@
       "points": 7,
       "groupRank": 1
     },
-    "championProb": 0.1097,
+    "championProb": 0.09235,
     "advance": {
       "roundOf32": 1.0,
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.30415,
-      "champion": 0.1097
+      "final": 0.29985,
+      "champion": 0.09235
     },
     "strengths": [
       "Potent, high-scoring attack",
@@ -295,19 +217,19 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.056
+        "prob": 0.04188
       },
       {
         "label": "Round of 32",
-        "prob": 0.05075
+        "prob": 0.03938
       },
       {
         "label": "Round of 16",
-        "prob": 0.1025
+        "prob": 0.08463
       },
       {
         "label": "Quarter-finals",
-        "prob": 0.1097
+        "prob": 0.09235
       }
     ]
   },
@@ -327,7 +249,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 59.9,
+      "overall": 59.5,
       "attack": 41.5,
       "defense": 40.7,
       "form": 80.0,
@@ -374,11 +296,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0065
+        "prob": 0.00475
       },
       {
         "label": "Round of 32",
-        "prob": 0.00962
+        "prob": 0.00713
       },
       {
         "label": "Round of 16",
@@ -406,7 +328,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 23.1,
+      "overall": 23.0,
       "attack": 21.3,
       "defense": 16.1,
       "form": 46.7,
@@ -484,7 +406,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 41.3,
+      "overall": 41.0,
       "attack": 28.0,
       "defense": 24.7,
       "form": 60.0,
@@ -545,7 +467,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 34.5,
+      "overall": 34.3,
       "attack": 30.2,
       "defense": 26.4,
       "form": 46.7,
@@ -606,7 +528,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 42.7,
+      "overall": 42.4,
       "attack": 36.7,
       "defense": 35.9,
       "form": 46.7,
@@ -652,11 +574,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00137
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.00287
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -823,7 +745,7 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 60.8,
+      "overall": 60.4,
       "attack": 49.5,
       "defense": 53.4,
       "form": 73.3,
@@ -866,15 +788,15 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00375
+        "prob": 0.00263
       },
       {
         "label": "Round of 32",
-        "prob": 0.00625
+        "prob": 0.00413
       },
       {
         "label": "Round of 16",
-        "prob": 0.01275
+        "prob": 0.00988
       },
       {
         "label": "Quarter-finals",
@@ -898,7 +820,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 80.1,
+      "overall": 79.6,
       "attack": 85.6,
       "defense": 86.1,
       "form": 66.7,
@@ -944,11 +866,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.083
+        "prob": 0.06575
       },
       {
         "label": "Round of 32",
-        "prob": 0.10387
+        "prob": 0.08463
       },
       {
         "label": "Round of 16",
@@ -976,7 +898,7 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 63.4,
+      "overall": 63.0,
       "attack": 53.7,
       "defense": 54.1,
       "form": 66.7,
@@ -1020,15 +942,15 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00762
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.01525
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
-        "prob": 0.023
+        "prob": 0.0
       },
       {
         "label": "Quarter-finals",
@@ -1052,7 +974,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 12.1,
+      "overall": 12.0,
       "attack": 6.1,
       "defense": 3.0,
       "form": 20.0,
@@ -1113,7 +1035,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 39.5,
+      "overall": 39.3,
       "attack": 36.2,
       "defense": 36.6,
       "form": 60.0,
@@ -1174,7 +1096,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 48.7,
+      "overall": 48.4,
       "attack": 46.1,
       "defense": 50.6,
       "form": 60.0,
@@ -1217,11 +1139,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00425
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.0035
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -1249,7 +1171,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 39.0,
+      "overall": 38.7,
       "attack": 29.3,
       "defense": 33.4,
       "form": 33.3,
@@ -1295,11 +1217,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00013
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.00075
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -1327,7 +1249,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 43.3,
+      "overall": 43.0,
       "attack": 35.1,
       "defense": 36.5,
       "form": 40.0,
@@ -1373,7 +1295,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0015
+        "prob": 0.00112
       },
       {
         "label": "Round of 32",
@@ -1405,7 +1327,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 51.3,
+      "overall": 51.0,
       "attack": 47.1,
       "defense": 46.5,
       "form": 60.0,
@@ -1463,7 +1385,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 68.7,
+      "overall": 68.4,
       "attack": 68.1,
       "defense": 70.1,
       "form": 66.7,
@@ -1506,7 +1428,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.023
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -1599,7 +1521,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 44.2,
+      "overall": 44.0,
       "attack": 41.0,
       "defense": 41.5,
       "form": 60.0,
@@ -1645,7 +1567,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00063
+        "prob": 0.00025
       },
       {
         "label": "Round of 32",
@@ -1677,7 +1599,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 53.8,
+      "overall": 53.5,
       "attack": 46.9,
       "defense": 47.3,
       "form": 46.7,
@@ -1721,7 +1643,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00413
+        "prob": 0.00325
       },
       {
         "label": "Round of 32",
@@ -1753,7 +1675,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 74.4,
+      "overall": 74.0,
       "attack": 79.3,
       "defense": 77.7,
       "form": 73.3,
@@ -1799,7 +1721,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.03762
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -1831,7 +1753,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 60.0,
+      "overall": 59.6,
       "attack": 52.1,
       "defense": 54.0,
       "form": 53.3,
@@ -1874,7 +1796,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0065
+        "prob": 0.00487
       },
       {
         "label": "Round of 32",
@@ -1906,7 +1828,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 35.6,
+      "overall": 35.4,
       "attack": 34.0,
       "defense": 31.4,
       "form": 33.3,
@@ -1952,7 +1874,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00038
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -1984,7 +1906,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 22.7,
+      "overall": 22.5,
       "attack": 36.3,
       "defense": 35.1,
       "form": 3,
@@ -2045,7 +1967,7 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 67.6,
+      "overall": 67.2,
       "attack": 67.9,
       "defense": 23.0,
       "form": 53.3,
@@ -2089,15 +2011,15 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.02
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.02275
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
-        "prob": 0.03112
+        "prob": 0.0
       },
       {
         "label": "Quarter-finals",
@@ -2121,7 +2043,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 39.1,
+      "overall": 38.9,
       "attack": 36.8,
       "defense": 34.7,
       "form": 40.0,
@@ -2167,11 +2089,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00013
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.00038
+        "prob": 0.00025
       },
       {
         "label": "Round of 16",
@@ -2199,7 +2121,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 52.5,
+      "overall": 52.2,
       "attack": 49.2,
       "defense": 52.2,
       "form": 60.0,
@@ -2257,7 +2179,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 13.4,
+      "overall": 13.3,
       "attack": 6.4,
       "defense": 4.8,
       "form": 6.7,
@@ -2318,7 +2240,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 17.5,
+      "overall": 17.4,
       "attack": 15.7,
       "defense": 13.9,
       "form": 26.7,
@@ -2396,7 +2318,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 24.0,
+      "overall": 23.9,
       "attack": 23.3,
       "defense": 24.0,
       "form": 40.0,
@@ -2457,7 +2379,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 54.0,
+      "overall": 53.7,
       "attack": 63.8,
       "defense": 64.0,
       "form": 26.7,
@@ -2501,6 +2423,84 @@
     "championProbHistory": []
   },
   {
+    "code": "FRA",
+    "iso2": "fr",
+    "name": "France",
+    "confederation": "UEFA",
+    "group": "I",
+    "colors": {
+      "primary": "#1E3A8A",
+      "secondary": "#EF4444"
+    },
+    "elo": 2106.2,
+    "eloInitial": 2064.9,
+    "fifaRank": 3,
+    "status": "eliminated",
+    "eliminatedRound": "semi-final",
+    "strength": {
+      "overall": 86.8,
+      "attack": 88.5,
+      "defense": 87.6,
+      "form": 80.0,
+      "squad": 88.2,
+      "momentum": 66.7,
+      "experience": 42.9
+    },
+    "record": {
+      "played": 3,
+      "won": 3,
+      "drawn": 0,
+      "lost": 0,
+      "gf": 10,
+      "ga": 2,
+      "gd": 8,
+      "points": 9,
+      "groupRank": 1
+    },
+    "championProb": 0.0,
+    "advance": {
+      "roundOf32": 1.0,
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "strengths": [
+      "Potent, high-scoring attack",
+      "Miserly, well-drilled defense",
+      "Elite squad depth",
+      "Strong recent form"
+    ],
+    "weaknesses": [
+      "Beaten in the semi-finals"
+    ],
+    "keyPlayerIds": [
+      "FRA-22",
+      "FRA-20",
+      "FRA-24",
+      "FRA-02"
+    ],
+    "championProbHistory": [
+      {
+        "label": "Group stage",
+        "prob": 0.0
+      },
+      {
+        "label": "Round of 32",
+        "prob": 0.0
+      },
+      {
+        "label": "Round of 16",
+        "prob": 0.0
+      },
+      {
+        "label": "Quarter-finals",
+        "prob": 0.0
+      }
+    ]
+  },
+  {
     "code": "SEN",
     "iso2": "sn",
     "name": "Senegal",
@@ -2516,7 +2516,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 47.0,
+      "overall": 46.7,
       "attack": 51.2,
       "defense": 48.7,
       "form": 33.3,
@@ -2560,7 +2560,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00088
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -2592,7 +2592,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 15.0,
+      "overall": 14.9,
       "attack": 14.1,
       "defense": 11.6,
       "form": 6.7,
@@ -2653,7 +2653,7 @@
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 60.0,
+      "overall": 59.6,
       "attack": 54.9,
       "defense": 52.5,
       "form": 66.7,
@@ -2697,15 +2697,15 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00425
+        "prob": 0.00287
       },
       {
         "label": "Round of 32",
-        "prob": 0.00625
+        "prob": 0.00475
       },
       {
         "label": "Round of 16",
-        "prob": 0.016
+        "prob": 0.0125
       },
       {
         "label": "Quarter-finals",
@@ -2729,7 +2729,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 47.4,
+      "overall": 47.1,
       "attack": 42.9,
       "defense": 44.2,
       "form": 46.7,
@@ -2775,7 +2775,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00063
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -2807,7 +2807,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 50.8,
+      "overall": 50.4,
       "attack": 50.2,
       "defense": 49.1,
       "form": 46.7,
@@ -2850,7 +2850,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.002
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -2882,7 +2882,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 16.6,
+      "overall": 16.4,
       "attack": 13.3,
       "defense": 13.2,
       "form": 3,
@@ -2943,7 +2943,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 74.5,
+      "overall": 74.1,
       "attack": 80.9,
       "defense": 79.3,
       "form": 53.3,
@@ -2988,11 +2988,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.03625
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.04125
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -3020,7 +3020,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 27.7,
+      "overall": 27.5,
       "attack": 27.3,
       "defense": 31.5,
       "form": 26.7,
@@ -3098,7 +3098,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 23.3,
+      "overall": 23.2,
       "attack": 25.6,
       "defense": 23.8,
       "form": 3,
@@ -3159,7 +3159,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 71.6,
+      "overall": 71.1,
       "attack": 58.4,
       "defense": 59.6,
       "form": 73.3,
@@ -3203,11 +3203,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.04025
+        "prob": 0.0315
       },
       {
         "label": "Round of 32",
-        "prob": 0.03438
+        "prob": 0.025
       },
       {
         "label": "Round of 16",
@@ -3235,7 +3235,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 59.5,
+      "overall": 59.2,
       "attack": 59.9,
       "defense": 55.6,
       "form": 60.0,
@@ -3278,7 +3278,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00425
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -3388,7 +3388,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 24.9,
+      "overall": 24.7,
       "attack": 16.2,
       "defense": 14.5,
       "form": 26.7,

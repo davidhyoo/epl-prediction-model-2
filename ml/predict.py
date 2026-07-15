@@ -406,15 +406,20 @@ def main() -> None:
         })
 
     # ---- Projected look-ahead fixtures (third-place & final) --------------
-    # These have no confirmed teams yet, so we take the most-likely participants
-    # from the simulation and predict them with the full model stack.
+    # These are not fully confirmed yet (at least one participant still TBD), so
+    # we take the most-likely participants from the simulation and predict them
+    # with the full model stack. This covers both the fully-TBD case (e.g.
+    # "W101 v W102" before either semi is played) and the partial case (e.g.
+    # "Spain v W102" once one semi has finished) — the simulation resolves the
+    # confirmed side to its fixed team and the pending side to its likeliest
+    # qualifier. Fully-confirmed fixtures are already in ``have_ids``.
     wc_by_num = {m["num"]: m for m in wc_matches if m["num"] is not None}
     have_ids = {r["id"] for r in pred_rows}
     proj_rows = []
     for num in sorted(proj):
         wm = wc_by_num.get(num)
-        if wm is None or wm["id"] in have_ids or wm["home"] or wm["away"]:
-            continue  # only the genuinely TBD matches (final / third place)
+        if wm is None or wm["id"] in have_ids:
+            continue  # already predicted with fully-confirmed teams
         h, a = inv[proj[num]["homeIdx"]], inv[proj[num]["awayIdx"]]
         vec, feats = projected_features(h, a, ts, squad_score)
         proj_rows.append({"id": wm["id"], "home": h, "away": a,
