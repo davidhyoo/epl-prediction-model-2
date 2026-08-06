@@ -10,6 +10,7 @@ import type {
   Rankings,
   Standing,
   Summary,
+  TitleRace,
 } from "@/lib/types";
 
 const DATA = path.join(process.cwd(), "public", "data");
@@ -50,6 +51,7 @@ for (const ds of index.datasets) {
     const clubs = read<Club[]>(...dir, "clubs.json");
     const playersData = read<PlayersData>(...dir, "players.json");
     const rankings = read<Rankings>(...dir, "rankings.json");
+    const race = read<TitleRace>(...dir, "race.json");
     const players = playersData.players;
     const preseason = summary.played === 0;
 
@@ -217,6 +219,49 @@ for (const ds of index.datasets) {
       expect(keys).toHaveLength(8);
       for (const key of keys) {
         expect(rankings[key as keyof Rankings]).toHaveLength(20);
+      }
+    });
+
+    it("publishes a coherent title-race timeline for all 20 clubs", () => {
+      expect(race.clubs).toHaveLength(20);
+      // Every club has a series aligned to the checkpoint axis.
+      for (const c of race.clubs) {
+        const series = race.series[c.code];
+        expect(series).toBeDefined();
+        expect(series).toHaveLength(race.checkpoints.length);
+        for (const v of series) {
+          expect(v).toBeGreaterThanOrEqual(0);
+          expect(v).toBeLessThanOrEqual(100.01);
+        }
+        expect(c.peak).toBeGreaterThanOrEqual(c.final - 0.01);
+      }
+      // Clubs are ordered by descending peak so real contenders lead the legend.
+      for (let i = 1; i < race.clubs.length; i += 1) {
+        expect(race.clubs[i - 1].peak).toBeGreaterThanOrEqual(race.clubs[i].peak - 0.01);
+      }
+
+      if (preseason) {
+        expect(race.checkpoints).toHaveLength(0);
+        expect(race.lastCompletedRound).toBe(0);
+      } else {
+        expect(race.checkpoints[0]).toBe(0);
+        expect(race.checkpoints.at(-1)).toBe(race.lastCompletedRound);
+        expect(race.playedAt).toHaveLength(race.checkpoints.length);
+        // Played counts never decrease across matchdays.
+        for (let i = 1; i < race.playedAt.length; i += 1) {
+          expect(race.playedAt[i]).toBeGreaterThanOrEqual(race.playedAt[i - 1]);
+        }
+        expect(race.playedAt.at(-1)).toBe(summary.played);
+        // At every checkpoint exactly one champion emerges: probabilities sum to ~100.
+        for (let k = 0; k < race.checkpoints.length; k += 1) {
+          const total = race.clubs.reduce((s, c) => s + race.series[c.code][k], 0);
+          expect(Math.abs(total - 100)).toBeLessThan(1);
+        }
+        // The club that finishes highest in the race matches the projected champion.
+        if (summary.champion) {
+          const topFinal = [...race.clubs].sort((a, b) => b.final - a.final)[0];
+          expect(topFinal.code).toBe(summary.champion.code);
+        }
       }
     });
   });
