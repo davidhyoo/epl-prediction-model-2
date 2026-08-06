@@ -67,14 +67,14 @@ Current snapshot (refresh any time with `python ml/refresh.py`):
 | Metric | Value |
 | --- | --- |
 | Tournament | 2026 FIFA World Cup (USA · Canada · Mexico) |
-| As of | 2026-07-14 (final stage — real results through the first semi-final) |
-| Matches | 104 total — 101 completed, 3 upcoming |
+| As of | 2026-07-19 (**tournament complete** — all 104 real results in) |
+| Matches | 104 total — 104 completed, 0 upcoming |
 | Teams / Players | 48 / 1,248 (real squads, 1,047 free-licensed headshots) |
 | Models | 5 (Elo, Logistic Regression, Random Forest, XGBoost, Ensemble) |
 | Engineered features | 10 |
 | Training matches (real internationals, 2002→2026) | 2,948 |
-| Top predicted champion | 🇪🇸 Spain (~55% — reached the final; France beaten 2–0) |
-| Best backtest model | Logistic Regression (64% acc, lowest log loss) |
+| Champion | 🇪🇸 **Spain** (beat 🇦🇷 Argentina 1–0 a.e.t. in the final) |
+| Best backtest model | Logistic Regression (63% acc, lowest log loss) |
 
 ---
 
@@ -360,7 +360,7 @@ consumes.
 
 | Source | Type | Description | License / notes |
 | --- | --- | --- | --- |
-| [`openfootball/worldcup`](https://github.com/openfootball/worldcup) — `2026--usa` | **Real · cached** | The actual 2026 field, 12-group draw, fixtures, results and knockout bracket (`cup.txt`, `cup_finals.txt`, `cup_stadiums.csv`) | **Public domain (CC0)** |
+| [`openfootball/worldcup`](https://github.com/openfootball/worldcup) — `2026--canada-usa-mexico` | **Real · cached (live-refreshable)** | The actual 2026 field, 12-group draw, fixtures, results and knockout bracket (`cup.txt`, `cup_finals.txt`, `stadiums.csv`). The refresh script tries the current directory first and falls back to older names, so an upstream rename can't silently stale the data | **Public domain (CC0)** |
 | [`martj42/international_results`](https://github.com/martj42/international_results) | **Real · cached** | Every men's international 1872→present (`results.csv`, `shootouts.csv`) — used to train the models and grow real Elo ratings | **Public domain (CC0)** |
 | [English **Wikipedia**](https://en.wikipedia.org/) national-team squad templates | **Real · cached** | Current 26-player rosters for all 48 nations — name, shirt no., position, DOB/age, caps, goals, club (`data/source/squads_wikipedia.json`) | Text CC BY-SA 4.0; facts aren't copyrightable — Wikipedia credited here + in the app |
 | [English **Wikipedia**](https://en.wikipedia.org/) 2026 World Cup **match articles** | **Real · cached (live-refreshable)** | Per-player tournament stats — appearances, minutes, goals, yellow/red cards, GK clean sheets & goals conceded — parsed from the goalscorer lists + starting-XI/substitution tables (official FIFA match reports) by `ml/fetch_stats.py` into `data/source/player_stats_wikipedia.json`. Refreshed every run via the key-less MediaWiki API | Sporting facts uncopyrightable; article text CC BY-SA 4.0 — credited in the app |
@@ -517,15 +517,17 @@ npm run build                              # production build (58 routes)
 - **Partial headshot coverage.** 1,047 of 1,248 players have a free-licensed Commons photo;
   the remaining 201 show clean initials avatars (no non-free images are used).
 - **Live-tracked state.** The tournament state reflects whatever results are present in
-  the cached source (currently the final stage: 101 completed, 3 upcoming — Spain have
-  reached the final after beating France 2–0 in the semi-final). Click the **“Data · &lt;date&gt;”**
-  control in the top nav (on any page) — or run `python ml/refresh.py` — to pull newer
-  results and player stats as they're published upstream; the whole dashboard updates in
-  place, with no code change.
-- **Backtest size.** Model metrics are computed on the completed World Cup matches (100
-  so far), so differences between models are modest and can shift as more results arrive.
-- **Knockout participants are projected.** Slots that depend on results not yet played
-  are marked *(proj.)* and resolve as the bracket completes.
+  the cached source (the 2026 tournament is now **complete** — all 104 matches played;
+  **Spain are champions**, beating Argentina 1–0 a.e.t. in the final). Click the
+  **“Data · &lt;date&gt;”** control in the top nav (on any page) — or run
+  `python ml/refresh.py` — to re-pull the latest results and player stats from upstream;
+  the whole dashboard updates in place, with no code change. If a source can't be reached,
+  the refresh log now says so explicitly rather than silently serving a stale cache.
+- **Backtest size.** Model metrics are computed on the completed World Cup matches (all
+  104), so differences between models are modest.
+- **Knockout ties after 90 minutes.** Extra-time and penalty results are shown with the
+  real advancing side highlighted and an “a.e.t. / pens” note, while the models are still
+  scored on the regulation-time 1X2 outcome (no extra-time luck) to stay leakage-free.
 
 ---
 

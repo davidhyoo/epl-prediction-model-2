@@ -25,8 +25,8 @@ Design goals
 
 Sources (all public domain / CC0 / free-licensed — see README "Data Sources"):
 * martj42/international_results — men's international results 1872→present.
-* openfootball/worldcup ``2026--usa`` — the real 2026 draw, fixtures, results
-  and knockout bracket.
+* openfootball/worldcup ``2026--canada-usa-mexico`` — the real 2026 draw,
+  fixtures, results and knockout bracket.
 * English Wikipedia 2026 World Cup **match articles** (official FIFA match
   reports) — real per-player tournament stats (appearances, minutes, goals,
   cards, GK clean sheets / goals conceded). Refreshed by default every run via
@@ -53,36 +53,51 @@ SOURCE_DIR = os.path.join(DATA_DIR, "source")
 
 RAW = "https://raw.githubusercontent.com"
 
-# (url, local filename, minimum plausible size in bytes, required marker)
-# ``marker`` is a short string that MUST appear in a healthy download — a cheap
-# guard against fetching an error page / truncated file over the real data.
-SOURCES: list[tuple[str, str, int, str]] = [
+# The openfootball/worldcup 2026 dataset lives in a per-tournament directory whose
+# name has changed over time (it was renamed from ``2026--usa`` to
+# ``2026--canada-usa-mexico``). To stay resilient to further renames we try each
+# candidate directory in order (newest first) and use the first that resolves.
+OPENFOOTBALL_DIRS = ["2026--canada-usa-mexico", "2026--usa"]
+
+
+def _openfootball(filename: str) -> list[str]:
+    """Candidate raw URLs for an openfootball 2026 file, newest dir first."""
+    return [f"{RAW}/openfootball/worldcup/master/{d}/{filename}" for d in OPENFOOTBALL_DIRS]
+
+
+# (urls, local filename, minimum plausible size in bytes, required marker)
+# ``urls`` is a list of candidate URLs tried in order (the first that downloads a
+# valid file wins). ``marker`` is a short string that MUST appear in a healthy
+# download — a cheap guard against fetching an error page / truncated file.
+SOURCES: list[tuple[list[str], str, int, str]] = [
     (
-        f"{RAW}/martj42/international_results/master/results.csv",
+        [f"{RAW}/martj42/international_results/master/results.csv"],
         "martj42_results.csv",
         1_000_000,
         "date,home_team,away_team",
     ),
     (
-        f"{RAW}/martj42/international_results/master/shootouts.csv",
+        [f"{RAW}/martj42/international_results/master/shootouts.csv"],
         "martj42_shootouts.csv",
         5_000,
         "date,home_team,away_team,winner",
     ),
     (
-        f"{RAW}/openfootball/worldcup/master/2026--usa/cup.txt",
+        _openfootball("cup.txt"),
         "openfootball_cup.txt",
         3_000,
         "Group A",
     ),
     (
-        f"{RAW}/openfootball/worldcup/master/2026--usa/cup_finals.txt",
+        _openfootball("cup_finals.txt"),
         "openfootball_cup_finals.txt",
         1_000,
         "Round of 32",
     ),
     (
-        f"{RAW}/openfootball/worldcup/master/2026--usa/cup_stadiums.csv",
+        # The stadiums file was renamed ``cup_stadiums.csv`` -> ``stadiums.csv``;
+        # try both so either repo layout works.
+        _openfootball("stadiums.csv") + _openfootball("cup_stadiums.csv"),
         "openfootball_cup_stadiums.csv",
         500,
         "",
@@ -93,44 +108,51 @@ _UA = "worldcup-2026-dashboard/1.0 (+https://github.com; offline-refresh script)
 _TIMEOUT = 30
 
 
-def _fetch_one(url: str, dest: str, min_bytes: int, marker: str) -> bool:
-    """Download ``url`` into ``dest`` atomically. Return True on success.
+def _fetch_one(urls: list[str], dest: str, min_bytes: int, marker: str) -> bool:
+    """Download the first working ``urls`` candidate into ``dest`` atomically.
 
-    On any failure the existing ``dest`` (committed cache) is left untouched.
+    Each candidate is validated (size + expected marker) BEFORE the real file is
+    touched, so a 404 / error page / truncated response can never corrupt the
+    committed cache. On total failure the existing ``dest`` is left untouched and
+    ``False`` is returned.
     """
     tmp = dest + ".tmp"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": _UA})
-        with urllib.request.urlopen(req, timeout=_TIMEOUT) as resp:
-            data = resp.read()
-    except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        print(f"  ! fetch failed ({exc.__class__.__name__}: {exc}) — keeping cache")
-        return False
+    for url in urls:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": _UA})
+            with urllib.request.urlopen(req, timeout=_TIMEOUT) as resp:
+                data = resp.read()
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            print(f"  . {url.rsplit('/master/', 1)[-1]}: {exc.__class__.__name__} — trying next")
+            continue
 
-    # Validate BEFORE touching the real file so a bad response can't corrupt it.
-    if len(data) < min_bytes:
-        print(f"  ! suspiciously small ({len(data)} bytes < {min_bytes}) — keeping cache")
-        return False
-    text_head = data[:4096].decode("utf-8", "replace")
-    if marker and marker not in text_head:
-        print(f"  ! missing expected marker {marker!r} — keeping cache")
-        return False
+        # Validate BEFORE touching the real file so a bad response can't corrupt it.
+        if len(data) < min_bytes:
+            print(f"  . too small ({len(data)} < {min_bytes} bytes) — trying next")
+            continue
+        text_head = data[:4096].decode("utf-8", "replace")
+        if marker and marker not in text_head:
+            print(f"  . missing marker {marker!r} — trying next")
+            continue
 
-    with open(tmp, "wb") as fh:
-        fh.write(data)
-    os.replace(tmp, dest)  # atomic swap on the same filesystem
-    print(f"  ok {len(data):>9,} bytes")
-    return True
+        with open(tmp, "wb") as fh:
+            fh.write(data)
+        os.replace(tmp, dest)  # atomic swap on the same filesystem
+        print(f"  ok {len(data):>9,} bytes  <- {url.rsplit('/master/', 1)[-1]}")
+        return True
+
+    print("  ! all sources failed — keeping cache")
+    return False
 
 
 def refresh_sources() -> tuple[int, int]:
     """Fetch every source. Returns (updated, kept_from_cache)."""
     os.makedirs(SOURCE_DIR, exist_ok=True)
     updated = kept = 0
-    for url, name, min_bytes, marker in SOURCES:
+    for urls, name, min_bytes, marker in SOURCES:
         dest = os.path.join(SOURCE_DIR, name)
         print(f"- {name}")
-        if _fetch_one(url, dest, min_bytes, marker):
+        if _fetch_one(urls, dest, min_bytes, marker):
             updated += 1
         else:
             if os.path.exists(dest):
@@ -169,6 +191,10 @@ def main() -> None:
         print(f"[refresh] fetching {len(SOURCES)} CC0 source files -> {SOURCE_DIR}")
         updated, kept = refresh_sources()
         print(f"[refresh] {updated} updated, {kept} kept from cache")
+        if kept:
+            print(f"[refresh] WARNING: {kept}/{len(SOURCES)} source file(s) could not be "
+                  "updated and were served from the local cache — some results may be "
+                  "stale. Check your network connection or the upstream source layout.")
 
     # Real per-player World Cup statistics are parsed from the public English
     # Wikipedia match articles (which transcribe the official FIFA match reports).

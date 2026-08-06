@@ -8,8 +8,8 @@ locally so the pipeline stays fully offline & reproducible:
 
   * martj42/international_results  — every men's international 1872→present
     (used for training history and for computing real Elo ratings).
-  * openfootball/worldcup (2026--usa) — the real 2026 group draw, fixtures,
-    results and knockout bracket.
+  * openfootball/worldcup (2026--canada-usa-mexico) — the real 2026 group draw,
+    fixtures, results and knockout bracket.
 
 See ml/sources.py for the parsers and the README "Data Sources" section for
 licensing. Player-level squad data has no clean CC0 source, so squads/player
@@ -85,8 +85,8 @@ GROUPS = list("ABCDEFGHIJKL")  # 12 groups
 # primary/secondary national colours, host flag, and group letter.
 #
 # Team membership & groups are parsed-verified against the CC0 openfootball
-# `2026--usa` dataset (see ml/sources.py). Do not hand-edit the groups here
-# without updating that source of truth.
+# `2026--canada-usa-mexico` dataset (see ml/sources.py). Do not hand-edit the
+# groups here without updating that source of truth.
 # --------------------------------------------------------------------------- #
 TEAMS_RAW = [
     # code, iso2, name, confed, elo_prior, primary, secondary, host, group

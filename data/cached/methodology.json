@@ -69,7 +69,7 @@
     {
       "name": "2026 World Cup fixtures, results & bracket",
       "kind": "cached",
-      "description": "openfootball/worldcup (2026--usa) — the real group draw, kickoff times, scores and knockout bracket in the Football.TXT format. Cached locally as data/source/openfootball_cup*.txt.",
+      "description": "openfootball/worldcup (2026--canada-usa-mexico) — the real group draw, kickoff times, scores and knockout bracket in the Football.TXT format. Cached locally as data/source/openfootball_cup*.txt.",
       "license": "CC0 1.0 (public domain)"
     },
     {
@@ -174,5 +174,5 @@
     "The final and third-place play-off are shown as projected matchups (most-likely participants) until the semi-finals are played.",
     "104 World Cup matches are covered end-to-end."
   ],
-  "generatedAt": "2026-07-15T18:38:37+00:00"
+  "generatedAt": "2026-08-06T07:04:35+00:00"
 }

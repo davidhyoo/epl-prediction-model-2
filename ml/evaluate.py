@@ -163,6 +163,9 @@ def main() -> None:
         predicted_outcome = ensemble_pred["predictedOutcome"]
         actual_outcome = ["home", "draw", "away"][wm["outcome"]] if completed else None
         correct = (predicted_outcome == actual_outcome) if completed else None
+        # The advancing side of a knockout tie (may differ from the 90-minute
+        # 1X2 outcome when the match was settled in extra time or on penalties).
+        result_winner = wm.get("winner") if completed else None
 
         matches_out.append({
             "id": row["id"], "stage": wm["stage"], "stageLabel": STAGE_LABEL[wm["stage"]],
@@ -175,7 +178,9 @@ def main() -> None:
             "score": {"home": wm["fh"], "away": wm["fa"]} if completed else None,
             "penalties": ({"home": wm["pens"][0], "away": wm["pens"][1]}
                           if (completed and wm.get("pens")) else None),
+            "aet": bool(wm.get("aet")) if completed else False,
             "actualOutcome": actual_outcome,
+            "resultWinner": result_winner,
             "ensemble": ensemble_pred, "models": model_preds, "factors": row["factors"],
             "predictedOutcome": predicted_outcome, "correct": correct,
             "projectedMatchup": bool(row.get("projected", False)),
@@ -193,7 +198,7 @@ def main() -> None:
                    "prob": t["championProb"]} for t in teams_sorted[:6]]
 
     upcoming_idx = [i for i, row in enumerate(preds) if row["status"] != "completed"]
-    hi_match = max(upcoming_idx, key=lambda i: P_ens[i].max()) if upcoming_idx else 0
+    hi_match = max(upcoming_idx, key=lambda i: P_ens[i].max()) if upcoming_idx else None
     best_model = ranking[0]
 
     completed_dates = [wc_by_id[row["id"]]["date"] for row in preds
@@ -210,7 +215,7 @@ def main() -> None:
         "modelCount": len(model_ids), "featureCount": len(FEATURE_ORDER),
         "trainingMatches": meta["trainRows"],
         "topChampion": contenders[0], "topContenders": contenders,
-        "highestConfidenceMatchId": preds[hi_match]["id"],
+        "highestConfidenceMatchId": preds[hi_match]["id"] if hi_match is not None else None,
         "bestModel": {"id": best_model, "name": MODEL_META[best_model][0],
                       "accuracy": all_metrics[best_model]["accuracy"],
                       "logLoss": all_metrics[best_model]["logLoss"],

@@ -46,11 +46,21 @@ describe("matches.json", () => {
     }
   });
 
-  it("still produces a prediction for every upcoming match", () => {
-    const upcoming = matches.filter((m) => m.status === "upcoming");
-    expect(upcoming.length).toBeGreaterThan(0);
-    for (const m of upcoming) {
+  it("produces a full prediction for every match", () => {
+    expect(matches.length).toBeGreaterThan(0);
+    for (const m of matches) {
       expect(m.ensemble.confidence).toBeGreaterThan(0);
+    }
+  });
+
+  it("records the advancing side for knockout ties settled after 90 minutes", () => {
+    const decidedLate = matches.filter(
+      (m) => m.status === "completed" && (m.aet || m.penalties !== null),
+    );
+    // A deep, completed tournament always has at least one extra-time/penalty tie.
+    expect(decidedLate.length).toBeGreaterThan(0);
+    for (const m of decidedLate) {
+      expect(m.resultWinner === "home" || m.resultWinner === "away").toBe(true);
     }
   });
 });

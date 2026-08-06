@@ -54,7 +54,7 @@ export default async function HomePage() {
               <Sparkles className="size-3" /> {summary.tournament}
             </Badge>
             <Badge variant="muted" className="gap-1.5">
-              <Database className="size-3" /> Generated demo dataset
+              <Database className="size-3" /> Real open data · CC0 sources
             </Badge>
           </div>
           <h1 className="mt-4 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
@@ -94,7 +94,7 @@ export default async function HomePage() {
           <StatCard
             label="Matches upcoming"
             value={summary.matchesUpcoming}
-            sub="knockout stage to come"
+            sub={summary.matchesUpcoming > 0 ? "still to be played" : "tournament complete"}
             icon={<CalendarClock />}
             accent="info"
           />
@@ -139,8 +139,9 @@ export default async function HomePage() {
               <div>
                 <CardTitle>Championship race</CardTitle>
                 <p className="text-sm text-muted-foreground">
-                  Title probabilities from {summary.totalMatches - summary.matchesCompleted} simulated
-                  knockout matches.
+                  {summary.matchesUpcoming > 0
+                    ? `Title probabilities from ${summary.matchesUpcoming} simulated knockout matches.`
+                    : `Final standings — ${summary.topChampion.name} are world champions.`}
                 </p>
               </div>
               <Button asChild variant="ghost" size="sm">
@@ -252,9 +253,19 @@ export default async function HomePage() {
               </Button>
             </div>
             <div className="space-y-3">
-              {upcoming.map((m) => (
-                <MatchCard key={m.id} match={m} modelMeta={modelMeta} />
-              ))}
+              {upcoming.length > 0 ? (
+                upcoming.map((m) => (
+                  <MatchCard key={m.id} match={m} modelMeta={modelMeta} />
+                ))
+              ) : (
+                <Card className="flex flex-col items-center gap-2 p-8 text-center">
+                  <Trophy className="size-8 text-warning" />
+                  <p className="text-sm font-medium">The tournament is complete.</p>
+                  <p className="text-xs text-muted-foreground">
+                    {summary.topChampion.name} are the {summary.tournament} champions.
+                  </p>
+                </Card>
+              )}
             </div>
           </div>
           <div className="space-y-3">

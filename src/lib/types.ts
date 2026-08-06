@@ -133,12 +133,14 @@ export interface Match {
   away: TeamRef;
   score: { home: number; away: number } | null;
   penalties: { home: number; away: number } | null;
+  aet: boolean;
   actualOutcome: Outcome | null;
   ensemble: ModelPrediction;
   models: ModelPrediction[];
   factors: MatchFactor[];
   predictedOutcome: Outcome;
   correct: boolean | null;
+  resultWinner: "home" | "away" | null;
   projectedMatchup: boolean;
 }
 
@@ -309,7 +311,7 @@ export interface Summary {
   trainingMatches: number;
   topChampion: ChampionOdd;
   topContenders: ChampionOdd[];
-  highestConfidenceMatchId: string;
+  highestConfidenceMatchId: string | null;
   bestModel: {
     id: string;
     name: string;

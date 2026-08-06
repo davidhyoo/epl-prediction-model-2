@@ -13,26 +13,8 @@
           "iso2": "es",
           "confederation": "UEFA",
           "group": "H",
-          "value": 54.955,
+          "value": 100.0,
           "rank": 1
-        },
-        {
-          "code": "ARG",
-          "name": "Argentina",
-          "iso2": "ar",
-          "confederation": "CONMEBOL",
-          "group": "J",
-          "value": 35.81,
-          "rank": 2
-        },
-        {
-          "code": "ENG",
-          "name": "England",
-          "iso2": "gb-eng",
-          "confederation": "UEFA",
-          "group": "L",
-          "value": 9.235,
-          "rank": 3
         },
         {
           "code": "MEX",
@@ -41,7 +23,7 @@
           "confederation": "CONCACAF",
           "group": "A",
           "value": 0.0,
-          "rank": 4
+          "rank": 2
         },
         {
           "code": "RSA",
@@ -50,7 +32,7 @@
           "confederation": "CAF",
           "group": "A",
           "value": 0.0,
-          "rank": 5
+          "rank": 3
         },
         {
           "code": "KOR",
@@ -59,7 +41,7 @@
           "confederation": "AFC",
           "group": "A",
           "value": 0.0,
-          "rank": 6
+          "rank": 4
         },
         {
           "code": "CZE",
@@ -68,7 +50,7 @@
           "confederation": "UEFA",
           "group": "A",
           "value": 0.0,
-          "rank": 7
+          "rank": 5
         },
         {
           "code": "CAN",
@@ -77,7 +59,7 @@
           "confederation": "CONCACAF",
           "group": "B",
           "value": 0.0,
-          "rank": 8
+          "rank": 6
         },
         {
           "code": "BIH",
@@ -86,7 +68,7 @@
           "confederation": "UEFA",
           "group": "B",
           "value": 0.0,
-          "rank": 9
+          "rank": 7
         },
         {
           "code": "QAT",
@@ -95,7 +77,7 @@
           "confederation": "AFC",
           "group": "B",
           "value": 0.0,
-          "rank": 10
+          "rank": 8
         },
         {
           "code": "SUI",
@@ -104,7 +86,7 @@
           "confederation": "UEFA",
           "group": "B",
           "value": 0.0,
-          "rank": 11
+          "rank": 9
         },
         {
           "code": "BRA",
@@ -113,7 +95,7 @@
           "confederation": "CONMEBOL",
           "group": "C",
           "value": 0.0,
-          "rank": 12
+          "rank": 10
         },
         {
           "code": "MAR",
@@ -122,7 +104,7 @@
           "confederation": "CAF",
           "group": "C",
           "value": 0.0,
-          "rank": 13
+          "rank": 11
         },
         {
           "code": "HAI",
@@ -131,7 +113,7 @@
           "confederation": "CONCACAF",
           "group": "C",
           "value": 0.0,
-          "rank": 14
+          "rank": 12
         },
         {
           "code": "SCO",
@@ -140,7 +122,7 @@
           "confederation": "UEFA",
           "group": "C",
           "value": 0.0,
-          "rank": 15
+          "rank": 13
         },
         {
           "code": "USA",
@@ -149,7 +131,7 @@
           "confederation": "CONCACAF",
           "group": "D",
           "value": 0.0,
-          "rank": 16
+          "rank": 14
         },
         {
           "code": "PAR",
@@ -158,7 +140,7 @@
           "confederation": "CONMEBOL",
           "group": "D",
           "value": 0.0,
-          "rank": 17
+          "rank": 15
         },
         {
           "code": "AUS",
@@ -167,7 +149,7 @@
           "confederation": "AFC",
           "group": "D",
           "value": 0.0,
-          "rank": 18
+          "rank": 16
         },
         {
           "code": "TUR",
@@ -176,7 +158,7 @@
           "confederation": "UEFA",
           "group": "D",
           "value": 0.0,
-          "rank": 19
+          "rank": 17
         },
         {
           "code": "GER",
@@ -185,7 +167,7 @@
           "confederation": "UEFA",
           "group": "E",
           "value": 0.0,
-          "rank": 20
+          "rank": 18
         },
         {
           "code": "CUW",
@@ -194,7 +176,7 @@
           "confederation": "CONCACAF",
           "group": "E",
           "value": 0.0,
-          "rank": 21
+          "rank": 19
         },
         {
           "code": "CIV",
@@ -203,7 +185,7 @@
           "confederation": "CAF",
           "group": "E",
           "value": 0.0,
-          "rank": 22
+          "rank": 20
         },
         {
           "code": "ECU",
@@ -212,7 +194,7 @@
           "confederation": "CONMEBOL",
           "group": "E",
           "value": 0.0,
-          "rank": 23
+          "rank": 21
         },
         {
           "code": "NED",
@@ -221,7 +203,7 @@
           "confederation": "UEFA",
           "group": "F",
           "value": 0.0,
-          "rank": 24
+          "rank": 22
         },
         {
           "code": "JPN",
@@ -230,7 +212,7 @@
           "confederation": "AFC",
           "group": "F",
           "value": 0.0,
-          "rank": 25
+          "rank": 23
         },
         {
           "code": "SWE",
@@ -239,7 +221,7 @@
           "confederation": "UEFA",
           "group": "F",
           "value": 0.0,
-          "rank": 26
+          "rank": 24
         },
         {
           "code": "TUN",
@@ -248,7 +230,7 @@
           "confederation": "CAF",
           "group": "F",
           "value": 0.0,
-          "rank": 27
+          "rank": 25
         },
         {
           "code": "BEL",
@@ -257,7 +239,7 @@
           "confederation": "UEFA",
           "group": "G",
           "value": 0.0,
-          "rank": 28
+          "rank": 26
         },
         {
           "code": "EGY",
@@ -266,7 +248,7 @@
           "confederation": "CAF",
           "group": "G",
           "value": 0.0,
-          "rank": 29
+          "rank": 27
         },
         {
           "code": "IRN",
@@ -275,7 +257,7 @@
           "confederation": "AFC",
           "group": "G",
           "value": 0.0,
-          "rank": 30
+          "rank": 28
         },
         {
           "code": "NZL",
@@ -284,7 +266,7 @@
           "confederation": "OFC",
           "group": "G",
           "value": 0.0,
-          "rank": 31
+          "rank": 29
         },
         {
           "code": "CPV",
@@ -293,7 +275,7 @@
           "confederation": "CAF",
           "group": "H",
           "value": 0.0,
-          "rank": 32
+          "rank": 30
         },
         {
           "code": "SAU",
@@ -302,7 +284,7 @@
           "confederation": "AFC",
           "group": "H",
           "value": 0.0,
-          "rank": 33
+          "rank": 31
         },
         {
           "code": "URU",
@@ -311,7 +293,7 @@
           "confederation": "CONMEBOL",
           "group": "H",
           "value": 0.0,
-          "rank": 34
+          "rank": 32
         },
         {
           "code": "FRA",
@@ -320,7 +302,7 @@
           "confederation": "UEFA",
           "group": "I",
           "value": 0.0,
-          "rank": 35
+          "rank": 33
         },
         {
           "code": "SEN",
@@ -329,7 +311,7 @@
           "confederation": "CAF",
           "group": "I",
           "value": 0.0,
-          "rank": 36
+          "rank": 34
         },
         {
           "code": "IRQ",
@@ -338,7 +320,7 @@
           "confederation": "AFC",
           "group": "I",
           "value": 0.0,
-          "rank": 37
+          "rank": 35
         },
         {
           "code": "NOR",
@@ -347,7 +329,16 @@
           "confederation": "UEFA",
           "group": "I",
           "value": 0.0,
-          "rank": 38
+          "rank": 36
+        },
+        {
+          "code": "ARG",
+          "name": "Argentina",
+          "iso2": "ar",
+          "confederation": "CONMEBOL",
+          "group": "J",
+          "value": 0.0,
+          "rank": 37
         },
         {
           "code": "ALG",
@@ -356,7 +347,7 @@
           "confederation": "CAF",
           "group": "J",
           "value": 0.0,
-          "rank": 39
+          "rank": 38
         },
         {
           "code": "AUT",
@@ -365,7 +356,7 @@
           "confederation": "UEFA",
           "group": "J",
           "value": 0.0,
-          "rank": 40
+          "rank": 39
         },
         {
           "code": "JOR",
@@ -374,7 +365,7 @@
           "confederation": "AFC",
           "group": "J",
           "value": 0.0,
-          "rank": 41
+          "rank": 40
         },
         {
           "code": "POR",
@@ -383,7 +374,7 @@
           "confederation": "UEFA",
           "group": "K",
           "value": 0.0,
-          "rank": 42
+          "rank": 41
         },
         {
           "code": "COD",
@@ -392,7 +383,7 @@
           "confederation": "CAF",
           "group": "K",
           "value": 0.0,
-          "rank": 43
+          "rank": 42
         },
         {
           "code": "UZB",
@@ -401,7 +392,7 @@
           "confederation": "AFC",
           "group": "K",
           "value": 0.0,
-          "rank": 44
+          "rank": 43
         },
         {
           "code": "COL",
@@ -409,6 +400,15 @@
           "iso2": "co",
           "confederation": "CONMEBOL",
           "group": "K",
+          "value": 0.0,
+          "rank": 44
+        },
+        {
+          "code": "ENG",
+          "name": "England",
+          "iso2": "gb-eng",
+          "confederation": "UEFA",
+          "group": "L",
           "value": 0.0,
           "rank": 45
         },
@@ -454,7 +454,7 @@
           "iso2": "es",
           "confederation": "UEFA",
           "group": "H",
-          "value": 96.0,
+          "value": 94.2,
           "rank": 1
         },
         {
@@ -463,7 +463,7 @@
           "iso2": "ar",
           "confederation": "CONMEBOL",
           "group": "J",
-          "value": 95.1,
+          "value": 91.3,
           "rank": 2
         },
         {
@@ -472,7 +472,7 @@
           "iso2": "fr",
           "confederation": "UEFA",
           "group": "I",
-          "value": 86.8,
+          "value": 80.5,
           "rank": 3
         },
         {
@@ -481,7 +481,7 @@
           "iso2": "br",
           "confederation": "CONMEBOL",
           "group": "C",
-          "value": 79.6,
+          "value": 78.5,
           "rank": 4
         },
         {
@@ -490,17 +490,8 @@
           "iso2": "gb-eng",
           "confederation": "UEFA",
           "group": "L",
-          "value": 78.7,
+          "value": 77.8,
           "rank": 5
-        },
-        {
-          "code": "POR",
-          "name": "Portugal",
-          "iso2": "pt",
-          "confederation": "UEFA",
-          "group": "K",
-          "value": 74.1,
-          "rank": 6
         },
         {
           "code": "NED",
@@ -508,7 +499,16 @@
           "iso2": "nl",
           "confederation": "UEFA",
           "group": "F",
-          "value": 74.0,
+          "value": 73.0,
+          "rank": 6
+        },
+        {
+          "code": "POR",
+          "name": "Portugal",
+          "iso2": "pt",
+          "confederation": "UEFA",
+          "group": "K",
+          "value": 73.0,
           "rank": 7
         },
         {
@@ -517,7 +517,7 @@
           "iso2": "co",
           "confederation": "CONMEBOL",
           "group": "K",
-          "value": 71.1,
+          "value": 70.0,
           "rank": 8
         },
         {
@@ -526,7 +526,7 @@
           "iso2": "de",
           "confederation": "UEFA",
           "group": "E",
-          "value": 68.4,
+          "value": 67.4,
           "rank": 9
         },
         {
@@ -535,7 +535,7 @@
           "iso2": "be",
           "confederation": "UEFA",
           "group": "G",
-          "value": 67.2,
+          "value": 66.2,
           "rank": 10
         },
         {
@@ -544,7 +544,7 @@
           "iso2": "ma",
           "confederation": "CAF",
           "group": "C",
-          "value": 63.0,
+          "value": 62.1,
           "rank": 11
         },
         {
@@ -553,17 +553,8 @@
           "iso2": "ch",
           "confederation": "UEFA",
           "group": "B",
-          "value": 60.4,
+          "value": 59.5,
           "rank": 12
-        },
-        {
-          "code": "JPN",
-          "name": "Japan",
-          "iso2": "jp",
-          "confederation": "AFC",
-          "group": "F",
-          "value": 59.6,
-          "rank": 13
         },
         {
           "code": "NOR",
@@ -571,7 +562,16 @@
           "iso2": "no",
           "confederation": "UEFA",
           "group": "I",
-          "value": 59.6,
+          "value": 58.8,
+          "rank": 13
+        },
+        {
+          "code": "JPN",
+          "name": "Japan",
+          "iso2": "jp",
+          "confederation": "AFC",
+          "group": "F",
+          "value": 58.7,
           "rank": 14
         },
         {
@@ -580,7 +580,7 @@
           "iso2": "mx",
           "confederation": "CONCACAF",
           "group": "A",
-          "value": 59.5,
+          "value": 58.6,
           "rank": 15
         },
         {
@@ -589,7 +589,7 @@
           "iso2": "hr",
           "confederation": "UEFA",
           "group": "L",
-          "value": 59.2,
+          "value": 58.3,
           "rank": 16
         },
         {
@@ -598,7 +598,7 @@
           "iso2": "uy",
           "confederation": "CONMEBOL",
           "group": "H",
-          "value": 53.7,
+          "value": 52.9,
           "rank": 17
         },
         {
@@ -607,7 +607,7 @@
           "iso2": "ec",
           "confederation": "CONMEBOL",
           "group": "E",
-          "value": 53.5,
+          "value": 52.7,
           "rank": 18
         },
         {
@@ -616,7 +616,7 @@
           "iso2": "ir",
           "confederation": "AFC",
           "group": "G",
-          "value": 52.2,
+          "value": 51.5,
           "rank": 19
         },
         {
@@ -625,7 +625,7 @@
           "iso2": "tr",
           "confederation": "UEFA",
           "group": "D",
-          "value": 51.0,
+          "value": 50.3,
           "rank": 20
         },
         {
@@ -634,7 +634,7 @@
           "iso2": "at",
           "confederation": "UEFA",
           "group": "J",
-          "value": 50.4,
+          "value": 49.7,
           "rank": 21
         },
         {
@@ -643,7 +643,7 @@
           "iso2": "us",
           "confederation": "CONCACAF",
           "group": "D",
-          "value": 48.4,
+          "value": 47.8,
           "rank": 22
         },
         {
@@ -652,7 +652,7 @@
           "iso2": "dz",
           "confederation": "CAF",
           "group": "J",
-          "value": 47.1,
+          "value": 46.4,
           "rank": 23
         },
         {
@@ -661,7 +661,7 @@
           "iso2": "sn",
           "confederation": "CAF",
           "group": "I",
-          "value": 46.7,
+          "value": 46.0,
           "rank": 24
         },
         {
@@ -670,7 +670,7 @@
           "iso2": "ci",
           "confederation": "CAF",
           "group": "E",
-          "value": 44.0,
+          "value": 43.4,
           "rank": 25
         },
         {
@@ -679,7 +679,7 @@
           "iso2": "au",
           "confederation": "AFC",
           "group": "D",
-          "value": 43.0,
+          "value": 42.3,
           "rank": 26
         },
         {
@@ -688,7 +688,7 @@
           "iso2": "ca",
           "confederation": "CONCACAF",
           "group": "B",
-          "value": 42.4,
+          "value": 41.8,
           "rank": 27
         },
         {
@@ -697,7 +697,7 @@
           "iso2": "kr",
           "confederation": "AFC",
           "group": "A",
-          "value": 41.0,
+          "value": 40.4,
           "rank": 28
         },
         {
@@ -706,7 +706,7 @@
           "iso2": "gb-sct",
           "confederation": "UEFA",
           "group": "C",
-          "value": 39.3,
+          "value": 38.8,
           "rank": 29
         },
         {
@@ -715,7 +715,7 @@
           "iso2": "eg",
           "confederation": "CAF",
           "group": "G",
-          "value": 38.9,
+          "value": 38.4,
           "rank": 30
         },
         {
@@ -724,7 +724,7 @@
           "iso2": "py",
           "confederation": "CONMEBOL",
           "group": "D",
-          "value": 38.7,
+          "value": 38.1,
           "rank": 31
         },
         {
@@ -733,7 +733,7 @@
           "iso2": "se",
           "confederation": "UEFA",
           "group": "F",
-          "value": 35.4,
+          "value": 34.9,
           "rank": 32
         },
         {
@@ -742,7 +742,7 @@
           "iso2": "cz",
           "confederation": "UEFA",
           "group": "A",
-          "value": 34.3,
+          "value": 33.9,
           "rank": 33
         },
         {
@@ -751,7 +751,7 @@
           "iso2": "cd",
           "confederation": "CAF",
           "group": "K",
-          "value": 27.5,
+          "value": 27.1,
           "rank": 34
         },
         {
@@ -760,7 +760,7 @@
           "iso2": "pa",
           "confederation": "CONCACAF",
           "group": "L",
-          "value": 24.7,
+          "value": 24.3,
           "rank": 35
         },
         {
@@ -769,17 +769,8 @@
           "iso2": "sa",
           "confederation": "AFC",
           "group": "H",
-          "value": 23.9,
+          "value": 23.6,
           "rank": 36
-        },
-        {
-          "code": "UZB",
-          "name": "Uzbekistan",
-          "iso2": "uz",
-          "confederation": "AFC",
-          "group": "K",
-          "value": 23.2,
-          "rank": 37
         },
         {
           "code": "RSA",
@@ -787,7 +778,16 @@
           "iso2": "za",
           "confederation": "CAF",
           "group": "A",
-          "value": 23.0,
+          "value": 22.8,
+          "rank": 37
+        },
+        {
+          "code": "UZB",
+          "name": "Uzbekistan",
+          "iso2": "uz",
+          "confederation": "AFC",
+          "group": "K",
+          "value": 22.8,
           "rank": 38
         },
         {
@@ -796,7 +796,7 @@
           "iso2": "tn",
           "confederation": "CAF",
           "group": "F",
-          "value": 22.5,
+          "value": 22.2,
           "rank": 39
         },
         {
@@ -805,7 +805,7 @@
           "iso2": "gh",
           "confederation": "CAF",
           "group": "L",
-          "value": 21.9,
+          "value": 21.6,
           "rank": 40
         },
         {
@@ -814,7 +814,7 @@
           "iso2": "ba",
           "confederation": "UEFA",
           "group": "B",
-          "value": 19.1,
+          "value": 18.9,
           "rank": 41
         },
         {
@@ -823,7 +823,7 @@
           "iso2": "cv",
           "confederation": "CAF",
           "group": "H",
-          "value": 17.4,
+          "value": 17.1,
           "rank": 42
         },
         {
@@ -832,7 +832,7 @@
           "iso2": "jo",
           "confederation": "AFC",
           "group": "J",
-          "value": 16.4,
+          "value": 16.2,
           "rank": 43
         },
         {
@@ -841,7 +841,7 @@
           "iso2": "iq",
           "confederation": "AFC",
           "group": "I",
-          "value": 14.9,
+          "value": 14.6,
           "rank": 44
         },
         {
@@ -850,7 +850,7 @@
           "iso2": "nz",
           "confederation": "OFC",
           "group": "G",
-          "value": 13.3,
+          "value": 13.0,
           "rank": 45
         },
         {
@@ -859,7 +859,7 @@
           "iso2": "ht",
           "confederation": "CONCACAF",
           "group": "C",
-          "value": 12.0,
+          "value": 11.9,
           "rank": 46
         },
         {
@@ -895,7 +895,7 @@
           "iso2": "es",
           "confederation": "UEFA",
           "group": "H",
-          "value": 2181.7,
+          "value": 2198.0,
           "rank": 1
         },
         {
@@ -904,7 +904,7 @@
           "iso2": "ar",
           "confederation": "CONMEBOL",
           "group": "J",
-          "value": 2174.8,
+          "value": 2169.8,
           "rank": 2
         },
         {
@@ -913,7 +913,7 @@
           "iso2": "fr",
           "confederation": "UEFA",
           "group": "I",
-          "value": 2106.2,
+          "value": 2081.4,
           "rank": 3
         },
         {
@@ -922,7 +922,7 @@
           "iso2": "gb-eng",
           "confederation": "UEFA",
           "group": "L",
-          "value": 2064.0,
+          "value": 2077.9,
           "rank": 4
         },
         {
@@ -931,7 +931,7 @@
           "iso2": "br",
           "confederation": "CONMEBOL",
           "group": "C",
-          "value": 2055.8,
+          "value": 2055.9,
           "rank": 5
         },
         {
@@ -958,7 +958,7 @@
           "iso2": "nl",
           "confederation": "UEFA",
           "group": "F",
-          "value": 2005.5,
+          "value": 2005.6,
           "rank": 8
         },
         {
@@ -967,7 +967,7 @@
           "iso2": "be",
           "confederation": "UEFA",
           "group": "G",
-          "value": 1994.5,
+          "value": 1994.6,
           "rank": 9
         },
         {
@@ -1003,7 +1003,7 @@
           "iso2": "mx",
           "confederation": "CONCACAF",
           "group": "A",
-          "value": 1955.2,
+          "value": 1955.3,
           "rank": 13
         },
         {
@@ -1012,7 +1012,7 @@
           "iso2": "ch",
           "confederation": "UEFA",
           "group": "B",
-          "value": 1946.6,
+          "value": 1946.7,
           "rank": 14
         },
         {
@@ -1021,7 +1021,7 @@
           "iso2": "no",
           "confederation": "UEFA",
           "group": "I",
-          "value": 1937.1,
+          "value": 1937.2,
           "rank": 15
         },
         {
@@ -1030,7 +1030,7 @@
           "iso2": "hr",
           "confederation": "UEFA",
           "group": "L",
-          "value": 1924.9,
+          "value": 1925.0,
           "rank": 16
         },
         {
@@ -1057,7 +1057,7 @@
           "iso2": "at",
           "confederation": "UEFA",
           "group": "J",
-          "value": 1879.9,
+          "value": 1880.0,
           "rank": 19
         },
         {
@@ -1066,7 +1066,7 @@
           "iso2": "ir",
           "confederation": "AFC",
           "group": "G",
-          "value": 1877.9,
+          "value": 1878.0,
           "rank": 20
         },
         {
@@ -1075,7 +1075,7 @@
           "iso2": "tr",
           "confederation": "UEFA",
           "group": "D",
-          "value": 1870.9,
+          "value": 1871.0,
           "rank": 21
         },
         {
@@ -1084,7 +1084,7 @@
           "iso2": "dz",
           "confederation": "CAF",
           "group": "J",
-          "value": 1866.2,
+          "value": 1866.3,
           "rank": 22
         },
         {
@@ -1093,7 +1093,7 @@
           "iso2": "sn",
           "confederation": "CAF",
           "group": "I",
-          "value": 1857.3,
+          "value": 1857.4,
           "rank": 23
         },
         {
@@ -1111,7 +1111,7 @@
           "iso2": "us",
           "confederation": "CONCACAF",
           "group": "D",
-          "value": 1842.5,
+          "value": 1842.6,
           "rank": 25
         },
         {
@@ -1129,7 +1129,7 @@
           "iso2": "py",
           "confederation": "CONMEBOL",
           "group": "D",
-          "value": 1835.8,
+          "value": 1835.9,
           "rank": 27
         },
         {
@@ -1147,7 +1147,7 @@
           "iso2": "ci",
           "confederation": "CAF",
           "group": "E",
-          "value": 1814.2,
+          "value": 1814.3,
           "rank": 29
         },
         {
@@ -1165,7 +1165,7 @@
           "iso2": "se",
           "confederation": "UEFA",
           "group": "F",
-          "value": 1789.8,
+          "value": 1789.9,
           "rank": 31
         },
         {
@@ -1174,7 +1174,7 @@
           "iso2": "gb-sct",
           "confederation": "UEFA",
           "group": "C",
-          "value": 1778.7,
+          "value": 1778.8,
           "rank": 32
         },
         {
@@ -1183,7 +1183,7 @@
           "iso2": "cz",
           "confederation": "UEFA",
           "group": "A",
-          "value": 1766.3,
+          "value": 1766.5,
           "rank": 33
         },
         {
@@ -1192,7 +1192,7 @@
           "iso2": "pa",
           "confederation": "CONCACAF",
           "group": "L",
-          "value": 1734.0,
+          "value": 1734.1,
           "rank": 34
         },
         {
@@ -1201,7 +1201,7 @@
           "iso2": "uz",
           "confederation": "AFC",
           "group": "K",
-          "value": 1731.3,
+          "value": 1731.4,
           "rank": 35
         },
         {
@@ -1219,7 +1219,7 @@
           "iso2": "jo",
           "confederation": "AFC",
           "group": "J",
-          "value": 1694.5,
+          "value": 1694.6,
           "rank": 37
         },
         {
@@ -1228,7 +1228,7 @@
           "iso2": "tn",
           "confederation": "CAF",
           "group": "F",
-          "value": 1688.4,
+          "value": 1688.5,
           "rank": 38
         },
         {
@@ -1237,7 +1237,7 @@
           "iso2": "sa",
           "confederation": "AFC",
           "group": "H",
-          "value": 1677.9,
+          "value": 1678.0,
           "rank": 39
         },
         {
@@ -1246,7 +1246,7 @@
           "iso2": "nz",
           "confederation": "OFC",
           "group": "G",
-          "value": 1675.3,
+          "value": 1675.4,
           "rank": 40
         },
         {
@@ -1255,7 +1255,7 @@
           "iso2": "za",
           "confederation": "CAF",
           "group": "A",
-          "value": 1672.0,
+          "value": 1672.1,
           "rank": 41
         },
         {
@@ -1282,7 +1282,7 @@
           "iso2": "ba",
           "confederation": "UEFA",
           "group": "B",
-          "value": 1651.7,
+          "value": 1651.8,
           "rank": 44
         },
         {
@@ -1291,7 +1291,7 @@
           "iso2": "gh",
           "confederation": "CAF",
           "group": "L",
-          "value": 1648.6,
+          "value": 1648.7,
           "rank": 45
         },
         {
@@ -1336,7 +1336,7 @@
           "iso2": "es",
           "confederation": "UEFA",
           "group": "H",
-          "value": 99.0,
+          "value": 86.7,
           "rank": 1
         },
         {
@@ -1349,40 +1349,13 @@
           "rank": 2
         },
         {
-          "code": "FRA",
-          "name": "France",
-          "iso2": "fr",
-          "confederation": "UEFA",
-          "group": "I",
-          "value": 80.0,
-          "rank": 3
-        },
-        {
-          "code": "ARG",
-          "name": "Argentina",
-          "iso2": "ar",
-          "confederation": "CONMEBOL",
-          "group": "J",
-          "value": 73.3,
-          "rank": 4
-        },
-        {
-          "code": "ENG",
-          "name": "England",
-          "iso2": "gb-eng",
-          "confederation": "UEFA",
-          "group": "L",
-          "value": 73.3,
-          "rank": 5
-        },
-        {
           "code": "SUI",
           "name": "Switzerland",
           "iso2": "ch",
           "confederation": "UEFA",
           "group": "B",
           "value": 73.3,
-          "rank": 6
+          "rank": 3
         },
         {
           "code": "NED",
@@ -1391,7 +1364,7 @@
           "confederation": "UEFA",
           "group": "F",
           "value": 73.3,
-          "rank": 7
+          "rank": 4
         },
         {
           "code": "COL",
@@ -1400,7 +1373,7 @@
           "confederation": "CONMEBOL",
           "group": "K",
           "value": 73.3,
-          "rank": 8
+          "rank": 5
         },
         {
           "code": "BRA",
@@ -1409,7 +1382,7 @@
           "confederation": "CONMEBOL",
           "group": "C",
           "value": 66.7,
-          "rank": 9
+          "rank": 6
         },
         {
           "code": "MAR",
@@ -1418,7 +1391,7 @@
           "confederation": "CAF",
           "group": "C",
           "value": 66.7,
-          "rank": 10
+          "rank": 7
         },
         {
           "code": "GER",
@@ -1427,7 +1400,7 @@
           "confederation": "UEFA",
           "group": "E",
           "value": 66.7,
-          "rank": 11
+          "rank": 8
         },
         {
           "code": "NOR",
@@ -1436,7 +1409,16 @@
           "confederation": "UEFA",
           "group": "I",
           "value": 66.7,
-          "rank": 12
+          "rank": 9
+        },
+        {
+          "code": "ENG",
+          "name": "England",
+          "iso2": "gb-eng",
+          "confederation": "UEFA",
+          "group": "L",
+          "value": 66.7,
+          "rank": 10
         },
         {
           "code": "KOR",
@@ -1445,7 +1427,7 @@
           "confederation": "AFC",
           "group": "A",
           "value": 60.0,
-          "rank": 13
+          "rank": 11
         },
         {
           "code": "SCO",
@@ -1454,7 +1436,7 @@
           "confederation": "UEFA",
           "group": "C",
           "value": 60.0,
-          "rank": 14
+          "rank": 12
         },
         {
           "code": "USA",
@@ -1463,7 +1445,7 @@
           "confederation": "CONCACAF",
           "group": "D",
           "value": 60.0,
-          "rank": 15
+          "rank": 13
         },
         {
           "code": "TUR",
@@ -1472,7 +1454,7 @@
           "confederation": "UEFA",
           "group": "D",
           "value": 60.0,
-          "rank": 16
+          "rank": 14
         },
         {
           "code": "CIV",
@@ -1481,7 +1463,7 @@
           "confederation": "CAF",
           "group": "E",
           "value": 60.0,
-          "rank": 17
+          "rank": 15
         },
         {
           "code": "IRN",
@@ -1489,6 +1471,24 @@
           "iso2": "ir",
           "confederation": "AFC",
           "group": "G",
+          "value": 60.0,
+          "rank": 16
+        },
+        {
+          "code": "FRA",
+          "name": "France",
+          "iso2": "fr",
+          "confederation": "UEFA",
+          "group": "I",
+          "value": 60.0,
+          "rank": 17
+        },
+        {
+          "code": "ARG",
+          "name": "Argentina",
+          "iso2": "ar",
+          "confederation": "CONMEBOL",
+          "group": "J",
           "value": 60.0,
           "rank": 18
         },
@@ -3100,17 +3100,8 @@
           "iso2": "es",
           "confederation": "UEFA",
           "group": "H",
-          "value": 99.0,
-          "rank": 1
-        },
-        {
-          "code": "ENG",
-          "name": "England",
-          "iso2": "gb-eng",
-          "confederation": "UEFA",
-          "group": "L",
           "value": 77.8,
-          "rank": 2
+          "rank": 1
         },
         {
           "code": "NED",
@@ -3119,7 +3110,7 @@
           "confederation": "UEFA",
           "group": "F",
           "value": 77.8,
-          "rank": 3
+          "rank": 2
         },
         {
           "code": "NOR",
@@ -3128,7 +3119,7 @@
           "confederation": "UEFA",
           "group": "I",
           "value": 77.8,
-          "rank": 4
+          "rank": 3
         },
         {
           "code": "MEX",
@@ -3137,7 +3128,7 @@
           "confederation": "CONCACAF",
           "group": "A",
           "value": 66.7,
-          "rank": 5
+          "rank": 4
         },
         {
           "code": "BRA",
@@ -3146,16 +3137,7 @@
           "confederation": "CONMEBOL",
           "group": "C",
           "value": 66.7,
-          "rank": 6
-        },
-        {
-          "code": "FRA",
-          "name": "France",
-          "iso2": "fr",
-          "confederation": "UEFA",
-          "group": "I",
-          "value": 66.7,
-          "rank": 7
+          "rank": 5
         },
         {
           "code": "CRO",
@@ -3164,16 +3146,7 @@
           "confederation": "UEFA",
           "group": "L",
           "value": 66.7,
-          "rank": 8
-        },
-        {
-          "code": "ARG",
-          "name": "Argentina",
-          "iso2": "ar",
-          "confederation": "CONMEBOL",
-          "group": "J",
-          "value": 55.6,
-          "rank": 9
+          "rank": 6
         },
         {
           "code": "SUI",
@@ -3182,7 +3155,16 @@
           "confederation": "UEFA",
           "group": "B",
           "value": 55.6,
-          "rank": 10
+          "rank": 7
+        },
+        {
+          "code": "ARG",
+          "name": "Argentina",
+          "iso2": "ar",
+          "confederation": "CONMEBOL",
+          "group": "J",
+          "value": 55.6,
+          "rank": 8
         },
         {
           "code": "COL",
@@ -3191,7 +3173,7 @@
           "confederation": "CONMEBOL",
           "group": "K",
           "value": 55.6,
-          "rank": 11
+          "rank": 9
         },
         {
           "code": "RSA",
@@ -3200,7 +3182,7 @@
           "confederation": "CAF",
           "group": "A",
           "value": 44.4,
-          "rank": 12
+          "rank": 10
         },
         {
           "code": "MAR",
@@ -3209,7 +3191,7 @@
           "confederation": "CAF",
           "group": "C",
           "value": 44.4,
-          "rank": 13
+          "rank": 11
         },
         {
           "code": "GER",
@@ -3218,7 +3200,7 @@
           "confederation": "UEFA",
           "group": "E",
           "value": 44.4,
-          "rank": 14
+          "rank": 12
         },
         {
           "code": "ECU",
@@ -3227,7 +3209,7 @@
           "confederation": "CONMEBOL",
           "group": "E",
           "value": 44.4,
-          "rank": 15
+          "rank": 13
         },
         {
           "code": "JPN",
@@ -3236,7 +3218,7 @@
           "confederation": "AFC",
           "group": "F",
           "value": 44.4,
-          "rank": 16
+          "rank": 14
         },
         {
           "code": "BEL",
@@ -3245,7 +3227,7 @@
           "confederation": "UEFA",
           "group": "G",
           "value": 44.4,
-          "rank": 17
+          "rank": 15
         },
         {
           "code": "SEN",
@@ -3254,7 +3236,7 @@
           "confederation": "CAF",
           "group": "I",
           "value": 44.4,
-          "rank": 18
+          "rank": 16
         },
         {
           "code": "ALG",
@@ -3263,7 +3245,7 @@
           "confederation": "CAF",
           "group": "J",
           "value": 44.4,
-          "rank": 19
+          "rank": 17
         },
         {
           "code": "POR",
@@ -3272,7 +3254,16 @@
           "confederation": "UEFA",
           "group": "K",
           "value": 44.4,
-          "rank": 20
+          "rank": 18
+        },
+        {
+          "code": "ENG",
+          "name": "England",
+          "iso2": "gb-eng",
+          "confederation": "UEFA",
+          "group": "L",
+          "value": 44.4,
+          "rank": 19
         },
         {
           "code": "KOR",
@@ -3281,7 +3272,7 @@
           "confederation": "AFC",
           "group": "A",
           "value": 33.3,
-          "rank": 21
+          "rank": 20
         },
         {
           "code": "CAN",
@@ -3290,7 +3281,7 @@
           "confederation": "CONCACAF",
           "group": "B",
           "value": 33.3,
-          "rank": 22
+          "rank": 21
         },
         {
           "code": "BIH",
@@ -3299,7 +3290,7 @@
           "confederation": "UEFA",
           "group": "B",
           "value": 33.3,
-          "rank": 23
+          "rank": 22
         },
         {
           "code": "SCO",
@@ -3308,7 +3299,7 @@
           "confederation": "UEFA",
           "group": "C",
           "value": 33.3,
-          "rank": 24
+          "rank": 23
         },
         {
           "code": "USA",
@@ -3317,7 +3308,7 @@
           "confederation": "CONCACAF",
           "group": "D",
           "value": 33.3,
-          "rank": 25
+          "rank": 24
         },
         {
           "code": "TUR",
@@ -3326,7 +3317,7 @@
           "confederation": "UEFA",
           "group": "D",
           "value": 33.3,
-          "rank": 26
+          "rank": 25
         },
         {
           "code": "CIV",
@@ -3335,7 +3326,7 @@
           "confederation": "CAF",
           "group": "E",
           "value": 33.3,
-          "rank": 27
+          "rank": 26
         },
         {
           "code": "IRN",
@@ -3344,7 +3335,7 @@
           "confederation": "AFC",
           "group": "G",
           "value": 33.3,
-          "rank": 28
+          "rank": 27
         },
         {
           "code": "CPV",
@@ -3352,6 +3343,15 @@
           "iso2": "cv",
           "confederation": "CAF",
           "group": "H",
+          "value": 33.3,
+          "rank": 28
+        },
+        {
+          "code": "FRA",
+          "name": "France",
+          "iso2": "fr",
+          "confederation": "UEFA",
+          "group": "I",
           "value": 33.3,
           "rank": 29
         },
@@ -3541,7 +3541,7 @@
           "iso2": "ar",
           "confederation": "CONMEBOL",
           "group": "J",
-          "value": 65.5428,
+          "value": 65.4887,
           "rank": 1
         },
         {
@@ -3550,7 +3550,7 @@
           "iso2": "br",
           "confederation": "CONMEBOL",
           "group": "C",
-          "value": 62.2764,
+          "value": 61.6259,
           "rank": 2
         },
         {
@@ -3559,7 +3559,7 @@
           "iso2": "de",
           "confederation": "UEFA",
           "group": "E",
-          "value": 61.11,
+          "value": 61.1895,
           "rank": 3
         },
         {
@@ -3568,7 +3568,7 @@
           "iso2": "fr",
           "confederation": "UEFA",
           "group": "I",
-          "value": 56.5964,
+          "value": 56.5121,
           "rank": 4
         },
         {
@@ -3577,17 +3577,8 @@
           "iso2": "es",
           "confederation": "UEFA",
           "group": "H",
-          "value": 54.482,
+          "value": 54.3604,
           "rank": 5
-        },
-        {
-          "code": "NED",
-          "name": "Netherlands",
-          "iso2": "nl",
-          "confederation": "UEFA",
-          "group": "F",
-          "value": 53.8101,
-          "rank": 6
         },
         {
           "code": "POR",
@@ -3595,17 +3586,17 @@
           "iso2": "pt",
           "confederation": "UEFA",
           "group": "K",
-          "value": 53.1641,
-          "rank": 7
+          "value": 53.3834,
+          "rank": 6
         },
         {
-          "code": "COL",
-          "name": "Colombia",
-          "iso2": "co",
-          "confederation": "CONMEBOL",
-          "group": "K",
-          "value": 52.3353,
-          "rank": 8
+          "code": "NED",
+          "name": "Netherlands",
+          "iso2": "nl",
+          "confederation": "UEFA",
+          "group": "F",
+          "value": 53.3281,
+          "rank": 7
         },
         {
           "code": "ENG",
@@ -3613,17 +3604,17 @@
           "iso2": "gb-eng",
           "confederation": "UEFA",
           "group": "L",
-          "value": 52.3139,
-          "rank": 9
+          "value": 52.7594,
+          "rank": 8
         },
         {
-          "code": "BEL",
-          "name": "Belgium",
-          "iso2": "be",
-          "confederation": "UEFA",
-          "group": "G",
-          "value": 48.8114,
-          "rank": 10
+          "code": "COL",
+          "name": "Colombia",
+          "iso2": "co",
+          "confederation": "CONMEBOL",
+          "group": "K",
+          "value": 52.4798,
+          "rank": 9
         },
         {
           "code": "CAN",
@@ -3631,7 +3622,16 @@
           "iso2": "ca",
           "confederation": "CONCACAF",
           "group": "B",
-          "value": 48.2171,
+          "value": 48.8201,
+          "rank": 10
+        },
+        {
+          "code": "BEL",
+          "name": "Belgium",
+          "iso2": "be",
+          "confederation": "UEFA",
+          "group": "G",
+          "value": 48.0062,
           "rank": 11
         },
         {
@@ -3640,7 +3640,7 @@
           "iso2": "uy",
           "confederation": "CONMEBOL",
           "group": "H",
-          "value": 46.9711,
+          "value": 47.2025,
           "rank": 12
         },
         {
@@ -3649,7 +3649,7 @@
           "iso2": "mx",
           "confederation": "CONCACAF",
           "group": "A",
-          "value": 45.8304,
+          "value": 45.9686,
           "rank": 13
         },
         {
@@ -3658,17 +3658,8 @@
           "iso2": "us",
           "confederation": "CONCACAF",
           "group": "D",
-          "value": 43.1298,
+          "value": 44.2968,
           "rank": 14
-        },
-        {
-          "code": "CRO",
-          "name": "Croatia",
-          "iso2": "hr",
-          "confederation": "UEFA",
-          "group": "L",
-          "value": 42.3899,
-          "rank": 15
         },
         {
           "code": "IRN",
@@ -3676,8 +3667,8 @@
           "iso2": "ir",
           "confederation": "AFC",
           "group": "G",
-          "value": 41.7766,
-          "rank": 16
+          "value": 42.6959,
+          "rank": 15
         },
         {
           "code": "ECU",
@@ -3685,17 +3676,17 @@
           "iso2": "ec",
           "confederation": "CONMEBOL",
           "group": "E",
-          "value": 41.382,
-          "rank": 17
+          "value": 41.7059,
+          "rank": 16
         },
         {
-          "code": "TUR",
-          "name": "Turkey",
-          "iso2": "tr",
+          "code": "CRO",
+          "name": "Croatia",
+          "iso2": "hr",
           "confederation": "UEFA",
-          "group": "D",
-          "value": 40.5152,
-          "rank": 18
+          "group": "L",
+          "value": 41.1757,
+          "rank": 17
         },
         {
           "code": "SUI",
@@ -3703,8 +3694,8 @@
           "iso2": "ch",
           "confederation": "UEFA",
           "group": "B",
-          "value": 40.1794,
-          "rank": 19
+          "value": 41.0037,
+          "rank": 18
         },
         {
           "code": "JPN",
@@ -3712,7 +3703,16 @@
           "iso2": "jp",
           "confederation": "AFC",
           "group": "F",
-          "value": 39.0937,
+          "value": 40.8623,
+          "rank": 19
+        },
+        {
+          "code": "TUR",
+          "name": "Turkey",
+          "iso2": "tr",
+          "confederation": "UEFA",
+          "group": "D",
+          "value": 39.9751,
           "rank": 20
         },
         {
@@ -3721,17 +3721,8 @@
           "iso2": "ma",
           "confederation": "CAF",
           "group": "C",
-          "value": 38.6511,
+          "value": 38.9344,
           "rank": 21
-        },
-        {
-          "code": "CZE",
-          "name": "Czech Republic",
-          "iso2": "cz",
-          "confederation": "UEFA",
-          "group": "A",
-          "value": 36.3677,
-          "rank": 22
         },
         {
           "code": "KOR",
@@ -3739,17 +3730,17 @@
           "iso2": "kr",
           "confederation": "AFC",
           "group": "A",
-          "value": 35.8282,
-          "rank": 23
+          "value": 36.6429,
+          "rank": 22
         },
         {
-          "code": "NOR",
-          "name": "Norway",
-          "iso2": "no",
+          "code": "CZE",
+          "name": "Czech Republic",
+          "iso2": "cz",
           "confederation": "UEFA",
-          "group": "I",
-          "value": 34.0512,
-          "rank": 24
+          "group": "A",
+          "value": 36.3558,
+          "rank": 23
         },
         {
           "code": "AUS",
@@ -3757,7 +3748,16 @@
           "iso2": "au",
           "confederation": "AFC",
           "group": "D",
-          "value": 33.3208,
+          "value": 34.369,
+          "rank": 24
+        },
+        {
+          "code": "NOR",
+          "name": "Norway",
+          "iso2": "no",
+          "confederation": "UEFA",
+          "group": "I",
+          "value": 34.3111,
           "rank": 25
         },
         {
@@ -3766,7 +3766,7 @@
           "iso2": "dz",
           "confederation": "CAF",
           "group": "J",
-          "value": 32.894,
+          "value": 33.387,
           "rank": 26
         },
         {
@@ -3775,7 +3775,7 @@
           "iso2": "sn",
           "confederation": "CAF",
           "group": "I",
-          "value": 31.9834,
+          "value": 31.5554,
           "rank": 27
         },
         {
@@ -3784,7 +3784,7 @@
           "iso2": "ci",
           "confederation": "CAF",
           "group": "E",
-          "value": 31.5553,
+          "value": 30.192,
           "rank": 28
         },
         {
@@ -3793,7 +3793,7 @@
           "iso2": "gb-sct",
           "confederation": "UEFA",
           "group": "C",
-          "value": 30.1072,
+          "value": 29.696,
           "rank": 29
         },
         {
@@ -3802,7 +3802,7 @@
           "iso2": "at",
           "confederation": "UEFA",
           "group": "J",
-          "value": 28.4202,
+          "value": 28.4849,
           "rank": 30
         },
         {
@@ -3811,7 +3811,7 @@
           "iso2": "eg",
           "confederation": "CAF",
           "group": "G",
-          "value": 27.2514,
+          "value": 26.2336,
           "rank": 31
         },
         {
@@ -3820,7 +3820,7 @@
           "iso2": "py",
           "confederation": "CONMEBOL",
           "group": "D",
-          "value": 22.8607,
+          "value": 22.9527,
           "rank": 32
         },
         {
@@ -3829,7 +3829,7 @@
           "iso2": "uz",
           "confederation": "AFC",
           "group": "K",
-          "value": 22.5035,
+          "value": 22.1879,
           "rank": 33
         },
         {
@@ -3838,7 +3838,7 @@
           "iso2": "sa",
           "confederation": "AFC",
           "group": "H",
-          "value": 20.7468,
+          "value": 21.0307,
           "rank": 34
         },
         {
@@ -3847,7 +3847,7 @@
           "iso2": "se",
           "confederation": "UEFA",
           "group": "F",
-          "value": 20.5309,
+          "value": 21.01,
           "rank": 35
         },
         {
@@ -3856,17 +3856,8 @@
           "iso2": "pa",
           "confederation": "CONCACAF",
           "group": "L",
-          "value": 20.0873,
+          "value": 20.9424,
           "rank": 36
-        },
-        {
-          "code": "RSA",
-          "name": "South Africa",
-          "iso2": "za",
-          "confederation": "CAF",
-          "group": "A",
-          "value": 19.681,
-          "rank": 37
         },
         {
           "code": "QAT",
@@ -3874,7 +3865,16 @@
           "iso2": "qa",
           "confederation": "AFC",
           "group": "B",
-          "value": 19.1345,
+          "value": 19.5195,
+          "rank": 37
+        },
+        {
+          "code": "RSA",
+          "name": "South Africa",
+          "iso2": "za",
+          "confederation": "CAF",
+          "group": "A",
+          "value": 18.8446,
           "rank": 38
         },
         {
@@ -3883,7 +3883,7 @@
           "iso2": "ba",
           "confederation": "UEFA",
           "group": "B",
-          "value": 18.9271,
+          "value": 18.5673,
           "rank": 39
         },
         {
@@ -3892,7 +3892,7 @@
           "iso2": "tn",
           "confederation": "CAF",
           "group": "F",
-          "value": 18.6509,
+          "value": 17.9545,
           "rank": 40
         },
         {
@@ -3901,7 +3901,7 @@
           "iso2": "nz",
           "confederation": "OFC",
           "group": "G",
-          "value": 17.7878,
+          "value": 17.5332,
           "rank": 41
         },
         {
@@ -3910,7 +3910,7 @@
           "iso2": "gh",
           "confederation": "CAF",
           "group": "L",
-          "value": 17.1453,
+          "value": 17.0171,
           "rank": 42
         },
         {
@@ -3919,17 +3919,8 @@
           "iso2": "cd",
           "confederation": "CAF",
           "group": "K",
-          "value": 15.7248,
+          "value": 16.0499,
           "rank": 43
-        },
-        {
-          "code": "CPV",
-          "name": "Cape Verde",
-          "iso2": "cv",
-          "confederation": "CAF",
-          "group": "H",
-          "value": 13.2102,
-          "rank": 44
         },
         {
           "code": "IRQ",
@@ -3937,7 +3928,16 @@
           "iso2": "iq",
           "confederation": "AFC",
           "group": "I",
-          "value": 13.1936,
+          "value": 13.1812,
+          "rank": 44
+        },
+        {
+          "code": "CPV",
+          "name": "Cape Verde",
+          "iso2": "cv",
+          "confederation": "CAF",
+          "group": "H",
+          "value": 12.8863,
           "rank": 45
         },
         {
@@ -3946,7 +3946,7 @@
           "iso2": "ht",
           "confederation": "CONCACAF",
           "group": "C",
-          "value": 12.3546,
+          "value": 12.0899,
           "rank": 46
         },
         {
@@ -3955,7 +3955,7 @@
           "iso2": "jo",
           "confederation": "AFC",
           "group": "J",
-          "value": 12.1991,
+          "value": 11.9824,
           "rank": 47
         },
         {
@@ -3964,7 +3964,7 @@
           "iso2": "cw",
           "confederation": "CONCACAF",
           "group": "E",
-          "value": 8.8566,
+          "value": 9.085,
           "rank": 48
         }
       ]

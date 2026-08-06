@@ -564,12 +564,15 @@
           "away": "ARG",
           "homeProjected": false,
           "awayProjected": false,
-          "score": null,
+          "score": {
+            "home": 1,
+            "away": 2
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.3922,
-          "awayProb": 0.6078
+          "winner": "ARG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         }
       ]
     },
@@ -584,13 +587,16 @@
           "home": "FRA",
           "away": "ENG",
           "homeProjected": false,
-          "awayProjected": true,
-          "score": null,
+          "awayProjected": false,
+          "score": {
+            "home": 4,
+            "away": 6
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.5627,
-          "awayProb": 0.4373
+          "winner": "ENG",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         }
       ]
     },
@@ -605,13 +611,16 @@
           "home": "ESP",
           "away": "ARG",
           "homeProjected": false,
-          "awayProjected": true,
-          "score": null,
+          "awayProjected": false,
+          "score": {
+            "home": 1,
+            "away": 0
+          },
           "penalties": null,
-          "winner": null,
-          "status": "upcoming",
-          "homeProb": 0.4533,
-          "awayProb": 0.5467
+          "winner": "ESP",
+          "status": "completed",
+          "homeProb": null,
+          "awayProb": null
         }
       ]
     }

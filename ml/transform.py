@@ -97,6 +97,7 @@ def validate_and_transform() -> None:
             "home": m["home"], "away": m["away"], "home_adv": int(m["home_adv"]),
             "gh": m["gh"], "ga": m["ga"], "fh": m.get("fh"), "fa": m.get("fa"),
             "pens": m.get("pens"), "winner": m.get("winner"),
+            "aet": bool(m.get("aet", False)),
             "feedHome": m.get("feedHome"), "feedAway": m.get("feedAway"),
             "knockout": 0 if m["stage"] == "group" else 1, "status": status,
             "outcome": outcome(m["gh"], m["ga"]) if played else None,

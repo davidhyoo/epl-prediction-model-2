@@ -23,8 +23,18 @@ export function MatchCard({ match, modelMeta, className }: MatchCardProps) {
   const { home, away, ensemble, status } = match;
   const dt = formatMatchDate(match.datetime);
   const completed = status === "completed";
-  const homeWin = match.actualOutcome === "home";
-  const awayWin = match.actualOutcome === "away";
+  // For knockout ties settled in extra time or on penalties the advancing side
+  // (resultWinner) differs from the 90-minute 1X2 outcome, so prefer it for the
+  // winner highlight; fall back to the regulation outcome for group games.
+  const homeWin = match.resultWinner ? match.resultWinner === "home" : match.actualOutcome === "home";
+  const awayWin = match.resultWinner ? match.resultWinner === "away" : match.actualOutcome === "away";
+  const resultNote = completed
+    ? match.penalties
+      ? `a.e.t. · ${match.penalties.home}–${match.penalties.away} pens`
+      : match.aet
+        ? "a.e.t."
+        : null
+    : null;
 
   return (
     <>
@@ -43,7 +53,13 @@ export function MatchCard({ match, modelMeta, className }: MatchCardProps) {
           <div className="flex items-center gap-1.5">
             {status === "live" && <span className="live-dot size-2 rounded-full bg-destructive" />}
             <span>
-              {completed ? "Full time" : status === "live" ? "Live" : `${dt.weekday} ${dt.date} · ${dt.time}`}
+              {completed
+                ? resultNote
+                  ? `Full time · ${resultNote}`
+                  : "Full time"
+                : status === "live"
+                  ? "Live"
+                  : `${dt.weekday} ${dt.date} · ${dt.time}`}
             </span>
           </div>
         </div>

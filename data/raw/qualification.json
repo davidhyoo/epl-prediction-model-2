@@ -854,14 +854,8 @@
       "slot": 0,
       "homeCode": "PAR",
       "awayCode": "FRA",
-      "feedHome": [
-        "W",
-        74
-      ],
-      "feedAway": [
-        "W",
-        77
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -871,14 +865,8 @@
       "slot": 1,
       "homeCode": "CAN",
       "awayCode": "MAR",
-      "feedHome": [
-        "W",
-        73
-      ],
-      "feedAway": [
-        "W",
-        75
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -888,14 +876,8 @@
       "slot": 2,
       "homeCode": "BRA",
       "awayCode": "NOR",
-      "feedHome": [
-        "W",
-        76
-      ],
-      "feedAway": [
-        "W",
-        78
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -905,14 +887,8 @@
       "slot": 3,
       "homeCode": "MEX",
       "awayCode": "ENG",
-      "feedHome": [
-        "W",
-        79
-      ],
-      "feedAway": [
-        "W",
-        80
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -922,14 +898,8 @@
       "slot": 4,
       "homeCode": "POR",
       "awayCode": "ESP",
-      "feedHome": [
-        "W",
-        83
-      ],
-      "feedAway": [
-        "W",
-        84
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -939,14 +909,8 @@
       "slot": 5,
       "homeCode": "USA",
       "awayCode": "BEL",
-      "feedHome": [
-        "W",
-        81
-      ],
-      "feedAway": [
-        "W",
-        82
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -956,14 +920,8 @@
       "slot": 6,
       "homeCode": "ARG",
       "awayCode": "EGY",
-      "feedHome": [
-        "W",
-        86
-      ],
-      "feedAway": [
-        "W",
-        88
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 0
     },
@@ -973,14 +931,8 @@
       "slot": 7,
       "homeCode": "SUI",
       "awayCode": "COL",
-      "feedHome": [
-        "W",
-        85
-      ],
-      "feedAway": [
-        "W",
-        87
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 0
     },
@@ -990,14 +942,8 @@
       "slot": 0,
       "homeCode": "FRA",
       "awayCode": "MAR",
-      "feedHome": [
-        "W",
-        89
-      ],
-      "feedAway": [
-        "W",
-        90
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 0
     },
@@ -1007,14 +953,8 @@
       "slot": 1,
       "homeCode": "ESP",
       "awayCode": "BEL",
-      "feedHome": [
-        "W",
-        93
-      ],
-      "feedAway": [
-        "W",
-        94
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 0
     },
@@ -1024,14 +964,8 @@
       "slot": 2,
       "homeCode": "NOR",
       "awayCode": "ENG",
-      "feedHome": [
-        "W",
-        91
-      ],
-      "feedAway": [
-        "W",
-        92
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -1041,14 +975,8 @@
       "slot": 3,
       "homeCode": "ARG",
       "awayCode": "SUI",
-      "feedHome": [
-        "W",
-        96
-      ],
-      "feedAway": [
-        "W",
-        95
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 0
     },
@@ -1058,14 +986,8 @@
       "slot": 0,
       "homeCode": "FRA",
       "awayCode": "ESP",
-      "feedHome": [
-        "W",
-        97
-      ],
-      "feedAway": [
-        "W",
-        98
-      ],
+      "feedHome": null,
+      "feedAway": null,
       "played": true,
       "winnerSide": 2
     },
@@ -1075,44 +997,32 @@
       "slot": 1,
       "homeCode": "ENG",
       "awayCode": "ARG",
-      "feedHome": [
-        "W",
-        99
-      ],
-      "feedAway": [
-        "W",
-        100
-      ],
-      "played": false,
-      "winnerSide": null
+      "feedHome": null,
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 2
     },
     {
       "num": 103,
       "stage": "third-place",
       "slot": 0,
       "homeCode": "FRA",
-      "awayCode": null,
+      "awayCode": "ENG",
       "feedHome": null,
-      "feedAway": [
-        "L",
-        102
-      ],
-      "played": false,
-      "winnerSide": null
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 2
     },
     {
       "num": 104,
       "stage": "final",
       "slot": 0,
       "homeCode": "ESP",
-      "awayCode": null,
+      "awayCode": "ARG",
       "feedHome": null,
-      "feedAway": [
-        "W",
-        102
-      ],
-      "played": false,
-      "winnerSide": null
+      "feedAway": null,
+      "played": true,
+      "winnerSide": 0
     }
   ]
 }

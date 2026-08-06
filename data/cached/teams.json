@@ -9,18 +9,18 @@
       "primary": "#C60B1E",
       "secondary": "#FFC400"
     },
-    "elo": 2181.7,
-    "eloInitial": 2132.5,
+    "elo": 2198.0,
+    "eloInitial": 2132.6,
     "fifaRank": 2,
     "status": "active",
     "eliminatedRound": null,
     "strength": {
-      "overall": 96.0,
+      "overall": 94.2,
       "attack": 88.8,
       "defense": 89.1,
-      "form": 99,
+      "form": 86.7,
       "squad": 89.0,
-      "momentum": 99,
+      "momentum": 77.8,
       "experience": 36.5
     },
     "record": {
@@ -34,14 +34,14 @@
       "points": 7,
       "groupRank": 1
     },
-    "championProb": 0.54955,
+    "championProb": 1.0,
     "advance": {
       "roundOf32": 1.0,
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 1.0,
-      "champion": 0.54955
+      "champion": 1.0
     },
     "strengths": [
       "Potent, high-scoring attack",
@@ -61,175 +61,19 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.55963
+        "prob": 0.44562
       },
       {
         "label": "Round of 32",
-        "prob": 0.543
+        "prob": 0.43425
       },
       {
         "label": "Round of 16",
-        "prob": 0.55837
+        "prob": 0.461
       },
       {
         "label": "Quarter-finals",
-        "prob": 0.54955
-      }
-    ]
-  },
-  {
-    "code": "ARG",
-    "iso2": "ar",
-    "name": "Argentina",
-    "confederation": "CONMEBOL",
-    "group": "J",
-    "colors": {
-      "primary": "#6CACE4",
-      "secondary": "#FFFFFF"
-    },
-    "elo": 2174.8,
-    "eloInitial": 2137.8,
-    "fifaRank": 1,
-    "status": "active",
-    "eliminatedRound": null,
-    "strength": {
-      "overall": 95.1,
-      "attack": 99.0,
-      "defense": 99.0,
-      "form": 73.3,
-      "squad": 99.0,
-      "momentum": 55.6,
-      "experience": 78.2
-    },
-    "record": {
-      "played": 3,
-      "won": 3,
-      "drawn": 0,
-      "lost": 0,
-      "gf": 8,
-      "ga": 1,
-      "gd": 7,
-      "points": 9,
-      "groupRank": 1
-    },
-    "championProb": 0.3581,
-    "advance": {
-      "roundOf32": 1.0,
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.70015,
-      "champion": 0.3581
-    },
-    "strengths": [
-      "Potent, high-scoring attack",
-      "Miserly, well-drilled defense",
-      "Elite squad depth",
-      "Strong recent form"
-    ],
-    "weaknesses": [
-      "Few obvious weaknesses"
-    ],
-    "keyPlayerIds": [
-      "ARG-22",
-      "ARG-26",
-      "ARG-19",
-      "ARG-20"
-    ],
-    "championProbHistory": [
-      {
-        "label": "Group stage",
-        "prob": 0.2815
-      },
-      {
-        "label": "Round of 32",
-        "prob": 0.29175
-      },
-      {
-        "label": "Round of 16",
-        "prob": 0.33463
-      },
-      {
-        "label": "Quarter-finals",
-        "prob": 0.3581
-      }
-    ]
-  },
-  {
-    "code": "ENG",
-    "iso2": "gb-eng",
-    "name": "England",
-    "confederation": "UEFA",
-    "group": "L",
-    "colors": {
-      "primary": "#FFFFFF",
-      "secondary": "#CE1124"
-    },
-    "elo": 2064.0,
-    "eloInitial": 2021.7,
-    "fifaRank": 7,
-    "status": "active",
-    "eliminatedRound": null,
-    "strength": {
-      "overall": 78.7,
-      "attack": 77.4,
-      "defense": 72.0,
-      "form": 73.3,
-      "squad": 76.9,
-      "momentum": 77.8,
-      "experience": 45.5
-    },
-    "record": {
-      "played": 3,
-      "won": 2,
-      "drawn": 1,
-      "lost": 0,
-      "gf": 6,
-      "ga": 2,
-      "gd": 4,
-      "points": 7,
-      "groupRank": 1
-    },
-    "championProb": 0.09235,
-    "advance": {
-      "roundOf32": 1.0,
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.29985,
-      "champion": 0.09235
-    },
-    "strengths": [
-      "Potent, high-scoring attack",
-      "Miserly, well-drilled defense",
-      "Strong recent form",
-      "Riding positive momentum"
-    ],
-    "weaknesses": [
-      "Few obvious weaknesses"
-    ],
-    "keyPlayerIds": [
-      "ENG-21",
-      "ENG-15",
-      "ENG-22",
-      "ENG-01"
-    ],
-    "championProbHistory": [
-      {
-        "label": "Group stage",
-        "prob": 0.04188
-      },
-      {
-        "label": "Round of 32",
-        "prob": 0.03938
-      },
-      {
-        "label": "Round of 16",
-        "prob": 0.08463
-      },
-      {
-        "label": "Quarter-finals",
-        "prob": 0.09235
+        "prob": 1.0
       }
     ]
   },
@@ -243,13 +87,13 @@
       "primary": "#006847",
       "secondary": "#CE1126"
     },
-    "elo": 1955.2,
+    "elo": 1955.3,
     "eloInitial": 1924.8,
     "fifaRank": 16,
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 59.5,
+      "overall": 58.6,
       "attack": 41.5,
       "defense": 40.7,
       "form": 80.0,
@@ -296,11 +140,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00475
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.00713
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -322,13 +166,13 @@
       "primary": "#007A4D",
       "secondary": "#FFB915"
     },
-    "elo": 1672.0,
+    "elo": 1672.1,
     "eloInitial": 1654.3,
     "fifaRank": 43,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 23.0,
+      "overall": 22.8,
       "attack": 21.3,
       "defense": 16.1,
       "form": 46.7,
@@ -406,7 +250,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 41.0,
+      "overall": 40.4,
       "attack": 28.0,
       "defense": 24.7,
       "form": 60.0,
@@ -461,13 +305,13 @@
       "primary": "#11457E",
       "secondary": "#D7141A"
     },
-    "elo": 1766.3,
-    "eloInitial": 1797.9,
+    "elo": 1766.5,
+    "eloInitial": 1798.0,
     "fifaRank": 30,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 34.3,
+      "overall": 33.9,
       "attack": 30.2,
       "defense": 26.4,
       "form": 46.7,
@@ -528,7 +372,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 42.4,
+      "overall": 41.8,
       "attack": 36.7,
       "defense": 35.9,
       "form": 46.7,
@@ -600,13 +444,13 @@
       "primary": "#002F6C",
       "secondary": "#FFCE00"
     },
-    "elo": 1651.7,
-    "eloInitial": 1642.0,
+    "elo": 1651.8,
+    "eloInitial": 1642.1,
     "fifaRank": 44,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 19.1,
+      "overall": 18.9,
       "attack": 18.7,
       "defense": 20.5,
       "form": 33.3,
@@ -679,7 +523,7 @@
       "secondary": "#FFFFFF"
     },
     "elo": 1557.0,
-    "eloInitial": 1573.9,
+    "eloInitial": 1574.0,
     "fifaRank": 47,
     "status": "eliminated",
     "eliminatedRound": "group",
@@ -739,13 +583,13 @@
       "primary": "#FF0000",
       "secondary": "#FFFFFF"
     },
-    "elo": 1946.6,
-    "eloInitial": 1919.7,
+    "elo": 1946.7,
+    "eloInitial": 1919.9,
     "fifaRank": 17,
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 60.4,
+      "overall": 59.5,
       "attack": 49.5,
       "defense": 53.4,
       "form": 73.3,
@@ -788,15 +632,15 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00263
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.00413
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
-        "prob": 0.00988
+        "prob": 0.0
       },
       {
         "label": "Quarter-finals",
@@ -814,13 +658,13 @@
       "primary": "#FEDF00",
       "secondary": "#009B3A"
     },
-    "elo": 2055.8,
-    "eloInitial": 2056.9,
+    "elo": 2055.9,
+    "eloInitial": 2057.0,
     "fifaRank": 4,
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 79.6,
+      "overall": 78.5,
       "attack": 85.6,
       "defense": 86.1,
       "form": 66.7,
@@ -866,11 +710,11 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.06575
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.08463
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -893,12 +737,12 @@
       "secondary": "#006233"
     },
     "elo": 1976.0,
-    "eloInitial": 1944.6,
+    "eloInitial": 1944.7,
     "fifaRank": 13,
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 63.0,
+      "overall": 62.1,
       "attack": 53.7,
       "defense": 54.1,
       "form": 66.7,
@@ -969,12 +813,12 @@
       "secondary": "#D21034"
     },
     "elo": 1646.5,
-    "eloInitial": 1668.6,
+    "eloInitial": 1668.7,
     "fifaRank": 42,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 12.0,
+      "overall": 11.9,
       "attack": 6.1,
       "defense": 3.0,
       "form": 20.0,
@@ -1029,13 +873,13 @@
       "primary": "#0065BF",
       "secondary": "#FFFFFF"
     },
-    "elo": 1778.7,
-    "eloInitial": 1786.9,
+    "elo": 1778.8,
+    "eloInitial": 1787.0,
     "fifaRank": 31,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 39.3,
+      "overall": 38.8,
       "attack": 36.2,
       "defense": 36.6,
       "form": 60.0,
@@ -1090,13 +934,13 @@
       "primary": "#0A3161",
       "secondary": "#B31942"
     },
-    "elo": 1842.5,
+    "elo": 1842.6,
     "eloInitial": 1833.4,
     "fifaRank": 28,
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 48.4,
+      "overall": 47.8,
       "attack": 46.1,
       "defense": 50.6,
       "form": 60.0,
@@ -1165,13 +1009,13 @@
       "primary": "#DA121A",
       "secondary": "#0038A8"
     },
-    "elo": 1835.8,
-    "eloInitial": 1838.4,
+    "elo": 1835.9,
+    "eloInitial": 1838.5,
     "fifaRank": 27,
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 38.7,
+      "overall": 38.1,
       "attack": 29.3,
       "defense": 33.4,
       "form": 33.3,
@@ -1244,12 +1088,12 @@
       "secondary": "#FFCD00"
     },
     "elo": 1857.0,
-    "eloInitial": 1856.1,
+    "eloInitial": 1856.2,
     "fifaRank": 25,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 43.0,
+      "overall": 42.3,
       "attack": 35.1,
       "defense": 36.5,
       "form": 40.0,
@@ -1295,7 +1139,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00112
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -1321,13 +1165,13 @@
       "primary": "#E30A17",
       "secondary": "#FFFFFF"
     },
-    "elo": 1870.9,
-    "eloInitial": 1893.7,
+    "elo": 1871.0,
+    "eloInitial": 1893.8,
     "fifaRank": 19,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 51.0,
+      "overall": 50.3,
       "attack": 47.1,
       "defense": 46.5,
       "form": 60.0,
@@ -1380,12 +1224,12 @@
       "secondary": "#DD0000"
     },
     "elo": 1984.2,
-    "eloInitial": 1995.7,
+    "eloInitial": 1995.8,
     "fifaRank": 8,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 68.4,
+      "overall": 67.4,
       "attack": 68.1,
       "defense": 70.1,
       "form": 66.7,
@@ -1455,7 +1299,7 @@
       "secondary": "#F9E814"
     },
     "elo": 1560.7,
-    "eloInitial": 1563.0,
+    "eloInitial": 1563.1,
     "fifaRank": 48,
     "status": "eliminated",
     "eliminatedRound": "group",
@@ -1515,13 +1359,13 @@
       "primary": "#F77F00",
       "secondary": "#009E60"
     },
-    "elo": 1814.2,
-    "eloInitial": 1803.9,
+    "elo": 1814.3,
+    "eloInitial": 1804.0,
     "fifaRank": 29,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 44.0,
+      "overall": 43.4,
       "attack": 41.0,
       "defense": 41.5,
       "form": 60.0,
@@ -1567,7 +1411,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00025
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -1599,7 +1443,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 53.5,
+      "overall": 52.7,
       "attack": 46.9,
       "defense": 47.3,
       "form": 46.7,
@@ -1643,7 +1487,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00325
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -1669,13 +1513,13 @@
       "primary": "#F36C21",
       "secondary": "#21468B"
     },
-    "elo": 2005.5,
-    "eloInitial": 1984.3,
+    "elo": 2005.6,
+    "eloInitial": 1984.4,
     "fifaRank": 9,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 74.0,
+      "overall": 73.0,
       "attack": 79.3,
       "defense": 77.7,
       "form": 73.3,
@@ -1753,7 +1597,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 59.6,
+      "overall": 58.7,
       "attack": 52.1,
       "defense": 54.0,
       "form": 53.3,
@@ -1796,7 +1640,7 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00487
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
@@ -1822,13 +1666,13 @@
       "primary": "#006AA7",
       "secondary": "#FECC00"
     },
-    "elo": 1789.8,
-    "eloInitial": 1778.7,
+    "elo": 1789.9,
+    "eloInitial": 1778.8,
     "fifaRank": 34,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 35.4,
+      "overall": 34.9,
       "attack": 34.0,
       "defense": 31.4,
       "form": 33.3,
@@ -1900,13 +1744,13 @@
       "primary": "#E70013",
       "secondary": "#FFFFFF"
     },
-    "elo": 1688.4,
-    "eloInitial": 1735.1,
+    "elo": 1688.5,
+    "eloInitial": 1735.2,
     "fifaRank": 36,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 22.5,
+      "overall": 22.2,
       "attack": 36.3,
       "defense": 35.1,
       "form": 3,
@@ -1961,13 +1805,13 @@
       "primary": "#E30613",
       "secondary": "#FDDA24"
     },
-    "elo": 1994.5,
+    "elo": 1994.6,
     "eloInitial": 1970.6,
     "fifaRank": 11,
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 67.2,
+      "overall": 66.2,
       "attack": 67.9,
       "defense": 23.0,
       "form": 53.3,
@@ -2038,12 +1882,12 @@
       "secondary": "#000000"
     },
     "elo": 1809.3,
-    "eloInitial": 1783.4,
+    "eloInitial": 1783.5,
     "fifaRank": 32,
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 38.9,
+      "overall": 38.4,
       "attack": 36.8,
       "defense": 34.7,
       "form": 40.0,
@@ -2093,7 +1937,7 @@
       },
       {
         "label": "Round of 32",
-        "prob": 0.00025
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -2115,13 +1959,13 @@
       "primary": "#239F40",
       "secondary": "#DA0000"
     },
-    "elo": 1877.9,
+    "elo": 1878.0,
     "eloInitial": 1885.4,
     "fifaRank": 22,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 52.2,
+      "overall": 51.5,
       "attack": 49.2,
       "defense": 52.2,
       "form": 60.0,
@@ -2173,13 +2017,13 @@
       "primary": "#000000",
       "secondary": "#FFFFFF"
     },
-    "elo": 1675.3,
+    "elo": 1675.4,
     "eloInitial": 1694.9,
     "fifaRank": 40,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 13.3,
+      "overall": 13.0,
       "attack": 6.4,
       "defense": 4.8,
       "form": 6.7,
@@ -2240,7 +2084,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 17.4,
+      "overall": 17.1,
       "attack": 15.7,
       "defense": 13.9,
       "form": 26.7,
@@ -2312,13 +2156,13 @@
       "primary": "#006C35",
       "secondary": "#FFFFFF"
     },
-    "elo": 1677.9,
-    "eloInitial": 1673.8,
+    "elo": 1678.0,
+    "eloInitial": 1673.9,
     "fifaRank": 41,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 23.9,
+      "overall": 23.6,
       "attack": 23.3,
       "defense": 24.0,
       "form": 40.0,
@@ -2379,7 +2223,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 53.7,
+      "overall": 52.9,
       "attack": 63.8,
       "defense": 64.0,
       "form": 26.7,
@@ -2432,18 +2276,18 @@
       "primary": "#1E3A8A",
       "secondary": "#EF4444"
     },
-    "elo": 2106.2,
-    "eloInitial": 2064.9,
+    "elo": 2081.4,
+    "eloInitial": 2065.0,
     "fifaRank": 3,
     "status": "eliminated",
-    "eliminatedRound": "semi-final",
+    "eliminatedRound": "third-place",
     "strength": {
-      "overall": 86.8,
+      "overall": 80.5,
       "attack": 88.5,
       "defense": 87.6,
-      "form": 80.0,
+      "form": 60.0,
       "squad": 88.2,
-      "momentum": 66.7,
+      "momentum": 33.3,
       "experience": 42.9
     },
     "record": {
@@ -2469,11 +2313,10 @@
     "strengths": [
       "Potent, high-scoring attack",
       "Miserly, well-drilled defense",
-      "Elite squad depth",
-      "Strong recent form"
+      "Elite squad depth"
     ],
     "weaknesses": [
-      "Beaten in the semi-finals"
+      "Finished fourth"
     ],
     "keyPlayerIds": [
       "FRA-22",
@@ -2510,13 +2353,13 @@
       "primary": "#00853F",
       "secondary": "#FDEF42"
     },
-    "elo": 1857.3,
-    "eloInitial": 1870.4,
+    "elo": 1857.4,
+    "eloInitial": 1870.5,
     "fifaRank": 23,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 46.7,
+      "overall": 46.0,
       "attack": 51.2,
       "defense": 48.7,
       "form": 33.3,
@@ -2592,7 +2435,7 @@
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 14.9,
+      "overall": 14.6,
       "attack": 14.1,
       "defense": 11.6,
       "form": 6.7,
@@ -2647,13 +2490,13 @@
       "primary": "#BA0C2F",
       "secondary": "#00205B"
     },
-    "elo": 1937.1,
-    "eloInitial": 1902.8,
+    "elo": 1937.2,
+    "eloInitial": 1903.0,
     "fifaRank": 18,
     "status": "eliminated",
     "eliminatedRound": "quarter-final",
     "strength": {
-      "overall": 59.6,
+      "overall": 58.8,
       "attack": 54.9,
       "defense": 52.5,
       "form": 66.7,
@@ -2697,15 +2540,93 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.00287
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.00475
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
-        "prob": 0.0125
+        "prob": 0.0
+      },
+      {
+        "label": "Quarter-finals",
+        "prob": 0.0
+      }
+    ]
+  },
+  {
+    "code": "ARG",
+    "iso2": "ar",
+    "name": "Argentina",
+    "confederation": "CONMEBOL",
+    "group": "J",
+    "colors": {
+      "primary": "#6CACE4",
+      "secondary": "#FFFFFF"
+    },
+    "elo": 2169.8,
+    "eloInitial": 2137.8,
+    "fifaRank": 1,
+    "status": "eliminated",
+    "eliminatedRound": "final",
+    "strength": {
+      "overall": 91.3,
+      "attack": 99.0,
+      "defense": 99.0,
+      "form": 60.0,
+      "squad": 99.0,
+      "momentum": 55.6,
+      "experience": 78.2
+    },
+    "record": {
+      "played": 3,
+      "won": 3,
+      "drawn": 0,
+      "lost": 0,
+      "gf": 8,
+      "ga": 1,
+      "gd": 7,
+      "points": 9,
+      "groupRank": 1
+    },
+    "championProb": 0.0,
+    "advance": {
+      "roundOf32": 1.0,
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 1.0,
+      "champion": 0.0
+    },
+    "strengths": [
+      "Potent, high-scoring attack",
+      "Miserly, well-drilled defense",
+      "Elite squad depth",
+      "Tournament-tested, experienced core"
+    ],
+    "weaknesses": [
+      "Runners-up"
+    ],
+    "keyPlayerIds": [
+      "ARG-22",
+      "ARG-26",
+      "ARG-20",
+      "ARG-19"
+    ],
+    "championProbHistory": [
+      {
+        "label": "Group stage",
+        "prob": 0.55437
+      },
+      {
+        "label": "Round of 32",
+        "prob": 0.56575
+      },
+      {
+        "label": "Round of 16",
+        "prob": 0.539
       },
       {
         "label": "Quarter-finals",
@@ -2723,13 +2644,13 @@
       "primary": "#006233",
       "secondary": "#D21034"
     },
-    "elo": 1866.2,
+    "elo": 1866.3,
     "eloInitial": 1886.1,
     "fifaRank": 21,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 47.1,
+      "overall": 46.4,
       "attack": 42.9,
       "defense": 44.2,
       "form": 46.7,
@@ -2801,13 +2722,13 @@
       "primary": "#ED2939",
       "secondary": "#FFFFFF"
     },
-    "elo": 1879.9,
-    "eloInitial": 1887.6,
+    "elo": 1880.0,
+    "eloInitial": 1887.7,
     "fifaRank": 20,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 50.4,
+      "overall": 49.7,
       "attack": 50.2,
       "defense": 49.1,
       "form": 46.7,
@@ -2876,13 +2797,13 @@
       "primary": "#007A3D",
       "secondary": "#CE1126"
     },
-    "elo": 1694.5,
-    "eloInitial": 1717.9,
+    "elo": 1694.6,
+    "eloInitial": 1718.0,
     "fifaRank": 37,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 16.4,
+      "overall": 16.2,
       "attack": 13.3,
       "defense": 13.2,
       "form": 3,
@@ -2938,12 +2859,12 @@
       "secondary": "#006600"
     },
     "elo": 2029.7,
-    "eloInitial": 2025.4,
+    "eloInitial": 2025.5,
     "fifaRank": 6,
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 74.1,
+      "overall": 73.0,
       "attack": 80.9,
       "defense": 79.3,
       "form": 53.3,
@@ -3015,12 +2936,12 @@
       "secondary": "#F7D618"
     },
     "elo": 1726.5,
-    "eloInitial": 1699.2,
+    "eloInitial": 1699.3,
     "fifaRank": 39,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 27.5,
+      "overall": 27.1,
       "attack": 27.3,
       "defense": 31.5,
       "form": 26.7,
@@ -3092,13 +3013,13 @@
       "primary": "#1EB53A",
       "secondary": "#0099B5"
     },
-    "elo": 1731.3,
-    "eloInitial": 1779.6,
+    "elo": 1731.4,
+    "eloInitial": 1779.7,
     "fifaRank": 33,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 23.2,
+      "overall": 22.8,
       "attack": 25.6,
       "defense": 23.8,
       "form": 3,
@@ -3159,7 +3080,7 @@
     "status": "eliminated",
     "eliminatedRound": "round-of-16",
     "strength": {
-      "overall": 71.1,
+      "overall": 70.0,
       "attack": 58.4,
       "defense": 59.6,
       "form": 73.3,
@@ -3203,11 +3124,87 @@
     "championProbHistory": [
       {
         "label": "Group stage",
-        "prob": 0.0315
+        "prob": 0.0
       },
       {
         "label": "Round of 32",
-        "prob": 0.025
+        "prob": 0.0
+      },
+      {
+        "label": "Round of 16",
+        "prob": 0.0
+      },
+      {
+        "label": "Quarter-finals",
+        "prob": 0.0
+      }
+    ]
+  },
+  {
+    "code": "ENG",
+    "iso2": "gb-eng",
+    "name": "England",
+    "confederation": "UEFA",
+    "group": "L",
+    "colors": {
+      "primary": "#FFFFFF",
+      "secondary": "#CE1124"
+    },
+    "elo": 2077.9,
+    "eloInitial": 2021.8,
+    "fifaRank": 7,
+    "status": "eliminated",
+    "eliminatedRound": "semi-final",
+    "strength": {
+      "overall": 77.8,
+      "attack": 77.4,
+      "defense": 72.0,
+      "form": 66.7,
+      "squad": 76.9,
+      "momentum": 44.4,
+      "experience": 45.5
+    },
+    "record": {
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "gf": 6,
+      "ga": 2,
+      "gd": 4,
+      "points": 7,
+      "groupRank": 1
+    },
+    "championProb": 0.0,
+    "advance": {
+      "roundOf32": 1.0,
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "strengths": [
+      "Potent, high-scoring attack",
+      "Miserly, well-drilled defense"
+    ],
+    "weaknesses": [
+      "Beaten in the semi-finals"
+    ],
+    "keyPlayerIds": [
+      "ENG-15",
+      "ENG-21",
+      "ENG-20",
+      "ENG-04"
+    ],
+    "championProbHistory": [
+      {
+        "label": "Group stage",
+        "prob": 0.0
+      },
+      {
+        "label": "Round of 32",
+        "prob": 0.0
       },
       {
         "label": "Round of 16",
@@ -3229,13 +3226,13 @@
       "primary": "#FF0000",
       "secondary": "#FFFFFF"
     },
-    "elo": 1924.9,
-    "eloInitial": 1939.2,
+    "elo": 1925.0,
+    "eloInitial": 1939.3,
     "fifaRank": 14,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 59.2,
+      "overall": 58.3,
       "attack": 59.9,
       "defense": 55.6,
       "form": 60.0,
@@ -3304,13 +3301,13 @@
       "primary": "#006B3F",
       "secondary": "#FCD116"
     },
-    "elo": 1648.6,
-    "eloInitial": 1621.7,
+    "elo": 1648.7,
+    "eloInitial": 1621.8,
     "fifaRank": 46,
     "status": "eliminated",
     "eliminatedRound": "round-of-32",
     "strength": {
-      "overall": 21.9,
+      "overall": 21.6,
       "attack": 29.6,
       "defense": 28.3,
       "form": 33.3,
@@ -3382,13 +3379,13 @@
       "primary": "#DA121A",
       "secondary": "#005293"
     },
-    "elo": 1734.0,
-    "eloInitial": 1772.2,
+    "elo": 1734.1,
+    "eloInitial": 1772.3,
     "fifaRank": 35,
     "status": "eliminated",
     "eliminatedRound": "group",
     "strength": {
-      "overall": 24.7,
+      "overall": 24.3,
       "attack": 16.2,
       "defense": 14.5,
       "form": 26.7,

@@ -629,7 +629,7 @@ def build_methodology(meta, n_matches) -> None:
              "description": "martj42/international_results — every men's full international. Used for model training and to compute each nation's real Elo. Cached locally as data/source/martj42_results.csv.",
              "license": "CC0 1.0 (public domain)"},
             {"name": "2026 World Cup fixtures, results & bracket", "kind": "cached",
-             "description": "openfootball/worldcup (2026--usa) — the real group draw, kickoff times, scores and knockout bracket in the Football.TXT format. Cached locally as data/source/openfootball_cup*.txt.",
+             "description": "openfootball/worldcup (2026--canada-usa-mexico) — the real group draw, kickoff times, scores and knockout bracket in the Football.TXT format. Cached locally as data/source/openfootball_cup*.txt.",
              "license": "CC0 1.0 (public domain)"},
             {"name": "National-team squads", "kind": "cached",
              "description": "The real, current 26-player squad for each nation, parsed from the maintained '{{nat fs}}' squad templates on the English Wikipedia team articles (player name, shirt number, position, age, caps, international goals and club). Cached locally as data/source/squads_wikipedia.json. Only the 0–100 player ability rating is model-generated (no free source exists) and is labelled as such throughout the UI.",

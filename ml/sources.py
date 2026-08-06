@@ -10,9 +10,9 @@ Sources
 -------
 * martj42/international_results (``results.csv``) — every men's international
   1872→present. Public domain (CC0). Used for training history + real Elo.
-* openfootball/worldcup ``2026--usa`` (``cup.txt`` + ``cup_finals.txt``) — the
-  real 2026 group draw, fixtures, results and knockout bracket. Public domain
-  (CC0). Football.TXT DSL — parsed below.
+* openfootball/worldcup ``2026--canada-usa-mexico`` (``cup.txt`` +
+  ``cup_finals.txt``) — the real 2026 group draw, fixtures, results and knockout
+  bracket. Public domain (CC0). Football.TXT DSL — parsed below.
 
 See the README "Data Sources" section for licensing notes.
 """
@@ -320,7 +320,8 @@ def parse_group_stage(path: str = OPENFOOTBALL_GROUPS) -> list[dict]:
             "home": hc, "away": ac,
             "home_adv": _host_adv(hc, ac),
             "gh": res["gh"], "ga": res["ga"], "fh": res["fh"], "fa": res["fa"],
-            "pens": res["pens"], "winner": res["winner"], "played": True,
+            "pens": res["pens"], "winner": res["winner"], "aet": res["aet"],
+            "played": True,
             "feedHome": None, "feedAway": None,
         })
     return matches
@@ -394,7 +395,8 @@ def parse_knockouts(path: str = OPENFOOTBALL_FINALS) -> list[dict]:
             row = {
                 "home": hc, "away": ac,
                 "gh": res["gh"], "ga": res["ga"], "fh": res["fh"], "fa": res["fa"],
-                "pens": res["pens"], "winner": res["winner"], "played": True,
+                "pens": res["pens"], "winner": res["winner"], "aet": res["aet"],
+                "played": True,
             }
         else:
             # unplayed — split on ' v '; tokens are team names or W##/L## refs
@@ -407,7 +409,7 @@ def parse_knockouts(path: str = OPENFOOTBALL_FINALS) -> list[dict]:
             row = {
                 "home": wc_code(ht), "away": wc_code(at),
                 "gh": None, "ga": None, "fh": None, "fa": None,
-                "pens": None, "winner": None, "played": False,
+                "pens": None, "winner": None, "aet": False, "played": False,
             }
 
         stage = cur_stage

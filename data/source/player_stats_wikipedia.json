@@ -1,8 +1,8 @@
 {
   "source": "English Wikipedia — 2026 FIFA World Cup match articles (FIFA match reports); text CC BY-SA 4.0, sporting facts uncopyrightable",
   "note": "Assists, xG/xA and advanced metrics are NOT published in open World Cup data and are intentionally omitted (never fabricated).",
-  "asOf": "2026-07-15T18:13:45Z",
-  "matchesParsed": 101,
+  "asOf": "2026-08-06T07:04:25Z",
+  "matchesParsed": 103,
   "articles": [
     {
       "title": "2026 FIFA World Cup Group A",
@@ -58,7 +58,7 @@
     },
     {
       "title": "2026 FIFA World Cup knockout stage",
-      "matches": 13
+      "matches": 15
     }
   ],
   "players": {
@@ -22487,7 +22487,7 @@
         }
       ]
     },
-    "Hadj Mahmoud": {
+    "Mohamed Belhadj Mahmoud": {
       "appearances": 2,
       "minutes": 41,
       "goals": 0,
@@ -30998,15 +30998,15 @@
       ]
     },
     "Mike Maignan": {
-      "appearances": 7,
-      "minutes": 630,
+      "appearances": 8,
+      "minutes": 720,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
       "gkCleanSheets": 4,
-      "gkGoalsConceded": 4,
-      "gkStarts": 7,
+      "gkGoalsConceded": 10,
+      "gkStarts": 8,
       "log": [
         {
           "date": "2026-06-16",
@@ -31084,11 +31084,22 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Jules Koundé": {
-      "appearances": 7,
+      "appearances": 8,
       "minutes": 601,
       "goals": 0,
       "ownGoals": 0,
@@ -31174,12 +31185,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 0,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Dayot Upamecano": {
-      "appearances": 7,
-      "minutes": 616,
+      "appearances": 8,
+      "minutes": 660,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -31264,6 +31286,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 44,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -31347,8 +31380,8 @@
       ]
     },
     "Théo Hernandez": {
-      "appearances": 4,
-      "minutes": 210,
+      "appearances": 5,
+      "minutes": 256,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -31400,6 +31433,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 46,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -31461,8 +31505,8 @@
       ]
     },
     "Adrien Rabiot": {
-      "appearances": 6,
-      "minutes": 496,
+      "appearances": 7,
+      "minutes": 586,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -31536,12 +31580,23 @@
           "y": 1,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Michael Olise": {
-      "appearances": 7,
-      "minutes": 560,
+      "appearances": 8,
+      "minutes": 650,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -31626,13 +31681,24 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Ousmane Dembélé": {
-      "appearances": 7,
-      "minutes": 552,
-      "goals": 2,
+      "appearances": 8,
+      "minutes": 596,
+      "goals": 3,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
@@ -31716,12 +31782,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 44,
+          "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Désiré Doué": {
-      "appearances": 7,
-      "minutes": 353,
+      "appearances": 8,
+      "minutes": 399,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -31806,13 +31883,24 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 46,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Kylian Mbappé": {
-      "appearances": 7,
-      "minutes": 608,
-      "goals": 8,
+      "appearances": 8,
+      "minutes": 698,
+      "goals": 10,
       "ownGoals": 0,
       "yellowCards": 1,
       "redCards": 0,
@@ -31896,13 +31984,24 @@
           "y": 1,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 90,
+          "g": 2,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Bradley Barcola": {
-      "appearances": 7,
-      "minutes": 339,
-      "goals": 2,
+      "appearances": 8,
+      "minutes": 383,
+      "goals": 3,
       "ownGoals": 0,
       "yellowCards": 1,
       "redCards": 0,
@@ -31986,12 +32085,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 44,
+          "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Rayan Cherki": {
-      "appearances": 6,
-      "minutes": 79,
+      "appearances": 7,
+      "minutes": 125,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -32065,6 +32175,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 46,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -34585,8 +34706,8 @@
       ]
     },
     "Lucas Digne": {
-      "appearances": 5,
-      "minutes": 420,
+      "appearances": 6,
+      "minutes": 464,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -34649,6 +34770,17 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 44,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
@@ -34745,8 +34877,8 @@
       ]
     },
     "Malo Gusto": {
-      "appearances": 4,
-      "minutes": 29,
+      "appearances": 5,
+      "minutes": 119,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -34798,6 +34930,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -35331,8 +35474,8 @@
       ]
     },
     "Maxence Lacroix": {
-      "appearances": 2,
-      "minutes": 150,
+      "appearances": 3,
+      "minutes": 240,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -35362,12 +35505,23 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Ibrahima Konaté": {
-      "appearances": 1,
-      "minutes": 14,
+      "appearances": 2,
+      "minutes": 60,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -35386,6 +35540,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 46,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -35604,15 +35769,15 @@
       ]
     },
     "Emiliano Martínez": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
       "gkCleanSheets": 2,
-      "gkGoalsConceded": 6,
-      "gkStarts": 6,
+      "gkGoalsConceded": 7,
+      "gkStarts": 7,
       "log": [
         {
           "date": "2026-06-16",
@@ -35679,12 +35844,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Gonzalo Montiel": {
-      "appearances": 4,
-      "minutes": 68,
+      "appearances": 5,
+      "minutes": 86,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -35736,15 +35912,26 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 18,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Cristian Romero": {
-      "appearances": 5,
-      "minutes": 407,
+      "appearances": 6,
+      "minutes": 497,
       "goals": 1,
       "ownGoals": 0,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "gkCleanSheets": 0,
       "gkGoalsConceded": 0,
@@ -35804,15 +35991,26 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 90,
+          "g": 0,
+          "y": 1,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Lisandro Martínez": {
-      "appearances": 5,
-      "minutes": 450,
+      "appearances": 6,
+      "minutes": 522,
       "goals": 1,
       "ownGoals": 0,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "gkCleanSheets": 0,
       "gkGoalsConceded": 0,
@@ -35870,6 +36068,17 @@
           "min": 90,
           "g": 0,
           "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 72,
+          "g": 0,
+          "y": 1,
           "r": 0,
           "started": true
         }
@@ -35933,11 +36142,11 @@
       ]
     },
     "Rodrigo De Paul": {
-      "appearances": 5,
-      "minutes": 407,
+      "appearances": 6,
+      "minutes": 425,
       "goals": 0,
       "ownGoals": 0,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "gkCleanSheets": 0,
       "gkGoalsConceded": 0,
@@ -35997,12 +36206,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 18,
+          "g": 0,
+          "y": 1,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Alexis Mac Allister": {
-      "appearances": 6,
-      "minutes": 480,
+      "appearances": 7,
+      "minutes": 570,
       "goals": 1,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -36076,13 +36296,24 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Enzo Fernández": {
-      "appearances": 5,
-      "minutes": 450,
-      "goals": 1,
+      "appearances": 6,
+      "minutes": 540,
+      "goals": 2,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
@@ -36144,12 +36375,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 90,
+          "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Lionel Messi": {
-      "appearances": 6,
-      "minutes": 470,
+      "appearances": 7,
+      "minutes": 560,
       "goals": 8,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -36223,13 +36465,24 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Lautaro Martínez": {
-      "appearances": 6,
-      "minutes": 271,
-      "goals": 2,
+      "appearances": 7,
+      "minutes": 280,
+      "goals": 3,
       "ownGoals": 0,
       "yellowCards": 1,
       "redCards": 0,
@@ -36300,6 +36553,17 @@
           "min": 5,
           "g": 1,
           "y": 1,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 9,
+          "g": 1,
+          "y": 0,
           "r": 0,
           "started": false
         }
@@ -36374,8 +36638,8 @@
       ]
     },
     "Nahuel Molina": {
-      "appearances": 5,
-      "minutes": 382,
+      "appearances": 6,
+      "minutes": 454,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -36438,12 +36702,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 72,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Julián Alvarez": {
-      "appearances": 6,
-      "minutes": 350,
+      "appearances": 7,
+      "minutes": 440,
       "goals": 1,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -36517,12 +36792,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Nicolás González (footballer, born 1998)": {
-      "appearances": 5,
-      "minutes": 124,
+      "appearances": 6,
+      "minutes": 150,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -36585,12 +36871,23 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 26,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Nicolás Otamendi": {
-      "appearances": 5,
-      "minutes": 133,
+      "appearances": 6,
+      "minutes": 151,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -36649,6 +36946,17 @@
           "gf": 3,
           "ga": 1,
           "min": 0,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 18,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -38988,8 +39296,8 @@
       ]
     },
     "Leandro Paredes": {
-      "appearances": 5,
-      "minutes": 284,
+      "appearances": 6,
+      "minutes": 348,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -39052,12 +39360,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 64,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Nicolás Tagliafico": {
-      "appearances": 5,
-      "minutes": 247,
+      "appearances": 6,
+      "minutes": 328,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -39116,6 +39435,17 @@
           "gf": 3,
           "ga": 1,
           "min": 78,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 81,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -39631,8 +39961,8 @@
       ]
     },
     "Giuliano Simeone": {
-      "appearances": 1,
-      "minutes": 71,
+      "appearances": 2,
+      "minutes": 143,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -39647,6 +39977,17 @@
           "gf": 3,
           "ga": 1,
           "min": 71,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ENG",
+          "gf": 2,
+          "ga": 1,
+          "min": 72,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -43769,15 +44110,15 @@
       ]
     },
     "Jordan Pickford": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
       "gkCleanSheets": 2,
-      "gkGoalsConceded": 6,
-      "gkStarts": 6,
+      "gkGoalsConceded": 8,
+      "gkStarts": 7,
       "log": [
         {
           "date": "2026-06-17",
@@ -43844,12 +44185,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Reece James": {
-      "appearances": 3,
-      "minutes": 199,
+      "appearances": 5,
+      "minutes": 288,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -43890,13 +44242,35 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 82,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 7,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Ezri Konsa": {
-      "appearances": 6,
-      "minutes": 539,
-      "goals": 0,
+      "appearances": 8,
+      "minutes": 647,
+      "goals": 1,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
@@ -43969,12 +44343,34 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 18,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 90,
+          "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "John Stones": {
-      "appearances": 4,
-      "minutes": 210,
+      "appearances": 5,
+      "minutes": 300,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -44026,12 +44422,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Nico O'Reilly": {
-      "appearances": 6,
-      "minutes": 456,
+      "appearances": 7,
+      "minutes": 464,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -44105,15 +44512,26 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 8,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Elliot Anderson (footballer)": {
-      "appearances": 6,
-      "minutes": 503,
+      "appearances": 8,
+      "minutes": 604,
       "goals": 0,
       "ownGoals": 0,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "gkCleanSheets": 0,
       "gkGoalsConceded": 0,
@@ -44184,13 +44602,35 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 1,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 11,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Declan Rice": {
-      "appearances": 5,
-      "minutes": 388,
-      "goals": 0,
+      "appearances": 7,
+      "minutes": 560,
+      "goals": 1,
       "ownGoals": 0,
       "yellowCards": 2,
       "redCards": 0,
@@ -44249,6 +44689,28 @@
           "ga": 1,
           "min": 46,
           "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 82,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 90,
+          "g": 1,
           "y": 0,
           "r": 0,
           "started": true
@@ -44324,9 +44786,9 @@
       ]
     },
     "Jude Bellingham": {
-      "appearances": 6,
-      "minutes": 495,
-      "goals": 6,
+      "appearances": 8,
+      "minutes": 596,
+      "goals": 7,
       "ownGoals": 0,
       "yellowCards": 1,
       "redCards": 0,
@@ -44399,13 +44861,35 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 11,
+          "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": false
         }
       ]
     },
     "Anthony Gordon (footballer)": {
-      "appearances": 5,
-      "minutes": 328,
-      "goals": 0,
+      "appearances": 6,
+      "minutes": 400,
+      "goals": 1,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
@@ -44467,12 +44951,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 72,
+          "g": 1,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Harry Kane": {
-      "appearances": 6,
-      "minutes": 534,
+      "appearances": 7,
+      "minutes": 624,
       "goals": 6,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -44546,12 +45041,23 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Morgan Rogers": {
-      "appearances": 5,
-      "minutes": 125,
+      "appearances": 7,
+      "minutes": 305,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -44614,13 +45120,35 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Bukayo Saka": {
-      "appearances": 6,
-      "minutes": 237,
-      "goals": 0,
+      "appearances": 7,
+      "minutes": 327,
+      "goals": 3,
       "ownGoals": 0,
       "yellowCards": 0,
       "redCards": 0,
@@ -44693,12 +45221,23 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 90,
+          "g": 3,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Marcus Rashford": {
-      "appearances": 4,
-      "minutes": 175,
+      "appearances": 6,
+      "minutes": 221,
       "goals": 1,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -44750,12 +45289,34 @@
           "y": 0,
           "r": 0,
           "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 0,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 46,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Djed Spence": {
-      "appearances": 6,
-      "minutes": 191,
+      "appearances": 8,
+      "minutes": 371,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -44829,12 +45390,34 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Marc Guéhi": {
-      "appearances": 6,
-      "minutes": 453,
+      "appearances": 8,
+      "minutes": 633,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -44903,6 +45486,28 @@
           "opp": "NOR",
           "gf": 2,
           "ga": 1,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
           "min": 90,
           "g": 0,
           "y": 0,
@@ -47129,8 +47734,8 @@
       ]
     },
     "Eberechi Eze": {
-      "appearances": 4,
-      "minutes": 99,
+      "appearances": 5,
+      "minutes": 178,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -47182,6 +47787,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 79,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -47584,8 +48200,8 @@
       ]
     },
     "Jarell Quansah": {
-      "appearances": 2,
-      "minutes": 117,
+      "appearances": 3,
+      "minutes": 200,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 1,
@@ -47615,12 +48231,23 @@
           "y": 0,
           "r": 1,
           "started": true
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 83,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
     "Ollie Watkins": {
-      "appearances": 1,
-      "minutes": 6,
+      "appearances": 2,
+      "minutes": 50,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -47635,6 +48262,17 @@
           "gf": 2,
           "ga": 0,
           "min": 6,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 44,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -48324,8 +48962,8 @@
       ]
     },
     "Dan Burn": {
-      "appearances": 2,
-      "minutes": 15,
+      "appearances": 3,
+      "minutes": 23,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -48351,6 +48989,17 @@
           "gf": 2,
           "ga": 1,
           "min": 0,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 8,
           "g": 0,
           "y": 0,
           "r": 0,
@@ -48490,8 +49139,8 @@
       ]
     },
     "Warren Zaïre-Emery": {
-      "appearances": 1,
-      "minutes": 19,
+      "appearances": 2,
+      "minutes": 109,
       "goals": 0,
       "ownGoals": 0,
       "yellowCards": 0,
@@ -48510,6 +49159,17 @@
           "y": 0,
           "r": 0,
           "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "ENG",
+          "gf": 4,
+          "ga": 6,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
         }
       ]
     },
@@ -48625,6 +49285,89 @@
           "opp": "ARG",
           "gf": 1,
           "ga": 3,
+          "min": 0,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        }
+      ]
+    },
+    "Ivan Toney": {
+      "appearances": 2,
+      "minutes": 79,
+      "goals": 0,
+      "ownGoals": 0,
+      "yellowCards": 0,
+      "redCards": 0,
+      "gkCleanSheets": 0,
+      "gkGoalsConceded": 0,
+      "gkStarts": 0,
+      "log": [
+        {
+          "date": "2026-07-15",
+          "opp": "ARG",
+          "gf": 1,
+          "ga": 2,
+          "min": 0,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": false
+        },
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 79,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        }
+      ]
+    },
+    "Dean Henderson": {
+      "appearances": 1,
+      "minutes": 90,
+      "goals": 0,
+      "ownGoals": 0,
+      "yellowCards": 0,
+      "redCards": 0,
+      "gkCleanSheets": 0,
+      "gkGoalsConceded": 4,
+      "gkStarts": 1,
+      "log": [
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
+          "min": 90,
+          "g": 0,
+          "y": 0,
+          "r": 0,
+          "started": true
+        }
+      ]
+    },
+    "Trevoh Chalobah": {
+      "appearances": 1,
+      "minutes": 0,
+      "goals": 0,
+      "ownGoals": 0,
+      "yellowCards": 0,
+      "redCards": 0,
+      "gkCleanSheets": 0,
+      "gkGoalsConceded": 0,
+      "gkStarts": 0,
+      "log": [
+        {
+          "date": "2026-07-18",
+          "opp": "FRA",
+          "gf": 6,
+          "ga": 4,
           "min": 0,
           "g": 0,
           "y": 0,

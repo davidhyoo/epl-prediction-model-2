@@ -25,8 +25,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leo_Messi_Argentina_v_Egypt_7_July_2026-1.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 470,
+      "appearances": 7,
+      "minutes": 560,
       "goals": 8,
       "assists": null,
       "yellowCards": 0,
@@ -100,9 +100,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Lionel Messi is a 38-year-old forward for Argentina, playing club football at Inter Miami and captains the side. He has 205 senior caps for Argentina and 125 international goals. At the 2026 World Cup he has made 6 appearances and scored 8 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Lionel Messi is a 38-year-old forward for Argentina, playing club football at Inter Miami and captains the side. He has 205 senior caps for Argentina and 125 international goals. At the 2026 World Cup he has made 7 appearances and scored 8 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-22",
@@ -130,9 +141,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_France_v_Senegal_16_June_2026-391_(cropped).jpg"
     },
     "stats": {
-      "appearances": 7,
-      "minutes": 608,
-      "goals": 8,
+      "appearances": 8,
+      "minutes": 698,
+      "goals": 10,
       "assists": null,
       "yellowCards": 1,
       "redCards": 0,
@@ -216,9 +227,20 @@
         "yellow": 1,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 90,
+        "goals": 2,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Kylian Mbappé is a 27-year-old forward for France, playing club football at Real Madrid and captains the side. He has 104 senior caps for France and 64 international goals. At the 2026 World Cup he has made 7 appearances and scored 8 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Kylian Mbappé is a 27-year-old forward for France, playing club football at Real Madrid and captains the side. He has 104 senior caps for France and 64 international goals. At the 2026 World Cup he has made 8 appearances and scored 10 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-26",
@@ -233,7 +255,7 @@
     "club": "Internazionale",
     "clubCountry": "Italy",
     "rating": 93.7,
-    "contribution": 49.7,
+    "contribution": 58.0,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 83,
@@ -246,9 +268,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lautaro_Martinez_Argentina_v_Egypt_7_July_2026-261_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 271,
-      "goals": 2,
+      "appearances": 7,
+      "minutes": 280,
+      "goals": 3,
       "assists": null,
       "yellowCards": 1,
       "redCards": 0,
@@ -321,9 +343,20 @@
         "yellow": 1,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 9,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Lautaro Martínez is a 28-year-old forward for Argentina, playing club football at Internazionale. He has 83 senior caps for Argentina and 39 international goals. At the 2026 World Cup he has made 6 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Lautaro Martínez is a 28-year-old forward for Argentina, playing club football at Internazionale. He has 83 senior caps for Argentina and 39 international goals. At the 2026 World Cup he has made 7 appearances and scored 3 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-23",
@@ -338,7 +371,7 @@
     "club": "Atlético Madrid",
     "clubCountry": "Spain",
     "rating": 93.7,
-    "contribution": 29.7,
+    "contribution": 30.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 56,
@@ -351,8 +384,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nicolas_Gonzalez_Argentina_v_Egypt_7_July_2026-037.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 124,
+      "appearances": 6,
+      "minutes": 150,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -415,9 +448,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 26,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Nicolás González is a 28-year-old forward for Argentina, playing club football at Atlético Madrid. He has 56 senior caps for Argentina and 6 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Nicolás González is a 28-year-old forward for Argentina, playing club football at Atlético Madrid. He has 56 senior caps for Argentina and 6 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-19",
@@ -526,7 +570,7 @@
     "club": "Lyon",
     "clubCountry": "France",
     "rating": 92.8,
-    "contribution": 32.5,
+    "contribution": 34.8,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 81,
@@ -539,8 +583,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nicolas_Tagliafico_Argentina_v_Egypt_7_July_2026-126_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 247,
+      "appearances": 6,
+      "minutes": 328,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -603,9 +647,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 81,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Nicolás Tagliafico is a 33-year-old defender for Argentina, playing club football at Lyon. He has 81 senior caps for Argentina and 1 international goal. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Nicolás Tagliafico is a 33-year-old defender for Argentina, playing club football at Lyon. He has 81 senior caps for Argentina and 1 international goal. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-20",
@@ -681,7 +736,7 @@
     "club": "Bayern Munich",
     "clubCountry": "Germany",
     "rating": 92.5,
-    "contribution": 88.3,
+    "contribution": 90.8,
     "isCaptain": true,
     "isKeyPlayer": true,
     "caps": 120,
@@ -694,8 +749,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harry_Kane_England_v_Ghana_23_June_2026-219_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 534,
+      "appearances": 7,
+      "minutes": 624,
       "goals": 6,
       "assists": null,
       "yellowCards": 0,
@@ -769,9 +824,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Harry Kane is a 32-year-old forward for England, playing club football at Bayern Munich and captains the side. He has 120 senior caps for England and 85 international goals. At the 2026 World Cup he has made 6 appearances and scored 6 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Harry Kane is a 32-year-old forward for England, playing club football at Bayern Munich and captains the side. He has 120 senior caps for England and 85 international goals. At the 2026 World Cup he has made 7 appearances and scored 6 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-14",
@@ -786,7 +852,7 @@
     "club": "Inter Miami",
     "clubCountry": "United States",
     "rating": 92.2,
-    "contribution": 36.6,
+    "contribution": 37.1,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 92,
@@ -799,11 +865,11 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rodrigo_De_Paul_NYCFC_Miami_24_Sep_2025-018_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 407,
+      "appearances": 6,
+      "minutes": 425,
       "goals": 0,
       "assists": null,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "cleanSheets": null,
       "goalsConceded": null
@@ -863,9 +929,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 18,
+        "goals": 0,
+        "yellow": 1,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Rodrigo De Paul is a 32-year-old midfielder for Argentina, playing club football at Inter Miami. He has 92 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Rodrigo De Paul is a 32-year-old midfielder for Argentina, playing club football at Inter Miami. He has 92 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-21",
@@ -1046,7 +1123,7 @@
     "club": "Atlético Madrid",
     "clubCountry": "Spain",
     "rating": 91.8,
-    "contribution": 42.8,
+    "contribution": 45.3,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 57,
@@ -1059,8 +1136,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Julian_Alvarez_Argentina_v_Egypt_7_July_2026-056.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 350,
+      "appearances": 7,
+      "minutes": 440,
       "goals": 1,
       "assists": null,
       "yellowCards": 0,
@@ -1134,9 +1211,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Julián Alvarez is a 26-year-old forward for Argentina, playing club football at Atlético Madrid. He has 57 senior caps for Argentina and 15 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Julián Alvarez is a 26-year-old forward for Argentina, playing club football at Atlético Madrid. He has 57 senior caps for Argentina and 15 international goals. At the 2026 World Cup he has made 7 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-19",
@@ -1151,7 +1239,7 @@
     "club": "Liverpool",
     "clubCountry": "England",
     "rating": 91.7,
-    "contribution": 46.4,
+    "contribution": 48.9,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 52,
@@ -1164,8 +1252,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alexis_Mac_Allister_Argentina_v_Egypt_7_July_2026-182.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 480,
+      "appearances": 7,
+      "minutes": 570,
       "goals": 1,
       "assists": null,
       "yellowCards": 0,
@@ -1239,9 +1327,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Alexis Mac Allister is a 27-year-old midfielder for Argentina, playing club football at Liverpool. He has 52 senior caps for Argentina and 7 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Alexis Mac Allister is a 27-year-old midfielder for Argentina, playing club football at Liverpool. He has 52 senior caps for Argentina and 7 international goals. At the 2026 World Cup he has made 7 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-16",
@@ -1306,7 +1405,7 @@
     "club": "River Plate",
     "clubCountry": "Argentina",
     "rating": 91.1,
-    "contribution": 28.4,
+    "contribution": 28.9,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 137,
@@ -1319,8 +1418,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nicolas_Otamendi_Argentina_v_Egypt_7_July_2026-030.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 133,
+      "appearances": 6,
+      "minutes": 151,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -1383,9 +1482,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 18,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Nicolás Otamendi is a 38-year-old defender for Argentina, playing club football at River Plate. He has 137 senior caps for Argentina and 8 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Nicolás Otamendi is a 38-year-old defender for Argentina, playing club football at River Plate. He has 137 senior caps for Argentina and 8 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-20",
@@ -1400,7 +1510,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 91.1,
-    "contribution": 56.0,
+    "contribution": 65.2,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 65,
@@ -1413,9 +1523,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ousmane_Dembele_France_v_Senegal_16_June_2026-341_(cropped)_2.jpg"
     },
     "stats": {
-      "appearances": 7,
-      "minutes": 552,
-      "goals": 2,
+      "appearances": 8,
+      "minutes": 596,
+      "goals": 3,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
@@ -1499,9 +1609,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 44,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Ousmane Dembélé is a 29-year-old forward for France, playing club football at Paris Saint-Germain. He has 65 senior caps for France and 12 international goals. At the 2026 World Cup he has made 7 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Ousmane Dembélé is a 29-year-old forward for France, playing club football at Paris Saint-Germain. He has 65 senior caps for France and 12 international goals. At the 2026 World Cup he has made 8 appearances and scored 3 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "NED-21",
@@ -1588,7 +1709,7 @@
     "club": "Tottenham Hotspur",
     "clubCountry": "England",
     "rating": 90.7,
-    "contribution": 43.7,
+    "contribution": 46.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 56,
@@ -1601,11 +1722,11 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cristian_Romero_Argentina_v_Egypt_7_July_2026-108.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 407,
+      "appearances": 6,
+      "minutes": 497,
       "goals": 1,
       "assists": null,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "cleanSheets": null,
       "goalsConceded": null
@@ -1665,9 +1786,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 1,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Cristian Romero is a 28-year-old defender for Argentina, playing club football at Tottenham Hotspur. He has 56 senior caps for Argentina and 4 international goals. At the 2026 World Cup he has made 5 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Cristian Romero is a 28-year-old defender for Argentina, playing club football at Tottenham Hotspur. He has 56 senior caps for Argentina and 4 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-03",
@@ -1682,7 +1814,7 @@
     "club": "Aston Villa",
     "clubCountry": "England",
     "rating": 90.4,
-    "contribution": 39.2,
+    "contribution": 41.7,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 65,
@@ -1695,14 +1827,14 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emiliano_Martinez_Argentina_v_Egypt_7_July_2026-093_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
       "cleanSheets": 2,
-      "goalsConceded": 6
+      "goalsConceded": 7
     },
     "matchLog": [
       {
@@ -1770,9 +1902,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Emiliano Martínez is a 33-year-old goalkeeper for Argentina, playing club football at Aston Villa. He has 65 senior caps for Argentina. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Emiliano Martínez is a 33-year-old goalkeeper for Argentina, playing club football at Aston Villa. He has 65 senior caps for Argentina. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-13",
@@ -1787,7 +1930,7 @@
     "club": "Boca Juniors",
     "clubCountry": "Argentina",
     "rating": 90.4,
-    "contribution": 32.1,
+    "contribution": 33.9,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 82,
@@ -1800,8 +1943,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leandro_Paredes_Argentina_v_Egypt_7_July_2026-219_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 284,
+      "appearances": 6,
+      "minutes": 348,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -1864,9 +2007,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 64,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Leandro Paredes is a 31-year-old midfielder for Argentina, playing club football at Boca Juniors. He has 82 senior caps for Argentina and 5 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Leandro Paredes is a 31-year-old midfielder for Argentina, playing club football at Boca Juniors. He has 82 senior caps for Argentina and 5 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-18",
@@ -1997,7 +2151,7 @@
     "club": "Chelsea",
     "clubCountry": "England",
     "rating": 90.3,
-    "contribution": 44.7,
+    "contribution": 55.2,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 47,
@@ -2010,9 +2164,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Enzo_Fernandez_Argentina_v_Egypt_7_July_2026-127.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 450,
-      "goals": 1,
+      "appearances": 6,
+      "minutes": 540,
+      "goals": 2,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
@@ -2074,9 +2228,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 90,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Enzo Fernández is a 25-year-old midfielder for Argentina, playing club football at Chelsea. He has 47 senior caps for Argentina and 7 international goals. At the 2026 World Cup he has made 5 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Enzo Fernández is a 25-year-old midfielder for Argentina, playing club football at Chelsea. He has 47 senior caps for Argentina and 7 international goals. At the 2026 World Cup he has made 6 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-07",
@@ -2091,7 +2256,7 @@
     "club": "Manchester United",
     "clubCountry": "England",
     "rating": 90.0,
-    "contribution": 44.5,
+    "contribution": 46.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 33,
@@ -2104,11 +2269,11 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lisandro_Martinez_Argentina_v_Egypt_7_July_2026-343_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 450,
+      "appearances": 6,
+      "minutes": 522,
       "goals": 1,
       "assists": null,
-      "yellowCards": 0,
+      "yellowCards": 1,
       "redCards": 0,
       "cleanSheets": null,
       "goalsConceded": null
@@ -2168,9 +2333,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 72,
+        "goals": 0,
+        "yellow": 1,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Lisandro Martínez is a 28-year-old defender for Argentina, playing club football at Manchester United. He has 33 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 5 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Lisandro Martínez is a 28-year-old defender for Argentina, playing club football at Manchester United. He has 33 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-03",
@@ -2417,7 +2593,7 @@
     "club": "Atlético Madrid",
     "clubCountry": "Spain",
     "rating": 89.7,
-    "contribution": 34.4,
+    "contribution": 36.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 63,
@@ -2430,8 +2606,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nahuel_Molina_Argentina_v_Egypt_7_July_2026-067.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 382,
+      "appearances": 6,
+      "minutes": 454,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -2494,9 +2670,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 72,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Nahuel Molina is a 28-year-old defender for Argentina, playing club football at Atlético Madrid. He has 63 senior caps for Argentina and 1 international goal. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Nahuel Molina is a 28-year-old defender for Argentina, playing club football at Atlético Madrid. He has 63 senior caps for Argentina and 1 international goal. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-16",
@@ -2511,7 +2698,7 @@
     "club": "AC Milan",
     "clubCountry": "Italy",
     "rating": 89.5,
-    "contribution": 37.5,
+    "contribution": 40.0,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 64,
@@ -2524,8 +2711,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adrien_Rabiot_France_v_Senegal_16_June_2026-371_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 496,
+      "appearances": 7,
+      "minutes": 586,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -2599,9 +2786,20 @@
         "yellow": 1,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Adrien Rabiot is a 31-year-old midfielder for France, playing club football at AC Milan. He has 64 senior caps for France and 7 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Adrien Rabiot is a 31-year-old midfielder for France, playing club football at AC Milan. He has 64 senior caps for France and 7 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-06",
@@ -2616,7 +2814,7 @@
     "club": "River Plate",
     "clubCountry": "Argentina",
     "rating": 89.3,
-    "contribution": 25.5,
+    "contribution": 26.0,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 43,
@@ -2629,8 +2827,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gonzalo_Montiel_Argentina_v_Egypt_7_July_2026-298_(cropped).jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 68,
+      "appearances": 5,
+      "minutes": 86,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -2682,9 +2880,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 18,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Gonzalo Montiel is a 29-year-old defender for Argentina, playing club football at River Plate. He has 43 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Gonzalo Montiel is a 29-year-old defender for Argentina, playing club football at River Plate. He has 43 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-12",
@@ -3064,7 +3273,7 @@
     "club": "Al-Hilal",
     "clubCountry": "KSA",
     "rating": 88.9,
-    "contribution": 29.2,
+    "contribution": 30.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 47,
@@ -3077,8 +3286,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Theo_Hernandez_France_v_Norway_26_June_26-122.jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 210,
+      "appearances": 5,
+      "minutes": 256,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -3130,9 +3339,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 46,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Théo Hernandez is a 28-year-old defender for France, playing club football at Al-Hilal. He has 47 senior caps for France and 2 international goals. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Théo Hernandez is a 28-year-old defender for France, playing club football at Al-Hilal. He has 47 senior caps for France and 2 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-21",
@@ -3739,7 +3959,7 @@
     "club": "Aston Villa",
     "clubCountry": "England",
     "rating": 88.2,
-    "contribution": 34.6,
+    "contribution": 35.8,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 62,
@@ -3752,8 +3972,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lucas_Digne_France_v_Norway_26_June_26-043.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 420,
+      "appearances": 6,
+      "minutes": 464,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -3816,9 +4036,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 44,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Lucas Digne is a 32-year-old defender for France, playing club football at Aston Villa. He has 62 senior caps for France. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Lucas Digne is a 32-year-old defender for France, playing club football at Aston Villa. He has 62 senior caps for France. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-24",
@@ -3833,7 +4064,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 88.1,
-    "contribution": 48.3,
+    "contribution": 57.5,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 26,
@@ -3846,9 +4077,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bradley_Barcola_France_v_Norway_26_June_26-033_(cropped).jpg"
     },
     "stats": {
-      "appearances": 7,
-      "minutes": 339,
-      "goals": 2,
+      "appearances": 8,
+      "minutes": 383,
+      "goals": 3,
       "assists": null,
       "yellowCards": 1,
       "redCards": 0,
@@ -3932,9 +4163,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 44,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Bradley Barcola is a 23-year-old forward for France, playing club football at Paris Saint-Germain. He has 26 senior caps for France and 5 international goals. At the 2026 World Cup he has made 7 appearances and scored 2 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Bradley Barcola is a 23-year-old forward for France, playing club football at Paris Saint-Germain. He has 26 senior caps for France and 5 international goals. At the 2026 World Cup he has made 8 appearances and scored 3 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-09",
@@ -4465,7 +4707,7 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jules_Kounde_France_v_Senegal_16_June_2026-449_(cropped).jpg"
     },
     "stats": {
-      "appearances": 7,
+      "appearances": 8,
       "minutes": 601,
       "goals": 0,
       "assists": null,
@@ -4551,9 +4793,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 0,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Jules Koundé is a 27-year-old defender for France, playing club football at Barcelona. He has 54 senior caps for France. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Jules Koundé is a 27-year-old defender for France, playing club football at Barcelona. He has 54 senior caps for France. At the 2026 World Cup he has made 8 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ENG-22",
@@ -4568,9 +4821,9 @@
     "club": "Manchester United",
     "clubCountry": "England",
     "rating": 87.8,
-    "contribution": 35.5,
+    "contribution": 36.8,
     "isCaptain": false,
-    "isKeyPlayer": true,
+    "isKeyPlayer": false,
     "caps": 76,
     "intlGoals": 19,
     "real": true,
@@ -4581,8 +4834,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marcus_Rashford_England_v_Ghana_23_June_2026-036.jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 175,
+      "appearances": 6,
+      "minutes": 221,
       "goals": 1,
       "assists": null,
       "yellowCards": 0,
@@ -4634,9 +4887,31 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 0,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 46,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Marcus Rashford is a 28-year-old forward for England, playing club football at Manchester United. He has 76 senior caps for England and 19 international goals. At the 2026 World Cup he has made 4 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Marcus Rashford is a 28-year-old forward for England, playing club football at Manchester United. He has 76 senior caps for England and 19 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-19",
@@ -5143,7 +5418,7 @@
     "club": "Bayern Munich",
     "clubCountry": "Germany",
     "rating": 87.6,
-    "contribution": 38.1,
+    "contribution": 40.6,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 23,
@@ -5156,8 +5431,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Michael_Olise_France_v_Senegal_16_June_2026-307_(cropped).jpg"
     },
     "stats": {
-      "appearances": 7,
-      "minutes": 560,
+      "appearances": 8,
+      "minutes": 650,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -5242,9 +5517,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Michael Olise is a 24-year-old forward for France, playing club football at Bayern Munich. He has 23 senior caps for France and 7 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Michael Olise is a 24-year-old forward for France, playing club football at Bayern Munich. He has 23 senior caps for France and 7 international goals. At the 2026 World Cup he has made 8 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-24",
@@ -5552,7 +5838,7 @@
     "club": "AC Milan",
     "clubCountry": "Italy",
     "rating": 87.4,
-    "contribution": 39.9,
+    "contribution": 42.4,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 46,
@@ -5565,14 +5851,14 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mike_Maignan_France_v_Norway_26_June_26-132_(cropped).jpg"
     },
     "stats": {
-      "appearances": 7,
-      "minutes": 630,
+      "appearances": 8,
+      "minutes": 720,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
       "cleanSheets": 4,
-      "goalsConceded": 4
+      "goalsConceded": 10
     },
     "matchLog": [
       {
@@ -5651,9 +5937,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Mike Maignan is a 30-year-old goalkeeper for France, playing club football at AC Milan. He has 46 senior caps for France. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Mike Maignan is a 30-year-old goalkeeper for France, playing club football at AC Milan. He has 46 senior caps for France. At the 2026 World Cup he has made 8 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-15",
@@ -5789,7 +6086,7 @@
     "club": "Manchester City",
     "clubCountry": "England",
     "rating": 87.2,
-    "contribution": 24.5,
+    "contribution": 25.8,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 12,
@@ -5802,8 +6099,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rayan_Cherki_France_v_Norway_26_June_26-114.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 79,
+      "appearances": 7,
+      "minutes": 125,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -5877,9 +6174,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 46,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Rayan Cherki is a 22-year-old midfielder for France, playing club football at Manchester City. He has 12 senior caps for France and 2 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Rayan Cherki is a 22-year-old midfielder for France, playing club football at Manchester City. He has 12 senior caps for France and 2 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-10",
@@ -6299,9 +6607,9 @@
     "club": "Arsenal",
     "clubCountry": "England",
     "rating": 86.8,
-    "contribution": 28.7,
+    "contribution": 55.2,
     "isCaptain": false,
-    "isKeyPlayer": false,
+    "isKeyPlayer": true,
     "caps": 55,
     "intlGoals": 14,
     "real": true,
@@ -6312,9 +6620,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bukayo_Saka_England_v_Ghana_23_June_2026-057_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 237,
-      "goals": 0,
+      "appearances": 7,
+      "minutes": 327,
+      "goals": 3,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
@@ -6387,9 +6695,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 90,
+        "goals": 3,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Bukayo Saka is a 24-year-old forward for England, playing club football at Arsenal. He has 55 senior caps for England and 14 international goals. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Bukayo Saka is a 24-year-old forward for England, playing club football at Arsenal. He has 55 senior caps for England and 14 international goals. At the 2026 World Cup he has made 7 appearances and scored 3 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ARG-24",
@@ -6404,7 +6723,7 @@
     "club": "Atlético Madrid",
     "clubCountry": "Spain",
     "rating": 86.8,
-    "contribution": 24.1,
+    "contribution": 26.1,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 14,
@@ -6417,8 +6736,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Giuliano_Simeone_Argentina_v_Egypt_7_July_2026-043.jpg"
     },
     "stats": {
-      "appearances": 1,
-      "minutes": 71,
+      "appearances": 2,
+      "minutes": 143,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -6437,9 +6756,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ENG",
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "minutes": 72,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Giuliano Simeone is a 23-year-old forward for Argentina, playing club football at Atlético Madrid. He has 14 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 1 appearance. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Giuliano Simeone is a 23-year-old forward for Argentina, playing club football at Atlético Madrid. He has 14 senior caps for Argentina and 2 international goals. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-08",
@@ -7449,7 +7779,7 @@
     "club": "Bayern Munich",
     "clubCountry": "Germany",
     "rating": 86.1,
-    "contribution": 38.8,
+    "contribution": 40.0,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 44,
@@ -7462,8 +7792,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dayot_Upamecano_France_v_Senegal_16_June_2026-402_(cropped).jpg"
     },
     "stats": {
-      "appearances": 7,
-      "minutes": 616,
+      "appearances": 8,
+      "minutes": 660,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -7548,9 +7878,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 44,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Dayot Upamecano is a 27-year-old defender for France, playing club football at Bayern Munich. He has 44 senior caps for France and 2 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Dayot Upamecano is a 27-year-old defender for France, playing club football at Bayern Munich. He has 44 senior caps for France and 2 international goals. At the 2026 World Cup he has made 8 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-25",
@@ -8250,7 +8591,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 85.6,
-    "contribution": 31.2,
+    "contribution": 32.4,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 13,
@@ -8263,8 +8604,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Desire_Doue_France_v_Norway_26_June_26-032.jpg"
     },
     "stats": {
-      "appearances": 7,
-      "minutes": 353,
+      "appearances": 8,
+      "minutes": 399,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -8349,9 +8690,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 46,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Désiré Doué is a 21-year-old forward for France, playing club football at Paris Saint-Germain. He has 13 senior caps for France and 3 international goals. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Désiré Doué is a 21-year-old forward for France, playing club football at Paris Saint-Germain. He has 13 senior caps for France and 3 international goals. At the 2026 World Cup he has made 8 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-04",
@@ -8581,7 +8933,7 @@
     "club": "Aston Villa",
     "clubCountry": "England",
     "rating": 85.5,
-    "contribution": 21.5,
+    "contribution": 22.7,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 23,
@@ -8594,8 +8946,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ollie_Watkins_England_v_Ghana_23_June_2026-035.jpg"
     },
     "stats": {
-      "appearances": 1,
-      "minutes": 6,
+      "appearances": 2,
+      "minutes": 50,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -8614,9 +8966,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 44,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Ollie Watkins is a 30-year-old forward for England, playing club football at Aston Villa. He has 23 senior caps for England and 7 international goals. At the 2026 World Cup he has made 1 appearance. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Ollie Watkins is a 30-year-old forward for England, playing club football at Aston Villa. He has 23 senior caps for England and 7 international goals. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-12",
@@ -8631,7 +8994,7 @@
     "club": "Crystal Palace",
     "clubCountry": "England",
     "rating": 85.4,
-    "contribution": 25.4,
+    "contribution": 27.9,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 5,
@@ -8644,8 +9007,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maxence_Lacroix_France_v_Norway_26_June_26-031_(cropped).jpg"
     },
     "stats": {
-      "appearances": 2,
-      "minutes": 150,
+      "appearances": 3,
+      "minutes": 240,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -8675,9 +9038,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Maxence Lacroix is a 26-year-old defender for France, playing club football at Crystal Palace. He has 5 senior caps for France. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Maxence Lacroix is a 26-year-old defender for France, playing club football at Crystal Palace. He has 5 senior caps for France. At the 2026 World Cup he has made 3 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ESP-16",
@@ -10384,7 +10758,7 @@
     "club": "Arsenal",
     "clubCountry": "England",
     "rating": 84.4,
-    "contribution": 31.4,
+    "contribution": 44.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 78,
@@ -10397,9 +10771,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Declan_Rice_England_v_Ghana_23_June_2026-150.jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 388,
-      "goals": 0,
+      "appearances": 7,
+      "minutes": 560,
+      "goals": 1,
       "assists": null,
       "yellowCards": 2,
       "redCards": 0,
@@ -10461,9 +10835,31 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 82,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 90,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Declan Rice is a 27-year-old midfielder for England, playing club football at Arsenal. He has 78 senior caps for England and 7 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Declan Rice is a 27-year-old midfielder for England, playing club football at Arsenal. He has 78 senior caps for England and 7 international goals. At the 2026 World Cup he has made 7 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "GER-23",
@@ -10561,7 +10957,7 @@
     "club": "Chelsea",
     "clubCountry": "England",
     "rating": 84.4,
-    "contribution": 21.4,
+    "contribution": 23.9,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 15,
@@ -10574,8 +10970,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Malo_Gusto_France_v_Senegal_16_June_2026-399.jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 29,
+      "appearances": 5,
+      "minutes": 119,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -10627,9 +11023,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Malo Gusto is a 23-year-old defender for France, playing club football at Chelsea. He has 15 senior caps for France. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Malo Gusto is a 23-year-old defender for France, playing club football at Chelsea. He has 15 senior caps for France. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-17",
@@ -10859,7 +11266,7 @@
     "club": "Real Madrid",
     "clubCountry": "Spain",
     "rating": 84.3,
-    "contribution": 21.0,
+    "contribution": 22.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 29,
@@ -10872,8 +11279,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ibrahima_Konate_France_v_Senegal_16_June_2026-516_(cropped).jpg"
     },
     "stats": {
-      "appearances": 1,
-      "minutes": 14,
+      "appearances": 2,
+      "minutes": 60,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -10892,9 +11299,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 46,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Ibrahima Konaté is a 27-year-old defender for France, playing club football at Real Madrid. He has 29 senior caps for France. At the 2026 World Cup he has made 1 appearance. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Ibrahima Konaté is a 27-year-old defender for France, playing club football at Real Madrid. He has 29 senior caps for France. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-01",
@@ -11418,7 +11836,7 @@
     "club": "Tottenham Hotspur",
     "clubCountry": "England",
     "rating": 83.8,
-    "contribution": 25.6,
+    "contribution": 30.6,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 12,
@@ -11431,8 +11849,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Djed_Spence_England_v_Ghana_23_June_2026-022.jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 191,
+      "appearances": 8,
+      "minutes": 371,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -11506,9 +11924,31 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Djed Spence is a 25-year-old defender for England, playing club football at Tottenham Hotspur. He has 12 senior caps for England. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Djed Spence is a 25-year-old defender for England, playing club football at Tottenham Hotspur. He has 12 senior caps for England. At the 2026 World Cup he has made 8 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "CRO-23",
@@ -11606,7 +12046,7 @@
     "club": "Real Madrid",
     "clubCountry": "Spain",
     "rating": 83.8,
-    "contribution": 82.0,
+    "contribution": 92.8,
     "isCaptain": false,
     "isKeyPlayer": true,
     "caps": 54,
@@ -11619,9 +12059,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jude_Bellingham_England_v_Ghana_23_June_2026-061_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 495,
-      "goals": 6,
+      "appearances": 8,
+      "minutes": 596,
+      "goals": 7,
       "assists": null,
       "yellowCards": 1,
       "redCards": 0,
@@ -11694,9 +12134,31 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 11,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Jude Bellingham is a 22-year-old midfielder for England, playing club football at Real Madrid. He has 54 senior caps for England and 12 international goals. At the 2026 World Cup he has made 6 appearances and scored 6 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Jude Bellingham is a 22-year-old midfielder for England, playing club football at Real Madrid. He has 54 senior caps for England and 12 international goals. At the 2026 World Cup he has made 8 appearances and scored 7 goals. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "CRO-13",
@@ -11927,7 +12389,7 @@
     "club": "Aston Villa",
     "clubCountry": "England",
     "rating": 83.7,
-    "contribution": 23.7,
+    "contribution": 28.7,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 20,
@@ -11940,8 +12402,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Morgan_Rogers_England_v_Ghana_23_June_2026-034_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 125,
+      "appearances": 7,
+      "minutes": 305,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -12004,9 +12466,31 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Morgan Rogers is a 23-year-old midfielder for England, playing club football at Aston Villa. He has 20 senior caps for England and 1 international goal. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Morgan Rogers is a 23-year-old midfielder for England, playing club football at Aston Villa. He has 20 senior caps for England and 1 international goal. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-02",
@@ -12059,7 +12543,7 @@
     "club": "Unattached",
     "clubCountry": "",
     "rating": 83.6,
-    "contribution": 26.0,
+    "contribution": 28.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 93,
@@ -12072,8 +12556,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Stones_England_v_Ghana_23_June_2026-038.jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 210,
+      "appearances": 5,
+      "minutes": 300,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -12125,9 +12609,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "John Stones is a 32-year-old defender for England, playing club football at Unattached. He has 93 senior caps for England and 3 international goals. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "John Stones is a 32-year-old defender for England, playing club football at Unattached. He has 93 senior caps for England and 3 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "FRA-17",
@@ -12142,7 +12637,7 @@
     "club": "Paris Saint-Germain",
     "clubCountry": "France",
     "rating": 83.6,
-    "contribution": 20.7,
+    "contribution": 23.2,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 12,
@@ -12155,8 +12650,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Warren_Zaire-Emery_France_v_Senegal_16_June_2026-279.jpg"
     },
     "stats": {
-      "appearances": 1,
-      "minutes": 19,
+      "appearances": 2,
+      "minutes": 109,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -12175,9 +12670,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "ENG",
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Warren Zaïre-Emery is a 20-year-old midfielder for France, playing club football at Paris Saint-Germain. He has 12 senior caps for France and 1 international goal. At the 2026 World Cup he has made 1 appearance. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Warren Zaïre-Emery is a 20-year-old midfielder for France, playing club football at Paris Saint-Germain. He has 12 senior caps for France and 1 international goal. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BRA-12",
@@ -12839,7 +13345,7 @@
     "club": "Barcelona",
     "clubCountry": "Spain",
     "rating": 83.2,
-    "contribution": 29.0,
+    "contribution": 39.0,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 24,
@@ -12852,9 +13358,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anthony_Gordon_England_v_Ghana_23_June_2026-017_(cropped).jpg"
     },
     "stats": {
-      "appearances": 5,
-      "minutes": 328,
-      "goals": 0,
+      "appearances": 6,
+      "minutes": 400,
+      "goals": 1,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
@@ -12916,9 +13422,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 72,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Anthony Gordon is a 25-year-old forward for England, playing club football at Barcelona. He has 24 senior caps for England and 3 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Anthony Gordon is a 25-year-old forward for England, playing club football at Barcelona. He has 24 senior caps for England and 3 international goals. At the 2026 World Cup he has made 6 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "NED-26",
@@ -13193,7 +13710,7 @@
     "club": "Manchester City",
     "clubCountry": "England",
     "rating": 83.2,
-    "contribution": 32.5,
+    "contribution": 37.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 35,
@@ -13206,8 +13723,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marc_Gu%C3%A9hi_at_2026_FIFA_World_Cup_by_YantsImages_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 453,
+      "appearances": 8,
+      "minutes": 633,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -13281,9 +13798,31 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Marc Guéhi is a 25-year-old defender for England, playing club football at Manchester City. He has 35 senior caps for England and 1 international goal. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Marc Guéhi is a 25-year-old defender for England, playing club football at Manchester City. He has 35 senior caps for England and 1 international goal. At the 2026 World Cup he has made 8 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-06",
@@ -13553,7 +14092,7 @@
     "club": "Arsenal",
     "clubCountry": "England",
     "rating": 82.9,
-    "contribution": 22.5,
+    "contribution": 24.7,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 21,
@@ -13566,8 +14105,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Eberechi_Eze_England_v_Ghana_23_June_2026-039.jpg"
     },
     "stats": {
-      "appearances": 4,
-      "minutes": 99,
+      "appearances": 5,
+      "minutes": 178,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -13619,9 +14158,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 79,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Eberechi Eze is a 27-year-old midfielder for England, playing club football at Arsenal. He has 21 senior caps for England and 3 international goals. At the 2026 World Cup he has made 4 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Eberechi Eze is a 27-year-old midfielder for England, playing club football at Arsenal. He has 21 senior caps for England and 3 international goals. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "ENG-26",
@@ -13636,7 +14186,7 @@
     "club": "Al-Ahli",
     "clubCountry": "KSA",
     "rating": 82.9,
-    "contribution": 19.7,
+    "contribution": 21.9,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 8,
@@ -13649,8 +14199,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ivan_Toney_England_v_Ghana_23_June_2026-051.jpg"
     },
     "stats": {
-      "appearances": 0,
-      "minutes": 0,
+      "appearances": 2,
+      "minutes": 79,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -13658,8 +14208,31 @@
       "cleanSheets": null,
       "goalsConceded": null
     },
-    "matchLog": [],
-    "bio": "Ivan Toney is a 30-year-old forward for England, playing club football at Al-Ahli. He has 8 senior caps for England and 1 international goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "matchLog": [
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 0,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 79,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      }
+    ],
+    "bio": "Ivan Toney is a 30-year-old forward for England, playing club football at Al-Ahli. He has 8 senior caps for England and 1 international goal. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BEL-15",
@@ -13945,9 +14518,9 @@
     "club": "Everton",
     "clubCountry": "England",
     "rating": 82.8,
-    "contribution": 34.7,
+    "contribution": 37.2,
     "isCaptain": false,
-    "isKeyPlayer": true,
+    "isKeyPlayer": false,
     "caps": 90,
     "intlGoals": 0,
     "real": true,
@@ -13958,14 +14531,14 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jordan_Pickford_England_v_Ghana_23_June_2026-316_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 540,
+      "appearances": 7,
+      "minutes": 630,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
       "cleanSheets": 2,
-      "goalsConceded": 6
+      "goalsConceded": 8
     },
     "matchLog": [
       {
@@ -14033,9 +14606,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Jordan Pickford is a 32-year-old goalkeeper for England, playing club football at Everton. He has 90 senior caps for England. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Jordan Pickford is a 32-year-old goalkeeper for England, playing club football at Everton. He has 90 senior caps for England. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BEL-19",
@@ -14171,9 +14755,9 @@
     "club": "Aston Villa",
     "clubCountry": "England",
     "rating": 82.6,
-    "contribution": 34.5,
+    "contribution": 45.5,
     "isCaptain": false,
-    "isKeyPlayer": false,
+    "isKeyPlayer": true,
     "caps": 26,
     "intlGoals": 1,
     "real": true,
@@ -14184,9 +14768,9 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Team_England_England_v_Ghana_at_2026_Fifa_World_Cup_by_YantsImages_03_(Ezri_Konsa).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 539,
-      "goals": 0,
+      "appearances": 8,
+      "minutes": 647,
+      "goals": 1,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
@@ -14259,9 +14843,31 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 18,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 90,
+        "goals": 1,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Ezri Konsa is a 28-year-old defender for England, playing club football at Aston Villa. He has 26 senior caps for England and 1 international goal. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Ezri Konsa is a 28-year-old defender for England, playing club football at Aston Villa. He has 26 senior caps for England and 1 international goal. At the 2026 World Cup he has made 8 appearances and scored 1 goal. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "POR-22",
@@ -14326,7 +14932,7 @@
     "club": "Bayer Leverkusen",
     "clubCountry": "Germany",
     "rating": 82.6,
-    "contribution": 22.8,
+    "contribution": 25.1,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 5,
@@ -14339,8 +14945,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jarell_Quansah_England_v_Ghana_23_June_2026-045.jpg"
     },
     "stats": {
-      "appearances": 2,
-      "minutes": 117,
+      "appearances": 3,
+      "minutes": 200,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -14370,9 +14976,20 @@
         "yellow": 0,
         "red": 1,
         "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 83,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
       }
     ],
-    "bio": "Jarell Quansah is a 23-year-old defender for England, playing club football at Bayer Leverkusen. He has 5 senior caps for England. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Jarell Quansah is a 23-year-old defender for England, playing club football at Bayer Leverkusen. He has 5 senior caps for England. At the 2026 World Cup he has made 3 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "NED-03",
@@ -15187,7 +15804,7 @@
     "club": "Chelsea",
     "clubCountry": "England",
     "rating": 82.2,
-    "contribution": 24.8,
+    "contribution": 27.3,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 27,
@@ -15200,8 +15817,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Reece_James_England_v_Ghana_23_June_2026-248_(cropped).jpg"
     },
     "stats": {
-      "appearances": 3,
-      "minutes": 199,
+      "appearances": 5,
+      "minutes": 288,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -15242,9 +15859,31 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 82,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      },
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 7,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Reece James is a 26-year-old defender for England, playing club football at Chelsea. He has 27 senior caps for England and 1 international goal. At the 2026 World Cup he has made 3 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Reece James is a 26-year-old defender for England, playing club football at Chelsea. He has 27 senior caps for England and 1 international goal. At the 2026 World Cup he has made 5 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BEL-21",
@@ -15790,7 +16429,7 @@
     "club": "Newcastle United",
     "clubCountry": "England",
     "rating": 81.8,
-    "contribution": 19.5,
+    "contribution": 19.7,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 10,
@@ -15803,8 +16442,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dan_Burn_England_v_Ghana_23_June_2026-224.jpg"
     },
     "stats": {
-      "appearances": 2,
-      "minutes": 15,
+      "appearances": 3,
+      "minutes": 23,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -15834,9 +16473,20 @@
         "yellow": 0,
         "red": 0,
         "started": false
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 8,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Dan Burn is a 34-year-old defender for England, playing club football at Newcastle United. He has 10 senior caps for England. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Dan Burn is a 34-year-old defender for England, playing club football at Newcastle United. He has 10 senior caps for England. At the 2026 World Cup he has made 3 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BEL-22",
@@ -17625,7 +18275,7 @@
     "club": "Manchester City",
     "clubCountry": "England",
     "rating": 81.0,
-    "contribution": 31.3,
+    "contribution": 31.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 11,
@@ -17638,8 +18288,8 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nico_O%27Reilly_England_v_Ghana_23_June_2026-043_(cropped).jpg"
     },
     "stats": {
-      "appearances": 6,
-      "minutes": 456,
+      "appearances": 7,
+      "minutes": 464,
       "goals": 0,
       "assists": null,
       "yellowCards": 1,
@@ -17713,9 +18363,20 @@
         "yellow": 0,
         "red": 0,
         "started": true
+      },
+      {
+        "date": "2026-07-15",
+        "opponent": "ARG",
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "minutes": 8,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
       }
     ],
-    "bio": "Nico O'Reilly is a 21-year-old defender for England, playing club football at Manchester City. He has 11 senior caps for England. At the 2026 World Cup he has made 6 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "bio": "Nico O'Reilly is a 21-year-old defender for England, playing club football at Manchester City. He has 11 senior caps for England. At the 2026 World Cup he has made 7 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "GER-02",
@@ -18056,7 +18717,7 @@
     "club": "Crystal Palace",
     "clubCountry": "England",
     "rating": 80.8,
-    "contribution": 18.5,
+    "contribution": 21.0,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 5,
@@ -18069,17 +18730,29 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dean_Henderson_England_v_Ghana_23_June_2026-003.jpg"
     },
     "stats": {
-      "appearances": 0,
-      "minutes": 0,
+      "appearances": 1,
+      "minutes": 90,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
       "redCards": 0,
       "cleanSheets": 0,
-      "goalsConceded": 0
+      "goalsConceded": 4
     },
-    "matchLog": [],
-    "bio": "Dean Henderson is a 29-year-old goalkeeper for England, playing club football at Crystal Palace. He has 5 senior caps for England. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "matchLog": [
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 90,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": true
+      }
+    ],
+    "bio": "Dean Henderson is a 29-year-old goalkeeper for England, playing club football at Crystal Palace. He has 5 senior caps for England. At the 2026 World Cup he has made 1 appearance. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "NED-04",
@@ -20847,7 +21520,7 @@
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trevor_Chalobah_FIFA_Club_World_Cup_final_extraction.jpg"
     },
     "stats": {
-      "appearances": 0,
+      "appearances": 1,
       "minutes": 0,
       "goals": 0,
       "assists": null,
@@ -20856,8 +21529,20 @@
       "cleanSheets": null,
       "goalsConceded": null
     },
-    "matchLog": [],
-    "bio": "Trevoh Chalobah is a 26-year-old defender for England, playing club football at Chelsea. He has 1 senior cap for England. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "matchLog": [
+      {
+        "date": "2026-07-18",
+        "opponent": "FRA",
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "minutes": 0,
+        "goals": 0,
+        "yellow": 0,
+        "red": 0,
+        "started": false
+      }
+    ],
+    "bio": "Trevoh Chalobah is a 26-year-old defender for England, playing club football at Chelsea. He has 1 senior cap for England. At the 2026 World Cup he has made 1 appearance. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "BEL-06",
@@ -56415,7 +57100,7 @@
     "club": "Lugano",
     "clubCountry": "Switzerland",
     "rating": 70.8,
-    "contribution": 13.6,
+    "contribution": 12.5,
     "isCaptain": false,
     "isKeyPlayer": false,
     "caps": 11,
@@ -56424,8 +57109,8 @@
     "headshot": null,
     "photoCredit": null,
     "stats": {
-      "appearances": 2,
-      "minutes": 41,
+      "appearances": 0,
+      "minutes": 0,
       "goals": 0,
       "assists": null,
       "yellowCards": 0,
@@ -56433,31 +57118,8 @@
       "cleanSheets": null,
       "goalsConceded": null
     },
-    "matchLog": [
-      {
-        "date": "2026-06-14",
-        "opponent": "SWE",
-        "goalsFor": 1,
-        "goalsAgainst": 5,
-        "minutes": 18,
-        "goals": 0,
-        "yellow": 0,
-        "red": 0,
-        "started": false
-      },
-      {
-        "date": "2026-06-25",
-        "opponent": "NED",
-        "goalsFor": 1,
-        "goalsAgainst": 3,
-        "minutes": 23,
-        "goals": 0,
-        "yellow": 0,
-        "red": 0,
-        "started": false
-      }
-    ],
-    "bio": "Hadj Mahmoud is a 26-year-old midfielder for Tunisia, playing club football at Lugano. He has 11 senior caps for Tunisia. At the 2026 World Cup he has made 2 appearances. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
+    "matchLog": [],
+    "bio": "Hadj Mahmoud is a 26-year-old midfielder for Tunisia, playing club football at Lugano. He has 11 senior caps for Tunisia. Squad details and World Cup match statistics are real (via Wikipedia / FIFA match reports); only the 0–100 ability rating is model-generated."
   },
   {
     "id": "GHA-20",

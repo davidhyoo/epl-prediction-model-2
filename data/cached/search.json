@@ -5,21 +5,7 @@
       "iso2": "es",
       "name": "Spain",
       "group": "H",
-      "championProb": 0.54955
-    },
-    {
-      "code": "ARG",
-      "iso2": "ar",
-      "name": "Argentina",
-      "group": "J",
-      "championProb": 0.3581
-    },
-    {
-      "code": "ENG",
-      "iso2": "gb-eng",
-      "name": "England",
-      "group": "L",
-      "championProb": 0.09235
+      "championProb": 1.0
     },
     {
       "code": "MEX",
@@ -267,6 +253,13 @@
       "championProb": 0.0
     },
     {
+      "code": "ARG",
+      "iso2": "ar",
+      "name": "Argentina",
+      "group": "J",
+      "championProb": 0.0
+    },
+    {
       "code": "ALG",
       "iso2": "dz",
       "name": "Algeria",
@@ -313,6 +306,13 @@
       "iso2": "co",
       "name": "Colombia",
       "group": "K",
+      "championProb": 0.0
+    },
+    {
+      "code": "ENG",
+      "iso2": "gb-eng",
+      "name": "England",
+      "group": "L",
       "championProb": 0.0
     },
     {

@@ -96,6 +96,11 @@ export function PredictionModal({ match, open, onOpenChange, modelMeta }: Predic
               )}
               <span className="font-medium">
                 Final score {match.score.home}–{match.score.away}
+                {match.penalties
+                  ? ` (a.e.t., ${match.penalties.home}–${match.penalties.away} pens)`
+                  : match.aet
+                    ? " (a.e.t.)"
+                    : ""}
               </span>
               <span className="text-muted-foreground">
                 · Ensemble was {match.correct ? "correct" : "incorrect"}
