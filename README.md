@@ -1,4 +1,6 @@
-# ⚽ Soccer Agent — EPL & La Liga Prediction & Analytics Dashboard
+# ⚽ Data Driven Soccer — EPL & La Liga Prediction & Analytics Dashboard
+
+_Developed by **David Yoo** — [LinkedIn](https://www.linkedin.com/in/david-h-yoo) · [GitHub](https://github.com/davidhyoo/epl-prediction-model-2)_
 
 A production-quality web app for exploring the **English Premier League** and
 **Spanish La Liga** — standings, fixtures & results, match predictions, club
@@ -166,17 +168,18 @@ npm run data:retrain        # python ml/club_pipeline.py --retrain — force mod
 npm run data:fetch          # python ml/club_refresh.py — pull latest sources, then rebuild
 npm run data:fetch:offline  # python ml/club_refresh.py --offline — rebuild without network
 npm run data:fetch:squads   # python ml/club_refresh.py --squads — also refresh squads + headshots
+npm run data:fetch:crests   # python ml/club_refresh.py --crests — re-map club crest URLs
 npm run ml:train            # stage 4 only
 npm run ml:predict          # stage 5 only
 npm run ml:simulate         # stage 6 only
-npm run ml:evaluate         # stage 8 (+ publish JSON)
+npm run ml:evaluate         # stage 8 (+ publish JSON, incl. EPL assist enrichment)
 ```
 
 ### Tests / lint
 
 ```bash
 npm test          # vitest — 79 frontend tests
-npm run test:py   # pytest  — 38 pipeline tests
+npm run test:py   # pytest  — 48 pipeline tests
 npm run lint      # eslint
 ```
 
@@ -200,7 +203,8 @@ epl-prediction-model-2/
 │     ├─ types.ts                # the frontend data contract (mirrors club_evaluate.py)
 │     ├─ data.ts                 # server-side JSON loaders + selection helpers
 │     ├─ format.ts               # pct/odds/label formatting + ranking metadata
-│     └─ league.ts               # league/season resolution + query-string helpers
+│     ├─ league.ts               # league/season resolution + query-string helpers
+│     └─ crests.json             # club-code → hot-link crest URL map (no images committed)
 ├─ ml/                           # the Python pipeline ("agents")
 │  ├─ leagues.py                 # league/season/club registry, Elo constants, paths
 │  ├─ nations.py                 # nationality → flag/name lookup for players
@@ -212,13 +216,16 @@ epl-prediction-model-2/
 │  ├─ club_simulate.py           # stage 6 — Monte-Carlo season simulation
 │  ├─ club_players.py            # stage 7 — squads, goals from scorers, ratings
 │  ├─ club_evaluate.py           # stage 8 — backtest + publish all public/data JSON
+│  ├─ club_fpl.py                # EPL assist/minute/card enrichment (Fantasy PL archive)
+│  ├─ club_crests.py             # verified club-crest URL mapper → src/lib/crests.json
 │  ├─ club_fetch_squads.py       # Wikipedia/Commons squad + headshot fetcher
 │  ├─ club_refresh.py            # source downloader + pipeline runner (the refresh brain)
 │  ├─ club_pipeline.py           # orchestrator (ingest→…→publish)
-│  └─ tests/                     # pytest suite (modeling, features, sources, simulate)
+│  └─ tests/                     # pytest suite (modeling, features, sources, simulate, fpl, crests)
 ├─ data/                         # pipeline working area (NOT read at runtime)
-│  ├─ source/{league}/{season}/  # cached openfootball.txt + footballdata.csv
+│  ├─ source/{league}/{season}/  # cached openfootball.txt + footballdata.csv + fpl_players.csv
 │  ├─ source/{league}/           # squads_wikipedia.json + headshot_credits.json
+│  ├─ source/crests.json         # cached, verified club-crest URL map
 │  └─ raw/{league}/{season}/     # ingest.json intermediate
 ├─ public/
 │  ├─ data/                      # ← the frontend reads THIS
@@ -252,13 +259,31 @@ ingest → (sources) → features → train → predict → simulate → players
 | 5 | **`club_predict.py`**  | Score the whole target schedule with every model, blend them into the **ensemble**, pick the predicted outcome + confidence, and attach the **top-5 contributing factors** (from model coefficients / feature importances) for the explanation modal. Also computes per-club team-strength snapshots. |
 | 6 | **`club_simulate.py`** | **Monte-Carlo** the rest of the season (8,000 runs by default): completed matches are fixed to their real result; each remaining fixture is sampled from an independent-Poisson score model driven by the current Elo gap. Produces title / UCL / Europa / relegation probabilities, expected points and the full finishing-position distribution. Mathematically-eliminated clubs are **hard-zeroed** (an eliminated side has exactly 0% title chance). |
 | 7 | **`club_players.py`**  | Build each club's squad from the cached Wikipedia rosters, credit goals from the parsed scorers (excluding own goals), and compute a transparent player **rating** from goals, position and squad role. |
-| 8 | **`club_evaluate.py`** | The **self-improvement / backtest** step. For the validation season it grades every completed prediction against the real result, computes accuracy, log-loss, Brier score and calibration (ECE) per model, **re-ranks** the leaderboard and sets the ensemble weights ∝ 1/log-loss (better models get more say). Then it **publishes** every `public/data/{league}/{season}/*.json` and the top-level `index.json`. For the unplayed 2026-27 season it publishes blank metrics (nothing to score yet). |
+| 8 | **`club_evaluate.py`** | The **self-improvement / backtest** step. For the validation season it grades every completed prediction against the real result, computes accuracy, log-loss, Brier score and calibration (ECE) per model, **re-ranks** the leaderboard and sets the ensemble weights ∝ 1/log-loss (better models get more say). It also invokes `club_fpl.py` to enrich EPL players with real assists/minutes/cards. Then it **publishes** every `public/data/{league}/{season}/*.json` and the top-level `index.json`. For the unplayed 2026-27 season it publishes blank metrics (nothing to score yet). |
 
 `club_fetch_squads.py` is a separate, network-using helper (run via
 `--squads`) that fetches rosters from Wikipedia and free-licensed headshots from
 Wikimedia Commons, caching both under `data/source/{league}/` and writing images
 to `public/headshots/{league}/`. It is decoupled from the daily refresh because
 squads change rarely and image fetching is slow.
+
+Two more helpers run alongside stage 8:
+
+- **`club_fpl.py`** merges real **assists, minutes and cards** into the Premier
+  League player list from the free, key-less [Fantasy Premier League archive](https://github.com/vaastav/Fantasy-Premier-League).
+  Goals stay sourced from openfootball; only the missing fields are filled, by
+  accent-folded `(club, surname, first-initial)` matching. A player is only
+  enriched if they actually featured (`minutes > 0`), and the whole step is
+  skipped for a season with no completed matches so an unstarted 2026-27 never
+  inherits last season's totals. La Liga has no equivalent free feed, so it is a
+  no-op there and those fields stay `null`.
+- **`club_crests.py`** builds the club-code → crest-URL map. Each candidate URL
+  (from TheSportsDB's free-key name search, with a football-data.org CDN
+  fallback) is **verified** — the returned team must resolve back to the same
+  club, country and sport — so a badge can never be silently mis-attributed. Only
+  the *URLs* are stored (`data/source/crests.json` → `src/lib/crests.json`); no
+  crest image is committed, and the UI falls back to a coloured monogram whenever
+  a crest can't load. Re-map with `npm run data:fetch:crests`.
 
 ---
 
@@ -353,6 +378,11 @@ next request re-reads the new JSON → the UI reflects reality
   headshots. Slow (several minutes); run occasionally, not on every result.
   Reachable via `?mode=squads` or `npm run data:fetch:squads`.
 
+A fourth, standalone maintenance flag — **`--crests`** (`npm run
+data:fetch:crests`) — re-verifies and re-maps every club's crest URL. It is not
+part of the daily refresh because crests essentially never change; run it only
+when a club is promoted/relegated into a league.
+
 ### Safety & robustness (why it won't corrupt your data)
 
 - **Disabled by default in production.** The route only runs when
@@ -415,8 +445,10 @@ payment, or scraping of disallowed content.
 | ------ | -------- | ------- | ----------- |
 | **openfootball** ([github.com/openfootball](https://github.com/openfootball)) — `england/1-premierleague.txt`, `espana/1-liga.txt` | Fixtures, results, and (2025-26+) inline goalscorers with minutes/penalties/own-goals | **CC0** (public domain) | Cached; refreshable live |
 | **football-data.co.uk** (`mmz4281/{yyyy}/{E0,SP1}.csv`) | Per-match shots, shots-on-target, corners, fouls, cards + **closing market odds** | Free for personal use | Cached; refreshable live |
+| **Fantasy Premier League archive** ([vaastav/Fantasy-Premier-League](https://github.com/vaastav/Fantasy-Premier-League)) — `data/{season}/players_raw.csv` | Real per-player **assists, minutes, yellow/red cards** for the Premier League (goals stay sourced from openfootball) | Open GitHub data, snapshot of the public FPL API | Cached in `data/source/epl/{season}/fpl_players.csv`; refreshable live |
 | **Wikipedia** (club squad pages) | Player rosters (name, position, nationality, club) | CC BY-SA | Cached; refreshable via `--squads` |
 | **Wikimedia Commons** | Player **headshots** (free-licensed images only) | Per-file (CC BY / CC BY-SA / public domain) — attribution stored in `headshot_credits.json` and shown on player profiles | Cached in `public/headshots/{league}/` |
+| **TheSportsDB** (free key `3`) + **football-data.org crest CDN** | Club **crest** image URLs (verified by name + country, never the wrong club) | Hot-linked at render only — **no crest image is ever committed**; each club falls back to a coloured monogram if the image can't load | URL map cached in `data/source/crests.json` → bundled to `src/lib/crests.json`; refreshable via `--crests` |
 
 **How to refresh:** see [The Refresh function](#the-refresh-function). In short:
 in-app button (dev, or `ALLOW_DATA_REFRESH=1`), or `npm run data:fetch`
@@ -425,13 +457,17 @@ in-app button (dev, or `ALLOW_DATA_REFRESH=1`), or `npm run data:fetch`
 **Licensing notes:** only free-licensed headshots are used; where a properly
 licensed image isn't available, the UI shows a clean initials placeholder instead
 of an unlicensed photo. Every headshot's author + license + source URL is stored
-and surfaced in the app.
+and surfaced in the app. **Club crests are trademarks**, so no crest image is
+committed to this repository — the app only stores a hot-link *URL* per club
+(`src/lib/crests.json`) and renders it as an `<img>` at view time, falling back to
+a coloured monogram whenever the image is unavailable (offline, CDN hiccup, or an
+unmapped club).
 
 ---
 
 ## Testing
 
-**117 tests total**, all green, split across the two toolchains:
+**127 tests total**, all green, split across the two toolchains:
 
 ### Frontend — Vitest (`npm test`) — 79 tests
 
@@ -447,7 +483,7 @@ and surfaced in the app.
   all eight ranking views. Preseason (2026-27) vs validation (2025-26) datasets
   are checked with the appropriate expectations.
 
-### Pipeline — pytest (`npm run test:py`) — 38 tests
+### Pipeline — pytest (`npm run test:py`) — 48 tests
 
 - `test_club_modeling.py` — Elo baseline (rows sum to 1, monotonic in rating gap,
   home-advantage tie-break, draw-model coupling), ensemble blending, and the
@@ -461,6 +497,12 @@ and surfaced in the app.
   football-data CSV parser (stats + **normalised** market odds).
 - `test_club_simulate.py` — standings accumulator maths, expected-goals ordering,
   valid probability distributions, and the **"eliminated ⇒ 0% title"** guarantee.
+- `test_club_fpl.py` — the real-assists enrichment: surname + first-initial name
+  matching, the "did the player actually feature" gate, the La-Liga no-op, and the
+  pre-season gate that stops an unstarted season inheriting last season's totals.
+- `test_club_crests.py` — the crest **verification** guard (accepts spelling
+  variants, rejects the wrong sport / country / club) so a badge is never
+  mis-attributed.
 
 Run everything:
 
@@ -489,9 +531,16 @@ itself reads no environment variables and needs no API keys**.
   from prior seasons + squad strength), and its model leaderboard is blank until
   real results exist to score against. This is by design — hit Refresh once the
   season starts and the numbers become live.
-- **Goals-only player stats.** openfootball provides goalscorers with minutes;
-  assists, expected goals and detailed per-player metrics aren't in the free
-  feeds, so those fields may be `null` and the UI degrades gracefully.
+- **Player stats: EPL is rich, La Liga is goals-only.** openfootball provides
+  goalscorers with minutes for both leagues. For the **Premier League** we
+  additionally merge real **assists, minutes and cards** from the free, key-less
+  Fantasy Premier League archive (goals still come from openfootball, the single
+  source of truth). **La Liga has no equivalent free per-player feed**, so its
+  assists/minutes stay `null` and the UI shows a tasteful "—". Both degrade
+  gracefully; the app never invents a stat it can't source.
+- **Crest coverage is near-complete, with a safe fallback.** 46/46 clubs across
+  both leagues map to a real, verified crest URL; any club that ever can't load
+  its crest simply shows a coloured monogram.
 - **Match stats depend on football-data.co.uk cadence.** Shots/odds appear once a
   season is under way; before then those fields are empty.
 - **Headshot coverage is partial.** Only players with a free-licensed Commons
