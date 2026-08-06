@@ -1,0 +1,27 @@
+{
+  "codes": [
+    "ALA",
+    "ATH",
+    "ATM",
+    "BAR",
+    "BET",
+    "CEL",
+    "ELC",
+    "ESP",
+    "GET",
+    "GIR",
+    "LEV",
+    "MLL",
+    "OSA",
+    "OVI",
+    "RAY",
+    "RMA",
+    "RSO",
+    "SEV",
+    "VAL",
+    "VIL"
+  ],
+  "matchCount": 380,
+  "played": 380,
+  "trainingMatches": 1900
+}

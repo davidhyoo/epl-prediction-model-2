@@ -1,0 +1,27 @@
+{
+  "codes": [
+    "ARS",
+    "AVL",
+    "BHA",
+    "BOU",
+    "BRE",
+    "CHE",
+    "COV",
+    "CRY",
+    "EVE",
+    "FUL",
+    "HUL",
+    "IPS",
+    "LEE",
+    "LIV",
+    "MCI",
+    "MUN",
+    "NEW",
+    "NFO",
+    "SUN",
+    "TOT"
+  ],
+  "matchCount": 380,
+  "played": 0,
+  "trainingMatches": 2280
+}
