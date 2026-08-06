@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Hexagon } from "lucide-react";
+import { DevCreditLinks } from "@/components/dev-credit";
 
 export function SiteFooter() {
   return (
@@ -10,7 +11,7 @@ export function SiteFooter() {
             <span className="flex size-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground">
               <Hexagon className="size-4" fill="currentColor" />
             </span>
-            Soccer Agent
+            Data Driven Soccer
           </div>
           <p className="text-sm text-muted-foreground">
             A data-science portfolio project: a reproducible ML pipeline that predicts match
@@ -64,7 +65,8 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-4 text-xs text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} Soccer Agent — portfolio demo.</p>
+          <p>© {new Date().getFullYear()} Data Driven Soccer — built by David Yoo.</p>
+          <DevCreditLinks />
           <p>Flags via flag-icons (public domain). Headshots via Wikimedia Commons (CC).</p>
         </div>
       </div>

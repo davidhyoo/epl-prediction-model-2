@@ -1,8 +1,8 @@
 {
-  "name": "soccer-agent-league-dashboard",
+  "name": "data-driven-soccer",
   "version": "1.0.0",
   "private": true,
-  "description": "EPL + La Liga prediction & analytics dashboard — Next.js + TypeScript frontend with a reproducible Python (scikit-learn / XGBoost) ML pipeline.",
+  "description": "Data Driven Soccer — EPL + La Liga prediction & analytics dashboard. Next.js + TypeScript frontend with a reproducible Python (scikit-learn / XGBoost) ML pipeline.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -15,6 +15,7 @@
     "data:fetch": "python ml/club_refresh.py",
     "data:fetch:offline": "python ml/club_refresh.py --offline",
     "data:fetch:squads": "python ml/club_refresh.py --squads",
+    "data:fetch:crests": "python ml/club_refresh.py --crests",
     "ml:squads": "python ml/club_fetch_squads.py",
     "ml:train": "python ml/club_train.py",
     "ml:predict": "python ml/club_predict.py",

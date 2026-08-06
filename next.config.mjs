@@ -6,6 +6,11 @@ const nextConfig = {
   images: {
     remotePatterns: [],
   },
+  // Keep the dev console clean: don't print a line for every individual page
+  // request (e.g. `GET /players/LEE-19 200`). Warnings/errors are still shown.
+  logging: {
+    incomingRequests: false,
+  },
 };
 
 export default nextConfig;

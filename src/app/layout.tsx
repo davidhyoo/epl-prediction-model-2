@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { DevCreditBar } from "@/components/dev-credit";
 import { getIndex } from "@/lib/data";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
@@ -18,12 +19,12 @@ function refreshEnabled(): boolean {
 
 export const metadata: Metadata = {
   title: {
-    default: "Soccer Agent · EPL & La Liga Prediction Analytics",
-    template: "%s · Soccer Agent",
+    default: "Data Driven Soccer · EPL & La Liga Prediction Analytics",
+    template: "%s · Data Driven Soccer",
   },
   description:
     "A live Premier League & La Liga prediction and analytics dashboard powered by a reproducible machine-learning pipeline (Elo, Logistic Regression, Random Forest, XGBoost, a market baseline and a weighted ensemble) with Monte-Carlo season simulation.",
-  applicationName: "Soccer Agent",
+  applicationName: "Data Driven Soccer",
   keywords: [
     "Premier League",
     "La Liga",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     "XGBoost",
     "Monte Carlo",
   ],
-  authors: [{ name: "Soccer Agent" }],
+  authors: [{ name: "David Yoo", url: "https://www.linkedin.com/in/david-h-yoo" }],
 };
 
 export const viewport = {
@@ -52,6 +53,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <TooltipProvider delayDuration={150}>
             <div className="flex min-h-screen flex-col">
+              <DevCreditBar />
               <Suspense fallback={<div className="h-16 border-b border-border" />}>
                 <SiteNav index={index} refreshEnabled={refreshEnabled()} />
               </Suspense>

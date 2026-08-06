@@ -52,7 +52,7 @@ export function SiteNav({ index, refreshEnabled }: { index: IndexData; refreshEn
             <Hexagon className="size-4" fill="currentColor" />
           </span>
           <span className="hidden sm:inline tracking-tight">
-            Soccer <span className="text-gradient">Agent</span>
+            Data Driven <span className="text-gradient">Soccer</span>
           </span>
         </Link>
 

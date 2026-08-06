@@ -51,12 +51,24 @@ export async function POST(request: Request) {
   if (mode === "offline") args.push("--offline");
   if (mode === "squads") args.push("--squads");
 
-  const python = process.env.PYTHON_BIN || process.env.PYTHON || "python";
   const cwd = process.cwd();
 
   running = true;
   const startedAt = Date.now();
   try {
+    const python = await resolvePython();
+    if (!python) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Could not find a Python interpreter. Install Python 3, ensure it is on PATH " +
+            "(tried python3, python and the Windows `py` launcher), or set the PYTHON_BIN " +
+            "environment variable to its full path.",
+        },
+        { status: 500 },
+      );
+    }
     const result = await runProcess(python, args, cwd, REFRESH_TIMEOUT_MS);
     const tail = result.output.split(/\r?\n/).filter(Boolean).slice(-12);
     if (result.code !== 0) {
@@ -134,5 +146,41 @@ function runProcess(
       clearTimeout(timer);
       resolve({ code, output });
     });
+  });
+}
+
+/**
+ * Find a usable Python 3 interpreter. Different machines expose Python under
+ * different names (`python3` on macOS/Linux, `py` launcher on Windows), so we
+ * probe a prioritised list — `PYTHON_BIN`/`PYTHON` first — and return the first
+ * one that responds to `--version`. This is what lets the in-app refresh button
+ * work on a fresh clone without any per-machine configuration.
+ */
+async function resolvePython(): Promise<string | null> {
+  const candidates = [
+    process.env.PYTHON_BIN,
+    process.env.PYTHON,
+    "python3",
+    "python",
+    "py",
+  ].filter((c): c is string => Boolean(c && c.trim()));
+
+  for (const cmd of candidates) {
+    if (await canRun(cmd)) return cmd;
+  }
+  return null;
+}
+
+function canRun(cmd: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    const child = spawn(cmd, ["--version"], { shell: false });
+    const done = (ok: boolean) => resolve(ok);
+    child.on("error", () => done(false));
+    child.on("close", (code) => done(code === 0));
+    // Guard against a hung probe.
+    setTimeout(() => {
+      child.kill("SIGKILL");
+      done(false);
+    }, 5000).unref?.();
   });
 }
