@@ -24,6 +24,7 @@ const eslintConfig = [
       "public/**",
       "ml/**",
       "data/**",
+      "scripts/**",
       "next-env.d.ts",
     ],
   },

@@ -40,7 +40,7 @@ export function PredictionModal({
   const rows = React.useMemo(() => {
     const entries: Array<{ id: string; probs: Probabilities }> = [
       { id: "ensemble", probs: prediction.ensemble },
-      ...Object.entries(prediction.models).map(([id, probs]) => ({ id, probs })),
+      ...Object.entries(prediction.models ?? {}).map(([id, probs]) => ({ id, probs })),
     ];
     return entries
       .filter((e, i, arr) => arr.findIndex((x) => x.id === e.id) === i)
@@ -52,8 +52,10 @@ export function PredictionModal({
   }, [prediction]);
 
   const ensPick = pick(prediction.ensemble);
-  const homeScorers = match.scorers.filter((s) => s.team === home.code);
-  const awayScorers = match.scorers.filter((s) => s.team === away.code);
+  const scorers = match.scorers ?? [];
+  const topFactors = prediction.topFactors ?? [];
+  const homeScorers = scorers.filter((s) => s.team === home.code);
+  const awayScorers = scorers.filter((s) => s.team === away.code);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -113,7 +115,7 @@ export function PredictionModal({
                   · Ensemble was {match.predictionCorrect ? "correct" : "incorrect"}
                 </span>
               </div>
-              {match.scorers.length > 0 && (
+              {scorers.length > 0 && (
                 <div className="grid gap-1 text-xs text-muted-foreground sm:grid-cols-2">
                   <ScorerList label={home.short} scorers={homeScorers} />
                   <ScorerList label={away.short} scorers={awayScorers} align="right" />
@@ -180,14 +182,14 @@ export function PredictionModal({
         </div>
 
         {/* Top contributing factors */}
-        {prediction.topFactors.length > 0 && (
+        {topFactors.length > 0 && (
           <div>
             <div className="mb-2 flex items-center gap-2 text-sm font-semibold">
               <Info className="size-4 text-muted-foreground" />
               Top contributing factors
             </div>
             <div className="space-y-2">
-              {prediction.topFactors.slice(0, 5).map((f, i) => {
+              {topFactors.slice(0, 5).map((f, i) => {
                 const favor = f.direction;
                 const width = Math.min(100, Math.round(Math.abs(f.impact) * 140) + 8);
                 return (
