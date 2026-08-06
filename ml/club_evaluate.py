@@ -29,6 +29,7 @@ import numpy as np
 
 import club_players as P
 import club_simulate as SIM
+import club_fpl as FPL
 from club_features import outcome_label
 from club_modeling import (ensemble_proba, evaluate_model, inverse_logloss_weights,
                            log_loss)
@@ -343,6 +344,14 @@ def build_combo(league_id: str, season_id: str) -> dict:
     squads = {k: v for k, v in squads.items() if k in codes}
     pdata = P.build_players(league_id, season_id, squads, strength, matches_raw)
     players = pdata["players"]
+    # Enrich with real assists / minutes / cards (EPL only; La Liga has no free
+    # key-less per-player feed, so its stats stay null). No-op if the cache is
+    # missing or the league is unsupported — never fabricates a number.
+    cov = FPL.enrich_players(league_id, season_id, players, played=len(completed))
+    if cov["matched"]:
+        print(f"  [fpl] {league_id} {season_id}: assists/minutes for "
+              f"{cov['matched']}/{cov['total']} players "
+              f"({cov['assists']} with 1+ assist)")
     squad_rating = {}
     for c in codes:
         rr = [p["rating"] for p in players if p["club"] == c]

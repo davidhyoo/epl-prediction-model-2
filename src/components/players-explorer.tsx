@@ -28,7 +28,7 @@ import { RatingPill } from "@/components/rating-pill";
 import { EmptyState } from "@/components/empty-state";
 import type { Player, Position, Selection } from "@/lib/types";
 
-type SortKey = "rating" | "goals" | "name" | "club" | "position" | "nation" | "number";
+type SortKey = "rating" | "goals" | "assists" | "name" | "club" | "position" | "nation" | "number";
 
 const POSITIONS: Position[] = ["GK", "DEF", "MID", "FWD"];
 const PAGE = 40;
@@ -36,6 +36,7 @@ const PAGE = 40;
 const SORTS: { key: SortKey; label: string }[] = [
   { key: "rating", label: "Rating" },
   { key: "goals", label: "Goals" },
+  { key: "assists", label: "Assists" },
   { key: "name", label: "Name" },
   { key: "club", label: "Club" },
   { key: "position", label: "Position" },
@@ -106,6 +107,8 @@ export function PlayersExplorer({
       switch (sort) {
         case "goals":
           return b.goals - a.goals || b.rating - a.rating;
+        case "assists":
+          return (b.assists ?? -1) - (a.assists ?? -1) || b.goals - a.goals || b.rating - a.rating;
         case "name":
           return a.name.localeCompare(b.name);
         case "club":
@@ -200,6 +203,7 @@ export function PlayersExplorer({
                   <TableHead className="hidden lg:table-cell">Club</TableHead>
                   <TableHead className="hidden sm:table-cell">Nation</TableHead>
                   <TableHead className="w-12 text-right">G</TableHead>
+                  <TableHead className="w-12 text-right">A</TableHead>
                   <TableHead className="w-16 text-right">Rating</TableHead>
                 </TableRow>
               </TableHeader>
@@ -232,6 +236,9 @@ export function PlayersExplorer({
                     </TableCell>
                     <TableCell className="text-right text-sm font-medium tabular-nums">
                       {p.goals}
+                    </TableCell>
+                    <TableCell className="text-right text-sm tabular-nums text-muted-foreground">
+                      {p.assists ?? "—"}
                     </TableCell>
                     <TableCell className="text-right">
                       <RatingPill rating={Math.round(p.rating)} />

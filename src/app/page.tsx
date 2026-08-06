@@ -12,6 +12,7 @@ import { StatCard } from "@/components/stat-card";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ClubBadge } from "@/components/club-badge";
+import { PlayerAvatar } from "@/components/player-avatar";
 import { FormPills } from "@/components/form-pills";
 import { MatchList } from "@/components/match/match-list";
 import { buildModelMeta } from "@/lib/model-meta";
@@ -178,19 +179,35 @@ export default async function HomePage({
                     <span className="w-4 text-center text-xs font-semibold text-muted-foreground tabular-nums">
                       {i + 1}
                     </span>
-                    <ClubBadge
-                      code={p.club}
-                      primary={clubMap.get(p.club)?.primary ?? "#334155"}
-                      secondary={clubMap.get(p.club)?.secondary ?? "#0f172a"}
-                      size="xs"
-                    />
+                    <PlayerAvatar name={p.name} src={p.headshot} size="sm" />
                     <Link
                       href={`/players/${p.id}${query}`}
-                      className="min-w-0 flex-1 truncate text-sm font-medium hover:text-primary"
+                      className="flex min-w-0 flex-1 items-center gap-2 hover:text-primary"
                     >
-                      {p.name}
+                      <ClubBadge
+                        code={p.club}
+                        primary={clubMap.get(p.club)?.primary ?? "#334155"}
+                        secondary={clubMap.get(p.club)?.secondary ?? "#0f172a"}
+                        size="xs"
+                      />
+                      <span className="min-w-0 flex-1 truncate text-sm font-medium">{p.name}</span>
                     </Link>
-                    <span className="text-sm font-bold tabular-nums">{p.goals}</span>
+                    <div className="flex items-center gap-2 tabular-nums">
+                      <span className="text-sm font-bold">{p.goals}</span>
+                      <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                        G
+                      </span>
+                      {typeof p.assists === "number" && (
+                        <>
+                          <span className="text-sm font-semibold text-muted-foreground">
+                            {p.assists}
+                          </span>
+                          <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                            A
+                          </span>
+                        </>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ol>

@@ -143,6 +143,16 @@ def refresh_combo(league_id: str, season_id: str) -> dict:
         stats["updated"] += 1
     else:
         stats[st] += 1
+
+    # FPL per-player assists / minutes / cards (Premier League only; free +
+    # key-less). Optional: a not-yet-started season has no snapshot upstream.
+    try:
+        import club_fpl
+        up, st = club_fpl.download(league_id, season_id)
+        if st in stats:
+            stats["updated" if up else st] += 1
+    except Exception as exc:  # noqa: BLE001 - keep the committed cache
+        print(f"    ! fpl fetch failed ({exc.__class__.__name__}: {exc}) — keeping cache")
     return stats
 
 
@@ -188,6 +198,8 @@ def main(argv: list[str] | None = None) -> None:
                     help="also refresh real squads + free headshots (Wikipedia / Commons)")
     ap.add_argument("--squads-no-images", action="store_true",
                     help="with --squads, refresh squad facts only (skip headshot downloads)")
+    ap.add_argument("--crests", action="store_true",
+                    help="also refresh club crest URLs (TheSportsDB / football-data CDNs)")
     args = ap.parse_args(argv)
 
     combos = [(lg, sn) for lg, sn in COMBOS
@@ -225,6 +237,18 @@ def main(argv: list[str] | None = None) -> None:
             print(f"  ! squad refresh failed ({exc.__class__.__name__}: {exc}) — keeping cache")
     elif args.squads and args.offline:
         print("[refresh] --offline: skipping squad refresh, using committed cache")
+
+    # Club crests are static config (a bundled URL map), so refreshing them is
+    # opt-in and rebuilds src/lib/crests.json for the next frontend build.
+    if args.crests and not args.offline:
+        print("[refresh] refreshing club crest URLs (TheSportsDB / football-data)")
+        try:
+            import club_crests
+            club_crests.build([args.league] if args.league else None)
+        except Exception as exc:  # noqa: BLE001 - keep the committed crest map
+            print(f"  ! crest refresh failed ({exc.__class__.__name__}: {exc}) — keeping cache")
+    elif args.crests and args.offline:
+        print("[refresh] --offline: skipping crest refresh, using committed cache")
 
     if args.no_pipeline:
         print(f"[refresh] done in {time.time() - t0:0.1f}s (sources only)")

@@ -1,0 +1,842 @@
+team,first_name,second_name,web_name,minutes,goals_scored,assists,yellow_cards,red_cards,expected_assists,expected_goals,starts
+Arsenal,David,Raya Martín,Raya,3330,0,0,1,0,0.07,0.00,37
+Arsenal,Kepa,Arrizabalaga Revuelta,Arrizabalaga,90,0,0,0,0,0.00,0.00,1
+Arsenal,Karl,Hein,Hein,0,0,0,0,0,0.00,0.00,0
+Arsenal,Tommy,Setford,Setford,0,0,0,0,0,0.00,0.00,0
+Arsenal,Gabriel,dos Santos Magalhães,Gabriel,2750,3,5,4,0,1.75,2.94,30
+Arsenal,William,Saliba,Saliba,2614,1,0,2,0,1.21,0.88,30
+Arsenal,Riccardo,Calafiori,Calafiori,1697,1,2,5,0,0.76,3.36,22
+Arsenal,Jurriën,Timber,J.Timber,2452,3,6,5,0,1.53,4.71,28
+Arsenal,Jakub,Kiwior,Kiwior,0,0,0,0,0,0.00,0.00,0
+Arsenal,Myles,Lewis-Skelly,Lewis-Skelly,697,0,0,3,0,0.20,0.10,5
+Arsenal,Benjamin,White,White,699,0,1,0,0,0.69,0.45,9
+Arsenal,Brayden,Clarke,Clarke,0,0,0,0,0,0.00,0.00,0
+Arsenal,Maldini,Kacurri,Kacurri,0,0,0,0,0,0.00,0.00,0
+Arsenal,Josh,Nichols,Nichols,0,0,0,0,0,0.00,0.00,0
+Arsenal,Bukayo,Saka,Saka,2218,7,10,2,0,7.16,7.57,25
+Arsenal,Martin,Ødegaard,Ødegaard,1363,1,7,0,0,3.65,1.25,16
+Arsenal,Noni,Madueke,Madueke,1205,3,1,0,0,2.86,1.23,16
+Arsenal,Gabriel,Martinelli Silva,Martinelli,1065,1,5,3,0,1.27,4.12,11
+Arsenal,Leandro,Trossard,Trossard,1997,6,6,2,0,3.59,5.60,21
+Arsenal,Declan,Rice,Rice,3093,4,9,3,0,7.32,3.15,35
+Arsenal,Mikel,Merino Zazón,Merino,1024,4,3,1,0,1.45,3.36,10
+Arsenal,Fábio,Ferreira Vieira,Fábio Vieira,0,0,0,0,0,0.00,0.00,0
+Arsenal,Christian,Nørgaard,Nørgaard,101,0,0,0,0,0.04,0.08,1
+Arsenal,Ethan,Nwaneri,Nwaneri,165,0,0,0,0,0.08,0.23,0
+Arsenal,Martín,Zubimendi Ibáñez,Zubimendi,2991,5,1,4,0,2.27,2.84,34
+Arsenal,Ismeal,Kabia,Kabia,0,0,0,0,0,0.00,0.00,0
+Arsenal,Albert,Sambi Lokonga,Sambi,0,0,0,0,0,0.00,0.00,0
+Arsenal,Kai,Havertz,Havertz,577,2,3,1,0,0.64,3.31,7
+Arsenal,Gabriel,Fernando de Jesus,G.Jesus,418,3,0,3,0,0.26,2.71,3
+Arsenal,Eberechi,Eze,Eze,1885,7,3,1,0,2.66,5.18,22
+Arsenal,Cristhian,Mosquera,Mosquera,986,0,0,4,0,0.63,0.10,9
+Arsenal,Viktor,Gyökeres,Gyökeres,2217,14,1,5,0,1.94,12.26,26
+Arsenal,Max,Dowman,Dowman,152,1,1,0,0,0.30,1.19,1
+Arsenal,Andre,Harriman-Annous,Harriman-Annous,0,0,0,0,0,0.00,0.00,0
+Arsenal,Piero,Hincapié,Hincapie,1787,1,2,2,0,1.67,0.36,20
+Arsenal,Marli,Salmon,Salmon,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Emiliano,Martínez Romero,Martinez,2835,0,1,2,0,0.08,0.00,32
+Aston Villa,Marco,Bizot,M.Bizot,585,0,0,2,0,0.00,0.00,6
+Aston Villa,Joe,Gauci,Gauci,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Filip,Marschall,Marschall,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Matty,Cash,Cash,3016,3,3,9,0,2.94,1.14,34
+Aston Villa,Lucas,Digne,Digne,1842,0,7,3,0,3.28,0.67,21
+Aston Villa,Ezri,Konsa Ngoyo,Konsa,3035,0,1,0,1,0.59,1.27,34
+Aston Villa,Ian,Maatsen,Maatsen,1590,0,1,2,0,2.39,1.26,17
+Aston Villa,Tyrone,Mings,Mings,1322,0,1,1,0,0.42,1.30,15
+Aston Villa,Pau,Torres,Pau,1673,0,2,1,0,0.39,1.33,18
+Aston Villa,Andrés,García,A.García,83,0,0,0,0,0.01,0.00,1
+Aston Villa,Álex,Moreno Lopera,Alex Moreno,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Lamare,Bogarde,Bogarde,1042,0,0,5,0,0.20,0.00,11
+Aston Villa,Lino,da Cruz Sousa,Sousa,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Yasin,Özcan,Yasin,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Morgan,Rogers,Rogers,3280,10,8,7,0,4.32,6.84,37
+Aston Villa,Youri,Tielemans,Tielemans,1857,0,4,0,0,3.26,1.14,21
+Aston Villa,Leon,Bailey,Bailey,450,0,2,1,0,1.46,0.50,3
+Aston Villa,Emiliano,Buendía Stati,Buendía,1753,6,2,6,0,2.23,3.38,21
+Aston Villa,Samuel,Iling-Junior,Iling Jr,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Donyell,Malen,Malen,640,4,2,0,0,0.35,4.03,5
+Aston Villa,John,McGinn,McGinn,2136,5,4,5,0,4.11,3.00,28
+Aston Villa,Ross,Barkley,Barkley,844,3,2,1,0,1.26,1.58,7
+Aston Villa,Enzo,Barrenechea,Barrenechea,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Lewis,Dobbin,Dobbin,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Boubacar,Kamara,Kamara,1410,1,3,5,0,0.84,0.53,17
+Aston Villa,Amadou,Onana,Onana,1755,2,0,3,0,0.69,1.68,21
+Aston Villa,Ben,Broggio,Broggio,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Leander,Dendoncker,Dendoncker,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Jamaldeen,Jimoh-Aloba,Jimoh-Aloba,8,0,0,0,0,0.00,0.00,0
+Aston Villa,Kadan,Young,Young,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Ollie,Watkins,Watkins,2833,16,4,4,0,1.18,15.40,33
+Aston Villa,Zépiqueno,Redmond,Redmond,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Harvey,Elliott,Elliott,110,0,0,0,0,0.08,0.29,1
+Aston Villa,Jadon,Sancho,Sancho,863,0,2,0,0,1.87,0.61,9
+Aston Villa,James,Wright,Wright,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Douglas Luiz,Soares de Paulo,Douglas Luiz,913,1,1,3,0,1.42,0.53,12
+Aston Villa,Triston,Rowe,Rowe,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Bradley,Burrowes,Burrowes,16,0,0,0,0,0.00,0.00,0
+Aston Villa,Sam,Proctor,Proctor,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Travis,Patterson,Patterson,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Victor,Lindelöf,Lindelöf,942,0,1,0,0,0.10,0.28,11
+Aston Villa,George,Hemmings,George Hemmings,25,0,0,0,0,0.01,0.04,0
+Aston Villa,Ronnie,Hollingshead,Hollingshead,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Leon,Routh,Leon Routh,0,0,0,0,0,0.00,0.00,0
+Aston Villa,TJ,Carroll,Carroll,0,0,0,0,0,0.00,0.00,0
+Aston Villa,Alysson Edward Franco,da Rocha dos Santos,Alysson,47,0,0,0,0,0.05,0.05,0
+Aston Villa,Tammy,Abraham,Abraham,278,2,0,0,0,0.36,2.05,2
+Burnley,Max,Weiß,Weiss,270,0,0,0,0,0.00,0.00,3
+Burnley,Etienne,Green,Green,0,0,0,0,0,0.00,0.00,0
+Burnley,Václav,Hladký,Hladký,0,0,0,0,0,0.00,0.00,0
+Burnley,Connor,Roberts,Roberts,0,0,0,0,0,0.00,0.00,0
+Burnley,Kyle,Walker,Walker,3095,0,2,9,0,1.29,0.15,35
+Burnley,Hannes,Delcroix,Delcroix,0,0,0,0,0,0.00,0.00,0
+Burnley,Owen,Dodgson,Dodgson,0,0,0,0,0,0.00,0.00,0
+Burnley,Hjalmar,Ekdal,Ekdal,1539,0,0,0,0,0.32,0.25,17
+Burnley,Maxime,Estève,Estève,2933,0,0,1,0,0.59,0.73,34
+Burnley,Quilindschy,Hartman,Hartman,1825,0,6,1,0,1.98,0.32,21
+Burnley,Bashir,Humphreys,Humphreys,1574,0,2,6,0,0.68,0.42,17
+Burnley,Jordan,Beyer,Jordan,0,0,0,0,0,0.00,0.00,0
+Burnley,Lucas,Pires Silva,Lucas Pires,1405,0,0,1,1,1.46,0.60,15
+Burnley,Shurandy,Sambo,Sambo,0,0,0,0,0,0.00,0.00,0
+Burnley,Oliver,Sonne,Sonne,164,1,0,0,0,0.08,0.55,1
+Burnley,Axel,Tuanzebe,Tuanzebe,1201,1,0,1,0,0.12,0.61,14
+Burnley,Joe,Worrall,Worrall,496,0,0,0,0,0.02,0.08,5
+Burnley,Jaidon,Anthony,Anthony,2717,8,4,4,0,2.85,5.11,32
+Burnley,Manuel,Benson Hedilazio,Benson,0,0,0,0,0,0.00,0.00,0
+Burnley,Jacob,Bruun Larsen,Bruun Larsen,1014,0,1,0,0,1.16,1.37,10
+Burnley,Enock,Agyei,Boateng,0,0,0,0,0,0.00,0.00,0
+Burnley,Darko,Churlinov,Churlinov,0,0,0,0,0,0.00,0.00,0
+Burnley,Josh,Cullen,Cullen,1513,2,2,2,0,1.36,0.94,18
+Burnley,Marcus,Edwards,Edwards,1058,1,3,0,0,1.84,1.49,11
+Burnley,Hannibal,Mejbri,Hannibal,1219,1,5,10,0,2.08,0.91,15
+Burnley,Luca,Koleosho,Koleosho,0,0,0,0,0,0.00,0.00,0
+Burnley,Josh,Laurent,Laurent,1752,1,0,6,1,0.48,0.87,18
+Burnley,Loum,Tchaouna,Tchaouna,1259,2,2,2,0,0.91,1.27,14
+Burnley,Aaron,Ramsey,A.Ramsey,0,0,0,0,0,0.00,0.00,0
+Burnley,Oluwaseun,Adewumi,Adewumi,0,0,0,0,0,0.00,0.00,0
+Burnley,Jaydon,Banel,Banel,9,0,0,0,0,0.00,0.00,0
+Burnley,Mike,Trésor Ndayishimiye,Trésor,37,0,0,0,0,0.00,0.00,0
+Burnley,Zian,Flemming,Flemming,1764,11,0,5,0,0.41,7.94,21
+Burnley,Zeki,Amdouni,Amdouni,69,0,0,0,0,0.02,0.24,0
+Burnley,Lyle,Foster,Foster,1361,3,2,4,0,0.37,3.22,15
+Burnley,Ashley,Barnes,Barnes,40,0,0,2,0,0.04,0.25,0
+Burnley,Michael,Obafemi,Obafemi,0,0,0,0,0,0.00,0.00,0
+Burnley,Martin,Dúbravka,Dúbravka,3150,0,0,1,0,0.04,0.00,35
+Burnley,James,Ward-Prowse,Ward-Prowse,1092,0,1,1,0,1.87,0.24,12
+Burnley,Lesley,Ugochukwu,Ugochukwu,2330,3,3,1,1,0.41,2.50,27
+Burnley,Armando,Broja,Broja,843,1,1,0,0,0.22,2.14,8
+Burnley,Florentino Ibrain,Morris Luís,Florentino,2100,0,2,6,0,0.52,0.64,25
+Burnley,Oliver,Pimlott,Pimlott,0,0,0,0,0,0.00,0.00,0
+Burnley,George,Brierley,Brierley,0,0,0,0,0,0.00,0.00,0
+Burnley,Kian,McMahon-Brown,McMahon-Brown,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Norberto,Murara Neto,Neto,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Đorđe,Petrović,Petrović,3420,0,0,3,0,0.00,0.00,38
+Bournemouth,Will,Dennis,Dennis,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Callan,McKenna,McKenna,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Alex,Paulsen,Paulsen,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Illia,Zabarnyi,Zabarnyi,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Marcos,Senesi Barón,Senesi,3288,0,6,8,0,4.72,1.53,37
+Bournemouth,Adam,Smith,Smith,1073,0,2,3,0,0.23,0.00,14
+Bournemouth,Adrien,Truffert,Truffert,3378,1,6,5,0,3.07,1.35,38
+Bournemouth,Matai,Akinmboni,Akinmboni,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Owen,Bevan,Bevan,0,0,0,0,0,0.00,0.00,0
+Bournemouth,James,Hill,Hill,2102,0,3,5,0,1.16,0.89,22
+Bournemouth,Julián,Araujo Zúñiga,J.Araujo,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Chris,Mepham,Mepham,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Julio,Soler Barreto,Soler,34,0,0,0,0,0.00,0.00,0
+Bournemouth,Justin,Kluivert,Kluivert,945,2,0,5,0,1.55,2.31,10
+Bournemouth,Marcus,Tavernier,Tavernier,2732,7,4,6,0,4.60,9.06,31
+Bournemouth,Tyler,Adams,Adams,1769,2,2,8,0,0.63,0.63,21
+Bournemouth,David,Brooks,Brooks,1188,1,3,7,0,3.40,5.81,13
+Bournemouth,Ryan,Christie,Christie,978,2,1,3,1,0.79,1.81,9
+Bournemouth,Lewis,Cook,Cook,872,0,1,1,1,0.52,0.07,8
+Bournemouth,Philip,Billing,Philip,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Alex,Scott,Scott,2848,3,2,5,0,2.94,3.80,34
+Bournemouth,Luis,Sinisterra Lucumí,Sinisterra,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Romain,Faivre,Faivre,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Hamed,Traorè,H.Traorè,16,0,1,0,0,0.00,0.00,0
+Bournemouth,Dominic,Sadi,Sadi,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Zain,Silcott-Duberry,Silcott-Duberry,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Ben,Winterburn,Winterburn,6,0,0,0,0,0.00,0.00,0
+Bournemouth,Francisco Evanilson,de Lima Barbosa,Evanilson,2741,6,7,2,0,1.48,10.64,32
+Bournemouth,Enes,Ünal,Enes Ünal,214,1,0,1,0,0.07,2.00,0
+Bournemouth,Daniel,Adu-Adjei,Adu-Adjei,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Junior,Kroupi,Kroupi.Jr,1663,13,0,5,0,1.51,8.31,21
+Bournemouth,Ben,Gannon-Doak,Gannon-Doak,105,0,1,0,0,0.13,0.26,0
+Bournemouth,Bafodé,Diakité,Diakité,1275,0,0,1,0,0.19,0.02,15
+Bournemouth,Remy,Rees-Dottin,Rees-Dottin,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Amine,Adli,Adli,1074,3,2,2,0,1.62,2.60,10
+Bournemouth,Álex,Jiménez Sánchez,A.Jimenez,2315,1,2,10,0,1.73,1.09,26
+Bournemouth,Veljko,Milosavljevic,Milosavljević,367,0,0,0,0,0.19,0.15,4
+Bournemouth,Malcom,DaCosta,DaCosta,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Fraser,Forster,Forster,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Charlie,Stevens,Stevens,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Alex,Tóth,Tóth.A,135,0,0,1,0,0.33,0.11,2
+Bournemouth,Christos,Mandas,Mandas,0,0,0,0,0,0.00,0.00,0
+Bournemouth,Rayan Vitor,Simplício Rocha,Rayan,1110,5,2,1,0,1.84,2.67,13
+Brentford,Reiss,Nelson,Nelson,118,0,1,0,0,0.11,0.71,0
+Brentford,Dango,Ouattara,O.Dango,2271,7,8,5,0,4.12,7.94,25
+Brentford,Caoimhín,Kelleher,Kelleher,3330,0,0,1,0,0.22,0.00,37
+Brentford,Ellery,Balcombe,Balcombe,0,0,0,0,0,0.00,0.00,0
+Brentford,Matthew,Cox,Cox,0,0,0,0,0,0.00,0.00,0
+Brentford,Julian,Eyestone,Eyestone,0,0,0,0,0,0.00,0.00,0
+Brentford,Hákon Rafn,Valdimarsson,Valdimarsson,90,0,0,0,0,0.00,0.00,1
+Brentford,Nathan,Collins,Collins,2971,1,2,7,0,1.71,2.24,32
+Brentford,Keane,Lewis-Potter,Lewis-Potter,1960,3,4,1,0,2.51,3.01,22
+Brentford,Kristoffer,Ajer,Ajer,1805,0,2,4,0,0.73,0.69,20
+Brentford,Rico,Henry,Henry,1322,0,2,2,0,0.54,0.18,14
+Brentford,Michael,Kayode,Kayode,3258,1,2,8,0,2.89,1.28,37
+Brentford,Ethan,Pinnock,Pinnock,318,0,0,1,0,0.06,0.01,4
+Brentford,Mads,Roerslev Rasmussen,Roerslev,0,0,0,0,0,0.00,0.00,0
+Brentford,Sepp,van den Berg,Van den Berg,2761,0,3,2,0,1.45,3.36,30
+Brentford,Benjamin,Arthur,Arthur,0,0,0,0,0,0.00,0.00,0
+Brentford,Benjamin,Fredrick,Fredrick,0,0,0,0,0,0.00,0.00,0
+Brentford,Aaron,Hickey,Hickey,679,0,0,1,0,0.17,0.44,8
+Brentford,Kim,Ji-soo,Ji-soo,0,0,0,0,0,0.00,0.00,0
+Brentford,Jayden,Meghoma,Meghoma,0,0,0,0,0,0.00,0.00,0
+Brentford,Kevin,Schade,Schade,2744,8,5,6,1,2.05,12.08,32
+Brentford,Mikkel,Damsgaard,Damsgaard,2046,4,4,0,0,5.43,2.61,24
+Brentford,Antoni,Milambo,Milambo,45,0,0,0,0,0.01,0.00,1
+Brentford,Fábio,Freitas Gouveia Carvalho,Carvalho,100,1,0,0,0,0.03,0.70,1
+Brentford,Jordan,Henderson,Henderson,1911,1,3,6,0,2.31,0.33,22
+Brentford,Vitaly,Janelt,Janelt,1434,1,4,8,0,2.27,0.82,15
+Brentford,Mathias,Jensen,Jensen,2239,3,2,3,0,6.06,2.21,26
+Brentford,Gustavo,Nunes Fernandes Gomes,Nunes,0,0,0,0,0,0.00,0.00,0
+Brentford,Frank,Onyeka,Onyeka,88,0,2,0,0,0.36,0.00,0
+Brentford,Yehor,Yarmoliuk,Yarmoliuk,2652,1,3,7,0,1.39,1.22,30
+Brentford,Romelle,Donovan,Donovan,38,0,0,0,0,0.01,0.09,0
+Brentford,Yunus Emre,Konak,Konak,0,0,0,0,0,0.00,0.00,0
+Brentford,Paris,Maghoma,Maghoma,0,0,0,0,0,0.00,0.00,0
+Brentford,Myles,Peart-Harris,Peart-Harris,1,0,0,0,0,0.00,0.00,0
+Brentford,Ryan,Trevitt,Trevitt,0,0,0,0,0,0.00,0.00,0
+Brentford,Igor Thiago,Nascimento Rodrigues,Thiago,3282,22,1,7,0,1.83,20.60,37
+Brentford,Iwan,Morgan,Morgan,0,0,0,0,0,0.00,0.00,0
+Brentford,Josh,Dasilva,Dasilva,2,0,0,0,0,0.00,0.08,0
+Brentford,Kaye,Furo,Furo,1,0,0,0,0,0.00,0.00,0
+Brentford,Luka,Bentt,Bentt,0,0,0,0,0,0.00,0.00,0
+Brentford,Ollie,Shield,Shield,0,0,0,0,0,0.00,0.00,0
+Brentford,Joshua,Stephenson,Stephenson,0,0,0,0,0,0.00,0.00,0
+Brentford,Conor,McManus,McManus,0,0,0,0,0,0.00,0.00,0
+Brentford,Riley,Owen,Owen,0,0,0,0,0,0.00,0.00,0
+Brighton,Jason,Steele,Steele,0,0,0,0,0,0.00,0.00,0
+Brighton,Bart,Verbruggen,Verbruggen,3420,0,0,3,0,0.06,0.00,38
+Brighton,Tom,McGill,McGill,0,0,0,0,0,0.00,0.00,0
+Brighton,Carl,Rushworth,Rushworth,0,0,0,0,0,0.00,0.00,0
+Brighton,Kjell,Scherpen,Scherpen,0,0,0,0,0,0.00,0.00,0
+Brighton,Olivier,Boscagli,Boscagli,799,0,1,2,0,0.47,0.05,9
+Brighton,Diego,Coppola,Coppola,193,0,0,2,0,0.01,0.00,2
+Brighton,Maxim,De Cuyper,De Cuyper,1404,2,3,2,0,4.08,1.66,17
+Brighton,Lewis,Dunk,Dunk,2837,1,1,10,0,0.56,1.83,31
+Brighton,Pervis,Estupiñán Tenorio,Estupiñan,0,0,0,0,0,0.00,0.00,0
+Brighton,Ferdi,Kadıoğlu,F.Kadıoğlu,3130,1,2,6,0,3.31,2.06,34
+Brighton,Igor Julio,dos Santos de Paulo,Igor,103,0,0,0,0,0.00,0.00,1
+Brighton,Tariq,Lamptey,Lamptey,0,0,0,0,0,0.00,0.00,0
+Brighton,Jan Paul,van Hecke,Van Hecke,3210,3,3,9,0,1.57,3.31,36
+Brighton,Joël,Veltman,Veltman,1047,1,0,5,0,0.20,1.15,9
+Brighton,Adam,Webster,Webster,0,0,0,0,0,0.00,0.00,0
+Brighton,Eiran,Cashin,Cashin,0,0,0,0,0,0.00,0.00,0
+Brighton,Jacob,Slater,Slater,0,0,0,0,0,0.00,0.00,0
+Brighton,Charlie,Tasker,Tasker,0,0,0,0,0,0.00,0.00,0
+Brighton,Mitoma,Kaoru,Mitoma,1714,3,1,5,0,2.74,4.04,19
+Brighton,Georginio,Rutter,Georginio,1776,3,5,2,0,2.90,2.90,20
+Brighton,Solly,March,March,38,0,0,0,0,0.02,0.04,0
+Brighton,Yankuba,Minteh,Minteh,2389,3,8,3,0,5.06,3.81,26
+Brighton,Julio,Enciso Espínola,Enciso,0,0,0,0,0,0.00,0.00,0
+Brighton,Brajan,Gruda,Gruda,708,1,1,2,0,0.88,1.86,8
+Brighton,Jack,Hinshelwood,Hinshelwood,1736,4,5,0,0,2.34,4.94,20
+Brighton,Matt,O'Riley,O'Riley,202,1,0,0,0,0.18,1.21,2
+Brighton,Abdallah,Sima,Sima,0,0,0,0,0,0.00,0.00,0
+Brighton,Yasin,Ayari,Ayari,1921,3,4,1,0,1.15,2.70,20
+Brighton,Carlos,Baleba,Baleba,1646,0,0,5,0,0.72,0.78,23
+Brighton,Diego,Gómez Amarilla,Gomez,2117,5,1,9,0,1.72,6.24,26
+Brighton,James,Milner,Milner,772,1,1,2,0,0.66,1.03,7
+Brighton,Jeremy,Sarmiento Morante,Sarmiento,0,0,0,0,0,0.00,0.00,0
+Brighton,Tom,Watson,Watson,57,0,0,1,0,0.03,0.04,0
+Brighton,Mats,Wieffer,Wieffer,1901,2,4,8,0,1.86,1.92,23
+Brighton,Malick,Yalcouyé,Yalcouye,0,0,0,0,0,0.00,0.00,0
+Brighton,Joe,Knight,Knight,1,0,0,0,0,0.00,0.00,0
+Brighton,Adrian,Mazilu,Mazilu,0,0,0,0,0,0.00,0.00,0
+Brighton,Andrew,Moran,Moran,0,0,0,0,0,0.00,0.00,0
+Brighton,Danny,Welbeck,Welbeck,2249,13,1,5,0,1.40,12.36,26
+Brighton,Evan,Ferguson,Ferguson,0,0,0,0,0,0.00,0.00,0
+Brighton,Stefanos,Tzimas,Tzimas,132,1,1,0,0,0.11,0.44,1
+Brighton,Charalampos,Kostoulas,Kostoulas,351,2,1,2,0,0.54,2.12,2
+Brighton,Nehemiah,Oriola,Oriola,1,0,0,0,0,0.00,0.00,0
+Brighton,Freddie,Simmonds,Simmonds,0,0,0,0,0,0.00,0.00,0
+Brighton,Pascal,Groß,Groß,1636,1,6,2,0,3.95,1.39,18
+Brighton,Harry,Howell,Howell,92,0,0,0,0,0.03,0.00,1
+Chelsea,Robert,Lynch Sánchez,Sánchez,3040,0,1,3,1,0.04,0.00,35
+Chelsea,Filip,Jörgensen,Jörgensen,378,0,0,0,0,0.00,0.00,3
+Chelsea,Mike,Penders,Penders,0,0,0,0,0,0.00,0.00,0
+Chelsea,Gabriel,Słonina,Slonina,0,0,0,0,0,0.00,0.00,0
+Chelsea,Marc,Cucurella Saseta,Cucurella,2706,1,4,8,1,3.23,2.34,31
+Chelsea,Reece,James,James,1957,2,6,4,0,3.20,1.04,20
+Chelsea,Trevoh,Chalobah,Chalobah,2780,3,1,3,1,1.03,1.44,31
+Chelsea,Levi,Samuels Colwill,Colwill,225,0,0,0,0,0.12,0.00,2
+Chelsea,Malo,Gusto,Gusto,2255,2,3,3,1,2.97,1.56,26
+Chelsea,Benoît,Badiashile Mukinayi,B.Badiashile,470,0,0,2,0,0.06,0.00,6
+Chelsea,Wesley,Fofana,Fofana,1718,0,2,5,2,0.60,0.72,20
+Chelsea,Mamadou,Sarr,M.Sarr,100,0,0,0,0,0.00,0.35,1
+Chelsea,Tosin,Adarabioyo,Tosin,788,0,0,2,0,0.40,0.11,8
+Chelsea,Josh,Acheampong,Acheampong,657,1,0,1,0,0.13,0.62,8
+Chelsea,Aarón,Anselmino,Anselmino,0,0,0,0,0,0.00,0.00,0
+Chelsea,Cole,Palmer,Palmer,1954,10,2,5,0,2.49,10.55,24
+Chelsea,Pedro,Lomba Neto,Neto,2629,5,7,2,1,6.84,4.59,30
+Chelsea,Enzo,Fernández,Enzo,3114,10,5,10,0,7.26,11.26,35
+Chelsea,Estêvão,Almeida de Oliveira Gonçalves,Estêvão,839,2,5,4,0,2.14,2.91,12
+Chelsea,Jamie,Bynoe-Gittens,Gittens,486,0,2,0,0,0.94,0.81,5
+Chelsea,Christopher,Nkunku,Nkunku,0,0,0,0,0,0.00,0.00,0
+Chelsea,Moisés,Caicedo Corozo,Caicedo,2796,3,1,11,1,2.38,1.45,32
+Chelsea,Roméo,Lavia,Lavia,374,0,0,0,0,0.55,0.21,4
+Chelsea,Mykhailo,Mudryk,Mudryk,0,0,0,0,0,0.00,0.00,0
+Chelsea,Andrey,Nascimento dos Santos,Andrey Santos,1247,1,0,4,0,0.88,2.00,13
+Chelsea,Dário,Luís Essugo,D.Essugo,26,0,0,2,0,0.01,0.00,0
+Chelsea,Kendry,Páez Andrade,Paez,0,0,0,0,0,0.00,0.00,0
+Chelsea,João Pedro,Junqueira de Jesus,João Pedro,2658,15,9,5,0,1.96,14.91,31
+Chelsea,Liam,Delap,Delap,1092,1,2,4,0,0.23,4.54,12
+Chelsea,Nicolas,Jackson,N.Jackson,0,0,0,0,0,0.00,0.00,0
+Chelsea,Marc,Guiu Paz,Marc Guiu,265,0,1,1,0,0.29,1.54,1
+Chelsea,Alejandro,Garnacho Ferreyra,Garnacho,1261,1,4,2,0,3.68,3.44,14
+Chelsea,Jorrel,Hato,Hato,1139,0,0,7,0,0.61,0.30,12
+Chelsea,Landon,Emenalo,Emenalo,0,0,0,0,0,0.00,0.00,0
+Chelsea,Max,Merrick,Merrick,0,0,0,0,0,0.00,0.00,0
+Chelsea,Teddy,Sharman-Lowe,Sharman-Lowe,0,0,0,0,0,0.00,0.00,0
+Chelsea,Jesse,Derry,Derry,45,0,0,0,0,0.02,0.10,1
+Chelsea,Mathis,Eboué,Eboué,0,0,0,0,0,0.00,0.00,0
+Chelsea,Ryan,Kavuma-McQueen,Kavuma-McQueen,0,0,0,0,0,0.00,0.00,0
+Chelsea,Shumaira,Mheuka,Mheuka,1,0,0,0,0,0.00,0.00,0
+Crystal Palace,Dean,Henderson,Henderson,3330,0,0,5,0,0.11,0.00,37
+Crystal Palace,Walter,Benítez,Benitez,90,0,0,0,0,0.00,0.00,1
+Crystal Palace,Remi,Matthews,Matthews,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Daniel,Muñoz Mejía,Muñoz,2400,4,4,7,0,3.94,2.45,29
+Crystal Palace,Maxence,Lacroix,Lacroix,3085,1,2,4,1,0.83,2.45,35
+Crystal Palace,Tyrick,Mitchell,Mitchell,3253,1,3,6,0,2.53,1.59,36
+Crystal Palace,Borna,Sosa,Sosa,99,0,0,1,0,0.07,0.04,0
+Crystal Palace,Chris,Richards,Richards,2825,1,0,4,0,1.56,2.42,31
+Crystal Palace,Chadi,Riad Dnanou,Chadi Riad,550,0,1,2,0,0.13,0.33,6
+Crystal Palace,Nathaniel,Clyne,Clyne,592,0,1,1,0,0.60,0.43,7
+Crystal Palace,Rob,Holding,Holding,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Caleb,Kporha,Kporha,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Ismaïla,Sarr,Sarr,2173,9,2,2,0,1.17,10.93,24
+Crystal Palace,Cheick,Doucouré,Doucouré,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Romain,Esse,Esse,40,0,0,0,0,0.04,0.00,0
+Crystal Palace,Will,Hughes,Hughes,1560,0,1,7,0,1.94,1.11,19
+Crystal Palace,Daichi,Kamada,Kamada,1899,0,2,3,0,3.24,1.64,22
+Crystal Palace,Jefferson,Lerma Solís,Lerma,1722,0,5,7,0,1.48,1.84,18
+Crystal Palace,Adam,Wharton,Wharton,2552,1,6,4,1,7.47,1.52,29
+Crystal Palace,Asher,Agbinone,Agbinone,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Naouirou,Ahamada,Ahamada,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Justin,Devenny,Devenny,785,1,0,0,0,0.39,2.38,7
+Crystal Palace,Malcolm,Ebiowei,Ebiowei,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Jesurun,Rak-Sakyi,J.Rak-Sakyi,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Matheus,França de Oliveira,M.França,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,David,Ozoh,Ozoh,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Kaden,Rodney,Rodney,3,0,0,0,0,0.00,0.00,0
+Crystal Palace,Franco,Umeh-Chibueze,Umeh,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Jean-Philippe,Mateta,Mateta,2210,12,0,2,0,1.32,14.42,25
+Crystal Palace,Eddie,Nketiah,Nketiah,414,2,0,2,0,0.46,1.77,2
+Crystal Palace,Odsonne,Édouard,Édouard,2,0,0,0,0,0.00,0.00,0
+Crystal Palace,Zach,Marsh,Marsh,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Brennan,Johnson,Johnson,1710,2,1,6,0,1.31,2.45,19
+Crystal Palace,Jørgen,Strand Larsen,Strand Larsen,2301,4,1,4,0,1.12,5.30,26
+Crystal Palace,Evann,Guessand,Guessand,909,1,3,0,0,0.85,1.56,9
+Crystal Palace,Rio,Cardines,Cardines,90,0,0,0,0,0.16,0.02,1
+Crystal Palace,Yéremy,Pino Santos,Yeremy,2074,2,2,4,0,6.12,4.53,26
+Crystal Palace,Jaydee,Canvot,Canvot,1331,0,0,3,0,0.33,1.48,14
+Crystal Palace,Christantus,Uche,Uche,159,0,1,0,0,0.01,0.49,0
+Crystal Palace,Joél,Drakes-Thomas,Drakes-Thomas,7,0,0,0,0,0.00,0.00,0
+Crystal Palace,Dean,Benamar,Benamar,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Ben,Casey,Casey,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,George,King,King,0,0,0,0,0,0.00,0.00,0
+Crystal Palace,Danny,Imray,Imray,0,0,0,0,0,0.00,0.00,0
+Everton,Kiernan,Dewsbury-Hall,Dewsbury-Hall,2629,8,7,6,0,5.34,4.35,30
+Everton,Tyrique,George,George,351,0,0,2,0,1.19,0.64,1
+Everton,Jordan,Pickford,Pickford,3420,0,0,4,0,0.20,0.00,38
+Everton,Mark,Travers,Travers,0,0,0,0,0,0.00,0.00,0
+Everton,Harry,Tyrer,Tyrer,0,0,0,0,0,0.00,0.00,0
+Everton,Jarrad,Branthwaite,Branthwaite,678,1,1,1,0,0.11,0.34,7
+Everton,James,Tarkowski,Tarkowski,3330,2,3,8,0,2.10,2.53,37
+Everton,Vitalii,Mykolenko,Mykolenko,2959,0,1,6,0,2.46,0.28,33
+Everton,Jake,O'Brien,O'Brien,3118,1,3,6,1,1.00,1.67,35
+Everton,Séamus,Coleman,Coleman,19,0,0,0,0,0.17,0.00,1
+Everton,Michael,Keane,Keane,2588,3,1,1,1,0.49,2.30,29
+Everton,Nathan,Patterson,Patterson,238,0,0,0,0,0.04,0.03,3
+Everton,Roman,Dixon,Dixon,0,0,0,0,0,0.00,0.00,0
+Everton,Reece,Welch,Welch,0,0,0,0,0,0.00,0.00,0
+Everton,Iliman,Ndiaye,Ndiaye,2781,6,3,2,0,4.41,6.68,32
+Everton,Dwight,McNeil,McNeil,1161,0,3,1,0,1.91,1.37,14
+Everton,Carlos,Alcaraz Durán,Alcaraz,679,0,1,4,0,0.54,1.17,6
+Everton,Idrissa Gana,Gueye,Gana,2094,2,3,1,1,1.84,1.99,25
+Everton,James,Garner,Garner,3413,2,7,12,0,6.18,2.10,38
+Everton,Tim,Iroegbunam,Iroegbunam,1477,0,3,9,0,0.71,0.54,17
+Everton,Harrison,Armstrong,Armstrong,524,0,0,0,0,0.22,0.79,6
+Everton,Callum,Bates,Bates,0,0,0,0,0,0.00,0.00,0
+Everton,Coby,Ebere,Ebere,0,0,0,0,0,0.00,0.00,0
+Everton,Isaac,Heath,Heath,0,0,0,0,0,0.00,0.00,0
+Everton,Jenson,Metcalfe,Metcalfe,0,0,0,0,0,0.00,0.00,0
+Everton,Thierno,Barry,Barry,1898,8,0,3,0,0.44,8.17,21
+Everton,Norberto Bercique,Gomes Betuncal,Beto,1551,9,1,3,0,0.23,8.90,17
+Everton,Youssef,Ramalho Chermiti,Y.Chermiti,0,0,0,0,0,0.00,0.00,0
+Everton,Martin,Sherif,Sherif,0,0,0,0,0,0.00,0.00,0
+Everton,Jack,Grealish,Grealish,1627,2,6,3,1,3.37,2.05,18
+Everton,Tom,King,King,0,0,0,0,0,0.00,0.00,0
+Everton,Adam,Aznou,Aznou,0,0,0,0,0,0.00,0.00,0
+Everton,Tyler,Onyango,Onyango,0,0,0,0,0,0.00,0.00,0
+Everton,Elijah,Campbell,Campbell,0,0,0,0,0,0.00,0.00,0
+Everton,Tyler,Dibling,Dibling,349,0,0,2,0,0.14,0.20,4
+Everton,Merlin,Röhl,Röhl,675,1,1,0,0,0.35,0.67,6
+Everton,Braiden,Graham,Graham,0,0,0,0,0,0.00,0.00,0
+Fulham,Bernd,Leno,Leno,3420,0,0,3,0,0.02,0.00,38
+Fulham,Steven,Benda,Benda,0,0,0,0,0,0.00,0.00,0
+Fulham,Antonee,Robinson,Robinson,1487,1,0,5,0,1.58,1.07,17
+Fulham,Joachim,Andersen,Andersen,2882,0,1,7,1,1.83,1.43,33
+Fulham,Calvin,Bassey,Bassey,2532,1,1,5,0,0.35,1.71,28
+Fulham,Timothy,Castagne,Castagne,1838,0,2,4,0,1.47,1.50,20
+Fulham,Issa,Diop,Diop,812,1,0,2,0,0.05,0.80,8
+Fulham,Jorge,Cuenca Barreno,J.Cuenca,935,0,0,6,0,0.53,0.05,11
+Fulham,Kenny,Tete,Tete,1791,1,0,2,0,1.46,0.92,21
+Fulham,Samuel,Amissah,Amissah,0,0,0,0,0,0.00,0.00,0
+Fulham,Alex,Iwobi,Iwobi,2420,4,3,3,0,4.70,1.91,29
+Fulham,Emile,Smith Rowe,Smith Rowe,1909,3,1,1,0,1.12,4.71,22
+Fulham,Andreas,Hoelgebaum Pereira,Andreas,0,0,0,0,0,0.00,0.00,0
+Fulham,Ryan,Sessegnon,Sessegnon,1816,3,3,0,0,1.80,1.60,20
+Fulham,Harry,Wilson,Wilson,2674,10,9,7,0,4.77,5.88,32
+Fulham,Sander,Berge,Berge,2904,0,3,5,0,1.50,1.54,34
+Fulham,Tom,Cairney,Cairney,756,2,0,3,0,0.81,1.21,6
+Fulham,Saša,Lukić,Lukić,1730,1,4,9,0,1.91,2.23,20
+Fulham,Martial,Godo,Godo,0,0,0,0,0,0.00,0.00,0
+Fulham,Luke,Harris,Harris,0,0,0,0,0,0.00,0.00,0
+Fulham,Josh,King,King,1290,1,3,4,0,0.66,2.47,15
+Fulham,Harrison,Reed,Reed,89,1,0,0,0,0.45,0.13,1
+Fulham,Raúl,Jiménez Rodríguez,Raúl,2183,9,5,5,0,0.90,11.58,27
+Fulham,Rodrigo,Muniz Carvalho,Muniz,987,1,1,2,0,0.15,3.30,10
+Fulham,Oscar,Bobb,Bobb,1030,0,2,1,0,2.10,1.47,11
+Fulham,Benjamin,Lecomte,Lecomte,0,0,0,0,0,0.00,0.00,0
+Fulham,Samuel,Chukwueze,Chukwueze,1067,3,4,0,0,3.36,2.10,10
+Fulham,Kevin,Santos Lopes de Macedo,Kevin,1030,1,3,1,0,1.47,1.21,9
+Fulham,Jonah,Kusi-Asare,Kusi-Asare,49,0,0,1,0,0.07,0.00,0
+Fulham,Seth,Ridgeon,Ridgeon,0,0,0,0,0,0.00,0.00,0
+Fulham,Alfie,McNally,McNally,0,0,0,0,0,0.00,0.00,0
+Leeds,Facundo,Buonanotte,Buonanotte,81,0,0,1,0,0.28,0.06,1
+Leeds,Illan,Meslier,Meslier,0,0,0,0,0,0.00,0.00,0
+Leeds,Alex,Cairns,Cairns,0,0,0,0,0,0.00,0.00,0
+Leeds,Karl,Darlow,Darlow,1980,0,0,1,0,0.05,0.00,22
+Leeds,Jayden,Bogle,Bogle,2795,1,5,6,0,3.11,2.08,32
+Leeds,Pascal,Struijk,Struijk,2935,0,1,5,0,0.76,3.06,33
+Leeds,Jaka,Bijol,Bijol,1888,1,3,4,0,0.75,0.90,21
+Leeds,Sebastiaan,Bornauw,Bornauw,429,0,0,1,0,0.01,0.20,5
+Leeds,Sam,Byram,Byram,8,0,0,0,0,0.00,0.00,0
+Leeds,Gabriel,Gudmundsson,Gudmundsson,2637,0,0,4,1,2.89,1.10,31
+Leeds,Joe,Rodon,Rodon,2952,2,0,3,0,0.56,1.40,33
+Leeds,Isaac,Schmidt,Schmidt,0,0,0,0,0,0.00,0.00,0
+Leeds,Brenden,Aaronson,Aaronson,2449,4,8,3,0,3.60,4.53,30
+Leeds,Wilfried,Gnonto,Gnonto,521,0,3,3,0,0.77,0.40,4
+Leeds,Jack,Harrison,Harrison,262,0,0,0,0,0.23,0.28,1
+Leeds,Daniel,James,James,547,0,0,0,0,0.71,0.91,6
+Leeds,Ethan,Ampadu,Ampadu,3119,1,4,10,0,2.20,2.47,35
+Leeds,Sam,Greenwood,Greenwood,0,0,0,0,0,0.00,0.00,0
+Leeds,Ilia,Gruev,Gruev,1318,0,4,3,0,0.86,0.49,15
+Leeds,Largie,Ramazani,Ramazani,0,0,0,0,0,0.00,0.00,0
+Leeds,Tanaka,Ao,Tanaka,1307,2,1,1,0,1.39,1.44,14
+Leeds,Charlie,Crew,Crew,0,0,0,0,0,0.00,0.00,0
+Leeds,Joe,Gelhardt,Gelhardt,0,0,0,0,0,0.00,0.00,0
+Leeds,Darko,Gyabi,Gyabi,0,0,0,0,0,0.00,0.00,0
+Leeds,Joël,Piroe,Piroe,244,0,0,0,0,0.13,0.90,2
+Leeds,Patrick,Bamford,Bamford,0,0,0,0,0,0.00,0.00,0
+Leeds,Mateo,Joseph Fernández-Regatillo,Mateo Joseph,0,0,0,0,0,0.00,0.00,0
+Leeds,Lukas,Nmecha,Nmecha,1065,6,1,0,0,1.58,7.25,10
+Leeds,Sean,Longstaff,Longstaff,1003,2,2,2,0,1.87,1.23,10
+Leeds,Anton,Stach,Stach,2369,5,6,3,0,4.47,2.88,28
+Leeds,Lucas Estella,Perri,Perri,1440,0,0,2,0,0.00,0.00,16
+Leeds,Dominic,Calvert-Lewin,Calvert-Lewin,2721,14,2,3,0,1.06,15.57,30
+Leeds,Noah,Okafor,Okafor,1553,8,3,3,0,1.32,5.25,19
+Leeds,James,Justin,Justin,1893,2,1,4,0,1.16,1.83,21
+Leeds,Harry,Gray,Gray,0,0,0,0,0,0.00,0.00,0
+Leeds,Sam,Chambers,Chambers,0,0,0,0,0,0.00,0.00,0
+Leeds,Jayden,Lienou,Lienou,0,0,0,0,0,0.00,0.00,0
+Leeds,Rhys,Chadwick,Chadwick,0,0,0,0,0,0.00,0.00,0
+Leeds,Alfie,Cresswell,Cresswell,0,0,0,0,0,0.00,0.00,0
+Liverpool,Alisson,Becker,A.Becker,2340,0,0,1,0,0.03,0.00,26
+Liverpool,Giorgi,Mamardashvili,Mamardashvili,867,0,0,0,0,0.00,0.00,10
+Liverpool,Ármin,Pécsi,Pécsi,0,0,0,0,0,0.00,0.00,0
+Liverpool,Freddie,Woodman,Woodman,212,0,0,0,0,0.00,0.00,2
+Liverpool,Jeremie,Frimpong,Frimpong,1032,0,5,1,0,1.55,0.50,12
+Liverpool,Milos,Kerkez,Kerkez,2251,2,1,4,0,0.69,1.50,27
+Liverpool,Andrew,Robertson,Robertson,1165,1,0,0,0,1.40,1.10,11
+Liverpool,Virgil,van Dijk,Virgil,3420,6,1,4,0,1.44,3.77,38
+Liverpool,Ibrahima,Konaté,Konaté,3090,1,0,7,0,0.98,1.19,36
+Liverpool,Conor,Bradley,Bradley,928,0,2,5,0,0.84,0.18,12
+Liverpool,Joe,Gomez,Gomez,594,0,2,4,0,0.64,0.28,7
+Liverpool,Konstantinos,Tsimikas,Tsimikas,0,0,0,0,0,0.00,0.00,0
+Liverpool,Amara,Nallo,Nallo,0,0,0,0,0,0.00,0.00,0
+Liverpool,Rhys,Williams,R.Williams,0,0,0,0,0,0.00,0.00,0
+Liverpool,Calvin,Ramsay,Ramsay,0,0,0,0,0,0.00,0.00,0
+Liverpool,Mohamed,Salah,M.Salah,2144,7,7,1,0,5.44,8.23,23
+Liverpool,Florian,Wirtz,Wirtz,2374,5,4,1,0,5.14,6.83,27
+Liverpool,Luis,Díaz Marulanda,Luis Díaz,0,0,0,0,0,0.00,0.00,0
+Liverpool,Cody,Gakpo,Gakpo,2736,7,5,3,0,4.67,8.35,32
+Liverpool,Federico,Chiesa,Chiesa,317,2,1,3,0,0.61,1.45,1
+Liverpool,Alexis,Mac Allister,Mac Allister,2654,2,5,7,0,1.69,3.89,31
+Liverpool,Dominik,Szoboszlai,Szoboszlai,3232,6,7,8,1,6.83,4.76,36
+Liverpool,Curtis,Jones,C.Jones,1923,1,3,2,0,2.77,2.21,18
+Liverpool,Ryan,Gravenberch,Gravenberch,2991,5,5,5,0,2.26,1.89,34
+Liverpool,Endo,Wataru,Endo,170,0,1,1,0,0.05,0.04,1
+Liverpool,Stefan,Bajčetić Maquieira,Bajcetic,0,0,0,0,0,0.00,0.00,0
+Liverpool,James,McConnell,McConnell,0,0,0,0,0,0.00,0.00,0
+Liverpool,Tyler,Morton,Morton,0,0,0,0,0,0.00,0.00,0
+Liverpool,Trey,Nyoni,Nyoni,21,0,0,0,0,0.02,0.37,0
+Liverpool,Darwin,Núñez Ribeiro,Darwin,0,0,0,0,0,0.00,0.00,0
+Liverpool,Jayden,Danns,Danns,0,0,0,0,0,0.00,0.00,0
+Liverpool,Alexander,Isak,Isak,694,3,1,0,0,0.08,2.59,8
+Liverpool,Hugo,Ekitiké,Ekitiké,1797,11,4,0,0,2.45,10.10,21
+Liverpool,Rio,Ngumoha,Ngumoha,547,2,1,0,0,2.01,1.34,5
+Liverpool,Giovanni,Leoni,Leoni,0,0,0,0,0,0.00,0.00,0
+Liverpool,Kieran,Morrison,Morrison,0,0,0,0,0,0.00,0.00,0
+Liverpool,Wellity,Lucky,Lucky,0,0,0,0,0,0.00,0.00,0
+Liverpool,Will,Wright,Wright,0,0,0,0,0,0.00,0.00,0
+Liverpool,Talla,Ndiaye,Ndiaye,0,0,0,0,0,0.00,0.00,0
+Man City,Antoine,Semenyo,Semenyo,3200,17,6,7,0,3.12,11.10,37
+Man City,James,Trafford,Trafford,360,0,0,0,0,0.00,0.00,4
+Man City,Marc,Guéhi,Guéhi,3150,3,5,6,0,2.37,4.05,35
+Man City,Ederson,Santana de Moraes,Ederson M.,0,0,0,0,0,0.00,0.00,0
+Man City,Marcus,Bettinelli,Bettinelli,0,0,0,0,0,0.00,0.00,0
+Man City,Rayan,Aït-Nouri,Aït-Nouri,971,0,2,2,0,2.01,0.53,12
+Man City,Joško,Gvardiol,Gvardiol,1370,2,2,2,0,0.70,2.25,16
+Man City,Manuel,Akanji,Akanji,0,0,0,0,0,0.00,0.00,0
+Man City,Nathan,Aké,Aké,686,0,0,1,0,0.53,0.72,6
+Man City,Abdukodir,Khusanov,Khusanov,1427,0,0,2,0,1.21,0.65,15
+Man City,Matheus,Nunes,Matheus N.,2861,1,8,5,0,2.23,0.34,32
+Man City,Rúben,dos Santos Gato Alves Dias,Rúben,2139,2,0,3,0,0.65,0.57,24
+Man City,John,Stones,Stones,436,0,0,0,0,0.09,0.00,5
+Man City,Rico,Lewis,Lewis,401,0,1,2,0,1.39,0.19,4
+Man City,Nico,O'Reilly,O'Reilly,2643,5,4,5,0,2.67,6.12,29
+Man City,Vitor,de Oliveira Nunes dos Reis,Vitor Reis,0,0,0,0,0,0.00,0.00,0
+Man City,Omar,Marmoush,Marmoush,691,3,3,3,0,0.77,2.78,8
+Man City,Phil,Foden,Foden,2078,7,5,4,0,4.76,6.03,23
+Man City,Sávio,Moreira de Oliveira,Savinho,817,1,2,2,0,1.59,2.50,7
+Man City,Bernardo,Mota Veiga de Carvalho e Silva,Bernardo,2869,2,4,10,0,4.11,2.71,34
+Man City,Rayan,Cherki,Cherki,1772,4,13,1,0,8.87,4.28,19
+Man City,Jérémy,Doku,Doku,1773,5,8,0,0,5.86,2.87,19
+Man City,İlkay,Gündoğan,Gündoğan,0,0,0,0,0,0.00,0.00,0
+Man City,Rodrigo 'Rodri',Hernandez Cascante,Rodrigo,1510,1,1,3,0,2.45,1.15,17
+Man City,Mateo,Kovačić,Kovačić,125,0,1,0,0,0.42,0.13,1
+Man City,Nico,González Iglesias,N.Gonzalez,1561,1,0,6,0,1.12,0.68,17
+Man City,Claudio,Echeverri,Echeverri,0,0,0,0,0,0.00,0.00,0
+Man City,Tijjani,Reijnders,Reijnders,1623,5,3,2,0,2.35,4.61,19
+Man City,Sverre,Nypan,Nypan,0,0,0,0,0,0.00,0.00,0
+Man City,Kalvin,Phillips,Phillips,0,0,0,0,0,0.00,0.00,0
+Man City,Erling,Haaland,Haaland,2953,27,8,2,0,2.67,25.50,34
+Man City,Gianluigi,Donnarumma,Donnarumma,3060,0,0,8,0,0.13,0.00,34
+Man City,Divine,Mukasa,Mukasa,25,0,0,0,0,0.21,0.00,0
+Man City,Stephen,Mfuni,Mfuni,0,0,0,0,0,0.00,0.00,0
+Man City,Ryan,McAidoo,McAidoo,0,0,0,0,0,0.00,0.00,0
+Man City,Charlie,Gray,Gray,0,0,0,0,0,0.00,0.00,0
+Man City,Reigan,Heskey,Heskey,0,0,0,0,0,0.00,0.00,0
+Man City,Max,Alleyne,Alleyne,135,0,0,0,0,0.06,0.26,2
+Man Utd,Bryan,Mbeumo,Mbeumo,2611,11,3,4,0,4.99,11.98,31
+Man Utd,Altay,Bayındır,Bayindir,540,0,0,0,0,0.05,0.00,6
+Man Utd,André,Onana,Onana,0,0,0,0,0,0.00,0.00,0
+Man Utd,Elyh,Harrison,Harrison,0,0,0,0,0,0.00,0.00,0
+Man Utd,Tom,Heaton,Heaton,0,0,0,0,0,0.00,0.00,0
+Man Utd,Dermot,Mee,Mee,0,0,0,0,0,0.00,0.00,0
+Man Utd,Matthijs,de Ligt,De Ligt,1170,1,0,0,0,0.83,1.38,13
+Man Utd,Lisandro,Martínez,Martinez,1229,0,0,0,1,0.60,0.15,13
+Man Utd,Noussair,Mazraoui,Mazraoui,977,0,0,3,0,0.35,0.19,11
+Man Utd,Diego,León Blanco,D.Leon,0,0,0,0,0,0.00,0.00,0
+Man Utd,Diogo,Dalot Teixeira,Dalot,2609,1,6,5,0,2.57,1.93,29
+Man Utd,Patrick,Dorgu,Dorgu,1440,4,4,5,0,1.84,2.39,15
+Man Utd,Harry,Maguire,Maguire,1649,1,2,3,1,0.50,1.12,19
+Man Utd,Luke,Shaw,Shaw,3220,1,1,9,0,1.98,0.72,38
+Man Utd,Leny,Yoro,Yoro,1730,0,1,1,0,0.59,1.34,18
+Man Utd,Harry,Amass,Amass,0,0,0,0,0,0.00,0.00,0
+Man Utd,Tyler,Fredricson,Fredricson,2,0,0,0,0,0.00,0.00,0
+Man Utd,Ayden,Heaven,Heaven,920,0,1,2,0,0.18,0.34,11
+Man Utd,Tyrell,Malacia,Malacia,15,0,0,0,0,0.00,0.00,0
+Man Utd,Bruno,Borges Fernandes,B.Fernandes,3065,9,24,5,0,12.28,10.79,35
+Man Utd,Matheus,Santos Carneiro da Cunha,Cunha,2493,10,4,4,0,3.36,6.90,29
+Man Utd,Marcus,Rashford,Rashford,0,0,0,0,0,0.00,0.00,0
+Man Utd,Amad,Diallo,Amad,2339,2,5,2,0,4.74,5.46,27
+Man Utd,Antony,dos Santos,Antony,0,0,0,0,0,0.00,0.00,0
+Man Utd,Mason,Mount,Mount,1010,3,0,2,0,1.62,1.56,12
+Man Utd,Carlos Henrique,Casimiro,Casemiro,2575,9,4,9,1,3.17,5.44,33
+Man Utd,Kobbie,Mainoo,Mainoo,1653,1,2,2,0,1.27,0.48,16
+Man Utd,Manuel,Ugarte Ribeiro,Ugarte,876,0,0,1,0,0.16,0.72,8
+Man Utd,Toby,Collyer,Collyer,0,0,0,0,0,0.00,0.00,0
+Man Utd,Jayce,Fitzgerald,Fitzgerald,0,0,0,0,0,0.00,0.00,0
+Man Utd,Jack,Fletcher,J.Fletcher,107,0,0,0,0,0.02,0.03,0
+Man Utd,Sékou,Koné,Kone,0,0,0,0,0,0.00,0.00,0
+Man Utd,Jack,Moorhouse,Moorhouse,0,0,0,0,0,0.00,0.00,0
+Man Utd,Rasmus,Højlund,Højlund,0,0,0,0,0,0.00,0.00,0
+Man Utd,Joshua,Zirkzee,Zirkzee,607,2,1,3,0,0.34,2.74,5
+Man Utd,Chido,Obi,Obi,0,0,0,0,0,0.00,0.00,0
+Man Utd,Ethan,Wheatley,Wheatley,0,0,0,0,0,0.00,0.00,0
+Man Utd,Benjamin,Sesko,Šeško,1630,11,2,2,0,0.28,9.21,17
+Man Utd,Senne,Lammens,Lammens,2880,0,0,0,0,0.00,0.00,32
+Man Utd,Shea,Lacey,Lacey,40,0,0,0,0,0.01,0.10,0
+Man Utd,Bendito,Mantato,Bendito Mantato,15,0,0,0,0,0.01,0.00,0
+Man Utd,Tyler,Fletcher,Fletcher,17,0,0,0,0,0.01,0.00,0
+Man Utd,Godwill,Kukonki,Kukonki,0,0,0,0,0,0.00,0.00,0
+Man Utd,Jim,Thwaites,Thwaites,0,0,0,0,0,0.00,0.00,0
+Newcastle,Jacob,Ramsey,J.Ramsey,1441,2,3,3,1,1.45,1.20,15
+Newcastle,Yoane,Wissa,Wissa,517,1,1,3,0,0.54,3.13,4
+Newcastle,Nick,Pope,Pope,2416,0,1,2,0,0.00,0.16,27
+Newcastle,Mark,Gillespie,Gillespie,0,0,0,0,0,0.00,0.00,0
+Newcastle,Odysseas,Vlachodimos,Odysseas,0,0,0,0,0,0.00,0.00,0
+Newcastle,Lewis,Hall,Hall,2176,1,2,4,0,2.78,1.01,24
+Newcastle,Fabian,Schär,Schär,1089,0,0,1,0,0.60,0.97,11
+Newcastle,Sven,Botman,Botman,1834,1,1,2,0,0.86,1.73,21
+Newcastle,Dan,Burn,Burn,2195,1,3,9,1,0.36,1.08,25
+Newcastle,Tino,Livramento,Livramento,1326,0,1,1,0,0.89,0.13,14
+Newcastle,Kieran,Trippier,Trippier,1586,0,1,3,0,2.06,0.08,18
+Newcastle,Emil,Krafth,Krafth,45,0,0,0,0,0.00,0.00,1
+Newcastle,Jamaal,Lascelles,Lascelles,19,0,0,0,0,0.00,0.04,0
+Newcastle,Alex,Murphy,A.Murphy,7,0,0,0,0,0.00,0.00,0
+Newcastle,Harrison,Ashby,Ashby,0,0,0,0,0,0.00,0.00,0
+Newcastle,Miodrag,Pivaš,Pivas,0,0,0,0,0,0.00,0.00,0
+Newcastle,Matt,Targett,Targett,0,0,0,0,0,0.00,0.00,0
+Newcastle,Anthony,Gordon,Gordon,1798,6,4,3,1,3.38,8.77,24
+Newcastle,Anthony,Elanga,Elanga,1302,0,1,0,0,1.74,1.65,14
+Newcastle,Harvey,Barnes,Barnes,1951,7,1,1,0,2.72,6.84,19
+Newcastle,Bruno,Guimarães Rodriguez Moura,Bruno G.,2456,9,7,6,0,4.96,5.59,27
+Newcastle,Jacob,Murphy,J.Murphy,1606,3,2,2,0,2.66,3.07,19
+Newcastle,Joelinton Cássio,Apolinário de Lira,Joelinton,1950,2,1,10,0,1.35,2.36,23
+Newcastle,Sandro,Tonali,Tonali,2534,0,2,4,0,2.87,1.75,31
+Newcastle,Antoñito,Cordero Campillo,Antoñito C.,0,0,0,0,0,0.00,0.00,0
+Newcastle,Joe,Willock,Willock,972,0,2,3,0,1.07,1.26,10
+Newcastle,Isaac,Hayden,Hayden,0,0,0,0,0,0.00,0.00,0
+Newcastle,Garang,Kuol,Kuol,0,0,0,0,0,0.00,0.00,0
+Newcastle,Lewis,Miley,L.Miley,1493,1,4,0,0,2.10,1.36,15
+Newcastle,Joe,White,White,0,0,0,0,0,0.00,0.00,0
+Newcastle,William,Osula,Osula,805,7,1,0,0,0.62,4.28,8
+Newcastle,Sean,Neave,Neave,13,0,0,0,0,0.00,0.03,0
+Newcastle,Aaron,Ramsdale,Ramsdale,1003,0,0,2,0,0.00,0.00,11
+Newcastle,Malick,Thiaw,Thiaw,2963,4,0,4,0,0.96,4.80,33
+Newcastle,Seung-Soo,Park,Seung soo,0,0,0,0,0,0.00,0.00,0
+Newcastle,Nick,Woltemade,Woltemade,1896,8,4,0,0,1.53,6.59,24
+Newcastle,John,Ruddy,Ruddy,0,0,0,0,0,0.00,0.00,0
+Newcastle,Leo,Shahar,Shahar,0,0,0,0,0,0.00,0.00,0
+Newcastle,Sam,Alabi,Alabi,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Oleksandr,Zinchenko,Zinchenko,352,0,0,0,0,0.36,0.07,4
+Nott'm Forest,Stefan,Ortega Moreno,Ortega Moreno,270,0,0,0,0,0.01,0.00,3
+Nott'm Forest,James,McAtee,McAtee,288,0,1,1,0,0.37,0.18,2
+Nott'm Forest,Matz,Sels,Sels,2667,0,0,2,0,0.06,0.00,30
+Nott'm Forest,Carlos Miguel,dos Santos Pereira,C.Miguel,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Matt,Turner,Turner,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Nikola,Milenković,Milenković,3375,0,1,6,0,0.68,0.83,37
+Nott'm Forest,Murillo,Costa dos Santos,Murillo,2130,1,0,5,0,0.47,0.73,25
+Nott'm Forest,Ola,Aina,Aina,1587,0,2,3,0,0.84,0.41,18
+Nott'm Forest,Neco,Williams,N.Williams,3203,2,3,6,1,3.97,2.01,36
+Nott'm Forest,David,Mota Veiga Teixeira do Carmo,David Carmo,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Jair,Paula da Cunha Filho,Jair Cunha,514,0,0,0,0,0.06,0.27,6
+Nott'm Forest,Felipe,Rodrigues da Silva,Morato,1340,1,0,5,0,0.15,1.32,14
+Nott'm Forest,Omar,Richards,O.Richards,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Zach,Abbott,Abbott,165,0,0,0,0,0.01,0.00,2
+Nott'm Forest,Willy,Boly,Boly,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Morgan,Gibbs-White,Gibbs-White,3101,15,4,1,0,2.91,10.81,35
+Nott'm Forest,Callum,Hudson-Odoi,Hudson-Odoi,1838,3,4,0,0,3.02,2.77,21
+Nott'm Forest,Elliot,Anderson,Anderson,3332,4,5,8,0,4.79,2.94,37
+Nott'm Forest,João Pedro,Ferreira da Silva,Jota,11,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Nicolás,Domínguez,Dominguez,1168,1,1,3,0,0.77,1.47,17
+Nott'm Forest,Lewis,O'Brien,O'Brien,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Ibrahim,Sangaré,Sangaré,2073,2,2,5,0,1.80,1.16,25
+Nott'm Forest,Ryan,Yates,Yates,602,0,2,3,0,0.37,0.49,2
+Nott'm Forest,Eric,da Silva Moreira,Da Silva Moreira,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Marko,Stamenić,Stamenic,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Chris,Wood,Wood,896,3,0,0,0,0.32,4.29,11
+Nott'm Forest,Igor Jesus,Maciel da Cruz,Igor Jesus,2293,6,6,2,0,1.26,6.48,28
+Nott'm Forest,Taiwo,Awoniyi,Awoniyi,480,4,2,2,0,0.77,3.68,3
+Nott'm Forest,Dan,Ndoye,Ndoye,1167,1,2,1,0,1.51,1.05,14
+Nott'm Forest,Angus,Gunn,Gunn,45,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Omari,Hutchinson,Hutchinson,1676,1,7,1,0,3.87,2.01,17
+Nott'm Forest,Arnaud,Kalimuendo,Kalimuendo,89,0,0,0,0,0.02,0.44,0
+Nott'm Forest,John Victor,Maciel Furtado,John,437,0,0,1,0,0.00,0.00,5
+Nott'm Forest,Nicolò,Savona,Savona,1025,2,0,2,0,0.45,1.34,11
+Nott'm Forest,Luis Eduardo,Soares da Silva,Cuiabano,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Dilane,Bakwa,Bakwa,549,0,2,1,0,1.01,0.54,6
+Nott'm Forest,Lorenzo,Lucca,Lucca,126,1,0,0,0,0.01,0.79,1
+Nott'm Forest,Luca,Netz,Netz,353,0,0,0,0,0.41,0.00,3
+Nott'm Forest,Archie,Whitehall,Whitehall,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Jimmy,Sinclair,Sinclair,0,0,0,0,0,0.00,0.00,0
+Nott'm Forest,Lamin,Sillah,Sillah,0,0,0,0,0,0.00,0.00,0
+Sunderland,Anthony,Patterson,Patterson,0,0,0,0,0,0.00,0.00,0
+Sunderland,Simon,Moore,Moore,0,0,0,0,0,0.00,0.00,0
+Sunderland,Blondy,Nna Noukeu,Nna Noukeu,0,0,0,0,0,0.00,0.00,0
+Sunderland,Daniel,Ballard,Ballard,2144,2,2,4,1,0.63,2.46,24
+Sunderland,Trai,Hume,Hume,3032,2,1,9,0,2.05,2.27,34
+Sunderland,Aji,Alese,Alese,0,0,0,0,0,0.00,0.00,0
+Sunderland,Joe,Anderson,Anderson,0,0,0,0,0,0.00,0.00,0
+Sunderland,Dennis,Cirkin,Cirkin,319,0,0,2,0,0.02,0.08,3
+Sunderland,Leo Fuhr,Hjelde,Hjelde,0,0,0,0,0,0.00,0.00,0
+Sunderland,Niall,Huggins,Huggins,0,0,0,0,0,0.00,0.00,0
+Sunderland,Zak,Johnson,Johnson,0,0,0,0,0,0.00,0.00,0
+Sunderland,Luke,O'Nien,O'Nien,565,0,1,1,1,0.13,0.15,5
+Sunderland,Timothée,Pembélé,Pembele,0,0,0,0,0,0.00,0.00,0
+Sunderland,Reinildo,Mandava,Reinildo,1966,0,2,7,1,0.62,0.13,23
+Sunderland,Jenson,Seelt,Seelt,133,0,0,0,0,0.01,0.00,1
+Sunderland,Simon,Adingra,Adingra,649,1,1,2,0,0.62,0.35,9
+Sunderland,Habib,Diarra,Diarra,1403,2,6,6,0,0.85,3.27,15
+Sunderland,Patrick,Roberts,Roberts,27,0,0,0,0,0.02,0.03,0
+Sunderland,Milan,Aleksić,Aleksić,0,0,0,0,0,0.00,0.00,0
+Sunderland,Enzo,Le Fée,E.Le Fée,2930,5,6,5,0,5.95,5.22,33
+Sunderland,Romaine,Mundle,Mundle,399,0,0,1,0,0.48,0.87,2
+Sunderland,Dan,Neil,Neil,13,0,0,0,0,0.00,0.00,0
+Sunderland,Ian,Poveda-Ocampo,Poveda,0,0,0,0,0,0.00,0.00,0
+Sunderland,Chris,Rigg,Rigg,758,1,1,1,0,0.93,0.86,11
+Sunderland,Noah,Sadiki,Sadiki,2891,0,2,9,0,1.46,1.43,33
+Sunderland,Chemsdine,Talbi,Talbi,1553,4,2,0,0,1.18,2.13,16
+Sunderland,Abdoullah,Ba,Ba,0,0,0,0,0,0.00,0.00,0
+Sunderland,Alan,Browne,Browne,0,0,0,0,0,0.00,0.00,0
+Sunderland,Pierre,Ekwah Elimby,Ekwah,0,0,0,0,0,0.00,0.00,0
+Sunderland,Harrison,Jones,H.Jones,0,0,0,0,0,0.00,0.00,0
+Sunderland,Jay,Matete,Matete,0,0,0,0,0,0.00,0.00,0
+Sunderland,Nectarios,Triantis,Triantis,0,0,0,0,0,0.00,0.00,0
+Sunderland,Wilson,Isidor,Isidor,1148,6,1,1,0,0.38,4.70,11
+Sunderland,Eliezer,Mayenda Dossou,Mayenda,751,2,0,0,0,0.22,2.13,8
+Sunderland,Ahmed,Abdullahi,Abdullahi,0,0,0,0,0,0.00,0.00,0
+Sunderland,Luís Hemir,Silva Semedo,Luís Hemir,0,0,0,0,0,0.00,0.00,0
+Sunderland,Nazarii,Rusyn,Rusyn,0,0,0,0,0,0.00,0.00,0
+Sunderland,Granit,Xhaka,Xhaka,2901,1,6,8,0,3.73,1.01,32
+Sunderland,Robin,Roefs,Roefs,3150,0,0,4,0,0.10,0.00,35
+Sunderland,Arthur,Masuaku,Masuaku,125,0,0,1,0,0.08,0.07,2
+Sunderland,Omar,Alderete,Alderete,2797,1,1,6,0,0.91,1.62,32
+Sunderland,Nordi,Mukiele,Mukiele,2784,3,5,5,0,2.65,1.62,32
+Sunderland,Lutsharel,Geertruida,Geertruida,1681,0,0,2,0,0.85,0.79,17
+Sunderland,Brian,Brobbey,Brobbey,1920,7,2,6,0,0.67,6.02,22
+Sunderland,Bertrand,Traoré,Traoré,634,1,1,1,0,0.25,0.48,9
+Sunderland,Jenson,Jones,Jenson Jones,0,0,0,0,0,0.00,0.00,0
+Sunderland,Tymur,Tutierov,Tutierov,0,0,0,0,0,0.00,0.00,0
+Sunderland,Djiamgone Jocelin Ta,Bi,Jocelin.T,38,0,0,0,0,0.04,0.00,1
+Sunderland,Melker,Ellborg,Ellborg,270,0,0,0,0,0.02,0.00,3
+Sunderland,Nilson,Angulo,Angulo,401,0,0,1,0,0.12,0.77,5
+Sunderland,Jack,Whittaker,Whittaker,0,0,0,0,0,0.00,0.00,0
+Sunderland,Jaydon,Jones,Jones,0,0,0,0,0,0.00,0.00,0
+Spurs,Guglielmo,Vicario,Vicario,2790,0,0,1,0,0.04,0.00,31
+Spurs,Brandon,Austin,Austin,0,0,0,0,0,0.00,0.00,0
+Spurs,Antonín,Kinský,Kinsky,630,0,0,1,0,0.00,0.00,7
+Spurs,Pedro,Porro Sauceda,Pedro Porro,2793,1,3,10,0,4.37,1.05,32
+Spurs,Cristian,Romero,Romero,1869,4,1,9,2,1.25,1.39,22
+Spurs,Kevin,Danso,Danso,1489,0,0,8,0,0.28,0.62,17
+Spurs,Ben,Davies,Davies,136,1,0,1,0,0.07,0.49,2
+Spurs,Radu,Drăgușin,Dragusin,515,0,0,0,0,0.01,0.31,5
+Spurs,Djed,Spence,Spence,2049,0,0,4,0,1.77,0.90,23
+Spurs,Destiny,Udogie,Udogie,1335,0,1,4,0,0.72,0.18,14
+Spurs,Micky,van de Ven,Van de Ven,3041,4,1,9,1,0.38,2.82,35
+Spurs,Ashley,Phillips,Phillips,0,0,0,0,0,0.00,0.00,0
+Spurs,Takai,Kōta,Takai,0,0,0,0,0,0.00,0.00,0
+Spurs,Luka,Vušković,Vuskovic,0,0,0,0,0,0.00,0.00,0
+Spurs,Son,Heung-min,Son,0,0,0,0,0,0.00,0.00,0
+Spurs,James,Maddison,Maddison,34,0,0,0,0,0.06,0.21,0
+Spurs,Mohammed,Kudus,Kudus,1535,2,6,3,0,2.41,1.92,19
+Spurs,Dejan,Kulusevski,Kulusevski,0,0,0,0,0,0.00,0.00,0
+Spurs,Mathys,Tel,Tel,1334,4,2,1,0,2.43,2.47,13
+Spurs,Rodrigo,Bentancur,Bentancur,1880,1,1,7,0,0.84,0.72,23
+Spurs,Lucas,Bergvall,Bergvall,955,1,3,2,0,0.43,1.23,11
+Spurs,Yves,Bissouma,Bissouma,600,0,0,4,0,0.10,0.36,7
+Spurs,Wilson,Odobert,Odobert,972,0,2,0,0,1.21,1.92,10
+Spurs,Manor,Solomon,Solomon,0,0,0,0,0,0.00,0.00,0
+Spurs,Bryan,Gil Salvatierra,Bryan,0,0,0,0,0,0.00,0.00,0
+Spurs,Archie,Gray,Gray,1471,2,2,5,0,1.29,1.50,18
+Spurs,Mikey,Moore,Moore,0,0,0,0,0,0.00,0.00,0
+Spurs,Pape Matar,Sarr,P.M.Sarr,1388,2,4,3,0,1.11,1.63,13
+Spurs,Yang,Min-hyeok,Min-hyeok,0,0,0,0,0,0.00,0.00,0
+Spurs,Callum,Olusesi,Olusesi,14,0,0,0,0,0.01,0.00,0
+Spurs,Dominic,Solanke-Mitchell,Solanke,997,3,0,1,0,0.34,2.97,11
+Spurs,Richarlison,de Andrade,Richarlison,1954,11,4,5,0,1.46,8.64,20
+Spurs,Will,Lankshear,Lankshear,0,0,0,0,0,0.00,0.00,0
+Spurs,Dane,Scarlett,Scarlett,7,0,0,0,0,0.01,0.00,0
+Spurs,João Maria,Lobo Alves Palhares Costa Palhinha Gonçalves,J.Palhinha,2192,5,3,8,0,0.65,2.72,23
+Spurs,Xavi,Simons,Xavi,1747,2,5,5,1,3.85,3.06,19
+Spurs,Randal,Kolo Muani,Kolo Muani,1655,1,1,3,0,1.63,2.07,21
+Spurs,Jun'ai,Byfield,Byfield,1,0,0,0,0,0.00,0.00,0
+Spurs,James,Rowswell,Rowswell,1,0,0,0,0,0.00,0.00,0
+Spurs,Yusuf,Akhamrich,Akhamrich,0,0,0,0,0,0.00,0.00,0
+Spurs,Lucá,Williams-Barnett,Williams-Barnett,0,0,0,0,0,0.00,0.00,0
+Spurs,Conor,Gallagher,Gallagher,1183,1,1,2,0,0.70,1.23,14
+Spurs,João Victor,de Souza Menezes,Souza,142,0,0,1,0,0.03,0.02,2
+Spurs,Rio,Kyerematen,Kyerematen,0,0,0,0,0,0.00,0.00,0
+Spurs,James,Wilson,Wilson,0,0,0,0,0,0.00,0.00,0
+West Ham,Adama,Traoré Diarra,Adama,376,0,0,1,0,0.57,0.69,1
+West Ham,Alphonse,Areola,Areola,1800,0,1,0,0,0.00,0.00,20
+West Ham,Wes,Foderingham,Foderingham,0,0,0,0,0,0.00,0.00,0
+West Ham,Krisztián,Hegyi,Hegyi,0,0,0,0,0,0.00,0.00,0
+West Ham,El Hadji Malick,Diouf,Diouf,2706,0,6,6,0,2.51,0.57,30
+West Ham,Emerson,Palmieri dos Santos,Emerson,0,0,0,0,0,0.00,0.00,0
+West Ham,Maximilian,Kilman,Kilman,1559,0,0,4,0,0.25,0.56,17
+West Ham,Konstantinos,Mavropanos,Mavropanos,2532,3,0,2,0,0.70,2.47,27
+West Ham,Nayef,Aguerd,N.Aguerd,180,0,0,0,0,0.03,0.10,2
+West Ham,Ollie,Scarles,Scarles,656,0,1,2,0,0.32,0.18,9
+West Ham,Jean-Clair,Todibo,Todibo,1817,0,1,5,1,0.32,0.25,22
+West Ham,Aaron,Wan-Bissaka,Wan-Bissaka,2080,0,3,4,0,1.00,0.00,23
+West Ham,Kaelan,Casey,Casey,0,0,0,0,0,0.00,0.00,0
+West Ham,Lucas,Tolentino Coelho de Lima,L.Paquetá,1513,4,2,5,1,2.00,2.85,18
+West Ham,Tomáš,Souček,Souček,2190,5,2,3,1,0.52,5.73,24
+West Ham,Crysencio,Summerville,Summerville,2470,5,4,6,0,3.35,5.43,29
+West Ham,Edson,Álvarez Velázquez,Álvarez,0,0,0,0,0,0.00,0.00,0
+West Ham,Maxwel,Cornet,Cornet,0,0,0,0,0,0.00,0.00,0
+West Ham,Guido,Rodríguez,G.Rodriguez,175,0,0,1,0,0.04,0.03,2
+West Ham,Luis Guilherme,Lira dos Santos,L.Guilherme,121,0,0,0,0,0.03,0.07,1
+West Ham,George,Earthy,Earthy,8,0,0,0,0,0.01,0.00,0
+West Ham,Andy,Irving,Irving,156,0,0,0,0,0.17,0.00,2
+West Ham,Lewis,Orford,Orford,0,0,0,0,0,0.00,0.00,0
+West Ham,Freddie,Potts,Potts,1162,0,1,1,0,1.06,0.21,12
+West Ham,Jarrod,Bowen,Bowen,3406,9,13,4,0,5.21,7.22,38
+West Ham,Niclas,Füllkrug,Füllkrug,407,0,0,0,0,0.21,0.93,5
+West Ham,Callum,Marshall,Marshall,58,0,0,0,0,0.00,0.13,0
+West Ham,Kyle,Walker-Peters,Walker-Peters,1378,1,0,2,0,0.37,1.13,15
+West Ham,Callum,Wilson,Wilson,1234,7,2,1,0,0.54,7.60,11
+West Ham,Mads,Hermansen,Hermansen,1620,0,1,0,0,0.01,0.00,18
+West Ham,Mateus Gonçalo,Espanha Fernandes,M.Fernandes,3017,3,4,7,0,2.96,1.99,35
+West Ham,Soungoutou,Magassa,S.Magassa,971,1,0,4,0,0.32,0.44,11
+West Ham,Lukasz,Fabianski,Fabianski,0,0,0,0,0,0.00,0.00,0
+West Ham,Ezra,Mayers,Mayers,113,0,0,0,0,0.49,0.12,0
+West Ham,Airidas,Golambeckis,Golambeckis,0,0,0,0,0,0.00,0.00,0
+West Ham,Mohamadou,Kanté,Mohamadou Kanté,67,0,0,2,0,0.04,0.07,0
+West Ham,Pablo Felipe,Pereira de Jesus,Pablo,819,0,1,0,0,1.11,1.05,10
+West Ham,Valentín,Castellanos,Taty,1384,6,1,6,0,0.81,5.75,17
+West Ham,Keiber,Lamadrid,Lamadrid,0,0,0,0,0,0.00,0.00,0
+West Ham,Axel,Disasi,Disasi,1254,0,0,1,0,0.03,1.10,14
+West Ham,Finlay,Herrick,Herrick,0,0,0,0,0,0.00,0.00,0
+Wolves,Sam,Johnstone,Johnstone,1080,0,0,0,0,0.02,0.00,12
+Wolves,José,Malheiro de Sá,José Sá,2070,0,0,2,0,0.04,0.00,23
+Wolves,Daniel,Bentley,Bentley,270,0,0,0,0,0.00,0.00,3
+Wolves,Emmanuel,Agbadou,Agbadou,1100,0,0,1,1,0.40,0.57,12
+Wolves,Matt,Doherty,Doherty,786,0,0,4,0,0.19,0.09,11
+Wolves,Hugo,Bueno López,H.Bueno,2359,1,3,3,0,3.49,0.86,26
+Wolves,Yerson,Mosquera Valdelamar,Mosquera,2137,0,0,12,0,0.62,2.51,24
+Wolves,Rodrigo,Martins Gomes,R.Gomes,954,3,0,0,0,0.39,2.13,9
+Wolves,Santiago,Ignacio Bueno,S.Bueno,2552,3,2,4,0,1.45,2.28,28
+Wolves,Toti,Gomes,Toti,1423,0,0,1,1,0.29,0.53,17
+Wolves,Ki-Jana,Hoever,Hoever,423,0,0,0,0,0.36,0.02,6
+Wolves,Bastien,Meupiyou Menadjou,Meupiyou,0,0,0,0,0,0.00,0.00,0
+Wolves,Pedro,Cardoso de Lima,Pedro Lima,257,0,0,0,0,0.37,0.35,3
+Wolves,Alfie,Pond,Pond,0,0,0,0,0,0.00,0.00,0
+Wolves,Hwang,Hee-chan,Hee Chan,1439,2,2,5,0,1.57,2.37,18
+Wolves,André,Trindade da Costa Neto,André,2760,1,0,12,0,0.99,0.52,30
+Wolves,Jean-Ricner,Bellegarde,Bellegarde,1239,1,1,5,0,1.06,1.04,15
+Wolves,Fer,López González,Fer López,228,0,1,1,0,0.61,0.16,2
+Wolves,João Victor,Gomes da Silva,J.Gomes,2829,1,2,10,0,2.09,1.29,32
+Wolves,Gonçalo Manuel,Ganchinho Guedes,Guedes,0,0,0,0,0,0.00,0.00,0
+Wolves,Marshall,Munetsi,Munetsi,872,1,2,2,0,0.38,1.64,9
+Wolves,Boubacar,Traoré,B.Traore,0,0,0,0,0,0.00,0.00,0
+Wolves,Tawanda,Chirewa,Chirewa,25,0,0,0,0,0.00,0.00,0
+Wolves,Tom,Edozie,Edozie,12,1,0,0,0,0.00,0.23,0
+Wolves,Enso,González Medina,Gonzalez,0,0,0,0,0,0.00,0.00,0
+Wolves,Joe,Hodge,Hodge,0,0,0,0,0,0.00,0.00,0
+Wolves,Fábio,Soares Silva,Fábio Silva,0,0,0,0,0,0.00,0.00,0
+Wolves,Saša,Kalajdžić,Kalajdžić,14,0,0,0,0,0.01,0.00,0
+Wolves,Leon,Chiwome,Chiwome,0,0,0,0,0,0.00,0.00,0
+Wolves,Nathan,Fraser,Fraser,0,0,0,0,0,0.00,0.00,0
+Wolves,Jhon,Arias,J.Arias,1117,1,0,1,0,0.62,3.38,14
+Wolves,David,Møller Wolfe,Møller Wolfe,1042,0,2,1,0,1.09,0.13,11
+Wolves,Jackson,Tchatchoua,Tchatchoua,1834,0,1,3,0,1.60,0.33,19
+Wolves,Ladislav,Krejcí,Krejčí,2356,2,2,3,1,1.49,2.23,27
+Wolves,Tolu,Arokodare,Tolu,1402,3,2,1,0,0.39,5.49,13
+Wolves,Mateus,Mané,Mané,1787,3,2,0,0,3.69,2.01,19
+Wolves,Saheed,Olagunju,Olagunju,0,0,0,0,0,0.00,0.00,0
+Wolves,Luke,Rawlings,Rawlings,0,0,0,0,0,0.00,0.00,0
+Wolves,Temple,Ojinnaka,Ojinnaka,0,0,0,0,0,0.00,0.00,0
+Wolves,Ethan,Sutherland,Sutherland,0,0,0,0,0,0.00,0.00,0
+Wolves,Jerome,Abbey,Abbey,16,0,0,0,0,0.00,0.00,0
+Wolves,Angel,Gomes,Angel,457,0,0,1,0,0.28,0.25,7
+Wolves,Adam,Armstrong,Armstrong,1141,2,2,3,0,0.85,2.77,14
+Wolves,Alfie,Brooks,Brooks,0,0,0,0,0,0.00,0.00,0
+Wolves,Josh,Gracey,Gracey,0,0,0,0,0,0.00,0.00,0

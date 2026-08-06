@@ -1,5 +1,5 @@
 /**
- * Shared data contract for the Soccer Agent league dashboard (EPL + La Liga).
+ * Shared data contract for the Data Driven Soccer league dashboard (EPL + La Liga).
  *
  * These types describe the JSON files produced by the Python ML pipeline
  * (see /ml, in particular ml/club_evaluate.py) and consumed by the Next.js

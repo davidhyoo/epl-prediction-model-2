@@ -15,8 +15,10 @@ lives here:
     so the many spellings used across openfootball / football-data.co.uk /
     Wikipedia all collapse onto one canonical club.
 
-Club **crests are trademarked**, so the UI never uses them — clubs are shown as
-tasteful coloured initials badges built from these brand colours instead.
+Club **crests are trademarks**, so no crest image is committed to this repo. The
+UI hot-links a verified crest *URL* per club (see `club_crests.py` →
+`src/lib/crests.json`) and falls back to a tasteful coloured initials badge, built
+from these brand colours, whenever a crest can't load.
 
 All data sources are free / openly licensed (CC0 openfootball, free
 football-data.co.uk, CC BY-SA Wikipedia text + free-licensed Commons photos);

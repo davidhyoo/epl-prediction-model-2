@@ -53,6 +53,7 @@ export function SquadTable({
                   <TableHead>Player</TableHead>
                   <TableHead className="hidden sm:table-cell">Nation</TableHead>
                   <TableHead className="w-12 text-right">G</TableHead>
+                  <TableHead className="w-12 text-right">A</TableHead>
                   <TableHead className="w-16 text-right">Rating</TableHead>
                 </TableRow>
               </TableHeader>
@@ -82,6 +83,9 @@ export function SquadTable({
                     </TableCell>
                     <TableCell className="text-right text-sm font-medium tabular-nums">
                       {p.goals}
+                    </TableCell>
+                    <TableCell className="text-right text-sm tabular-nums text-muted-foreground">
+                      {p.assists ?? "—"}
                     </TableCell>
                     <TableCell className="text-right">
                       <RatingPill rating={Math.round(p.rating)} />

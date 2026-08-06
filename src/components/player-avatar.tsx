@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { initials, stringToHue } from "@/lib/format";
@@ -24,9 +26,11 @@ interface PlayerAvatarProps {
  * is provided it is used, with the initials as the fallback.
  */
 export function PlayerAvatar({ name, src, size = "md", className }: PlayerAvatarProps) {
+  const [broken, setBroken] = React.useState(false);
   const hue = stringToHue(name);
   const bg = `hsl(${hue} 60% 45%)`;
   const bg2 = `hsl(${(hue + 40) % 360} 62% 38%)`;
+  const showImage = Boolean(src) && !broken;
 
   return (
     <span
@@ -38,9 +42,15 @@ export function PlayerAvatar({ name, src, size = "md", className }: PlayerAvatar
       style={{ backgroundImage: `linear-gradient(135deg, ${bg}, ${bg2})` }}
       aria-hidden={!name}
     >
-      {src ? (
+      {showImage ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt={name} className="h-full w-full object-cover" />
+        <img
+          src={src as string}
+          alt={name}
+          loading="lazy"
+          className="h-full w-full object-cover"
+          onError={() => setBroken(true)}
+        />
       ) : (
         <span>{initials(name)}</span>
       )}
