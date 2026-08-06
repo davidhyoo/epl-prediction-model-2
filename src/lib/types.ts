@@ -319,6 +319,38 @@ export type RankingKey =
 export type Rankings = Record<RankingKey, RankingEntry[]>;
 
 /* ------------------------------------------------------------------ */
+/*  race.json  (title-race timeline)                                  */
+/* ------------------------------------------------------------------ */
+
+/** One club's identity + headline numbers for the title-race chart. */
+export interface RaceClub {
+  code: string;
+  short: string;
+  name: string;
+  primary: string;
+  secondary: string;
+  /** Highest championship probability the club reached (%), across the season. */
+  peak: number;
+  /** Championship probability at the latest completed matchday (%). */
+  final: number;
+}
+
+/**
+ * How every club's championship probability evolved matchday by matchday.
+ * `checkpoints[i]` is a matchday number (0 = pre-season priors); `series[code][i]`
+ * is that club's title probability (%) at that checkpoint. Empty for a season
+ * with no completed matches yet.
+ */
+export interface TitleRace {
+  checkpoints: number[];
+  playedAt: number[];
+  maxRound: number;
+  lastCompletedRound: number;
+  clubs: RaceClub[];
+  series: Record<string, number[]>;
+}
+
+/* ------------------------------------------------------------------ */
 /*  Combined dataset bundle                                            */
 /* ------------------------------------------------------------------ */
 

@@ -14,6 +14,7 @@ import type {
   Selection,
   Standing,
   Summary,
+  TitleRace,
 } from "./types";
 import { resolveSelection, type SearchParams } from "./league";
 
@@ -54,6 +55,9 @@ export const getPlayersData = cache((sel: Selection) =>
 );
 export const getRankings = cache((sel: Selection) =>
   readJson<Rankings>(sel.league, sel.season, "rankings.json"),
+);
+export const getRace = cache((sel: Selection) =>
+  readJson<TitleRace>(sel.league, sel.season, "race.json"),
 );
 
 export const getPlayers = cache(async (sel: Selection): Promise<Player[]> => {

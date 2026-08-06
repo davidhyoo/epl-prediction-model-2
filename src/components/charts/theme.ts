@@ -19,6 +19,21 @@ export const CHART_SERIES = [
   CHART.rose,
 ];
 
+/** Well-separated qualitative hues for the title-race chart (up to ~10 lines
+ *  that must stay distinguishable regardless of the clubs' brand colours). */
+export const RACE_COLORS = [
+  "hsl(255 85% 66%)", // indigo
+  "hsl(190 90% 45%)", // cyan
+  "hsl(35 92% 52%)", // amber
+  "hsl(322 82% 60%)", // pink
+  "hsl(142 66% 45%)", // green
+  "hsl(280 70% 66%)", // violet
+  "hsl(12 82% 58%)", // red-orange
+  "hsl(210 90% 58%)", // blue
+  "hsl(48 90% 50%)", // gold
+  "hsl(168 72% 42%)", // teal
+];
+
 /** Inline style for Recharts <Tooltip contentStyle> — uses CSS vars (valid here). */
 export const tooltipContentStyle: React.CSSProperties = {
   background: "hsl(var(--popover))",

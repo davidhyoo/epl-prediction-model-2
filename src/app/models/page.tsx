@@ -1,8 +1,8 @@
 import { PageHeader } from "@/components/page-header";
 import { Badge } from "@/components/ui/badge";
 import { StatCard } from "@/components/stat-card";
-import { ModelsExplorer } from "@/components/models-explorer";
-import { getSelection, getModels, getSummary } from "@/lib/data";
+import { ModelsWorkbench } from "@/components/models-workbench";
+import { getSelection, getModels, getSummary, getRace } from "@/lib/data";
 import { pct } from "@/lib/format";
 import type { SearchParams } from "@/lib/league";
 
@@ -15,7 +15,11 @@ export default async function ModelsPage({
 }) {
   const sp = await searchParams;
   const sel = await getSelection(sp);
-  const [models, summary] = await Promise.all([getModels(sel), getSummary(sel)]);
+  const [models, summary, race] = await Promise.all([
+    getModels(sel),
+    getSummary(sel),
+    getRace(sel),
+  ]);
   const best = models.leaderboard.find((m) => m.rank === 1) ?? models.leaderboard[0];
   const evaluated = models.meta.evaluated;
 
@@ -23,17 +27,23 @@ export default async function ModelsPage({
     <div className="container-page space-y-6 py-8">
       <PageHeader
         eyebrow={`${summary.league.name} · ${summary.season.label}`}
-        title="Model leaderboard"
-        description="Six models predict every fixture independently before kickoff; once real results arrive they are scored on accuracy, log loss, Brier score and calibration. No result ever leaks into a prediction it is later judged on."
+        title="Models & predictions"
+        description="Two layers of prediction: six models price every fixture (win/draw/loss), and a Monte-Carlo simulation turns those edges into each club's championship probability. Switch between the per-game leaderboard and the season-long title race below."
         actions={<Badge variant="outline">{evaluated.toLocaleString()} matches evaluated</Badge>}
       />
 
       <div className="grid gap-3 sm:grid-cols-3">
         <StatCard
-          label="Best model"
+          label="Best per-game model"
           value={evaluated > 0 ? best.name : "—"}
           sub={evaluated > 0 && best.accuracy != null ? `${pct(best.accuracy, 1)} accuracy` : "Awaiting results"}
           accent="success"
+        />
+        <StatCard
+          label="Projected champion"
+          value={summary.champion ? summary.champion.name : "—"}
+          sub={summary.champion ? `${summary.champion.probability.toFixed(1)}% title probability` : "Season not started"}
+          accent="primary"
         />
         <StatCard
           label="Matches evaluated"
@@ -41,15 +51,9 @@ export default async function ModelsPage({
           sub={evaluated > 0 ? "Backtested, leakage-free" : "Season not started"}
           accent="info"
         />
-        <StatCard
-          label="Models compared"
-          value={models.leaderboard.length}
-          sub="Baselines → ensemble"
-          accent="primary"
-        />
       </div>
 
-      <ModelsExplorer models={models} />
+      <ModelsWorkbench models={models} race={race} champion={summary.champion} />
 
       <div className="rounded-xl border border-border bg-card/50 p-5 text-sm text-muted-foreground">
         <h2 className="mb-2 text-sm font-semibold text-foreground">How the leaderboard stays honest</h2>
