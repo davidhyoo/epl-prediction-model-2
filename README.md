@@ -90,10 +90,16 @@ Every page is league- and season-aware (state lives in the URL as
   Click through to a **player profile** with a stat table and attribution.
 - **Rankings** — eight ranking views: championship odds, team strength, recent
   form, attack, defence, squad strength, model confidence and momentum.
-- **Models** — the model **leaderboard** ranked by accuracy, with log-loss,
-  Brier score, average confidence, calibration (ECE), games evaluated and the
-  current ensemble weights. For the unplayed 2026-27 season these are
-  intentionally blank until real results exist to score against.
+- **Models** — a two-layer prediction workbench split into tabs. **Per-game
+  models** shows the six-classifier leaderboard ranked by accuracy, with
+  log-loss, Brier score, average confidence, calibration (ECE), games evaluated
+  and the current ensemble weights. **Final winner** charts the **title race** —
+  one line per club tracing how each team's championship probability has evolved
+  matchday by matchday, wide-open early and sharpening toward the eventual
+  champion (see [The title-race timeline](#the-title-race-timeline)). For the
+  unplayed 2026-27 season the leaderboard is intentionally blank until real
+  results exist to score against, and the title race appears once matches are
+  played.
 - **Methodology** — a plain-English walk-through of the eight pipeline stages,
   the models, the leakage-safety guarantees and the self-improvement loop.
 - **Refresh data button** — rebuilds all data from the newest public sources
@@ -178,8 +184,8 @@ npm run ml:evaluate         # stage 8 (+ publish JSON, incl. EPL assist enrichme
 ### Tests / lint
 
 ```bash
-npm test          # vitest — 79 frontend tests
-npm run test:py   # pytest  — 48 pipeline tests
+npm test          # vitest — 83 frontend tests
+npm run test:py   # pytest  — 52 pipeline tests
 npm run lint      # eslint
 ```
 
@@ -230,7 +236,7 @@ epl-prediction-model-2/
 ├─ public/
 │  ├─ data/                      # ← the frontend reads THIS
 │  │  ├─ index.json              # dataset catalogue + default selection
-│  │  └─ {league}/{season}/      # summary, standings, matches, models, clubs, players, rankings
+│  │  └─ {league}/{season}/      # summary, standings, matches, models, clubs, players, rankings, race
 │  └─ headshots/{league}/        # committed player headshots (epl/, laliga/)
 ├─ tests/                        # vitest suite (format, model-meta, data-integrity, probability-bar)
 ├─ .env.example
@@ -257,7 +263,7 @@ ingest → (sources) → features → train → predict → simulate → players
 | 3 | **`club_features.py`** | A single chronological engine walks every match in date order and emits, for each fixture, a feature vector computed **only from matches that kicked off before it**: Elo gap, home advantage, recent form, attack/defence rates, shots-on-target trend, rest days and head-to-head. Elo is grown from real results and regressed 25% toward 1500 across each summer break. See [leakage safety](#feature-engineering--leakage-safety). |
 | 4 | **`club_train.py`**    | Fit the learners on the **training corpus only**: multinomial **logistic regression**, **random forest**, **XGBoost** (falls back to sklearn gradient boosting if xgboost isn't installed) and the auxiliary binary **draw model** used by the Elo baseline. Artifacts saved to `ml/models/{league}-{season}/*.joblib` + `meta.json`. Training is the only reusable step, so it is skipped on refresh unless `--retrain` is passed. |
 | 5 | **`club_predict.py`**  | Score the whole target schedule with every model, blend them into the **ensemble**, pick the predicted outcome + confidence, and attach the **top-5 contributing factors** (from model coefficients / feature importances) for the explanation modal. Also computes per-club team-strength snapshots. |
-| 6 | **`club_simulate.py`** | **Monte-Carlo** the rest of the season (8,000 runs by default): completed matches are fixed to their real result; each remaining fixture is sampled from an independent-Poisson score model driven by the current Elo gap. Produces title / UCL / Europa / relegation probabilities, expected points and the full finishing-position distribution. Mathematically-eliminated clubs are **hard-zeroed** (an eliminated side has exactly 0% title chance). |
+| 6 | **`club_simulate.py`** | **Monte-Carlo** the rest of the season (8,000 runs by default): completed matches are fixed to their real result; each remaining fixture is sampled from an independent-Poisson score model driven by the current Elo gap. Produces title / UCL / Europa / relegation probabilities, expected points and the full finishing-position distribution. Mathematically-eliminated clubs are **hard-zeroed** (an eliminated side has exactly 0% title chance). It also builds the **title-race timeline** (`title_race_timeline`, 4,000 runs per matchday) that powers the Models → Final winner chart — see [The title-race timeline](#the-title-race-timeline). |
 | 7 | **`club_players.py`**  | Build each club's squad from the cached Wikipedia rosters, credit goals from the parsed scorers (excluding own goals), and compute a transparent player **rating** from goals, position and squad role. |
 | 8 | **`club_evaluate.py`** | The **self-improvement / backtest** step. For the validation season it grades every completed prediction against the real result, computes accuracy, log-loss, Brier score and calibration (ECE) per model, **re-ranks** the leaderboard and sets the ensemble weights ∝ 1/log-loss (better models get more say). It also invokes `club_fpl.py` to enrich EPL players with real assists/minutes/cards. Then it **publishes** every `public/data/{league}/{season}/*.json` and the top-level `index.json`. For the unplayed 2026-27 season it publishes blank metrics (nothing to score yet). |
 
@@ -306,6 +312,39 @@ matches, re-ranks them by accuracy, and updates the ensemble weights from their
 log-losses — so as more of a season is played (and you hit Refresh), the blend
 automatically shifts toward whichever models are actually calibrated for that
 league/season. Persistently weak models sink down the leaderboard, visibly.
+
+---
+
+## The title-race timeline
+
+The six models above answer a **per-game** question — who wins *this* fixture.
+The Models → **Final winner** tab answers the **season-long** one: who lifts the
+trophy. It is driven by `race.json`, produced by `title_race_timeline()` in
+`club_simulate.py`.
+
+**How it's built.** For every past matchday *k* (0 = pre-season priors, up to the
+last completed round) the simulation replays the whole season **as it looked at
+that point in time**:
+
+- **Points already banked** — every match with round ≤ *k* that is completed —
+  are fixed to their real results.
+- **Every other fixture** is simulated from the independent-Poisson score model,
+  exactly as in the headline sim (4,000 seasons per checkpoint for speed).
+- Crucially, each club's Elo rating is **frozen to matchday *k*** (the pre-match
+  rating of its next unplayed fixture). An early-season forecast therefore
+  *can't* peek at later form — which is exactly why the lines start uncertain and
+  converge as real results land.
+- Clubs that are **mathematically eliminated** at that checkpoint are hard-zeroed,
+  and the champion share of the 4,000 simulated tables becomes each club's title
+  probability at that matchday.
+
+The result is one probability line per club over the whole season. The chart
+(`src/components/charts/title-race-chart.tsx`) highlights the genuine contenders
+(by peak probability) in colour with a clickable legend, draws the also-rans as
+faint context lines, and lets you isolate any club. `race.json` is regenerated
+on **every** refresh, so the title race always reflects the newest results (a
+pre-season dataset with no completed matches ships an empty timeline until games
+are played).
 
 ---
 
@@ -469,7 +508,7 @@ unmapped club).
 
 **127 tests total**, all green, split across the two toolchains:
 
-### Frontend — Vitest (`npm test`) — 79 tests
+### Frontend — Vitest (`npm test`) — 83 tests
 
 - `tests/format.test.ts` — percentage/odds/label formatting helpers.
 - `tests/model-meta.test.ts` — model registry ordering & metadata.
@@ -479,11 +518,14 @@ unmapped club).
   asserts: 20 clubs / 380 matches, probabilities that sum to 1, **no leakage**
   (upcoming games carry no result), consistent grading, valid standings maths,
   season-odds in `[0,1]` with title odds summing to ~1, a correctly-ranked model
-  leaderboard, calibration bins in range, well-formed & attributed headshots, and
-  all eight ranking views. Preseason (2026-27) vs validation (2025-26) datasets
-  are checked with the appropriate expectations.
+  leaderboard, calibration bins in range, well-formed & attributed headshots,
+  all eight ranking views, and a coherent **title-race timeline** (`race.json`:
+  20 clubs, series aligned to the checkpoint axis, values in `[0,100]`, clubs
+  ordered by peak, per-checkpoint probabilities summing to ~100, and the
+  highest-finishing club matching the projected champion). Preseason (2026-27) vs
+  validation (2025-26) datasets are checked with the appropriate expectations.
 
-### Pipeline — pytest (`npm run test:py`) — 48 tests
+### Pipeline — pytest (`npm run test:py`) — 52 tests
 
 - `test_club_modeling.py` — Elo baseline (rows sum to 1, monotonic in rating gap,
   home-advantage tie-break, draw-model coupling), ensemble blending, and the
@@ -496,7 +538,9 @@ unmapped club).
   grammar (penalties, own goals, stoppage time, multi-goal players), and the
   football-data CSV parser (stats + **normalised** market odds).
 - `test_club_simulate.py` — standings accumulator maths, expected-goals ordering,
-  valid probability distributions, and the **"eliminated ⇒ 0% title"** guarantee.
+  valid probability distributions, the **"eliminated ⇒ 0% title"** guarantee, and
+  the **title-race timeline** (empty before any results, a valid distribution at
+  every matchday checkpoint, convergence to the actual champion, and determinism).
 - `test_club_fpl.py` — the real-assists enrichment: surname + first-initial name
   matching, the "did the player actually feature" gate, the La-Liga no-op, and the
   pre-season gate that stops an unstarted season inheriting last season's totals.

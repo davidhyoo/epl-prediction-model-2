@@ -53,7 +53,7 @@ const STAGES = [
     icon: RefreshCw,
     name: "Simulate",
     file: "ml/club_simulate.py",
-    text: "Runs the remaining fixtures through a 10,000-season Monte-Carlo simulation to estimate every club's chance of winning the title, qualifying for the Champions League or Europa League, and being relegated.",
+    text: "Runs the remaining fixtures through an 8,000-season Monte-Carlo simulation to estimate every club's chance of winning the title, qualifying for the Champions League or Europa League, and being relegated. It also replays a lighter 4,000-season sim at every past matchday — with each club's rating frozen to that point — to build the title-race timeline the Models page charts, so you can watch the projected champion emerge as results land.",
   },
   {
     icon: ShieldCheck,
