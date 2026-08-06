@@ -2,14 +2,17 @@ import { describe, it, expect } from "vitest";
 import {
   pct,
   pctNum,
+  oddsPct,
+  oddsWidth,
   formatNumber,
   formatMatchDate,
   formatDateTime,
   readableColor,
   initials,
   stringToHue,
-  STAGE_ORDER,
-  STAGE_SHORT,
+  POSITION_LABEL,
+  RANKING_META,
+  RANKING_ORDER,
   OUTCOME_LABEL,
 } from "@/lib/format";
 
@@ -35,6 +38,32 @@ describe("pctNum", () => {
   });
 });
 
+describe("oddsPct (0-1 season odds → percent)", () => {
+  it("formats mid/large odds with no decimals", () => {
+    expect(oddsPct(0.4329)).toBe("43%");
+    expect(oddsPct(1)).toBe("100%");
+    expect(oddsPct(0.1)).toBe("10%");
+  });
+
+  it("keeps one decimal for small non-zero odds so they don't vanish", () => {
+    expect(oddsPct(0.032)).toBe("3.2%");
+    expect(oddsPct(0.001)).toBe("0.1%");
+    expect(oddsPct(0)).toBe("0%");
+  });
+});
+
+describe("oddsWidth", () => {
+  it("scales a fraction to a 0-100 bar width", () => {
+    expect(oddsWidth(0.5)).toBe(50);
+    expect(oddsWidth(1)).toBe(100);
+  });
+
+  it("enforces a visible minimum for tiny odds", () => {
+    expect(oddsWidth(0)).toBe(1.5);
+    expect(oddsWidth(0.001, 2)).toBe(2);
+  });
+});
+
 describe("formatNumber", () => {
   it("adds thousands separators", () => {
     expect(formatNumber(1248)).toBe("1,248");
@@ -44,14 +73,14 @@ describe("formatNumber", () => {
 
 describe("formatMatchDate / formatDateTime", () => {
   it("renders UTC-stable date parts", () => {
-    const parts = formatMatchDate("2026-06-27T18:00:00Z");
-    expect(parts.date).toBe("Jun 27");
+    const parts = formatMatchDate("2026-08-15T18:00:00Z");
+    expect(parts.date).toBe("Aug 15");
     expect(parts.time).toBe("18:00");
     expect(parts.weekday).toBe("Sat");
   });
 
   it("renders a long UTC date", () => {
-    expect(formatDateTime("2026-07-19T00:00:00Z")).toBe("July 19, 2026");
+    expect(formatDateTime("2026-08-15T00:00:00Z")).toBe("August 15, 2026");
   });
 });
 
@@ -61,7 +90,7 @@ describe("readableColor", () => {
   });
 
   it("darkens near-white colours so they stay legible", () => {
-    expect(readableColor("#ffffff")).toBe("#334155");
+    expect(readableColor("#ffffff")).toBe("#64748b");
   });
 
   it("returns the input unchanged when it is not a 6-digit hex", () => {
@@ -71,30 +100,38 @@ describe("readableColor", () => {
 
 describe("initials", () => {
   it("uses first and last name initials", () => {
-    expect(initials("Kylian Mbappe")).toBe("KM");
-    expect(initials("Vinicius Junior")).toBe("VJ");
+    expect(initials("Erling Haaland")).toBe("EH");
+    expect(initials("Bukayo Saka")).toBe("BS");
   });
 
   it("falls back to the first two letters for single names", () => {
-    expect(initials("Ronaldinho")).toBe("RO");
+    expect(initials("Rodri")).toBe("RO");
   });
 });
 
 describe("stringToHue", () => {
   it("is deterministic and within [0, 360)", () => {
-    const a = stringToHue("Argentina");
-    const b = stringToHue("Argentina");
+    const a = stringToHue("Arsenal");
+    const b = stringToHue("Arsenal");
     expect(a).toBe(b);
     expect(a).toBeGreaterThanOrEqual(0);
     expect(a).toBeLessThan(360);
   });
 });
 
-describe("stage + outcome constants", () => {
-  it("orders stages from group to final", () => {
-    expect(STAGE_ORDER[0]).toBe("group");
-    expect(STAGE_ORDER[STAGE_ORDER.length - 1]).toBe("final");
-    expect(STAGE_SHORT["round-of-32"]).toBe("R32");
+describe("domain constants", () => {
+  it("labels the four positions", () => {
+    expect(POSITION_LABEL.GK).toBe("Goalkeeper");
+    expect(POSITION_LABEL.FWD).toBe("Forward");
+  });
+
+  it("exposes eight ranking views in order, each with metadata", () => {
+    expect(RANKING_ORDER[0]).toBe("title");
+    expect(RANKING_ORDER).toHaveLength(8);
+    for (const key of RANKING_ORDER) {
+      expect(RANKING_META[key].label).toBeTruthy();
+      expect(["percent", "index", "rating"]).toContain(RANKING_META[key].unit);
+    }
   });
 
   it("labels all three outcomes", () => {

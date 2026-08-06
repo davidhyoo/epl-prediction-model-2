@@ -5,14 +5,16 @@ import path from "node:path";
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: "jsdom",
+    // A plain Node environment keeps the suite fast and avoids jsdom's
+    // ESM/CJS interop issues in this toolchain. The one component test renders
+    // to static markup with react-dom/server, so no DOM is required.
+    environment: "node",
     globals: true,
     include: ["tests/**/*.test.{ts,tsx}", "src/**/*.test.{ts,tsx}"],
-    setupFiles: ["tests/setup.ts"],
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(process.cwd(), "./src"),
     },
   },
 });
