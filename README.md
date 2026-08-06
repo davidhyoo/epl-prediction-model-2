@@ -26,6 +26,8 @@ reproducible, **offline-first** Python machine-learning pipeline.
 - [Environment variables](#environment-variables)
 - [Running the app](#running-the-app)
 - [The data pipeline](#the-data-pipeline)
+- [Architecture & components (the "agents")](#architecture--components-the-agents)
+- [The refresh system (deep dive)](#the-refresh-system-deep-dive)
 - [Data sources](#data-sources)
 - [ML methodology](#ml-methodology)
 - [Testing, linting & building](#testing-linting--building)
@@ -337,9 +339,25 @@ tracks the live state automatically.
 
 ## The data pipeline
 
-The pipeline is a classic staged data-engineering flow. Each stage reads the previous
-stage's artifacts from `data/` and writes its own, ending in the cached JSON the app
-consumes.
+The pipeline is a classic staged data-engineering flow. Each stage is a **standalone
+module** that reads the previous stage's artifacts from `data/` and writes its own,
+ending in the cached JSON the app consumes. `pipeline.py` simply imports and runs the six
+stages in order; any stage can also be run on its own (`python ml/<stage>.py`) or resumed
+with `python ml/pipeline.py --from <stage>`.
+
+```
+ NETWORK — opt-in, key-less HTTPS               OFFLINE · DETERMINISTIC (SEED = 2026)
+┌─────────────────────────────────┐   ┌───────────────────────────────────────────────────┐
+│ refresh.py  (orchestrator)      │   │ 1 ingest → 2 transform → 3 features → 4 train      │
+│  ├─ 5 CC0 source files  ────────┼──▶│                                     → 5 predict     │
+│  ├─ fetch_stats.py (every run)  │   │                                     → 6 evaluate    │
+│  └─ fetch_players.py (opt-in)   │   └───────────────────────┬───────────────────────────┘
+└─────────────────────────────────┘                          │
+     data/source/  ──▶  data/raw/  ──▶  data/processed/  ──▶  ml/models/  ──▶  ml/outputs/
+                                                                                    │
+                                                                                    ▼
+                                                     public/data/*.json  ← what the frontend reads
+```
 
 | # | Stage | Script | Output |
 | --- | --- | --- | --- |
@@ -347,12 +365,305 @@ consumes.
 | 2 | **Transform** | `transform.py` | Validated & cleaned tables → `data/processed/` |
 | 3 | **Features** | `features.py` | Leakage-safe feature matrix (rolling form, Elo, xG, rest, squad strength) |
 | 4 | **Train** | `train.py` | Logistic Regression, Random Forest, XGBoost, draw model → `ml/models/` |
-| 5 | **Predict** | `predict.py` | Per-model probabilities, top factors, rankings, 20k-run Monte Carlo odds |
-| 6 | **Evaluate** | `evaluate.py` | Backtest on completed matches, re-weight ensemble, assemble `public/data/*.json` |
+| 5 | **Predict** | `predict.py` | Per-model probabilities, top factors, rankings, 20k-run Monte Carlo odds → `ml/outputs/` + `teams/players/rankings/methodology.json` |
+| 6 | **Evaluate** | `evaluate.py` | Backtest on completed matches, re-weight ensemble, assemble `matches/models/summary/bracket/search.json` |
 
 **Cached outputs (`public/data/`):** `summary.json`, `teams.json`, `matches.json`,
 `players.json`, `models.json`, `rankings.json`, `bracket.json`, `methodology.json`,
-`search.json`. A copy is also mirrored to `data/cached/`.
+`search.json`. Every `publish()` call writes to `public/data/` **and** mirrors a copy to
+`data/cached/` (both are committed so the app runs with zero setup).
+
+---
+
+## Architecture & components (the "agents")
+
+The project is built from small, single-responsibility modules — think of them as
+cooperating **agents**, each owning one job in the flow. They fall into four groups:
+**(A)** data-acquisition agents (the only code that touches the network), **(B)** the six
+pipeline-stage agents (pure, offline, deterministic), **(C)** shared libraries they all
+build on, and **(D)** the serving agents (the Next.js frontend/backend). Every stage is
+deterministic (`SEED = 2026`): re-running on the same source files reproduces identical
+output.
+
+For each component below: **Role**, what it **Reads**, what it **Writes**, its **Key
+logic**, and its **Failure behavior** (so you know what breaks and where).
+
+### A. Data-acquisition agents — the only parts that hit the network
+
+#### `refresh.py` — refresh orchestrator
+- **Role:** the single entry point behind `npm run data:fetch` and the in-app **Refresh
+  data** button. Re-downloads the CC0 sources, refreshes real player stats, then runs the
+  whole pipeline so `public/data/*.json` reflects the newest real results. Fully covered
+  in [The refresh system](#the-refresh-system-deep-dive).
+- **Reads:** public GitHub raw URLs (CC0). **Writes:** `data/source/*`, then triggers the
+  pipeline. **Failure behavior:** validate-before-swap + atomic replace + candidate-URL
+  fallback; on any download failure it keeps the committed cache and prints a visible
+  `WARNING` instead of failing silently.
+
+#### `fetch_stats.py` — real per-player tournament stats
+- **Role:** derives **real** WC-2026 per-player stats (appearances, minutes, goals,
+  yellow/red cards, and for goalkeepers clean sheets / goals conceded) from the public
+  English-Wikipedia **match articles**, which transcribe the official FIFA match reports
+  (goalscorer lists + starting-XI/substitution tables). Runs on **every** refresh because
+  these numbers change after each match.
+- **Reads:** MediaWiki API (no key). **Writes:** `data/source/player_stats_wikipedia.json`.
+- **Key logic:** each scorer/lineup entry is a `[[wiki article title]]` — the exact title
+  stored on every squad player by `fetch_players.py` — so the join back onto the squad is
+  **exact, not fuzzy**. Assists/xG/shots are **not** in any free source and are left null
+  (never fabricated).
+- **Failure behavior:** non-fatal — a network hiccup keeps the committed stats cache and
+  the pipeline still runs. `--offline` validates the cache without any network.
+
+#### `fetch_players.py` — real squads + free headshots (opt-in)
+- **Role:** downloads the real, current 26-player squad for each of the 48 nations from
+  the maintained Wikipedia `{{nat fs … player}}` templates, plus a **freely-licensed**
+  headshot from Wikimedia Commons where one exists.
+- **Reads:** MediaWiki APIs (no key, polite/rate-limited). **Writes:**
+  `data/source/squads_wikipedia.json`, `public/headshots/<CODE>-<NN>.jpg`, and
+  `data/source/headshot_credits.json` (per-photo author + licence + source page).
+- **Key logic:** only **free** licences (PD/CC0/CC BY/CC BY-SA) are kept; anything else
+  falls back to the app's initials avatar. Idempotent — existing headshots aren't
+  re-downloaded unless `--force-images`.
+- **Failure behavior:** opt-in (`npm run data:players` / `--players`); on failure the
+  committed squad cache is kept. Because squads change rarely, this is **not** run on a
+  normal refresh.
+
+### B. Pipeline-stage agents — pure, offline, deterministic
+
+#### 1. `ingest.py` — raw data ingestion
+- **Reads:** cached CC0 sources via `sources.py` + the 48-team field in `common.py`.
+- **Writes:** `data/raw/{teams,history,wc_matches,squads,qualification}.json`.
+- **Key logic:** builds the training history (every men's international up to the day
+  **before** the opener — leakage-free), the real 2026 schedule/results, real group tables
+  + the Round-of-32 bracket + a knockout tree with `W##/L##` feeders. A match's status is
+  derived from **whether a real result exists**, so the app tracks the live tournament.
+- **Failure behavior:** if a squad cache is missing it falls back to deterministically
+  generated squads so the pipeline still completes.
+
+#### 2. `transform.py` — validation, cleaning & transformation
+- **Reads:** `data/raw/`. **Writes:** `data/processed/`.
+- **Key logic:** the pipeline's **data-validation gate** — schema, range and
+  referential-integrity checks, and a per-stage match-count check (72 group + 16 R32 + …
+  = 104). Threads through knockout metadata (`winner`, `pens`, `aet`). Fails **loudly**
+  (`ValidationError`) if the raw data is malformed rather than shipping bad data forward.
+- **Failure behavior:** raises on malformed data — an intentional hard stop.
+
+#### 3. `features.py` — feature engineering
+- **Reads:** `data/processed/`. **Writes:** the leakage-safe feature matrices
+  (`train.json`, `wc_features.json`) + `team_strength.json`.
+- **Key logic:** every feature is computed from information available **before kick-off**
+  (rolling Elo, form, goals for/against, xG trend, rest days, head-to-head). Real Elo is
+  grown by walking the entire history from a common 1500 baseline, so each 2026 side's
+  rating is *earned* from real results, never hand-set. Elo is snapshotted at each
+  completed stage (feeds the champion-odds trend).
+
+#### 4. `train.py` — model training
+- **Reads:** the training matrix (real internationals only). **Writes:** `ml/models/`
+  (joblib artifacts + `meta.json` with feature importances).
+- **Key logic:** trains Logistic Regression (standardised, multinomial), Random Forest,
+  XGBoost, and a fitted draw model for the Elo baseline. **No World Cup match is ever in
+  training.** A time-based split prints honest validation metrics; final models refit on
+  the full history.
+
+#### 5. `predict.py` — prediction generation
+- **Reads:** trained models + feature matrix. **Writes:** `ml/outputs/predictions.json`
+  and publishes `teams.json`, `players.json`, `rankings.json`, `methodology.json`.
+- **Key logic:** per-match home/draw/away probabilities for **every** model, the top-5
+  **contributing factors** for the explanation modal, a vectorised **20k-run Monte-Carlo**
+  championship simulation that **fixes every completed knockout result** and simulates only
+  what's left (eliminated teams → 0%), projection of the not-yet-scheduled third-place/final
+  matches from their most-likely participants, and realistic per-player stat allocation.
+
+#### 6. `evaluate.py` — backtest, self-improvement & final assembly
+- **Reads:** `ml/outputs/predictions.json` + `teams/players.json`. **Writes:**
+  `matches.json`, `models.json`, `summary.json`, `bracket.json`, `search.json`.
+- **Key logic:** scores each model on **completed matches only**, derives ensemble weights
+  **∝ 1 / log-loss** (the self-improvement loop), re-ranks models and flags
+  under-performers, blends the weighted ensemble, and emits `resultWinner`/`aet` so
+  knockout ties settled in extra time / on penalties show the real advancing side while the
+  models stay scored on the regulation-time 1X2 outcome (leakage-free).
+
+#### `pipeline.py` — stage orchestrator
+- **Role:** runs `ingest → transform → features → train → predict → evaluate` in order;
+  `--from <stage>` resumes partway. Each stage is imported and its `main()` called, so the
+  flow is reproducible and restartable.
+
+### C. Shared libraries (used by every stage)
+
+| Module | What it provides |
+| --- | --- |
+| `common.py` | Constants, `SEED`, directory paths, Elo/expected-goals math, JSON IO + `publish()` (writes `public/data/` **and** `data/cached/`), and the real 48-team field / group draw. |
+| `sources.py` | Pure parsers for the cached source files (openfootball Football.TXT group + knockout parsing incl. `a.e.t.`/penalties, martj42 CSVs, the Wikipedia squad/stat caches). **No network here** — parsing only. |
+| `modeling.py` | The analytic Elo-baseline probability model, ensemble blending, and the probabilistic metrics: accuracy, multiclass log-loss, Brier, calibration bins + Expected Calibration Error (ECE). Class order is fixed everywhere: `0 = home, 1 = draw, 2 = away`. |
+| `tournament.py` | Standings/qualification logic + the Monte-Carlo bracket simulator, which is *stateful about reality*: already-played knockout matches are fixed to their real winner and only the rest are simulated. |
+
+### D. Serving agents (frontend + backend)
+
+| Component | Role |
+| --- | --- |
+| `src/app/api/refresh/route.ts` | The `POST /api/refresh` endpoint that spawns `ml/refresh.py`, guards execution, and revalidates pages. See the deep dive below. |
+| `src/components/refresh-data-button.tsx` | The client refresh UI: the `useDataRefresh` hook, the nav **`DataFreshnessControl`** pill, the methodology-page **`RefreshDataButton`**, and the `RefreshToast`. |
+| `src/lib/` | The shared data contract (`types.ts`) and the loaders that read `public/data/*.json` on the server. **The frontend never computes predictions at request time** — it only reads pre-built JSON, which is what keeps pages fast. |
+
+---
+
+## The refresh system (deep dive)
+
+Keeping the dashboard aligned with the **actual, latest** results is the whole point of
+the app, so the refresh path is built to be **safe, self-healing, and debuggable**. This
+section explains exactly how it is constructed, layer by layer, and — most importantly —
+**how to diagnose it when a refresh doesn't produce the results you expect.**
+
+### End-to-end flow
+
+```
+[User clicks "Data · <date>" pill  or  "Refresh data" button]
+                     │  (src/components/refresh-data-button.tsx → useDataRefresh)
+                     ▼
+        POST /api/refresh[?mode=offline]
+                     │  (src/app/api/refresh/route.ts — Node runtime)
+                     ▼
+   guards: enabled? ──no──▶ 403     already running? ──yes──▶ 409
+                     │
+                     ▼  spawn(PYTHON_BIN, ["ml/refresh.py", …], {shell:false})
+        ┌──────────────────────────────────────────────┐
+        │ ml/refresh.py                                 │
+        │  1. refresh_sources()  → download 5 CC0 files │
+        │       · candidate-URL fallback + validate     │
+        │       · atomic swap, or keep cache + WARNING  │
+        │  2. fetch_stats.py     → real player stats    │
+        │  3. pipeline.run()     → rebuild public/data/ │
+        └───────────────────────┬──────────────────────┘
+                     │ exit 0 + stdout/stderr (last 12 lines returned as `log`)
+                     ▼
+        route.ts: revalidatePath("/", "layout")   ← purges the full route cache
+                     │
+                     ▼
+        useDataRefresh: router.refresh()          ← re-fetches server components
+                     │
+                     ▼
+        Toast: "Live data reloaded in Ns."  →  whole dashboard shows new data
+```
+
+### Layer 1 — the button (client): `refresh-data-button.tsx`
+
+- Two entry points share one hook (`useDataRefresh`): the compact **`DataFreshnessControl`**
+  pill in the top nav (present on **every** page, showing a live dot + the date of the
+  latest loaded result) and the full-width **`RefreshDataButton`** on the Methodology page.
+- The hook does `POST /api/refresh`, tracks four states (`idle → running → done | error`),
+  and shows a `RefreshToast`. A `runningRef` guard makes it **single-flight** on the client
+  so double-clicks can't fire two requests.
+- On success it calls **`router.refresh()`**, which re-fetches the (server-rendered)
+  components so the new JSON is reflected everywhere without a reload.
+- The pill/button is only interactive when the server says the endpoint is **enabled**
+  (`enabled` prop). When disabled it renders as a static, non-clickable status pill and the
+  tooltip tells you how to enable it.
+
+### Layer 2 — the API route (server): `api/refresh/route.ts`
+
+- Runs on the **Node.js runtime** (`export const runtime = "nodejs"`) and is
+  `force-dynamic` (never statically cached), because it shells out to Python.
+- **`refreshEnabled()`** → `NODE_ENV !== "production" || ALLOW_DATA_REFRESH === "1"`.
+  Disabled ⇒ **HTTP 403**. This is why the button works in `npm run dev` but is off in a
+  production build unless you opt in.
+- A module-level **`running` flag** prevents overlapping pipelines ⇒ **HTTP 409** while one
+  is in progress.
+- `?mode=offline` appends `--offline` (rebuild from caches, no network); the default pulls
+  live data first.
+- Python is resolved as **`PYTHON_BIN` → `PYTHON` → `"python"`**. The child is spawned with
+  **`shell: false`** and a fixed, in-repo argument list, so **no user input is ever
+  interpolated** into the command (no shell-injection surface).
+- stdout **and** stderr are captured (capped at 200 KB); a **12-minute timeout** SIGKILLs a
+  hung run. The last **12 non-empty log lines** are returned as `log` in the JSON.
+- Outcomes:
+  - success ⇒ **`revalidatePath("/", "layout")`** (this is what makes the refresh land even
+    in a production build, not just `next dev`) then `{ ok:true, durationMs, mode, log }`.
+  - non-zero exit ⇒ **HTTP 500** `{ ok:false, error:"refresh.py exited with code N", log }`.
+  - can't launch Python ⇒ a friendly **ENOENT** message telling you to install Python or set
+    `PYTHON_BIN`.
+
+### Layer 3 — the worker: `ml/refresh.py`
+
+This is the part that actually fetches data, and it is deliberately defensive:
+
+- **`SOURCES`** is a list of `(candidate_urls, local_filename, min_bytes, marker)` tuples.
+  `candidate_urls` is a **list tried in order** (first that yields a *valid* file wins).
+- **`OPENFOOTBALL_DIRS = ["2026--canada-usa-mexico", "2026--usa"]`** + the `_openfootball()`
+  helper generate those candidates newest-directory-first. **This is the rename-resilience**:
+  when openfootball renamed the 2026 folder, the single old URL 404'd and refresh silently
+  kept stale data — now a rename just falls through to the next candidate. *If it renames
+  again, add the new directory name to the front of this list* (see troubleshooting).
+- **`_fetch_one()`** downloads a candidate, then **validates before touching the real file**:
+  it checks a **minimum byte size** and that a required **marker string** appears in the
+  first 4 KB (a cheap guard against 404 pages / truncated responses). Only a valid download
+  is written to a `.tmp` file and **atomically `os.replace()`-d** into place, so a bad
+  response can never corrupt the committed cache.
+- **`refresh_sources()`** returns `(updated, kept_from_cache)`. If **any** file was served
+  from cache it prints a loud **`WARNING`** (so silent staleness can't recur). It only
+  aborts (`FATAL`) if a file both failed to download **and** has no cached copy at all.
+- Then it runs **`fetch_stats.py`** (every run; non-fatal on failure), optionally
+  **`fetch_players.py`** (`--players`), and finally **`pipeline.run()`** unless
+  `--no-pipeline`.
+
+### Design principles (why it's built this way)
+
+| Principle | How it's enforced |
+| --- | --- |
+| **No keys / no paid services** | Plain HTTPS to public GitHub raw + MediaWiki APIs, stdlib only. |
+| **Never corrupt the cache** | Validate (size + marker) → write `.tmp` → atomic `os.replace()`. |
+| **Offline fallback** | A failed download keeps the committed cache; the pipeline still runs. |
+| **Rename-resilient** | Per-file **candidate-URL list**, newest directory first. |
+| **No silent staleness** | Any cache-kept file prints a visible `WARNING` in the log/toast. |
+| **Safe to expose** | `shell:false`, fixed args, dev-only by default, single-flight, timeout. |
+| **Live without redeploy** | `revalidatePath` + `router.refresh()` update prerendered pages in place. |
+| **Deterministic** | `SEED = 2026` → same sources reproduce identical outputs. |
+
+### Troubleshooting — when a refresh doesn't work
+
+Start by reading the **`log`** the endpoint returns (last 12 lines) or run the script
+directly to see everything: **`python ml/refresh.py`**. Then match the symptom below.
+
+| Symptom | Likely cause | How to confirm & fix |
+| --- | --- | --- |
+| The nav pill is a **static badge** (not clickable) | Endpoint disabled (production build without opt-in) | Expected outside dev. Use `npm run dev`, **or** set `ALLOW_DATA_REFRESH=1`. |
+| **HTTP 403** "In-app refresh is disabled" | Same as above | Same fix. |
+| **HTTP 409** "already in progress" | A refresh is still running (12-min cap) | Wait for it to finish; the single-flight guard is working as intended. |
+| **HTTP 500** "Could not launch Python (ENOENT)" | `python` not on `PATH`, or wrong `PYTHON_BIN` | Run `python --version`. Install Python 3.11+, or set `PYTHON_BIN` to an absolute path (e.g. a venv's `python.exe`). |
+| **HTTP 500** "refresh.py exited with code N" | The script itself errored | Read `log`, then reproduce with `python ml/refresh.py` for the full traceback. Missing deps? `pip install numpy pandas scikit-learn xgboost`. |
+| "**refresh timed out after 720s**" | Very slow network / stalled fetch | Re-run; or run `python ml/refresh.py --offline` (rebuild from caches), or `--no-pipeline` to isolate downloads. |
+| Log shows **"all sources failed — keeping cache"** + `WARNING` | No network **or** the upstream directory/filename moved again | Test a candidate URL directly (see below). If the source **renamed** its folder, add the new name to the front of `OPENFOOTBALL_DIRS` in `ml/refresh.py`. **This exact issue** (openfootball `2026--usa` → `2026--canada-usa-mexico`) is what the candidate-URL fallback now guards against. |
+| Log shows **"too small"** / **"missing marker"** for a source | Upstream file moved or changed format (you fetched a 404/redirect page) | Open the URL in a browser; update the URL, `min_bytes`, or `marker` in `SOURCES`. |
+| **`FATAL: … no cached copy exists`** | First-ever run is offline with an empty `data/source/` | Connect to the internet once to seed the caches, then offline works forever. |
+| Refresh returns **`ok:true`** but the page looks unchanged | (a) Nothing actually changed upstream yet; (b) you ran `?mode=offline`; (c) a stale browser tab | Check the log for `updated` vs `kept`; confirm `public/data/summary.json`'s `asOf`; hard-refresh the tab (`router.refresh()` runs automatically, but a manual reload never hurts). |
+| `npm` / `next` won't start with "**node is not recognized**" | Node.js not on `PATH` (unrelated to the refresh path — Python still works) | Fix Node (e.g. `winget upgrade OpenJS.NodeJS.LTS`) or point at a known-good `node`/`npm`. The Python refresh (`python ml/refresh.py`) is unaffected. |
+
+### Manual diagnostics
+
+```bash
+# 1) Only touch the network — download the 5 CC0 sources, skip the rebuild:
+python ml/refresh.py --no-pipeline
+
+# 2) Prove the pipeline is fine offline (rebuild purely from committed caches):
+python ml/refresh.py --offline
+
+# 3) Check one upstream URL by hand (should be HTTP 200, non-trivial size):
+#    (PowerShell)  Invoke-WebRequest -Method Head <url>
+#    (curl)        curl -I <url>
+#    openfootball 2026 finals, current dir:
+#    https://raw.githubusercontent.com/openfootball/worldcup/master/2026--canada-usa-mexico/cup_finals.txt
+
+# 4) Refresh only the live player stats (isolates the Wikipedia stats agent):
+python ml/fetch_stats.py            # live
+python ml/fetch_stats.py --offline  # validate the cache, no network
+
+# 5) Inspect what the app will show after a rebuild:
+#    public/data/summary.json  → asOf, matchesCompleted/Upcoming, topChampion
+```
+
+**Where to change the source location:** the only place that knows upstream URLs is
+`SOURCES` (and `OPENFOOTBALL_DIRS`) at the top of **`ml/refresh.py`**. Local cache
+filenames in `data/source/` are stable and independent of the remote names, so a source
+move only ever requires editing that one list — nothing downstream changes.
 
 ---
 
@@ -466,7 +777,8 @@ Models are scored with **accuracy**, multiclass **log loss**, **Brier score**, a
   2002 (martj42, CC0), never on 2026 World Cup matches — the training history stops the
   day before the opener.
 - **Predict before scoring.** Every model predicts *all* 104 matches before any real
-  result is read. Only **completed** matches (currently 100) are used for evaluation;
+  result is read. Only **completed** matches (all 104, now that the tournament has
+  finished) are used for evaluation;
   a match counts as completed only when a real result exists in the source data, and
   upcoming matches carry `score: null` in the cached data, so results can't leak into
   the UI either.
@@ -483,7 +795,7 @@ These are **statistical estimates from a reproducible model, not guarantees.**
 ## Testing, linting & building
 
 ```bash
-npm test                                   # 35 Vitest tests
+npm test                                   # 41 Vitest tests
 python -m unittest discover -s ml/tests    # 14 Python tests
 npm run lint                               # ESLint (flat config)
 npm run build                              # production build (58 routes)
