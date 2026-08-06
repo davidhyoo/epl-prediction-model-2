@@ -135,3 +135,148 @@ def simulate(codes: list[str], elo: dict[str, float], completed: list[dict],
             "canWinTitle": bool(can_win),
         }
     return out
+
+
+# --------------------------------------------------------------------------- #
+# Title-race timeline  (how the champion forecast evolves matchday by matchday)
+# --------------------------------------------------------------------------- #
+RACE_N_SIMS = 4000  # lighter than the headline sim: run once per matchday
+
+
+def _title_counts(base_pts: np.ndarray, base_gd: np.ndarray, base_gf: np.ndarray,
+                  rem: list[tuple], n: int, n_sims: int, gen: np.random.Generator,
+                  jitter: np.ndarray) -> np.ndarray:
+    """Vectorised Monte-Carlo → champion counts per club for one checkpoint.
+
+    ``rem`` is a list of ``(home_idx, away_idx, lambda_home, lambda_away)`` for
+    the still-to-play fixtures. We draw every remaining scoreline for all
+    simulated seasons in one shot, scatter-add points/GD/GF onto the banked
+    base standings, rank each simulated table by (pts, GD, GF) and tally the
+    winner. Much faster than a Python double loop, so we can afford to re-run it
+    for every matchday of the season.
+    """
+    if not rem:
+        # nothing left to play → the current table is final (deterministic)
+        key = base_pts * 1e6 + base_gd * 1e3 + base_gf + jitter
+        counts = np.zeros(n)
+        counts[int(np.argmax(key))] = n_sims
+        return counts
+
+    hi = np.array([r[0] for r in rem]); ai = np.array([r[1] for r in rem])
+    lh = np.array([r[2] for r in rem]); la = np.array([r[3] for r in rem])
+
+    hg = gen.poisson(lh, size=(n_sims, len(rem)))
+    ag = gen.poisson(la, size=(n_sims, len(rem)))
+    hpts = np.where(hg > ag, 3, np.where(hg == ag, 1, 0))
+    apts = np.where(ag > hg, 3, np.where(hg == ag, 1, 0))
+    gdiff = hg - ag
+
+    pts = np.tile(base_pts, (n_sims, 1)).astype(float)
+    gd = np.tile(base_gd, (n_sims, 1)).astype(float)
+    gf = np.tile(base_gf, (n_sims, 1)).astype(float)
+    rows = np.arange(n_sims)[:, None]
+    np.add.at(pts, (rows, hi[None, :]), hpts)
+    np.add.at(pts, (rows, ai[None, :]), apts)
+    np.add.at(gd, (rows, hi[None, :]), gdiff)
+    np.add.at(gd, (rows, ai[None, :]), -gdiff)
+    np.add.at(gf, (rows, hi[None, :]), hg)
+    np.add.at(gf, (rows, ai[None, :]), ag)
+
+    key = pts * 1e6 + gd * 1e3 + gf + jitter[None, :]
+    champ_idx = key.argmax(axis=1)
+    return np.bincount(champ_idx, minlength=n).astype(float)
+
+
+def _elo_snapshotter(codes: list[str], idx: dict[str, int], ordered: list[dict]):
+    """Return ``elo_at(code, k)`` = a club's Elo *after* matchday ``k``.
+
+    We use the pre-match Elo stored on the club's first fixture with round > k
+    (its next game), which equals its current rating once every game up to and
+    including matchday k has been played. Freezing the rating at the checkpoint
+    is what makes early-season forecasts appropriately uncertain and late-season
+    ones sharpen toward the eventual champion.
+    """
+    events: dict[str, list[tuple]] = {c: [] for c in codes}
+    for m in ordered:
+        h, a = m["home"], m["away"]
+        order_key = m.get("datetime") or m.get("date") or ""
+        if h in idx:
+            events[h].append((m["round"], order_key, m.get("_elo_home", 1500.0)))
+        if a in idx:
+            events[a].append((m["round"], order_key, m.get("_elo_away", 1500.0)))
+    for c in events:
+        events[c].sort(key=lambda e: (e[0], e[1]))
+
+    def elo_at(code: str, k: int) -> float:
+        evs = events.get(code) or []
+        for rnd, _, elo in evs:
+            if rnd > k:
+                return float(elo)
+        return float(evs[-1][2]) if evs else 1500.0
+
+    return elo_at
+
+
+def title_race_timeline(codes: list[str], ordered: list[dict], *,
+                        n_sims: int = RACE_N_SIMS) -> dict:
+    """Champion probability for every club at every matchday checkpoint.
+
+    Returns ``{"checkpoints": [0..L], "playedAt": [...], "maxRound": R,
+    "lastCompletedRound": L, "series": {code: [prob0..1, ...]}}``. For a season
+    with no completed matches yet (pre-season) the timeline is empty — there is
+    nothing to trace until real results arrive.
+    """
+    codes = [c for c in codes if not c.startswith("~")]
+    idx = {c: i for i, c in enumerate(codes)}
+    n = len(codes)
+    empty = {"checkpoints": [], "playedAt": [], "maxRound": 0,
+             "lastCompletedRound": 0, "series": {c: [] for c in codes}}
+    if n == 0:
+        return empty
+
+    in_field = [m for m in ordered if m["home"] in idx and m["away"] in idx]
+    completed = [m for m in in_field if m.get("status") == "completed"]
+    if not completed:
+        return empty
+
+    max_round = max(m["round"] for m in in_field)
+    last_completed_round = max(m["round"] for m in completed)
+
+    gen = np.random.default_rng(SEED)
+    jitter = gen.random(n) * 1e-6
+    elo_at = _elo_snapshotter(codes, idx, ordered)
+
+    checkpoints = list(range(0, last_completed_round + 1))
+    series: dict[str, list[float]] = {c: [] for c in codes}
+    played_at: list[int] = []
+
+    for k in checkpoints:
+        fixed = [m for m in completed if m["round"] <= k]
+        remaining = [m for m in in_field
+                     if not (m.get("status") == "completed" and m["round"] <= k)]
+        played_at.append(len(fixed))
+
+        base = _base_standings(codes, fixed)
+        base_pts = np.array([base[c]["pts"] for c in codes], dtype=float)
+        base_gd = np.array([base[c]["gf"] - base[c]["ga"] for c in codes], dtype=float)
+        base_gf = np.array([base[c]["gf"] for c in codes], dtype=float)
+
+        elo_k = {c: elo_at(c, k) for c in codes}
+        rem = [(idx[m["home"]], idx[m["away"]],
+                *_expected_goals(elo_k[m["home"]], elo_k[m["away"]]))
+               for m in remaining]
+        counts = _title_counts(base_pts, base_gd, base_gf, rem, n, n_sims, gen, jitter)
+
+        rem_count: dict[str, int] = {c: 0 for c in codes}
+        for m in remaining:
+            rem_count[m["home"]] += 1
+            rem_count[m["away"]] += 1
+        lead_now = float(base_pts.max())
+        for c in codes:
+            can_win = base[c]["pts"] + 3 * rem_count[c] >= lead_now
+            p = float(counts[idx[c]] / n_sims) if can_win else 0.0
+            series[c].append(round(p, 4))
+
+    return {"checkpoints": checkpoints, "playedAt": played_at,
+            "maxRound": max_round, "lastCompletedRound": last_completed_round,
+            "series": series}

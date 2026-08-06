@@ -360,6 +360,10 @@ def build_combo(league_id: str, season_id: str) -> dict:
     rankings = _rankings(codes, strength, sim, standings, squad_rating)
     clubs = _clubs(league_id, codes, standings, strength, sim, players, matches)
 
+    # Title-race timeline: how each club's championship probability evolves
+    # matchday by matchday (empty until the season has completed matches).
+    race = _title_race(league_id, codes, matches_raw, sim)
+
     # champion = highest title probability
     champ = max(codes, key=lambda c: sim.get(c, {}).get("title", 0)) if codes else None
     played_n = len(completed)
@@ -391,7 +395,42 @@ def build_combo(league_id: str, season_id: str) -> dict:
         "models": {"leaderboard": board, "meta": board_meta,
                    "weights": {k: round(v, 4) for k, v in weights.items()}},
         "clubs": clubs, "players": players, "rankings": rankings,
-        "topScorers": pdata["topScorers"],
+        "topScorers": pdata["topScorers"], "race": race,
+    }
+
+
+def _title_race(league_id: str, codes: list[str], matches_raw: list[dict],
+                sim: dict) -> dict:
+    """Assemble the publishable title-race timeline (see club_simulate)."""
+    timeline = SIM.title_race_timeline(codes, matches_raw)
+    series = timeline["series"]
+
+    def final_p(c: str) -> float:
+        vals = series.get(c) or []
+        return vals[-1] if vals else float(sim.get(c, {}).get("title", 0.0))
+
+    def peak_p(c: str) -> float:
+        vals = series.get(c) or []
+        return max(vals) if vals else float(sim.get(c, {}).get("title", 0.0))
+
+    # order by peak probability so the genuine title contenders (not the
+    # alphabetical also-rans) get the highlighted colours + legend slots
+    ordered_codes = sorted(codes, key=lambda c: (-peak_p(c), -final_p(c)))
+    club_rows = []
+    for c in ordered_codes:
+        cm = _club_meta(league_id, c)
+        club_rows.append({"code": cm["code"], "short": cm["short"],
+                          "name": cm["name"], "primary": cm["primary"],
+                          "secondary": cm["secondary"],
+                          "peak": round(peak_p(c) * 100, 2),
+                          "final": round(final_p(c) * 100, 2)})
+    return {
+        "checkpoints": timeline["checkpoints"],
+        "playedAt": timeline["playedAt"],
+        "maxRound": timeline["maxRound"],
+        "lastCompletedRound": timeline["lastCompletedRound"],
+        "clubs": club_rows,
+        "series": {c: [round(p * 100, 2) for p in series.get(c, [])] for c in codes},
     }
 
 
@@ -423,6 +462,7 @@ def publish_combo(league_id: str, season_id: str) -> dict:
     _write(os.path.join(d, "players.json"),
            {"players": data["players"], "topScorers": data["topScorers"]})
     _write(os.path.join(d, "rankings.json"), data["rankings"])
+    _write(os.path.join(d, "race.json"), data["race"])
     s = data["summary"]
     print(f"  [publish] {league_id} {season_id}: {s['played']}/{s['totalMatches']} played, "
           f"{len(data['players'])} players, champion "
