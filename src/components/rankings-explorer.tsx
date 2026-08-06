@@ -1,13 +1,20 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ClubBadge } from "@/components/club-badge";
-import { RankingBars } from "@/components/charts/ranking-bars";
 import { RANKING_META, RANKING_ORDER } from "@/lib/format";
 import type { RankingKey, Rankings } from "@/lib/types";
+
+// recharts is heavy — load the ranking bar chart lazily on the client.
+const RankingBars = dynamic(
+  () => import("@/components/charts/ranking-bars").then((m) => m.RankingBars),
+  { ssr: false, loading: () => <Skeleton className="h-[360px] w-full rounded-xl" /> },
+);
 
 export interface RankingClub {
   code: string;

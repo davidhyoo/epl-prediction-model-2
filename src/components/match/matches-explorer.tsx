@@ -9,13 +9,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { MatchList } from "@/components/match/match-list";
 import { EmptyState } from "@/components/empty-state";
-import type { Match, Outcome, Probabilities } from "@/lib/types";
+import type { Match, Outcome, Probabilities, Selection } from "@/lib/types";
 import type { ModelMeta } from "@/lib/model-meta";
 
 type StatusFilter = "all" | "upcoming" | "live" | "completed";
 type SortKey = "date" | "confidence" | "round" | "team";
+
+const PAGE = 24; // cards rendered before "Show more" — keeps the DOM light
 
 function pick(p: Probabilities): Outcome {
   if (p.home >= p.draw && p.home >= p.away) return "home";
@@ -23,20 +27,59 @@ function pick(p: Probabilities): Outcome {
   return "draw";
 }
 
+/**
+ * Matches explorer. The full fixture list (~730 KB) is fetched **client-side**
+ * so it never bloats the server-rendered payload, and only a page of cards is
+ * rendered at a time. Filters, sorting and the shared prediction modal all
+ * operate on the in-memory list, so nothing needs a round-trip.
+ */
 export function MatchesExplorer({
-  matches,
+  selection,
   clubs,
   modelMeta,
 }: {
-  matches: Match[];
+  selection: Selection;
   clubs: { code: string; short: string }[];
   modelMeta: ModelMeta;
 }) {
+  const [matches, setMatches] = React.useState<Match[] | null>(null);
+  const [loadedKey, setLoadedKey] = React.useState<string | null>(null);
   const [status, setStatus] = React.useState<StatusFilter>("all");
   const [club, setClub] = React.useState<string>("all");
   const [sort, setSort] = React.useState<SortKey>("date");
+  const [visible, setVisible] = React.useState(PAGE);
+
+  const selKey = `${selection.league}/${selection.season}`;
+
+  React.useEffect(() => {
+    let active = true;
+    fetch(`/data/${selection.league}/${selection.season}/matches.json`)
+      .then((r) => r.json())
+      .then((data: Match[]) => {
+        if (!active) return;
+        setMatches(data);
+        setLoadedKey(selKey);
+      })
+      .catch(() => {
+        if (!active) return;
+        setMatches([]);
+        setLoadedKey(selKey);
+      });
+    return () => {
+      active = false;
+    };
+  }, [selKey, selection.league, selection.season]);
+
+  // Reset pagination whenever the filter/sort set changes.
+  const filterKey = `${status}|${club}|${sort}`;
+  const [prevKey, setPrevKey] = React.useState(filterKey);
+  if (filterKey !== prevKey) {
+    setPrevKey(filterKey);
+    setVisible(PAGE);
+  }
 
   const filtered = React.useMemo(() => {
+    if (!matches) return [];
     let out = matches.slice();
     if (status !== "all") out = out.filter((m) => m.status === status);
     if (club !== "all") out = out.filter((m) => m.home.code === club || m.away.code === club);
@@ -56,13 +99,16 @@ export function MatchesExplorer({
   }, [matches, status, club, sort]);
 
   const counts = React.useMemo(() => {
+    const src = matches ?? [];
     return {
-      all: matches.length,
-      upcoming: matches.filter((m) => m.status === "upcoming").length,
-      live: matches.filter((m) => m.status === "live").length,
-      completed: matches.filter((m) => m.status === "completed").length,
+      all: src.length,
+      upcoming: src.filter((m) => m.status === "upcoming").length,
+      live: src.filter((m) => m.status === "live").length,
+      completed: src.filter((m) => m.status === "completed").length,
     };
   }, [matches]);
+
+  if (!matches || loadedKey !== selKey) return <MatchesSkeleton />;
 
   const statusOptions: { id: StatusFilter; label: string }[] = [
     { id: "all", label: `All (${counts.all})` },
@@ -70,6 +116,8 @@ export function MatchesExplorer({
     { id: "upcoming", label: `Upcoming (${counts.upcoming})` },
   ];
   if (counts.live > 0) statusOptions.splice(1, 0, { id: "live", label: `Live (${counts.live})` });
+
+  const shown = filtered.slice(0, visible);
 
   return (
     <div className="space-y-4">
@@ -127,8 +175,36 @@ export function MatchesExplorer({
           description="Try widening the status filter or clearing the club selection."
         />
       ) : (
-        <MatchList matches={filtered} modelMeta={modelMeta} />
+        <>
+          <MatchList matches={shown} modelMeta={modelMeta} />
+          {visible < filtered.length && (
+            <div className="flex justify-center">
+              <Button variant="outline" onClick={() => setVisible((v) => v + PAGE)}>
+                Show more ({filtered.length - visible} remaining)
+              </Button>
+            </div>
+          )}
+        </>
       )}
+    </div>
+  );
+}
+
+function MatchesSkeleton() {
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <Skeleton className="h-10 w-64" />
+        <div className="ml-auto flex gap-2">
+          <Skeleton className="h-9 w-40" />
+          <Skeleton className="h-9 w-44" />
+        </div>
+      </div>
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {Array.from({ length: 9 }).map((_, i) => (
+          <Skeleton key={i} className="h-[132px] rounded-xl" />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -11,10 +12,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CalibrationChart } from "@/components/charts/calibration-chart";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { pct } from "@/lib/format";
 import type { ModelsData } from "@/lib/types";
+
+// recharts is heavy — load the calibration chart lazily on the client.
+const CalibrationChart = dynamic(
+  () => import("@/components/charts/calibration-chart").then((m) => m.CalibrationChart),
+  { ssr: false, loading: () => <Skeleton className="h-[240px] w-full rounded-xl" /> },
+);
 
 const fmt = (v: number | null, digits = 3) => (v == null ? "—" : v.toFixed(digits));
 

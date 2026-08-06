@@ -59,6 +59,7 @@ export function ClubBadge({
           src={url}
           alt={`${code} crest`}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-contain"
           onError={() => setBroken(true)}
         />

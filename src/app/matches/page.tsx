@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/page-header";
 import { MatchesExplorer } from "@/components/match/matches-explorer";
 import { buildModelMeta } from "@/lib/model-meta";
-import { getSelection, getMatches, getModels, getClubs } from "@/lib/data";
+import { getSelection, getModels, getClubs } from "@/lib/data";
 import type { SearchParams } from "@/lib/league";
 
 export const metadata = { title: "Matches" };
@@ -13,11 +13,9 @@ export default async function MatchesPage({
 }) {
   const sp = await searchParams;
   const sel = await getSelection(sp);
-  const [matches, models, clubs] = await Promise.all([
-    getMatches(sel),
-    getModels(sel),
-    getClubs(sel),
-  ]);
+  // The heavy fixture list (~730 KB) is fetched client-side by MatchesExplorer,
+  // so the server only prepares the small clubs + model-meta payloads.
+  const [models, clubs] = await Promise.all([getModels(sel), getClubs(sel)]);
   const modelMeta = buildModelMeta(models.leaderboard);
   const clubList = [...clubs]
     .sort((a, b) => a.short.localeCompare(b.short))
@@ -30,7 +28,7 @@ export default async function MatchesPage({
         title="Matches"
         description="Every fixture with model win probabilities. Completed games show the final score and whether the ensemble's pick was correct. Click any probability bar for the full model breakdown and contributing factors."
       />
-      <MatchesExplorer matches={matches} clubs={clubList} modelMeta={modelMeta} />
+      <MatchesExplorer selection={sel} clubs={clubList} modelMeta={modelMeta} />
     </div>
   );
 }

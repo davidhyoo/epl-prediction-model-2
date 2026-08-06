@@ -1,14 +1,21 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import { Gauge, Trophy, Sparkles, Dice5 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ModelsExplorer } from "@/components/models-explorer";
-import { TitleRaceChart } from "@/components/charts/title-race-chart";
 import { ClubBadge } from "@/components/club-badge";
 import type { ModelsData, TitleRace } from "@/lib/types";
+
+// recharts is heavy — load the chart only on the client, when this tab renders.
+const TitleRaceChart = dynamic(
+  () => import("@/components/charts/title-race-chart").then((m) => m.TitleRaceChart),
+  { ssr: false, loading: () => <Skeleton className="h-[380px] w-full rounded-xl" /> },
+);
 
 /**
  * Two prediction layers, split into tabs:

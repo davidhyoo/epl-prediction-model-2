@@ -16,7 +16,7 @@ function pick(p: Probabilities): Outcome {
   return "draw";
 }
 
-export function MatchCard({
+export const MatchCard = React.memo(function MatchCard({
   match,
   onOpenPrediction,
 }: {
@@ -118,4 +118,4 @@ export function MatchCard({
       </div>
     </Card>
   );
-}
+});

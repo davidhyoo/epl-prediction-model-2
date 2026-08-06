@@ -48,6 +48,7 @@ export function PlayerAvatar({ name, src, size = "md", className }: PlayerAvatar
           src={src as string}
           alt={name}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
           onError={() => setBroken(true)}
         />
