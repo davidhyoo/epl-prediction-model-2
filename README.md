@@ -8,12 +8,80 @@ profiles, real squads with headshots, player stats, multi-view rankings and a
 transparent machine-learning model leaderboard — backed by a fully reproducible,
 **offline-first** Python ML pipeline that pulls only free, openly-licensed data.
 
-> **Branch:** `soccer-agent` (a sibling of the `worldcup-prediction` World Cup
-> agent, rebuilt for club football with a cleaner, more futuristic UI).
+> **Branch:** shipped on `main` (mirrored on the `soccer-agent` development
+> branch). The earlier `worldcup-prediction` branch holds the World Cup agent
+> this app was rebuilt from, with a cleaner, more futuristic UI.
 
 It is built to run end-to-end **with no API keys, no paid services and no cloud
 dependency**. Every number in the UI is produced locally by the pipeline and
 committed as JSON under `public/data/**`, so a fresh clone renders instantly.
+
+---
+
+## 🚀 Run it locally
+
+**Just want to open the app?** You only need **Node.js 20+** (tested on Node 22).
+The dashboard renders from data already committed to the repo — **no Python, no
+API keys, no database and no cloud account required.**
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/davidhyoo/epl-prediction-model-2.git
+cd epl-prediction-model-2
+
+# 2. Install the JavaScript dependencies
+npm install
+
+# 3. Start the app
+npm run dev
+```
+
+Then open **http://localhost:3000** in your browser. That's the whole setup. 🎉
+
+> Prefer a production build? Run `npm run build` then `npm run start` (also serves
+> http://localhost:3000).
+
+<details>
+<summary><strong>Which branch should I check out?</strong></summary>
+
+| Branch                | App |
+| --------------------- | --- |
+| **`main`**            | **Data Driven Soccer** (EPL + La Liga) — the latest app, described by this README. |
+| `soccer-agent`        | Same Data Driven Soccer app — the active development branch `main` tracks. |
+| `worldcup-prediction` | The earlier **2026 FIFA World Cup** prediction dashboard (its own README on that branch). |
+
+A fresh `git clone` gives you `main` (Data Driven Soccer) by default.
+</details>
+
+<details>
+<summary><strong>Optional: refresh / regenerate the data yourself</strong> (needs Python 3.10+)</summary>
+
+The app already ships with generated data, so this is optional. To rebuild it
+from the cached open-source sources:
+
+```bash
+pip install numpy scikit-learn joblib xgboost   # one-time
+npm run data:refresh                             # rebuild every JSON file from cache
+```
+
+Or just click the **Refresh data** button inside the app while running `npm run
+dev`. Full details in [The Refresh function](#the-refresh-function).
+</details>
+
+<details>
+<summary><strong>Windows: `node` / `npm` not found?</strong></summary>
+
+This repo was validated with a portable Node build. Prepend it to your PATH for
+the session, then run the commands above:
+
+```powershell
+$nd="C:\Users\<you>\AppData\Local\node-portable\node-v22.11.0-win-x64"
+$env:PATH="$nd;$env:PATH"
+```
+</details>
+
+For a deeper dive on prerequisites, data/model commands and tests, see
+[Quick start](#quick-start) below.
 
 ---
 
