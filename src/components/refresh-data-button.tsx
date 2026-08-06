@@ -12,8 +12,8 @@ type State = "idle" | "running" | "done" | "error";
 
 /**
  * Shared client-side logic for the local data refresh. Triggers the Python
- * pipeline (`ml/refresh.py`) via `POST /api/refresh`, which pulls the latest
- * completed World Cup results + real player match stats and rebuilds every
+ * pipeline (`ml/club_refresh.py`) via `POST /api/refresh`, which pulls the
+ * latest completed results + scorers from public open data and rebuilds every
  * cached JSON, then re-fetches the server components so the whole dashboard
  * reflects the new data without a code change or a manual restart.
  */
@@ -28,7 +28,7 @@ function useDataRefresh() {
     runningRef.current = true;
     setState("running");
     setMessage(
-      "Pulling the latest results & player stats, then rebuilding predictions… (this can take ~30s)",
+      "Pulling the latest results & scorers, then rebuilding predictions… (this can take ~1-2 min)",
     );
     try {
       const res = await fetch("/api/refresh", { method: "POST" });
@@ -185,7 +185,7 @@ export function DataFreshnessControl({
       <p className="text-muted-foreground">Last rebuilt {formatRelative(generatedAt)}</p>
       <p className="text-muted-foreground">
         {enabled
-          ? "Click to pull the latest live results & player stats and rebuild every prediction."
+          ? "Click to pull the latest live results & scorers and rebuild every prediction."
           : "Live refresh is disabled here. Run `npm run data:fetch` locally, or set ALLOW_DATA_REFRESH=1."}
       </p>
     </div>

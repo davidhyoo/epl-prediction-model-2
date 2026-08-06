@@ -24,7 +24,7 @@ export default function Error({
         <h1 className="text-2xl font-bold tracking-tight">Something went wrong</h1>
         <p className="max-w-md text-sm text-muted-foreground">
           An unexpected error occurred while loading this view. The cached data may be missing — try
-          re-running <code>python ml/pipeline.py</code> to regenerate it, then reload.
+          re-running <code>python ml/club_pipeline.py</code> to regenerate it, then reload.
         </p>
       </div>
       <Button onClick={reset} className="gap-2">

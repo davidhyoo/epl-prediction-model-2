@@ -2,151 +2,105 @@
 
 import * as React from "react";
 import Link from "next/link";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Flag } from "@/components/flag";
-import { RankingBars } from "@/components/charts/ranking-bars";
 import { cn } from "@/lib/utils";
-import type { Rankings, RankingView } from "@/lib/types";
+import { Card } from "@/components/ui/card";
+import { ClubBadge } from "@/components/club-badge";
+import { RankingBars } from "@/components/charts/ranking-bars";
+import { RANKING_META, RANKING_ORDER } from "@/lib/format";
+import type { RankingKey, Rankings } from "@/lib/types";
 
-function formatValue(v: RankingView, value: number): string {
-  if (v.format === "percent") return `${value.toFixed(1)}%`;
-  if (v.format === "rating") return value.toFixed(1);
-  return value.toFixed(0);
+export interface RankingClub {
+  code: string;
+  short: string;
+  primary: string;
+  secondary: string;
 }
 
-export function RankingsExplorer({ rankings }: { rankings: Rankings }) {
-  const [viewId, setViewId] = React.useState(rankings.views[0]?.id);
-  const [conf, setConf] = React.useState("all");
+function formatValue(value: number, unit: "percent" | "index" | "rating"): string {
+  if (unit === "percent") return `${value.toFixed(1)}%`;
+  if (unit === "rating") return value.toFixed(0);
+  return value.toFixed(1);
+}
 
-  const view = rankings.views.find((v) => v.id === viewId) ?? rankings.views[0];
+export function RankingsExplorer({
+  rankings,
+  clubs,
+  query,
+}: {
+  rankings: Rankings;
+  clubs: RankingClub[];
+  query: string;
+}) {
+  const [key, setKey] = React.useState<RankingKey>("title");
+  const meta = RANKING_META[key];
+  const clubMap = React.useMemo(() => new Map(clubs.map((c) => [c.code, c])), [clubs]);
 
-  const confederations = React.useMemo(
-    () => Array.from(new Set(view.entries.map((e) => e.confederation))).sort(),
-    [view],
-  );
+  const rows = React.useMemo(() => {
+    const list = [...(rankings[key] ?? [])].sort((a, b) => b.value - a.value);
+    return list.map((r, i) => ({ ...r, rank: i + 1 }));
+  }, [rankings, key]);
 
-  const entries = React.useMemo(() => {
-    const list =
-      conf === "all" ? view.entries : view.entries.filter((e) => e.confederation === conf);
-    return list.slice().sort((a, b) => b.value - a.value);
-  }, [view, conf]);
-
-  const maxValue = Math.max(...entries.map((e) => e.value), 0.0001);
-  const chartData = entries.slice(0, 12).map((e) => ({ code: e.code, name: e.name, value: e.value }));
+  const chartData = rows.slice(0, 12).map((r) => ({
+    code: r.code,
+    name: clubMap.get(r.code)?.short ?? r.code,
+    value: r.value,
+  }));
 
   return (
-    <div className="space-y-5">
-      {/* View selector */}
-      <div className="flex flex-wrap gap-2">
-        {rankings.views.map((v) => (
+    <div className="space-y-4">
+      <div className="flex flex-wrap gap-1.5">
+        {RANKING_ORDER.map((k) => (
           <button
-            key={v.id}
-            onClick={() => setViewId(v.id)}
+            key={k}
+            onClick={() => setKey(k)}
             className={cn(
-              "rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
-              v.id === viewId
+              "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+              key === k
                 ? "border-primary bg-primary/10 text-primary"
-                : "border-border text-muted-foreground hover:bg-secondary",
+                : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
             )}
           >
-            {v.name}
+            {RANKING_META[k].label}
           </button>
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Chart */}
-        <Card className="lg:col-span-1">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">{view.name}</CardTitle>
-            <p className="text-sm text-muted-foreground">{view.description}</p>
-          </CardHeader>
-          <CardContent>
-            <RankingBars data={chartData} unit={view.unit} />
-          </CardContent>
+      <p className="text-sm text-muted-foreground">{meta.description}</p>
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        <Card className="p-4">
+          <RankingBars data={chartData} unit={meta.unit === "percent" ? "%" : ""} />
         </Card>
 
-        {/* Table */}
-        <Card className="lg:col-span-2">
-          <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-base">Full ranking</CardTitle>
-            <Select value={conf} onValueChange={setConf}>
-              <SelectTrigger className="w-40">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All confederations</SelectItem>
-                {confederations.map((c) => (
-                  <SelectItem key={c} value={c}>
-                    {c}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow className="hover:bg-transparent">
-                  <TableHead className="w-10">#</TableHead>
-                  <TableHead>Team</TableHead>
-                  <TableHead className="hidden sm:table-cell">Group</TableHead>
-                  <TableHead className="w-1/3">Value</TableHead>
-                  <TableHead className="w-16 text-right">{view.unit || "Val"}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {entries.map((e, i) => (
-                  <TableRow key={e.code}>
-                    <TableCell className="text-sm font-semibold text-muted-foreground tabular-nums">
-                      {i + 1}
-                    </TableCell>
-                    <TableCell>
-                      <Link
-                        href={`/countries/${e.code.toLowerCase()}`}
-                        className="flex items-center gap-2 font-medium hover:underline"
-                      >
-                        <Flag iso2={e.iso2} size="sm" />
-                        <span className="truncate">{e.name}</span>
-                      </Link>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <Badge variant="secondary" className="text-[10px]">
-                        {e.group}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
-                        <div
-                          className="h-full rounded-full bg-primary"
-                          style={{ width: `${(e.value / maxValue) * 100}%` }}
-                        />
-                      </div>
-                    </TableCell>
-                    <TableCell className="text-right text-sm font-semibold tabular-nums">
-                      {formatValue(view, e.value)}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
+        <Card className="p-0">
+          <div className="max-h-[360px] divide-y divide-border overflow-auto">
+            {rows.map((r) => {
+              const club = clubMap.get(r.code);
+              return (
+                <Link
+                  key={r.code}
+                  href={`/clubs/${r.code.toLowerCase()}${query}`}
+                  className="flex items-center gap-3 px-4 py-2 transition-colors hover:bg-secondary/50"
+                >
+                  <span className="w-5 text-center text-xs font-semibold text-muted-foreground tabular-nums">
+                    {r.rank}
+                  </span>
+                  <ClubBadge
+                    code={r.code}
+                    primary={club?.primary ?? "#334155"}
+                    secondary={club?.secondary ?? "#0f172a"}
+                    size="xs"
+                  />
+                  <span className="min-w-0 flex-1 truncate text-sm font-medium">
+                    {club?.short ?? r.code}
+                  </span>
+                  <span className="text-sm font-semibold tabular-nums">
+                    {formatValue(r.value, meta.unit)}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
         </Card>
       </div>
     </div>

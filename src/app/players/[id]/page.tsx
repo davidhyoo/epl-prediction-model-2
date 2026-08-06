@@ -1,13 +1,19 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Star, Shirt } from "lucide-react";
+import type { Metadata } from "next";
+import { ArrowLeft, ExternalLink, Target } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Flag } from "@/components/flag";
+import { Button } from "@/components/ui/button";
 import { PlayerAvatar } from "@/components/player-avatar";
+import { Flag } from "@/components/flag";
+import { ClubBadge } from "@/components/club-badge";
 import { RatingPill } from "@/components/rating-pill";
-import { getPlayerById, getTeamByCode, getTeams } from "@/lib/data";
+import { StatCard } from "@/components/stat-card";
+import { getSelection, getPlayerById, getClubByCode } from "@/lib/data";
+import { queryFor } from "@/lib/league";
+import { POSITION_LABEL } from "@/lib/format";
+import type { SearchParams } from "@/lib/league";
 
 export async function generateMetadata({
   params,
@@ -15,292 +21,161 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const player = await getPlayerById(id);
-  if (!player) return { title: "Player not found" };
-  return {
-    title: player.name,
-    description: `${player.name} — ${player.detailedPosition} for ${player.country}. World Cup stats, match log and profile.`,
-  };
+  return { title: id };
 }
 
-export default async function PlayerProfilePage({
+export default async function PlayerProfile({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<SearchParams>;
 }) {
   const { id } = await params;
-  const player = await getPlayerById(id);
+  const sp = await searchParams;
+  const sel = await getSelection(sp);
+  const player = await getPlayerById(sel, id);
   if (!player) notFound();
-  const team = await getTeamByCode(player.countryCode);
-  const teams = await getTeams();
-  const codeToTeam = new Map(teams.map((t) => [t.code, t]));
 
-  const isGK = player.position === "GK";
-  const matchLog = player.matchLog ?? [];
+  const club = await getClubByCode(sel, player.club);
+  const query = queryFor(sel);
+
+  const hasStat = (v: number | null | undefined): v is number => typeof v === "number";
+
+  const stats = [
+    { label: "Goals", value: String(player.goals), sub: player.penalties ? `${player.penalties} pen` : undefined },
+    hasStat(player.assists) ? { label: "Assists", value: String(player.assists) } : null,
+    hasStat(player.appearances) ? { label: "Appearances", value: String(player.appearances) } : null,
+    hasStat(player.minutes) ? { label: "Minutes", value: player.minutes.toLocaleString() } : null,
+    hasStat(player.yellowCards) ? { label: "Yellow cards", value: String(player.yellowCards) } : null,
+    hasStat(player.redCards) ? { label: "Red cards", value: String(player.redCards) } : null,
+  ].filter(Boolean) as { label: string; value: string; sub?: string }[];
 
   return (
-    <div className="container-page space-y-8 py-8">
-      <Link
-        href="/players"
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
-      >
-        <ArrowLeft className="size-4" /> All players
-      </Link>
+    <div className="container-page space-y-6 py-8">
+      <Button asChild variant="ghost" size="sm" className="-ml-2 w-fit">
+        <Link href={`/players${query}`}>
+          <ArrowLeft className="mr-1.5 size-4" /> All players
+        </Link>
+      </Button>
 
-      {/* Header */}
-      <Card className="overflow-hidden">
-        <div className="border-b border-border bg-muted/30 p-6">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-            <PlayerAvatar name={player.name} src={player.headshot} size="xl" />
-            <div className="flex-1 space-y-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{player.name}</h1>
-                {player.isCaptain && <Badge variant="info">Captain</Badge>}
-                {player.isKeyPlayer && (
-                  <Badge variant="warning" className="gap-1">
-                    <Star className="size-3" /> Key player
-                  </Badge>
-                )}
-              </div>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+      <Card className="glass overflow-hidden">
+        <div className="app-aura h-24 w-full" />
+        <CardContent className="-mt-12 flex flex-col gap-4 sm:flex-row sm:items-end">
+          <PlayerAvatar name={player.name} src={player.headshot} size="xl" className="ring-4" />
+          <div className="flex-1 space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{player.name}</h1>
+              {player.shirtNumber != null && (
+                <Badge variant="muted" className="tabular-nums">
+                  #{player.shirtNumber}
+                </Badge>
+              )}
+            </div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-muted-foreground">
+              <span className="flex items-center gap-1.5">
+                <Flag iso2={player.nationIso2} size="sm" /> {player.nationName}
+              </span>
+              <span className="text-border">·</span>
+              {club ? (
                 <Link
-                  href={`/countries/${player.countryCode.toLowerCase()}`}
+                  href={`/clubs/${club.code.toLowerCase()}${query}`}
                   className="flex items-center gap-1.5 hover:text-foreground"
                 >
-                  <Flag iso2={player.iso2} size="sm" /> {player.country}
+                  <ClubBadge code={club.code} primary={club.primary} secondary={club.secondary} size="sm" />
+                  {club.name}
                 </Link>
-                <span>·</span>
-                <span>{player.detailedPosition}</span>
-                <span>·</span>
-                <span className="flex items-center gap-1">
-                  <Shirt className="size-3.5" /> {player.shirtNumber}
-                </span>
-                {player.age != null && (
-                  <>
-                    <span>·</span>
-                    <span>Age {player.age}</span>
-                  </>
-                )}
-                <span>·</span>
-                <span>{player.club}</span>
-                {player.caps != null && (
-                  <>
-                    <span>·</span>
-                    <span>
-                      {player.caps} cap{player.caps === 1 ? "" : "s"}
-                      {player.intlGoals ? `, ${player.intlGoals} goal${player.intlGoals === 1 ? "" : "s"}` : ""}
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="flex gap-6 sm:flex-col sm:items-end sm:gap-1">
-              <div className="text-center sm:text-right">
-                <div className="text-3xl font-bold tabular-nums">{player.rating}</div>
-                <div className="text-xs uppercase tracking-wide text-muted-foreground">Rating</div>
-              </div>
+              ) : (
+                <span>{player.clubName}</span>
+              )}
+              <span className="text-border">·</span>
+              <Badge variant="secondary">{player.detailedPosition || POSITION_LABEL[player.position]}</Badge>
             </div>
           </div>
-        </div>
-        <CardContent className="p-6">
-          <p className="text-sm text-muted-foreground">{player.bio}</p>
-          {player.photoCredit && (
-            <p className="mt-3 text-xs text-muted-foreground/70">
-              Photo:{" "}
-              <a
-                href={player.photoCredit.sourceUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="underline hover:text-foreground"
-              >
-                {player.photoCredit.author}
-              </a>{" "}
-              · {player.photoCredit.license} · via Wikimedia Commons
-            </p>
-          )}
+          <div className="text-right">
+            <p className="text-xs uppercase tracking-wide text-muted-foreground">Rating</p>
+            <RatingPill rating={Math.round(player.rating)} className="mt-1 text-base" />
+          </div>
         </CardContent>
       </Card>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Stats */}
-        <div className="space-y-6 lg:col-span-2">
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle>Tournament statistics</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <StatGroup
-                title="Overview"
-                stats={[
-                  ["Appearances", player.stats.appearances],
-                  ["Minutes", player.stats.minutes.toLocaleString()],
-                  ["Yellow cards", player.stats.yellowCards],
-                  ["Red cards", player.stats.redCards],
-                ]}
-              />
-              {isGK ? (
-                <StatGroup
-                  title="Goalkeeping"
-                  stats={[
-                    ["Clean sheets", player.stats.cleanSheets ?? 0],
-                    ["Goals conceded", player.stats.goalsConceded ?? 0],
-                  ]}
-                />
-              ) : (
-                <StatGroup
-                  title="Attacking"
-                  stats={[
-                    ["Goals", player.stats.goals],
-                    ["Assists", player.stats.assists ?? "—"],
-                  ]}
-                />
-              )}
-              <p className="text-xs text-muted-foreground">
-                Real tournament totals taken from the official FIFA match reports
-                (via Wikipedia). Assists, expected goals (xG/xA), shots, passing and
-                tackling are not published in any free World Cup data source, so they
-                are shown as &ldquo;&mdash;&rdquo; rather than estimated.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {stats.map((s) => (
+          <StatCard key={s.label} label={s.label} value={s.value} sub={s.sub} />
+        ))}
+      </div>
 
-        {/* Side */}
-        <div className="space-y-6">
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm">Team contribution score</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-end justify-between">
-                <span className="text-3xl font-bold tabular-nums">
-                  {Math.round(player.contribution)}
-                </span>
-                <span className="text-xs text-muted-foreground">out of 100</span>
+      <div className="grid gap-4 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Target className="size-4 text-primary" /> Goal timeline
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {player.goalMinutes.length > 0 ? (
+              <div className="flex flex-wrap gap-1.5">
+                {player.goalMinutes.map((m, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary tabular-nums"
+                  >
+                    {m}&rsquo;
+                  </span>
+                ))}
               </div>
-              <div className="h-2.5 w-full overflow-hidden rounded-full bg-muted">
-                <div
-                  className="h-full rounded-full bg-primary"
-                  style={{ width: `${Math.min(player.contribution, 100)}%` }}
-                />
-              </div>
-              <p className="text-xs text-muted-foreground">
-                A blend of individual rating, output and minutes that estimates how much this
-                player lifts {player.country}&rsquo;s squad-strength feature — one input to the
-                match models.
-              </p>
-            </CardContent>
-          </Card>
+            ) : (
+              <p className="text-sm text-muted-foreground">No goals recorded yet this season.</p>
+            )}
+          </CardContent>
+        </Card>
 
-          {matchLog.length > 0 && (
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm">World Cup match log</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-1.5">
-                {matchLog.map((m, i) => {
-                  const opp = codeToTeam.get(m.opponent);
-                  const res =
-                    m.goalsFor > m.goalsAgainst
-                      ? "W"
-                      : m.goalsFor < m.goalsAgainst
-                        ? "L"
-                        : "D";
-                  const resClass =
-                    res === "W"
-                      ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
-                      : res === "L"
-                        ? "bg-red-500/15 text-red-600 dark:text-red-400"
-                        : "bg-amber-500/15 text-amber-600 dark:text-amber-400";
-                  return (
-                    <div
-                      key={i}
-                      className="flex items-center gap-2 rounded-lg border border-border px-2.5 py-1.5 text-sm"
-                    >
-                      <span
-                        className={`flex size-5 shrink-0 items-center justify-center rounded text-[11px] font-bold ${resClass}`}
-                        title={m.started ? "Started" : "Substitute"}
-                      >
-                        {res}
-                      </span>
-                      {opp ? <Flag iso2={opp.iso2} size="sm" /> : <span className="w-[18px]" />}
-                      <span className="flex-1 truncate text-muted-foreground">
-                        {opp?.name ?? m.opponent}
-                      </span>
-                      <span className="tabular-nums">
-                        {m.goalsFor}&ndash;{m.goalsAgainst}
-                      </span>
-                      <span className="w-9 text-right text-xs text-muted-foreground tabular-nums">
-                        {m.minutes}&rsquo;
-                      </span>
-                      <span className="flex w-10 items-center justify-end gap-1 text-xs">
-                        {m.goals > 0 && (
-                          <span className="font-semibold text-foreground">
-                            {m.goals}&nbsp;G
-                          </span>
-                        )}
-                        {m.yellow > 0 && (
-                          <span className="h-3 w-2 rounded-[1px] bg-amber-400" title="Yellow card" />
-                        )}
-                        {m.red > 0 && (
-                          <span className="h-3 w-2 rounded-[1px] bg-red-500" title="Red card" />
-                        )}
-                      </span>
-                    </div>
-                  );
-                })}
-              </CardContent>
-            </Card>
-          )}
-
-          {team && (
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm">Nation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Link
-                  href={`/countries/${team.code.toLowerCase()}`}
-                  className="flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-muted/50"
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Profile</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm">
+            <Row label="Nation" value={player.nationName} />
+            <Row label="Club" value={player.clubName} />
+            <Row label="Position" value={player.detailedPosition || POSITION_LABEL[player.position]} />
+            {player.shirtNumber != null && <Row label="Shirt" value={`#${player.shirtNumber}`} />}
+            {player.wiki && (
+              <Button asChild variant="outline" size="sm" className="mt-1 w-full">
+                <a
+                  href={`https://en.wikipedia.org/wiki/${encodeURIComponent(player.wiki)}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
                 >
-                  <Flag iso2={team.iso2} size="lg" />
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">{team.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      Group {team.group} · {team.confederation}
-                    </p>
-                  </div>
-                  <RatingPill rating={Math.round(team.strength.overall)} />
-                </Link>
-              </CardContent>
-            </Card>
-          )}
-        </div>
+                  Wikipedia <ExternalLink className="ml-1.5 size-3.5" />
+                </a>
+              </Button>
+            )}
+            {player.photoCredit && (
+              <p className="border-t border-border pt-3 text-[11px] leading-relaxed text-muted-foreground">
+                Photo:{" "}
+                <a
+                  href={player.photoCredit.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="underline hover:text-foreground"
+                >
+                  {player.photoCredit.author}
+                </a>{" "}
+                · {player.photoCredit.license}
+              </p>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 }
 
-function StatGroup({
-  title,
-  stats,
-}: {
-  title: string;
-  stats: [string, React.ReactNode][];
-}) {
+function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div>
-      <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-        {title}
-      </h3>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-        {stats.map(([label, value]) => (
-          <div key={label} className="rounded-lg border border-border bg-card p-3">
-            <div className="text-lg font-semibold tabular-nums">{value}</div>
-            <div className="text-xs text-muted-foreground">{label}</div>
-          </div>
-        ))}
-      </div>
+    <div className="flex items-center justify-between gap-2">
+      <span className="text-muted-foreground">{label}</span>
+      <span className="font-medium">{value}</span>
     </div>
   );
 }

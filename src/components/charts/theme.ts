@@ -1,14 +1,14 @@
 /** Literal colour palette for Recharts (SVG attributes can't use CSS vars).
  *  Mid-tone hues chosen to read well in both light and dark themes. */
 export const CHART = {
-  primary: "hsl(160 84% 39%)",
-  info: "hsl(217 91% 60%)",
-  amber: "hsl(38 92% 50%)",
-  violet: "hsl(280 65% 62%)",
-  rose: "hsl(340 82% 60%)",
-  slate: "hsl(215 20% 55%)",
-  grid: "hsl(215 20% 65% / 0.25)",
-  axis: "hsl(215 16% 47%)",
+  primary: "hsl(255 85% 66%)",
+  info: "hsl(190 90% 48%)",
+  amber: "hsl(35 92% 52%)",
+  violet: "hsl(280 70% 66%)",
+  rose: "hsl(322 82% 62%)",
+  slate: "hsl(220 14% 55%)",
+  grid: "hsl(220 14% 60% / 0.22)",
+  axis: "hsl(220 12% 50%)",
 };
 
 export const CHART_SERIES = [

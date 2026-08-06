@@ -1,224 +1,239 @@
-import type { Metadata } from "next";
-import {
-  Database,
-  GitBranch,
-  Layers,
-  ShieldCheck,
-  Sparkles,
-  FlaskConical,
-} from "lucide-react";
 import { PageHeader } from "@/components/page-header";
-import { ImportanceBars } from "@/components/charts/importance-bars";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { getMethodology, getSummary } from "@/lib/data";
-import { formatDateTime } from "@/lib/format";
 import { RefreshDataButton } from "@/components/refresh-data-button";
+import {
+  Database,
+  Filter,
+  Wand2,
+  Brain,
+  Target,
+  ClipboardCheck,
+  RefreshCw,
+  ShieldCheck,
+} from "lucide-react";
+import { getSelection, getSummary } from "@/lib/data";
+import { formatDateTime } from "@/lib/format";
+import type { SearchParams } from "@/lib/league";
 
-export const metadata: Metadata = {
-  title: "Data & Methodology",
-  description:
-    "The data pipeline, feature set, models, leakage controls and self-improvement loop behind the 2026 World Cup predictor.",
-};
+export const metadata = { title: "Data & Methodology" };
 
-const KIND_VARIANT: Record<string, React.ComponentProps<typeof Badge>["variant"]> = {
-  generated: "warning",
-  cached: "info",
-  live: "success",
-  static: "muted",
-};
+const STAGES = [
+  {
+    icon: Database,
+    name: "Ingest",
+    file: "ml/club_ingest.py",
+    text: "Turns the cached source files into per-season match + squad structures. Fixtures, results and inline goalscorers come from openfootball (CC0); per-match shots/corners/cards + closing market odds from football-data.co.uk. Every response is cached under data/raw so a rebuild never re-hits the network unnecessarily.",
+  },
+  {
+    icon: Filter,
+    name: "Validate & parse",
+    file: "ml/club_sources.py",
+    text: "Pure parsers for the cached source files: they reconcile the two openfootball text formats, normalise club names to stable codes, validate scorelines against scorer lists, and drop or flag rows that fail schema checks so bad data never reaches the model.",
+  },
+  {
+    icon: Wand2,
+    name: "Feature engineering",
+    file: "ml/club_features.py",
+    text: "A single chronological engine builds a strictly pre-match feature row for every fixture: rolling form, goals for/against rates, rest days, home advantage, Elo rating difference and market-implied probabilities — all computed only from matches played before kickoff.",
+  },
+  {
+    icon: Brain,
+    name: "Train",
+    file: "ml/club_train.py",
+    text: "Fits the base learners — Elo baseline, logistic regression, random forest and XGBoost — plus a market baseline, using walk-forward folds so a model is never trained on a match it will later be scored on.",
+  },
+  {
+    icon: Target,
+    name: "Predict",
+    file: "ml/club_predict.py",
+    text: "Loads the trained models, scores every fixture into win/draw/loss probabilities, blends the base learners into a weighted ensemble, and attaches the top contributing factors behind each prediction.",
+  },
+  {
+    icon: RefreshCw,
+    name: "Simulate",
+    file: "ml/club_simulate.py",
+    text: "Runs the remaining fixtures through a 10,000-season Monte-Carlo simulation to estimate every club's chance of winning the title, qualifying for the Champions League or Europa League, and being relegated.",
+  },
+  {
+    icon: ShieldCheck,
+    name: "Players",
+    file: "ml/club_players.py",
+    text: "Combines real, free data sources into the squad roster: Wikipedia/Wikimedia Commons for players + licensed headshots, and openfootball goalscorer data for real goals and goal-minute timelines. Missing photos fall back to clean initials avatars.",
+  },
+  {
+    icon: ClipboardCheck,
+    name: "Evaluate & publish",
+    file: "ml/club_evaluate.py",
+    text: "Scores each model against completed results on accuracy, log loss, Brier score and calibration (ECE), re-ranks the leaderboard, re-derives ensemble weights, and writes every cached JSON the dashboard reads.",
+  },
+];
 
-const STAGE_ICON: Record<string, React.ElementType> = {
-  ingest: Database,
-  transform: ShieldCheck,
-  features: Layers,
-  train: GitBranch,
-  predict: Sparkles,
-  evaluate: FlaskConical,
-};
+const SOURCES = [
+  {
+    name: "openfootball",
+    kind: "Fixtures · results · scorers",
+    license: "CC0 (public domain)",
+    mode: "Live + cached",
+  },
+  {
+    name: "football-data.co.uk",
+    kind: "Match stats · closing odds",
+    license: "Free for non-commercial use",
+    mode: "Live + cached",
+  },
+  {
+    name: "Wikipedia / Wikimedia Commons",
+    kind: "Squads · headshots",
+    license: "CC BY-SA / public domain (per file)",
+    mode: "Cached, credited",
+  },
+];
 
-export default async function MethodologyPage() {
-  const [methodology, summary] = await Promise.all([getMethodology(), getSummary()]);
-  const refreshEnabled =
-    process.env.NODE_ENV !== "production" || process.env.ALLOW_DATA_REFRESH === "1";
+function refreshEnabled(): boolean {
+  return process.env.NODE_ENV !== "production" || process.env.ALLOW_DATA_REFRESH === "1";
+}
+
+export default async function MethodologyPage({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const sp = await searchParams;
+  const sel = await getSelection(sp);
+  const summary = await getSummary(sel);
+  const enabled = refreshEnabled();
 
   return (
     <div className="container-page space-y-8 py-8">
       <PageHeader
-        eyebrow="Data & methodology"
-        title="How the predictions are made"
-        description="A fully reproducible, offline-first pipeline turns a seeded dataset into features, five models, simulated tournament odds and a self-scoring backtest. Every step is deterministic and re-runnable with one command."
+        eyebrow="Transparency"
+        title="Data & methodology"
+        description="Everything here is rebuilt from open, legally-licensed data by a reproducible Python pipeline. No paid APIs, no scraping of disallowed content, and no result ever leaks into a prediction it is later judged on."
+        actions={<Badge variant="outline">Open data · reproducible</Badge>}
       />
-
-      {/* Data mode banner */}
-      <Card className="border-warning/40 bg-warning/5">
-        <CardContent className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-3">
-            <FlaskConical className="mt-0.5 size-5 shrink-0 text-warning" />
-            <div>
-              <p className="text-sm font-semibold">Data mode: generated demo dataset</p>
-              <p className="text-sm text-muted-foreground">
-                No paid APIs or scraped content are used. Match history, squads and player stats are
-                deterministically synthesised so the whole app runs offline and reproducibly. Swap in
-                a live source by editing <code>ml/ingest.py</code>.
-              </p>
-            </div>
-          </div>
-          <div className="shrink-0 text-xs text-muted-foreground sm:text-right">
-            <div>{summary.trainingMatches.toLocaleString()} training matches</div>
-            <div>{summary.featureCount} engineered features</div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Pipeline */}
-      <section className="space-y-3">
-        <h2 className="text-lg font-semibold">Pipeline</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {methodology.pipeline.map((stage, i) => {
-            const Icon = STAGE_ICON[stage.id] ?? Database;
-            return (
-              <Card key={stage.id} className="relative overflow-hidden">
-                <CardContent className="space-y-2 p-4">
-                  <div className="flex items-center gap-2">
-                    <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon className="size-4" />
-                    </span>
-                    <span className="text-xs font-medium tabular-nums text-muted-foreground">
-                      Step {i + 1}
-                    </span>
-                  </div>
-                  <h3 className="font-semibold">{stage.title}</h3>
-                  <p className="text-sm text-muted-foreground">{stage.description}</p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {stage.outputs.map((o) => (
-                      <Badge key={o} variant="outline" className="font-mono text-[10px]">
-                        {o}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </section>
 
       {/* Data sources */}
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold">Data sources</h2>
-        <Card>
-          <CardContent className="p-0">
-            <Table>
-              <TableHeader>
-                <TableRow className="hover:bg-transparent">
-                  <TableHead>Source</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead className="hidden md:table-cell">Description</TableHead>
-                  <TableHead>License</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {methodology.dataSources.map((s) => (
-                  <TableRow key={s.name}>
-                    <TableCell className="font-medium">{s.name}</TableCell>
-                    <TableCell>
-                      <Badge variant={KIND_VARIANT[s.kind]} className="capitalize">
-                        {s.kind}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden max-w-md text-sm text-muted-foreground md:table-cell">
-                      {s.description}
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{s.license}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Features + models */}
-      <section className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">Feature set</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              {methodology.features.length} features drive the models. Relative influence is averaged
-              across the tree-based models.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <ImportanceBars importances={methodology.features} height={methodology.features.length * 30} />
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">Models</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Five complementary approaches, blended into a self-weighting ensemble.
-            </p>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {methodology.models.map((m) => (
-              <div key={m.id} className="rounded-lg border p-3">
-                <div className="font-medium">{m.name}</div>
-                <p className="text-sm text-muted-foreground">{m.summary}</p>
+        <h2 className="text-lg font-semibold tracking-tight">Data sources</h2>
+        <div className="grid gap-3 md:grid-cols-3">
+          {SOURCES.map((s) => (
+            <Card key={s.name} className="p-4">
+              <p className="font-semibold">{s.name}</p>
+              <p className="mt-0.5 text-sm text-muted-foreground">{s.kind}</p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <Badge variant="secondary" className="text-[10px]">{s.mode}</Badge>
+                <Badge variant="muted" className="text-[10px]">{s.license}</Badge>
               </div>
-            ))}
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Leakage + self-improvement notes */}
-      <section className="space-y-3">
-        <h2 className="text-lg font-semibold">Leakage controls & self-improvement</h2>
-        <Card>
-          <CardContent className="space-y-3 p-4">
-            <ul className="space-y-2">
-              {methodology.notes.map((note, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <ShieldCheck className="mt-0.5 size-4 shrink-0 text-success" />
-                  <span>{note}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      </section>
-
-      <div className="flex flex-col items-center gap-4 border-t border-border pt-6">
-        {refreshEnabled ? (
-          <>
-            <RefreshDataButton />
-            <p className="max-w-lg text-center text-xs text-muted-foreground">
-              Pulls the latest completed results and real player match stats from the open
-              sources, re-runs the ML pipeline and reloads the dashboard. Runs a local Python
-              process — enabled in development (or with <code>ALLOW_DATA_REFRESH=1</code>).
-            </p>
-          </>
-        ) : (
-          <p className="max-w-lg text-center text-xs text-muted-foreground">
-            Refresh the data locally with <code>npm run data:fetch</code> (<code>python
-            ml/refresh.py</code>), which pulls the latest results and real player match stats,
-            then rebuilds the cached predictions.
-          </p>
-        )}
-        <p className="text-center text-xs text-muted-foreground">
-          Pipeline last run {formatDateTime(methodology.generatedAt)} · reproduce with{" "}
-          <code>python ml/pipeline.py</code>
+            </Card>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground">
+          Results loaded through {formatDateTime(summary.lastUpdated)}. Where a live source is
+          temporarily unavailable, the pipeline falls back to the committed cache so the app always
+          runs end-to-end.
         </p>
-      </div>
+      </section>
+
+      {/* Pipeline */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold tracking-tight">The pipeline (eight stages)</h2>
+        <div className="grid gap-3 md:grid-cols-2">
+          {STAGES.map((s, i) => (
+            <Card key={s.name} className="p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <s.icon className="size-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold text-muted-foreground tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="font-semibold">{s.name}</p>
+                  </div>
+                  <code className="text-[11px] text-primary">{s.file}</code>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{s.text}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Season strategy */}
+      <section className="grid gap-3 md:grid-cols-2">
+        <Card className="p-5">
+          <div className="mb-2 flex items-center gap-2 text-sm font-semibold">
+            <ShieldCheck className="size-4 text-primary" /> Two-season strategy
+          </div>
+          <p className="text-sm text-muted-foreground">
+            The pipeline is validated on the <strong className="text-foreground">2025/26</strong>{" "}
+            season, which is complete — so every prediction can be checked against a real result. The
+            deliverable is <strong className="text-foreground">2026/27</strong>, which hasn&rsquo;t
+            kicked off yet: fixtures load as pre-season forecasts and sharpen into live, evaluated
+            predictions automatically as real results arrive.
+          </p>
+        </Card>
+        <Card className="p-5">
+          <div className="mb-2 flex items-center gap-2 text-sm font-semibold">
+            <Target className="size-4 text-primary" /> No data leakage
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Features for a fixture are built only from matches played before it. Models predict first;
+            actual results are used strictly afterwards for backtesting. Evaluation walks forward in
+            date order, and ensemble weights are re-derived from recent accuracy on each refresh.
+          </p>
+        </Card>
+      </section>
+
+      {/* Refresh */}
+      <section>
+        <Card className="p-6">
+          <CardHeader className="p-0">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <RefreshCw className="size-4 text-primary" /> Live data refresh
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 p-0 pt-4 text-sm text-muted-foreground">
+            <p>
+              The refresh button in the top bar (and below) triggers{" "}
+              <code className="text-primary">POST /api/refresh</code>, which shells out to{" "}
+              <code className="text-primary">ml/club_refresh.py</code>. That script re-pulls the
+              latest completed results &amp; scorers from the open sources, replays the full
+              ingest → evaluate pipeline, and rewrites every JSON under{" "}
+              <code className="text-primary">public/data/**</code>. The route then calls{" "}
+              <code className="text-primary">revalidatePath(&quot;/&quot;, &quot;layout&quot;)</code>{" "}
+              so every page re-reads the new data — no code change or restart required.
+            </p>
+            <ol className="ml-4 list-decimal space-y-1">
+              <li>Click refresh → the button locks and a progress toast appears.</li>
+              <li>The Python pipeline pulls new results, retrains and re-evaluates (~1–2 min).</li>
+              <li>On success the route purges the route cache and the UI re-fetches server data.</li>
+              <li>If a source is down, it falls back to cache and reports the reason in the toast.</li>
+            </ol>
+            <p>
+              A module-level guard prevents overlapping runs, and the endpoint is disabled in
+              production unless <code className="text-primary">ALLOW_DATA_REFRESH=1</code> is set —
+              executing a child process from a web request is only safe on a trusted machine.
+            </p>
+            <div className="rounded-lg border border-border bg-muted/40 p-4">
+              {enabled ? (
+                <div className="space-y-3 text-center">
+                  <p className="text-foreground">Refresh is enabled in this environment.</p>
+                  <RefreshDataButton />
+                </div>
+              ) : (
+                <p className="text-center">
+                  Refresh is disabled here. Run{" "}
+                  <code className="text-primary">npm run data:refresh</code> locally, or set{" "}
+                  <code className="text-primary">ALLOW_DATA_REFRESH=1</code>.
+                </p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </section>
     </div>
   );
 }

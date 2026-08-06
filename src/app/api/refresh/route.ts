@@ -8,8 +8,9 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * Refreshing the data runs a local Python process (`ml/refresh.py`) that hits
- * public, key-less data sources and rebuilds `public/data/*.json`. Executing a
+ * Refreshing the data runs a local Python process (`ml/club_refresh.py`) that
+ * hits public, key-less data sources (openfootball, football-data.co.uk,
+ * Wikipedia/Wikimedia Commons) and rebuilds `public/data/**`. Executing a
  * child process from a web request is only safe on a trusted machine, so it is
  * **disabled by default in production**. It is enabled automatically in local
  * development, and can be explicitly enabled anywhere with `ALLOW_DATA_REFRESH=1`.
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
         ok: false,
         error:
           "In-app refresh is disabled in this environment. Run `npm run data:fetch` " +
-          "(python ml/refresh.py) locally, or set ALLOW_DATA_REFRESH=1 to enable it.",
+          "(python ml/club_refresh.py) locally, or set ALLOW_DATA_REFRESH=1 to enable it.",
       },
       { status: 403 },
     );
@@ -43,10 +44,12 @@ export async function POST(request: Request) {
   }
 
   // `?mode=offline` rebuilds from the committed caches without any network calls;
-  // the default pulls the latest results + player match stats first.
+  // the default pulls the latest results + scorers first. `?mode=squads` also
+  // refreshes rosters + headshots (slow — several minutes).
   const mode = new URL(request.url).searchParams.get("mode");
-  const args = ["ml/refresh.py"];
+  const args = ["ml/club_refresh.py"];
   if (mode === "offline") args.push("--offline");
+  if (mode === "squads") args.push("--squads");
 
   const python = process.env.PYTHON_BIN || process.env.PYTHON || "python";
   const cwd = process.cwd();
@@ -60,7 +63,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           ok: false,
-          error: `refresh.py exited with code ${result.code}`,
+          error: `club_refresh.py exited with code ${result.code}`,
           durationMs: Date.now() - startedAt,
           log: tail,
         },

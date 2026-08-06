@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { AlertTriangle, Info } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -10,181 +11,140 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { CalibrationChart } from "@/components/charts/calibration-chart";
-import { ImportanceBars } from "@/components/charts/importance-bars";
+import { cn } from "@/lib/utils";
 import { pct } from "@/lib/format";
-import type { ModelInfo } from "@/lib/types";
+import type { ModelsData } from "@/lib/types";
 
-const TYPE_VARIANT: Record<string, React.ComponentProps<typeof Badge>["variant"]> = {
-  ensemble: "default",
-  boosting: "info",
-  tree: "success",
-  linear: "warning",
-  baseline: "muted",
-};
+const fmt = (v: number | null, digits = 3) => (v == null ? "—" : v.toFixed(digits));
 
-export function ModelsExplorer({ models }: { models: ModelInfo[] }) {
-  const sorted = React.useMemo(() => models.slice().sort((a, b) => a.rank - b.rank), [models]);
-  const [selectedId, setSelectedId] = React.useState(sorted[0]?.id);
-  const selected = sorted.find((m) => m.id === selectedId) ?? sorted[0];
+export function ModelsExplorer({ models }: { models: ModelsData }) {
+  const board = models.leaderboard;
+  const evaluated = models.meta.evaluated;
+  const [selected, setSelected] = React.useState(board[0]?.id ?? "");
+  const active = board.find((m) => m.id === selected) ?? board[0];
 
   return (
-    <div className="space-y-6">
-      {/* Leaderboard */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base">Model leaderboard</CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Ranked by log loss on {selected.gamesEvaluated} completed matches. Select a row for
-            calibration and feature detail.
-          </p>
-        </CardHeader>
-        <CardContent>
+    <div className="space-y-4">
+      <Card className="overflow-hidden p-0">
+        <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">
-                <TableHead className="w-10">#</TableHead>
+                <TableHead className="w-8">#</TableHead>
                 <TableHead>Model</TableHead>
-                <MetricHead label="Accuracy" hint="Share of matches where the argmax class was correct." />
-                <MetricHead label="Log loss" hint="Penalises confident wrong probabilities. Lower is better." />
-                <MetricHead label="Brier" hint="Mean squared error of the probability vector. Lower is better." />
-                <MetricHead label="ECE" hint="Expected calibration error — gap between confidence and accuracy." />
-                <MetricHead label="Weight" hint="Share in the ensemble, set ∝ 1 / log loss." />
+                <TableHead className="text-right">Accuracy</TableHead>
+                <TableHead className="hidden text-right sm:table-cell">Log loss</TableHead>
+                <TableHead className="hidden text-right sm:table-cell">Brier</TableHead>
+                <TableHead className="hidden text-right md:table-cell">ECE</TableHead>
+                <TableHead className="hidden text-right md:table-cell">Avg conf</TableHead>
+                <TableHead className="text-right">Weight</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {sorted.map((m) => (
+              {board.map((m) => (
                 <TableRow
                   key={m.id}
-                  onClick={() => setSelectedId(m.id)}
-                  data-state={m.id === selectedId ? "selected" : undefined}
-                  className="cursor-pointer"
+                  onClick={() => setSelected(m.id)}
+                  className={cn(
+                    "cursor-pointer",
+                    m.id === selected && "bg-secondary/60 hover:bg-secondary/60",
+                  )}
                 >
-                  <TableCell className="font-semibold tabular-nums text-muted-foreground">
+                  <TableCell className="text-xs font-semibold text-muted-foreground tabular-nums">
                     {m.rank}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <span className="font-medium">{m.name}</span>
-                      <Badge variant={TYPE_VARIANT[m.type]} className="text-[10px] capitalize">
-                        {m.type}
-                      </Badge>
-                      {m.note && (
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <AlertTriangle className="size-3.5 text-warning" />
-                          </TooltipTrigger>
-                          <TooltipContent>{m.note}</TooltipContent>
-                        </Tooltip>
-                      )}
+                      {m.rank === 1 && evaluated > 0 && <Badge variant="success">Best</Badge>}
+                      {m.id === "ensemble" && <Badge variant="info">Ensemble</Badge>}
                     </div>
+                    <p className="mt-0.5 hidden max-w-md text-xs text-muted-foreground lg:block">
+                      {m.blurb}
+                    </p>
                   </TableCell>
-                  <TableCell className="text-right text-sm tabular-nums">{pct(m.accuracy)}</TableCell>
+                  <TableCell className="text-right font-semibold tabular-nums">
+                    {m.accuracy == null ? "—" : pct(m.accuracy, 1)}
+                  </TableCell>
+                  <TableCell className="hidden text-right text-sm tabular-nums sm:table-cell">
+                    {fmt(m.logLoss)}
+                  </TableCell>
+                  <TableCell className="hidden text-right text-sm tabular-nums sm:table-cell">
+                    {fmt(m.brier)}
+                  </TableCell>
+                  <TableCell className="hidden text-right text-sm tabular-nums md:table-cell">
+                    {fmt(m.ece)}
+                  </TableCell>
+                  <TableCell className="hidden text-right text-sm tabular-nums md:table-cell">
+                    {m.avgConfidence == null ? "—" : pct(m.avgConfidence, 1)}
+                  </TableCell>
                   <TableCell className="text-right text-sm tabular-nums">
-                    {m.logLoss.toFixed(3)}
-                  </TableCell>
-                  <TableCell className="text-right text-sm tabular-nums">
-                    {m.brier.toFixed(3)}
-                  </TableCell>
-                  <TableCell className="text-right text-sm tabular-nums">
-                    {m.ece.toFixed(3)}
-                  </TableCell>
-                  <TableCell className="text-right text-sm font-medium tabular-nums">
-                    {m.weight > 0 ? pct(m.weight) : "—"}
+                    {(m.weight * 100).toFixed(0)}%
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </CardContent>
+        </div>
       </Card>
 
-      {/* Selected model detail */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
+      <div className="grid gap-4 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base">{selected.name}</CardTitle>
-              <Badge variant={TYPE_VARIANT[selected.type]} className="capitalize">
-                {selected.type}
-              </Badge>
-            </div>
-            <p className="text-sm text-muted-foreground">{selected.description}</p>
-          </CardHeader>
-          <CardContent className="space-y-4">
+            <CardTitle className="text-base">Calibration · {active?.name}</CardTitle>
             <p className="text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">Strengths. </span>
-              {selected.strengths}
+              How predicted confidence (x) compares with the observed hit-rate (y). Points on the
+              dashed line are perfectly calibrated.
             </p>
-            {selected.note && (
-              <div className="flex items-start gap-2 rounded-lg border border-warning/30 bg-warning/10 p-3 text-sm text-warning">
-                <AlertTriangle className="mt-0.5 size-4 shrink-0" />
-                <span>{selected.note}</span>
-              </div>
-            )}
-            <div className="grid grid-cols-3 gap-2 text-center">
-              <MiniStat label="Accuracy" value={pct(selected.accuracy)} />
-              <MiniStat label="Avg. conf." value={pct(selected.avgConfidence)} />
-              <MiniStat label="Games" value={String(selected.gamesEvaluated)} />
-            </div>
-            <div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Feature importance
+          </CardHeader>
+          <CardContent>
+            {active && active.calibration.length > 0 && evaluated > 0 ? (
+              <CalibrationChart bins={active.calibration} />
+            ) : (
+              <p className="py-10 text-center text-sm text-muted-foreground">
+                No completed matches to evaluate yet — calibration appears once results arrive.
               </p>
-              <ImportanceBars importances={selected.featureImportance} />
-            </div>
+            )}
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Calibration reliability</CardTitle>
+            <CardTitle className="text-base">Ensemble weights</CardTitle>
             <p className="text-sm text-muted-foreground">
-              How predicted confidence compares to observed accuracy. Closer to the dashed line is
-              better calibrated.
+              The ensemble blends its base learners in proportion to recent accuracy. Weak or
+              redundant models are down-weighted automatically.
             </p>
           </CardHeader>
-          <CardContent>
-            {selected.calibration.length > 0 ? (
-              <CalibrationChart bins={selected.calibration} />
-            ) : (
-              <p className="py-10 text-center text-sm text-muted-foreground">
-                Not enough evaluated matches to plot calibration.
-              </p>
-            )}
-            <p className="mt-2 text-xs text-muted-foreground">
-              Expected calibration error (ECE): {selected.ece.toFixed(3)} · Brier score:{" "}
-              {selected.brier.toFixed(3)}
+          <CardContent className="space-y-2.5">
+            {Object.entries(models.weights)
+              .sort((a, b) => b[1] - a[1])
+              .map(([id, w]) => {
+                const model = board.find((m) => m.id === id);
+                return (
+                  <div key={id}>
+                    <div className="mb-1 flex items-center justify-between text-xs">
+                      <span className="font-medium">{model?.name ?? id}</span>
+                      <span className="tabular-nums text-muted-foreground">
+                        {(w * 100).toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                        style={{ width: `${w * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            <p className="pt-1 text-xs text-muted-foreground">
+              Evaluated on {evaluated.toLocaleString()} completed matches.
             </p>
           </CardContent>
         </Card>
       </div>
-    </div>
-  );
-}
-
-function MetricHead({ label, hint }: { label: string; hint: string }) {
-  return (
-    <TableHead className="text-right">
-      <Tooltip>
-        <TooltipTrigger className="inline-flex items-center gap-1">
-          {label}
-          <Info className="size-3 opacity-60" />
-        </TooltipTrigger>
-        <TooltipContent>{hint}</TooltipContent>
-      </Tooltip>
-    </TableHead>
-  );
-}
-
-function MiniStat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg bg-muted/50 py-2">
-      <div className="text-sm font-semibold tabular-nums">{value}</div>
-      <div className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</div>
     </div>
   );
 }

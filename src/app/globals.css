@@ -4,89 +4,89 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ------------------------------------------------------------------ */
-/*  Design tokens                                                      */
+/*  Design tokens — futuristic, dark-first sports-analytics theme      */
 /* ------------------------------------------------------------------ */
 :root {
-  --radius: 0.75rem;
+  --radius: 0.85rem;
 
-  --background: 210 40% 98%;
-  --foreground: 222 47% 11%;
+  --background: 220 30% 98%;
+  --foreground: 224 47% 9%;
 
   --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card-foreground: 224 47% 9%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
+  --popover-foreground: 224 47% 9%;
 
-  --primary: 160 84% 34%;
+  --primary: 252 83% 58%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
+  --secondary: 220 24% 95%;
+  --secondary-foreground: 224 47% 11%;
 
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 42%;
+  --muted: 220 24% 95%;
+  --muted-foreground: 220 12% 42%;
 
-  --accent: 199 89% 48%;
+  --accent: 190 95% 42%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --success: 142 71% 40%;
-  --warning: 38 92% 46%;
+  --success: 152 62% 40%;
+  --warning: 35 92% 48%;
   --info: 217 91% 55%;
 
-  --border: 214 32% 89%;
-  --input: 214 32% 89%;
-  --ring: 160 84% 34%;
+  --border: 220 20% 88%;
+  --input: 220 20% 88%;
+  --ring: 252 83% 58%;
 
   /* chart palette */
-  --chart-1: 160 84% 39%;
-  --chart-2: 217 91% 60%;
-  --chart-3: 38 92% 50%;
-  --chart-4: 280 65% 60%;
-  --chart-5: 340 82% 58%;
+  --chart-1: 252 83% 60%;
+  --chart-2: 190 95% 45%;
+  --chart-3: 35 92% 52%;
+  --chart-4: 322 82% 60%;
+  --chart-5: 152 62% 46%;
 }
 
 .dark {
-  --background: 222 47% 6%;
-  --foreground: 210 40% 98%;
+  --background: 230 32% 5%;
+  --foreground: 220 30% 97%;
 
-  --card: 222 44% 9%;
-  --card-foreground: 210 40% 98%;
+  --card: 230 26% 8%;
+  --card-foreground: 220 30% 97%;
 
-  --popover: 222 44% 9%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 230 28% 9%;
+  --popover-foreground: 220 30% 97%;
 
-  --primary: 152 76% 44%;
-  --primary-foreground: 222 47% 6%;
+  --primary: 255 92% 72%;
+  --primary-foreground: 230 40% 6%;
 
-  --secondary: 217 33% 15%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 228 22% 14%;
+  --secondary-foreground: 220 30% 97%;
 
-  --muted: 217 33% 15%;
-  --muted-foreground: 215 20% 62%;
+  --muted: 228 20% 13%;
+  --muted-foreground: 220 14% 62%;
 
-  --accent: 199 89% 52%;
-  --accent-foreground: 222 47% 6%;
+  --accent: 189 94% 55%;
+  --accent-foreground: 230 40% 6%;
 
-  --destructive: 0 63% 50%;
+  --destructive: 0 72% 58%;
   --destructive-foreground: 0 0% 100%;
 
-  --success: 142 69% 48%;
-  --warning: 38 92% 55%;
-  --info: 217 91% 62%;
+  --success: 152 66% 52%;
+  --warning: 35 92% 58%;
+  --info: 217 91% 66%;
 
-  --border: 217 33% 18%;
-  --input: 217 33% 20%;
-  --ring: 152 76% 44%;
+  --border: 228 20% 17%;
+  --input: 228 20% 20%;
+  --ring: 255 92% 72%;
 
-  --chart-1: 152 76% 50%;
-  --chart-2: 217 91% 65%;
-  --chart-3: 38 92% 58%;
-  --chart-4: 280 70% 68%;
-  --chart-5: 340 82% 66%;
+  --chart-1: 255 92% 74%;
+  --chart-2: 189 94% 58%;
+  --chart-3: 35 92% 60%;
+  --chart-4: 322 85% 68%;
+  --chart-5: 152 66% 56%;
 }
 
 /* ------------------------------------------------------------------ */
@@ -125,10 +125,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo,
-    Consolas, monospace;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", "Cascadia Code",
+    "Roboto Mono", Menlo, Consolas, monospace;
 }
 
 /* ------------------------------------------------------------------ */
@@ -150,7 +150,7 @@
     text-rendering: optimizeLegibility;
   }
   ::selection {
-    background-color: hsl(var(--primary) / 0.2);
+    background-color: hsl(var(--primary) / 0.25);
   }
 }
 
@@ -162,13 +162,52 @@
   padding-inline: 1rem;
 }
 
-/* Subtle grid backdrop used on the hero / dashboard header */
+/* Ambient page aura used behind the dashboard hero */
+.app-aura {
+  background:
+    radial-gradient(60rem 32rem at 12% -8%, hsl(var(--primary) / 0.16), transparent 60%),
+    radial-gradient(48rem 28rem at 92% -4%, hsl(var(--accent) / 0.14), transparent 58%);
+}
+
+/* Frosted glass surface */
+.glass {
+  background-color: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+/* Subtle grid backdrop used on hero sections */
 .bg-grid {
   background-image:
-    linear-gradient(to right, hsl(var(--border) / 0.6) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--border) / 0.6) 1px, transparent 1px);
+    linear-gradient(to right, hsl(var(--border) / 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.55) 1px, transparent 1px);
   background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse at top, black 20%, transparent 72%);
+  mask-image: radial-gradient(ellipse at top, black 18%, transparent 72%);
+}
+
+/* Gradient text used for hero headlines */
+.text-gradient {
+  background-image: linear-gradient(
+    120deg,
+    hsl(var(--primary)),
+    hsl(var(--accent))
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Lift-on-hover card interaction */
+.card-hover {
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: hsl(var(--primary) / 0.4);
+  box-shadow: 0 10px 30px -12px hsl(var(--primary) / 0.35);
 }
 
 /* Thin, tasteful scrollbars */

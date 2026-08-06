@@ -1,162 +1,264 @@
 /**
- * Shared data contract for the 2026 World Cup dashboard.
+ * Shared data contract for the Soccer Agent league dashboard (EPL + La Liga).
  *
  * These types describe the JSON files produced by the Python ML pipeline
- * (see /ml) and consumed by the Next.js frontend. The pipeline writes the
- * canonical files to `public/data/*.json`; keep this file in sync with the
- * pipeline's serialisers (ml/predict.py, ml/evaluate.py, ml/ingest.py).
+ * (see /ml, in particular ml/club_evaluate.py) and consumed by the Next.js
+ * frontend. The pipeline writes one folder per dataset:
+ *
+ *   public/data/{league}/{season}/{summary,standings,matches,models,clubs,players,rankings}.json
+ *   public/data/index.json   (catalogue of available datasets + the default)
+ *
+ * Keep this file in sync with ml/club_evaluate.py.
  */
 
-export type Confederation =
-  | "UEFA"
-  | "CONMEBOL"
-  | "CONCACAF"
-  | "CAF"
-  | "AFC"
-  | "OFC";
-
-export type MatchStatus = "completed" | "upcoming" | "live";
-
-export type Stage =
-  | "group"
-  | "round-of-32"
-  | "round-of-16"
-  | "quarter-final"
-  | "semi-final"
-  | "third-place"
-  | "final";
-
-export type Position = "GK" | "DEF" | "MID" | "FWD";
-
 export type Outcome = "home" | "draw" | "away";
+export type MatchStatus = "completed" | "upcoming" | "live";
+export type Position = "GK" | "DEF" | "MID" | "FWD";
+export type SeasonRole = "validation" | "deliverable";
 
-export interface TeamColors {
-  primary: string;
-  secondary: string;
+/* ------------------------------------------------------------------ */
+/*  Catalogue (index.json)                                             */
+/* ------------------------------------------------------------------ */
+
+export interface SeasonRef {
+  id: string;
+  label: string;
+  role: SeasonRole;
 }
 
-export interface TeamRef {
-  code: string;
-  iso2: string;
+export interface LeagueRef {
+  id: string;
   name: string;
-  colors: TeamColors;
+  short: string;
+  country: string;
+  iso2: string;
+  accent: string;
+  seasons: SeasonRef[];
 }
 
-export interface TeamRecord {
+export interface DatasetRef {
+  league: string;
+  season: string;
   played: number;
-  won: number;
-  drawn: number;
-  lost: number;
+  players: number;
+}
+
+export interface IndexData {
+  generatedAt: string;
+  default: { league: string; season: string };
+  leagues: LeagueRef[];
+  datasets: DatasetRef[];
+}
+
+/** A validated {league, season} selection resolved from the URL. */
+export interface Selection {
+  league: string;
+  season: string;
+}
+
+/* ------------------------------------------------------------------ */
+/*  summary.json                                                       */
+/* ------------------------------------------------------------------ */
+
+export interface LeagueMeta {
+  id: string;
+  name: string;
+  short: string;
+  country: string;
+  iso2: string;
+  accent: string;
+}
+
+export interface Summary {
+  league: LeagueMeta;
+  season: SeasonRef;
+  lastUpdated: string;
+  totalMatches: number;
+  played: number;
+  upcoming: number;
+  clubs: number;
+  champion: { code: string; name: string; probability: number } | null;
+  topScorer: { id: string; name: string; club: string; goals: number } | null;
+  bestModel: { id: string; name: string; accuracy: number } | null;
+  highestConfidence:
+    | { id: string; home: string; away: string; predicted: Outcome; confidence: number }
+    | null;
+}
+
+/* ------------------------------------------------------------------ */
+/*  standings.json                                                     */
+/* ------------------------------------------------------------------ */
+
+export type FormResult = "W" | "D" | "L";
+
+export interface Standing {
+  code: string;
+  played: number;
+  win: number;
+  draw: number;
+  loss: number;
   gf: number;
   ga: number;
   gd: number;
-  points: number;
-  groupRank: number | null;
+  pts: number;
+  form: FormResult[];
+  expectedPoints: number;
+  position: number;
 }
 
-export interface AdvanceProbabilities {
-  roundOf32: number;
-  roundOf16: number;
-  quarter: number;
-  semi: number;
-  final: number;
-  champion: number;
-}
+/* ------------------------------------------------------------------ */
+/*  matches.json                                                       */
+/* ------------------------------------------------------------------ */
 
-export interface TeamStrength {
-  overall: number;
-  attack: number;
-  defense: number;
-  form: number;
-  squad: number;
-  momentum: number;
-  experience: number;
-}
-
-export interface ProbPoint {
-  label: string;
-  prob: number;
-}
-
-export interface Team {
+export interface ClubRef {
   code: string;
-  iso2: string;
   name: string;
-  confederation: Confederation;
-  group: string;
-  colors: TeamColors;
-  elo: number;
-  eloInitial: number;
-  fifaRank: number;
-  status: "active" | "eliminated";
-  eliminatedRound: Stage | null;
-  strength: TeamStrength;
-  record: TeamRecord;
-  championProb: number;
-  advance: AdvanceProbabilities;
-  strengths: string[];
-  weaknesses: string[];
-  keyPlayerIds: string[];
-  championProbHistory: ProbPoint[];
+  short: string;
+  primary: string;
+  secondary: string;
+  wiki: string;
 }
 
-export interface ModelPrediction {
-  model: string;
-  modelName: string;
-  probs: { home: number; draw: number; away: number };
-  predictedOutcome: Outcome;
-  winner: string;
-  winnerCode: string | null;
-  confidence: number;
-  /** Backtest accuracy of this model so far (0-1), for context in the modal. */
-  accuracy: number;
+export interface Probabilities {
+  home: number;
+  draw: number;
+  away: number;
 }
 
 export interface MatchFactor {
+  feature: string;
   label: string;
-  detail: string;
-  favors: "home" | "away" | "neutral";
-  weight: number;
+  value: number;
+  impact: number;
+  direction: Outcome;
+}
+
+export interface MatchPrediction {
+  ensemble: Probabilities;
+  models: Record<string, Probabilities>;
+  predicted: Outcome;
+  confidence: number;
+  topFactors: MatchFactor[];
+}
+
+export interface Scorer {
+  player: string;
+  team: string;
+  minute: string;
+  penalty: boolean;
+  ownGoal: boolean;
+}
+
+export interface MatchStats {
+  shots?: { home: number; away: number };
+  shotsOnTarget?: { home: number; away: number };
+  corners?: { home: number; away: number };
+  fouls?: { home: number; away: number };
+  yellows?: { home: number; away: number };
+  reds?: { home: number; away: number };
+  marketOdds?: Probabilities;
+  referee?: string | null;
 }
 
 export interface Match {
   id: string;
-  stage: Stage;
-  stageLabel: string;
-  group: string | null;
   round: number;
+  date: string;
   datetime: string;
-  venue: string;
-  city: string;
   status: MatchStatus;
-  home: TeamRef;
-  away: TeamRef;
-  score: { home: number; away: number } | null;
-  penalties: { home: number; away: number } | null;
-  aet: boolean;
-  actualOutcome: Outcome | null;
-  ensemble: ModelPrediction;
-  models: ModelPrediction[];
-  factors: MatchFactor[];
-  predictedOutcome: Outcome;
-  correct: boolean | null;
-  resultWinner: "home" | "away" | null;
-  projectedMatchup: boolean;
+  home: ClubRef;
+  away: ClubRef;
+  homeGoals: number | null;
+  awayGoals: number | null;
+  eloHome: number;
+  eloAway: number;
+  prediction: MatchPrediction;
+  scorers: Scorer[];
+  matchStats: MatchStats | null;
+  marketOdds: Probabilities | null;
+  actual: Outcome | null;
+  predictionCorrect: boolean | null;
 }
 
-export interface PlayerStats {
-  /** Real 2026 World Cup tournament stats (Wikipedia / FIFA match reports). */
-  appearances: number;
-  minutes: number;
-  goals: number;
-  /** Not published in any free World Cup source — always null, shown as "—". */
-  assists: number | null;
-  yellowCards: number;
-  redCards: number;
-  /** Goalkeepers only (null for outfield players). */
-  cleanSheets: number | null;
-  goalsConceded: number | null;
+/* ------------------------------------------------------------------ */
+/*  models.json                                                        */
+/* ------------------------------------------------------------------ */
+
+export interface CalibrationBin {
+  predicted: number;
+  observed: number;
+  count: number;
 }
+
+export interface ModelEntry {
+  id: string;
+  name: string;
+  blurb: string;
+  weight: number;
+  accuracy: number | null;
+  logLoss: number | null;
+  brier: number | null;
+  avgConfidence: number | null;
+  ece: number | null;
+  calibration: CalibrationBin[];
+  gamesEvaluated: number;
+  rank: number;
+}
+
+export interface ModelsData {
+  leaderboard: ModelEntry[];
+  meta: { evaluated: number };
+  weights: Record<string, number>;
+}
+
+/* ------------------------------------------------------------------ */
+/*  clubs.json                                                         */
+/* ------------------------------------------------------------------ */
+
+export interface ClubStrength {
+  elo: number;
+  overall: number;
+  attack: number;
+  defense: number;
+  form: number;
+  gfAvg: number;
+  gaAvg: number;
+  ppg: number;
+}
+
+export interface ClubOdds {
+  title: number;
+  ucl: number;
+  europa: number;
+  relegation: number;
+  expectedPoints: number;
+  expectedPosition: number;
+  positionDist: number[];
+  maxPoints: number;
+  canWinTitle: boolean;
+}
+
+export interface Club {
+  code: string;
+  name: string;
+  short: string;
+  primary: string;
+  secondary: string;
+  wiki: string;
+  standing: Standing;
+  strength: ClubStrength;
+  odds: ClubOdds;
+  keyPlayers: string[];
+  squadSize: number;
+  playedMatches: string[];
+  upcomingMatches: string[];
+  strengthsText: string[];
+  weaknessesText: string[];
+}
+
+/* ------------------------------------------------------------------ */
+/*  players.json                                                       */
+/* ------------------------------------------------------------------ */
 
 export interface PhotoCredit {
   author: string;
@@ -167,172 +269,67 @@ export interface PhotoCredit {
 export interface Player {
   id: string;
   name: string;
-  countryCode: string;
-  country: string;
-  iso2: string;
+  wiki: string | null;
+  club: string;
+  clubName: string;
   position: Position;
   detailedPosition: string;
-  shirtNumber: number;
-  age: number | null;
-  club: string;
-  clubCountry: string;
-  rating: number;
-  contribution: number;
-  isCaptain: boolean;
-  isKeyPlayer: boolean;
-  /** True when the identity (name, position, age, caps, club) is real (Wikipedia). */
-  real: boolean;
-  caps: number | null;
-  intlGoals: number | null;
-  /** Free-licensed headshot path (public/headshots/…), or null for an initials avatar. */
+  shirtNumber: number | null;
+  nationIso2: string;
+  nationName: string;
   headshot: string | null;
   photoCredit: PhotoCredit | null;
-  stats: PlayerStats;
-  /** Real per-match tournament log (most recent first-to-last), Wikipedia. */
-  matchLog: PlayerMatch[];
-  bio: string;
-}
-
-export interface PlayerMatch {
-  date: string | null;
-  /** Opponent 3-letter code. */
-  opponent: string;
-  goalsFor: number;
-  goalsAgainst: number;
-  minutes: number;
   goals: number;
-  yellow: number;
-  red: number;
-  started: boolean;
+  penalties: number;
+  goalMinutes: string[];
+  assists: number | null;
+  appearances: number | null;
+  minutes: number | null;
+  yellowCards: number | null;
+  redCards: number | null;
+  clubStrength: number;
+  rating: number;
 }
 
-export interface CalibrationBin {
-  predicted: number;
-  observed: number;
-  count: number;
+export interface PlayersData {
+  players: Player[];
+  topScorers: string[];
 }
 
-export interface FeatureImportance {
-  feature: string;
-  label: string;
-  importance: number;
-}
-
-export interface ModelInfo {
-  id: string;
-  name: string;
-  type: "baseline" | "linear" | "tree" | "boosting" | "ensemble";
-  description: string;
-  accuracy: number;
-  logLoss: number;
-  brier: number;
-  gamesEvaluated: number;
-  avgConfidence: number;
-  ece: number;
-  weight: number;
-  rank: number;
-  lastUpdated: string;
-  calibration: CalibrationBin[];
-  featureImportance: FeatureImportance[];
-  strengths: string;
-  note: string | null;
-}
+/* ------------------------------------------------------------------ */
+/*  rankings.json                                                      */
+/* ------------------------------------------------------------------ */
 
 export interface RankingEntry {
   code: string;
-  name: string;
-  iso2: string;
   value: number;
-  rank: number;
-  confederation: Confederation;
-  group: string;
+  rank?: number;
 }
 
-export interface RankingView {
-  id: string;
-  name: string;
-  description: string;
-  unit: string;
-  format: "percent" | "number" | "rating";
-  entries: RankingEntry[];
-}
+export type RankingKey =
+  | "title"
+  | "strength"
+  | "form"
+  | "attack"
+  | "defense"
+  | "squad"
+  | "elo"
+  | "momentum";
 
-export interface Rankings {
-  views: RankingView[];
-}
+export type Rankings = Record<RankingKey, RankingEntry[]>;
 
-export interface BracketMatch {
-  id: string;
-  stage: Stage;
-  slot: number;
-  home: string | null;
-  away: string | null;
-  homeProjected: boolean;
-  awayProjected: boolean;
-  score: { home: number; away: number } | null;
-  penalties: { home: number; away: number } | null;
-  winner: string | null;
-  status: MatchStatus;
-  homeProb: number | null;
-  awayProb: number | null;
-}
+/* ------------------------------------------------------------------ */
+/*  Combined dataset bundle                                            */
+/* ------------------------------------------------------------------ */
 
-export interface BracketRound {
-  stage: Stage;
-  label: string;
-  matches: BracketMatch[];
-}
-
-export interface Bracket {
-  rounds: BracketRound[];
-}
-
-export interface ChampionOdd {
-  code: string;
-  name: string;
-  iso2: string;
-  prob: number;
-}
-
-export interface Summary {
-  tournament: string;
-  host: string;
-  asOf: string;
-  cutoff: string;
-  generatedAt: string;
-  totalMatches: number;
-  matchesCompleted: number;
-  matchesUpcoming: number;
-  matchesLive: number;
-  teamCount: number;
-  playerCount: number;
-  modelCount: number;
-  featureCount: number;
-  trainingMatches: number;
-  topChampion: ChampionOdd;
-  topContenders: ChampionOdd[];
-  highestConfidenceMatchId: string | null;
-  bestModel: {
-    id: string;
-    name: string;
-    accuracy: number;
-    logLoss: number;
-    brier: number;
-  };
-  ensembleAccuracy: number;
-  dataMode: "generated" | "cached" | "live";
-}
-
-export interface Methodology {
-  pipeline: { id: string; title: string; description: string; outputs: string[] }[];
-  dataSources: {
-    name: string;
-    kind: "generated" | "cached" | "live" | "static";
-    description: string;
-    license: string;
-  }[];
-  features: FeatureImportance[];
-  models: { id: string; name: string; summary: string }[];
-  notes: string[];
-  generatedAt: string;
+export interface Dataset {
+  selection: Selection;
+  summary: Summary;
+  standings: Standing[];
+  matches: Match[];
+  models: ModelsData;
+  clubs: Club[];
+  players: Player[];
+  topScorers: string[];
+  rankings: Rankings;
 }

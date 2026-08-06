@@ -1,159 +1,121 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { ChevronRight, Sparkles } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Flag } from "@/components/flag";
+import { ClubBadge } from "@/components/club-badge";
 import { ProbabilityBar } from "@/components/probability-bar";
-import { PredictionModal } from "@/components/match/prediction-modal";
 import { cn } from "@/lib/utils";
-import { pct, formatMatchDate, STAGE_SHORT } from "@/lib/format";
-import type { Match, ModelInfo } from "@/lib/types";
+import { pct, formatMatchDate } from "@/lib/format";
+import type { Match, Outcome, Probabilities } from "@/lib/types";
 
-interface MatchCardProps {
-  match: Match;
-  modelMeta?: Record<string, Pick<ModelInfo, "logLoss" | "brier" | "ece" | "rank" | "weight">>;
-  className?: string;
+function pick(p: Probabilities): Outcome {
+  if (p.home >= p.draw && p.home >= p.away) return "home";
+  if (p.away >= p.home && p.away >= p.draw) return "away";
+  return "draw";
 }
 
-export function MatchCard({ match, modelMeta, className }: MatchCardProps) {
-  const [open, setOpen] = React.useState(false);
-  const { home, away, ensemble, status } = match;
-  const dt = formatMatchDate(match.datetime);
-  const completed = status === "completed";
-  // For knockout ties settled in extra time or on penalties the advancing side
-  // (resultWinner) differs from the 90-minute 1X2 outcome, so prefer it for the
-  // winner highlight; fall back to the regulation outcome for group games.
-  const homeWin = match.resultWinner ? match.resultWinner === "home" : match.actualOutcome === "home";
-  const awayWin = match.resultWinner ? match.resultWinner === "away" : match.actualOutcome === "away";
-  const resultNote = completed
-    ? match.penalties
-      ? `a.e.t. · ${match.penalties.home}–${match.penalties.away} pens`
-      : match.aet
-        ? "a.e.t."
-        : null
-    : null;
+export function MatchCard({
+  match,
+  onOpenPrediction,
+}: {
+  match: Match;
+  onOpenPrediction?: (m: Match) => void;
+}) {
+  const { home, away, prediction } = match;
+  const completed = match.status === "completed" && match.homeGoals != null;
+  const { date, time } = formatMatchDate(match.datetime);
+  const p = pick(prediction.ensemble);
+  const homeWon = completed && (match.homeGoals ?? 0) > (match.awayGoals ?? 0);
+  const awayWon = completed && (match.awayGoals ?? 0) > (match.homeGoals ?? 0);
 
   return (
-    <>
-      <Card className={cn("group flex flex-col p-4 transition-shadow hover:shadow-md", className)}>
-        <div className="mb-3 flex items-center justify-between text-xs text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <Badge variant="secondary" className="font-medium">
-              {match.group ? `Group ${match.group}` : STAGE_SHORT[match.stage]}
-            </Badge>
-            {match.projectedMatchup && (
-              <Badge variant="outline" className="gap-1 text-[10px]">
-                <Sparkles className="size-2.5" /> Projected
-              </Badge>
+    <Card className="card-hover overflow-hidden p-0">
+      <div className="flex items-center justify-between border-b border-border/60 px-4 py-2 text-xs text-muted-foreground">
+        <span className="flex items-center gap-2">
+          <span className="font-medium text-foreground">MW {match.round}</span>
+          <span>·</span>
+          <span>
+            {date} · {time}
+          </span>
+        </span>
+        {match.status === "live" ? (
+          <Badge variant="destructive" className="gap-1">
+            <span className="live-dot inline-block size-1.5 rounded-full bg-current" /> Live
+          </Badge>
+        ) : completed ? (
+          <Badge variant="muted">Full time</Badge>
+        ) : (
+          <Badge variant="info">Upcoming</Badge>
+        )}
+      </div>
+
+      <div className="px-4 py-3">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
+          <div className={cn("flex items-center gap-2 justify-self-start", awayWon && "opacity-60")}>
+            <ClubBadge code={home.code} primary={home.primary} secondary={home.secondary} size="sm" />
+            <span className="truncate text-sm font-semibold">{home.short}</span>
+          </div>
+
+          <div className="px-2 text-center">
+            {completed ? (
+              <div className="flex items-center gap-1.5 text-lg font-bold tabular-nums">
+                <span className={cn(!homeWon && "text-muted-foreground")}>{match.homeGoals}</span>
+                <span className="text-muted-foreground">–</span>
+                <span className={cn(!awayWon && "text-muted-foreground")}>{match.awayGoals}</span>
+              </div>
+            ) : (
+              <span className="text-xs font-medium text-muted-foreground">vs</span>
             )}
           </div>
-          <div className="flex items-center gap-1.5">
-            {status === "live" && <span className="live-dot size-2 rounded-full bg-destructive" />}
-            <span>
-              {completed
-                ? resultNote
-                  ? `Full time · ${resultNote}`
-                  : "Full time"
-                : status === "live"
-                  ? "Live"
-                  : `${dt.weekday} ${dt.date} · ${dt.time}`}
-            </span>
-          </div>
-        </div>
 
-        <div className="space-y-1.5">
-          <TeamRow
-            iso2={home.iso2}
-            name={home.name}
-            code={home.code}
-            score={completed && match.score ? match.score.home : null}
-            win={homeWin}
-            prob={ensemble.probs.home}
-            showProb={!completed}
-          />
-          <TeamRow
-            iso2={away.iso2}
-            name={away.name}
-            code={away.code}
-            score={completed && match.score ? match.score.away : null}
-            win={awayWin}
-            prob={ensemble.probs.away}
-            showProb={!completed}
-          />
+          <div className={cn("flex items-center gap-2 justify-self-end", homeWon && "opacity-60")}>
+            <span className="truncate text-right text-sm font-semibold">{away.short}</span>
+            <ClubBadge code={away.code} primary={away.primary} secondary={away.secondary} size="sm" />
+          </div>
         </div>
 
         <button
-          onClick={() => setOpen(true)}
-          className="mt-3 rounded-lg border border-transparent p-1 text-left transition-colors hover:border-border hover:bg-muted/40"
-          aria-label="View prediction details"
+          type="button"
+          onClick={() => onOpenPrediction?.(match)}
+          className="group mt-3 block w-full rounded-lg px-1 py-1 text-left transition-colors hover:bg-secondary/50"
+          aria-label="View prediction detail"
         >
           <ProbabilityBar
-            homeProb={ensemble.probs.home}
-            drawProb={ensemble.probs.draw}
-            awayProb={ensemble.probs.away}
-            homeColor={home.colors.primary}
-            awayColor={away.colors.primary}
+            homeProb={prediction.ensemble.home}
+            drawProb={prediction.ensemble.draw}
+            awayProb={prediction.ensemble.away}
+            homeColor={home.primary}
+            awayColor={away.primary}
             homeLabel={home.code}
             awayLabel={away.code}
-            size="sm"
+            size="md"
           />
           <div className="mt-1.5 flex items-center justify-between text-[11px] text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Sparkles className="size-3 text-primary" />
-              {completed
-                ? match.correct
-                  ? "Predicted correctly"
-                  : "Prediction missed"
-                : `Model edge: ${pct(ensemble.confidence)}`}
+            <span>
+              Model tip:{" "}
+              <span className="font-medium text-foreground">
+                {p === "home" ? home.short : p === "away" ? away.short : "Draw"}
+              </span>{" "}
+              ({pct(prediction.confidence)})
+              {completed && (
+                <span
+                  className={cn(
+                    "ml-1.5 font-medium",
+                    match.predictionCorrect ? "text-success" : "text-destructive",
+                  )}
+                >
+                  {match.predictionCorrect ? "✓ hit" : "✗ miss"}
+                </span>
+              )}
             </span>
-            <span className="flex items-center gap-0.5 font-medium text-foreground opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="flex items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
               Details <ChevronRight className="size-3" />
             </span>
           </div>
         </button>
-      </Card>
-
-      <PredictionModal match={match} open={open} onOpenChange={setOpen} modelMeta={modelMeta} />
-    </>
-  );
-}
-
-function TeamRow({
-  iso2,
-  name,
-  code,
-  score,
-  win,
-  prob,
-  showProb,
-}: {
-  iso2: string;
-  name: string;
-  code: string;
-  score: number | null;
-  win: boolean;
-  prob: number;
-  showProb: boolean;
-}) {
-  return (
-    <div className={cn("flex items-center gap-2.5", score !== null && !win && "opacity-60")}>
-      <Flag iso2={iso2} size="md" />
-      <Link
-        href={`/countries/${code.toLowerCase()}`}
-        className="flex-1 truncate text-sm font-medium hover:underline"
-      >
-        {name}
-      </Link>
-      {showProb ? (
-        <span className="text-sm font-semibold tabular-nums text-muted-foreground">{pct(prob)}</span>
-      ) : (
-        <span className={cn("text-base font-bold tabular-nums", win && "text-foreground")}>
-          {score}
-        </span>
-      )}
-    </div>
+      </div>
+    </Card>
   );
 }

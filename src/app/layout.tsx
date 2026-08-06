@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { Geist, Geist_Mono } from "next/font/google";
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { CommandPalette } from "@/components/command-palette";
-import { getSummary } from "@/lib/data";
+import { getIndex } from "@/lib/data";
+
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
 function refreshEnabled(): boolean {
   return process.env.NODE_ENV !== "production" || process.env.ALLOW_DATA_REFRESH === "1";
@@ -14,47 +18,46 @@ function refreshEnabled(): boolean {
 
 export const metadata: Metadata = {
   title: {
-    default: "World Cup 2026 · Prediction & Analytics",
-    template: "%s · World Cup 2026",
+    default: "Soccer Agent · EPL & La Liga Prediction Analytics",
+    template: "%s · Soccer Agent",
   },
   description:
-    "A 2026 FIFA World Cup prediction and analytics dashboard powered by a reproducible machine-learning pipeline (Elo, Logistic Regression, Random Forest, XGBoost and a weighted ensemble).",
-  applicationName: "World Cup 2026 Analytics",
+    "A live Premier League & La Liga prediction and analytics dashboard powered by a reproducible machine-learning pipeline (Elo, Logistic Regression, Random Forest, XGBoost, a market baseline and a weighted ensemble) with Monte-Carlo season simulation.",
+  applicationName: "Soccer Agent",
   keywords: [
-    "World Cup 2026",
+    "Premier League",
+    "La Liga",
     "football predictions",
     "machine learning",
     "analytics dashboard",
     "Elo",
     "XGBoost",
+    "Monte Carlo",
   ],
-  authors: [{ name: "World Cup 2026 Analytics" }],
+  authors: [{ name: "Soccer Agent" }],
 };
 
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1220" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0b14" },
   ],
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const summary = await getSummary();
+  const index = await getIndex();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <TooltipProvider delayDuration={150}>
             <div className="flex min-h-screen flex-col">
-              <SiteNav
-                dataAsOf={summary.asOf}
-                dataGeneratedAt={summary.generatedAt}
-                refreshEnabled={refreshEnabled()}
-              />
+              <Suspense fallback={<div className="h-16 border-b border-border" />}>
+                <SiteNav index={index} refreshEnabled={refreshEnabled()} />
+              </Suspense>
               <main className="flex-1">{children}</main>
               <SiteFooter />
             </div>
-            <CommandPalette />
           </TooltipProvider>
         </ThemeProvider>
       </body>

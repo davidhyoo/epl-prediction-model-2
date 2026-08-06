@@ -12,8 +12,8 @@ export default function NotFound() {
         <p className="text-sm font-semibold uppercase tracking-wider text-primary">404</p>
         <h1 className="text-2xl font-bold tracking-tight">Page not found</h1>
         <p className="max-w-md text-sm text-muted-foreground">
-          We couldn&apos;t find that page. It may have been moved, or the team or player you&apos;re
-          looking for isn&apos;t in the 2026 field.
+          We couldn&apos;t find that page. It may have been moved, or the club or player you&apos;re
+          looking for isn&apos;t in the selected league &amp; season.
         </p>
       </div>
       <Button asChild>

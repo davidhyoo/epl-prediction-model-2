@@ -26,133 +26,128 @@ import { Flag } from "@/components/flag";
 import { PlayerAvatar } from "@/components/player-avatar";
 import { RatingPill } from "@/components/rating-pill";
 import { EmptyState } from "@/components/empty-state";
-import type { Player, Position } from "@/lib/types";
+import type { Player, Position, Selection } from "@/lib/types";
 
-type SortKey =
-  | "rating"
-  | "name"
-  | "country"
-  | "position"
-  | "goals"
-  | "appearances"
-  | "minutes"
-  | "contribution";
+type SortKey = "rating" | "goals" | "name" | "club" | "position" | "nation" | "number";
 
 const POSITIONS: Position[] = ["GK", "DEF", "MID", "FWD"];
 const PAGE = 40;
 
 const SORTS: { key: SortKey; label: string }[] = [
   { key: "rating", label: "Rating" },
-  { key: "contribution", label: "Contribution" },
   { key: "goals", label: "Goals" },
-  { key: "appearances", label: "Appearances" },
-  { key: "minutes", label: "Minutes" },
   { key: "name", label: "Name" },
-  { key: "country", label: "Country" },
+  { key: "club", label: "Club" },
   { key: "position", label: "Position" },
+  { key: "nation", label: "Nation" },
+  { key: "number", label: "Shirt number" },
 ];
 
-export function PlayersExplorer() {
+export function PlayersExplorer({
+  selection,
+  query,
+  clubs,
+}: {
+  selection: Selection;
+  query: string;
+  clubs: { code: string; short: string }[];
+}) {
   const [players, setPlayers] = React.useState<Player[] | null>(null);
-  const [query, setQuery] = React.useState("");
-  const [country, setCountry] = React.useState("all");
+  const [loadedKey, setLoadedKey] = React.useState<string | null>(null);
+  const [search, setSearch] = React.useState("");
+  const [club, setClub] = React.useState("all");
   const [position, setPosition] = React.useState("all");
   const [sort, setSort] = React.useState<SortKey>("rating");
   const [visible, setVisible] = React.useState(PAGE);
 
+  const selKey = `${selection.league}/${selection.season}`;
+
   React.useEffect(() => {
     let active = true;
-    fetch("/data/players.json")
+    fetch(`/data/${selection.league}/${selection.season}/players.json`)
       .then((r) => r.json())
-      .then((data: Player[]) => {
-        if (active) setPlayers(data);
+      .then((data: { players: Player[] }) => {
+        if (!active) return;
+        setPlayers(data.players);
+        setLoadedKey(selKey);
       })
-      .catch(() => active && setPlayers([]));
+      .catch(() => {
+        if (!active) return;
+        setPlayers([]);
+        setLoadedKey(selKey);
+      });
     return () => {
       active = false;
     };
-  }, []);
+  }, [selKey, selection.league, selection.season]);
 
-  // Reset pagination whenever the filters change, using the React-recommended
-  // "adjust state during render" pattern instead of an effect.
-  const filterKey = `${query}|${country}|${position}|${sort}`;
-  const [prevFilterKey, setPrevFilterKey] = React.useState(filterKey);
-  if (filterKey !== prevFilterKey) {
-    setPrevFilterKey(filterKey);
+  const filterKey = `${search}|${club}|${position}|${sort}`;
+  const [prevKey, setPrevKey] = React.useState(filterKey);
+  if (filterKey !== prevKey) {
+    setPrevKey(filterKey);
     setVisible(PAGE);
   }
-
-  const countries = React.useMemo(() => {
-    if (!players) return [];
-    const map = new Map<string, { code: string; name: string; iso2: string }>();
-    for (const p of players) {
-      if (!map.has(p.countryCode))
-        map.set(p.countryCode, { code: p.countryCode, name: p.country, iso2: p.iso2 });
-    }
-    return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
-  }, [players]);
 
   const filtered = React.useMemo(() => {
     if (!players) return [];
     let list = players.slice();
-    if (country !== "all") list = list.filter((p) => p.countryCode === country);
+    if (club !== "all") list = list.filter((p) => p.club === club);
     if (position !== "all") list = list.filter((p) => p.position === position);
-    if (query.trim()) {
-      const q = query.toLowerCase();
+    if (search.trim()) {
+      const q = search.toLowerCase();
       list = list.filter(
-        (p) => p.name.toLowerCase().includes(q) || p.club.toLowerCase().includes(q),
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.clubName.toLowerCase().includes(q) ||
+          p.nationName.toLowerCase().includes(q),
       );
     }
     list.sort((a, b) => {
       switch (sort) {
+        case "goals":
+          return b.goals - a.goals || b.rating - a.rating;
         case "name":
           return a.name.localeCompare(b.name);
-        case "country":
-          return a.country.localeCompare(b.country) || b.rating - a.rating;
+        case "club":
+          return a.clubName.localeCompare(b.clubName) || b.rating - a.rating;
         case "position":
-          return (
-            POSITIONS.indexOf(a.position) - POSITIONS.indexOf(b.position) || b.rating - a.rating
-          );
-        case "goals":
-          return b.stats.goals - a.stats.goals;
-        case "appearances":
-          return b.stats.appearances - a.stats.appearances || b.stats.minutes - a.stats.minutes;
-        case "minutes":
-          return b.stats.minutes - a.stats.minutes;
-        case "contribution":
-          return b.contribution - a.contribution;
+          return POSITIONS.indexOf(a.position) - POSITIONS.indexOf(b.position) || b.rating - a.rating;
+        case "nation":
+          return a.nationName.localeCompare(b.nationName) || b.rating - a.rating;
+        case "number":
+          return (a.shirtNumber ?? 99) - (b.shirtNumber ?? 99);
         default:
           return b.rating - a.rating;
       }
     });
     return list;
-  }, [players, country, position, query, sort]);
+  }, [players, club, position, search, sort]);
 
-  if (!players) return <PlayersSkeleton />;
+  if (!players || loadedKey !== selKey) return <PlayersSkeleton />;
 
   const shown = filtered.slice(0, visible);
 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-2">
-        <div className="relative w-full sm:w-60">
+        <div className="relative w-full sm:w-64">
           <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search players or clubs…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search players, clubs or nations…"
             className="pl-8"
           />
         </div>
-        <Select value={country} onValueChange={setCountry}>
-          <SelectTrigger className="w-44">
-            <SelectValue placeholder="All countries" />
+        <Select value={club} onValueChange={setClub}>
+          <SelectTrigger className="w-40">
+            <SelectValue placeholder="All clubs" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All countries</SelectItem>
-            {countries.map((c) => (
+            <SelectItem value="all">All clubs</SelectItem>
+            {clubs.map((c) => (
               <SelectItem key={c.code} value={c.code}>
-                {c.name}
+                {c.short}
               </SelectItem>
             ))}
           </SelectContent>
@@ -171,7 +166,7 @@ export function PlayersExplorer() {
           </SelectContent>
         </Select>
         <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
-          <SelectTrigger className="w-48">
+          <SelectTrigger className="w-44">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -191,48 +186,34 @@ export function PlayersExplorer() {
         <EmptyState
           icon={<Users />}
           title="No players found"
-          description="Adjust the filters or search for a different name or club."
+          description="Adjust the filters or search for a different name, club or nation."
         />
       ) : (
         <>
-          <div className="rounded-lg border border-border">
+          <div className="overflow-hidden rounded-lg border border-border">
             <Table>
               <TableHeader>
                 <TableRow className="hover:bg-transparent">
                   <TableHead className="w-8">#</TableHead>
                   <TableHead>Player</TableHead>
-                  <TableHead className="hidden sm:table-cell">Country</TableHead>
                   <TableHead className="w-14">Pos</TableHead>
                   <TableHead className="hidden lg:table-cell">Club</TableHead>
-                  <TableHead className="hidden w-12 text-right md:table-cell">Age</TableHead>
+                  <TableHead className="hidden sm:table-cell">Nation</TableHead>
                   <TableHead className="w-12 text-right">G</TableHead>
-                  <TableHead className="w-12 text-right">Apps</TableHead>
-                  <TableHead className="hidden w-16 text-right sm:table-cell">Min</TableHead>
                   <TableHead className="w-16 text-right">Rating</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {shown.map((p, i) => (
                   <TableRow key={p.id}>
-                    <TableCell className="text-xs text-muted-foreground tabular-nums">
-                      {i + 1}
-                    </TableCell>
+                    <TableCell className="text-xs text-muted-foreground tabular-nums">{i + 1}</TableCell>
                     <TableCell>
                       <Link
-                        href={`/players/${p.id}`}
-                        className="flex items-center gap-2.5 font-medium hover:underline"
+                        href={`/players/${p.id}${query}`}
+                        className="flex items-center gap-2.5 font-medium hover:text-primary"
                       >
                         <PlayerAvatar name={p.name} src={p.headshot} size="sm" />
                         <span className="truncate">{p.name}</span>
-                      </Link>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <Link
-                        href={`/countries/${p.countryCode.toLowerCase()}`}
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-                      >
-                        <Flag iso2={p.iso2} size="sm" />
-                        <span className="hidden truncate lg:inline">{p.country}</span>
                       </Link>
                     </TableCell>
                     <TableCell>
@@ -241,20 +222,19 @@ export function PlayersExplorer() {
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden text-sm text-muted-foreground lg:table-cell">
-                      {p.club}
+                      {p.clubName}
                     </TableCell>
-                    <TableCell className="hidden text-right text-sm tabular-nums md:table-cell">
-                      {p.age ?? "—"}
+                    <TableCell className="hidden sm:table-cell">
+                      <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Flag iso2={p.nationIso2} size="sm" />
+                        <span className="hidden truncate xl:inline">{p.nationName}</span>
+                      </span>
                     </TableCell>
-                    <TableCell className="text-right text-sm tabular-nums">{p.stats.goals}</TableCell>
-                    <TableCell className="text-right text-sm tabular-nums">
-                      {p.stats.appearances}
-                    </TableCell>
-                    <TableCell className="hidden text-right text-sm tabular-nums sm:table-cell">
-                      {p.stats.minutes.toLocaleString()}
+                    <TableCell className="text-right text-sm font-medium tabular-nums">
+                      {p.goals}
                     </TableCell>
                     <TableCell className="text-right">
-                      <RatingPill rating={p.rating} />
+                      <RatingPill rating={Math.round(p.rating)} />
                     </TableCell>
                   </TableRow>
                 ))}
@@ -278,10 +258,10 @@ function PlayersSkeleton() {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
-        <Skeleton className="h-9 w-60" />
-        <Skeleton className="h-9 w-44" />
+        <Skeleton className="h-9 w-64" />
+        <Skeleton className="h-9 w-40" />
         <Skeleton className="h-9 w-36" />
-        <Skeleton className="h-9 w-48" />
+        <Skeleton className="h-9 w-44" />
       </div>
       <div className="space-y-2 rounded-lg border border-border p-3">
         {Array.from({ length: 10 }).map((_, i) => (

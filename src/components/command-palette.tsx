@@ -6,7 +6,8 @@ import {
   Home,
   CalendarDays,
   Trophy,
-  Globe2,
+  Table2,
+  Shield,
   Users,
   BarChart3,
   Brain,
@@ -23,35 +24,30 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { Flag } from "@/components/flag";
-import { pct } from "@/lib/format";
+import type { Selection } from "@/lib/types";
 
-interface SearchTeam {
+interface SearchClub {
   code: string;
-  iso2: string;
   name: string;
-  group: string;
-  championProb: number;
+  short: string;
+  position: number;
+  title: number;
 }
 interface SearchPlayer {
   id: string;
   name: string;
-  country: string;
-  countryCode: string;
-  iso2: string;
-  position: string;
   club: string;
-  rating: number;
-}
-interface SearchIndex {
-  teams: SearchTeam[];
-  players: SearchPlayer[];
+  clubName: string;
+  nationIso2: string;
+  position: string;
 }
 
 const NAV = [
   { label: "Dashboard", href: "/", icon: Home },
   { label: "Matches", href: "/matches", icon: CalendarDays },
-  { label: "Predictions & Bracket", href: "/predictions", icon: Trophy },
-  { label: "Countries", href: "/countries", icon: Globe2 },
+  { label: "Predictions", href: "/predictions", icon: Trophy },
+  { label: "League Table", href: "/table", icon: Table2 },
+  { label: "Clubs", href: "/clubs", icon: Shield },
   { label: "Players", href: "/players", icon: Users },
   { label: "Rankings", href: "/rankings", icon: BarChart3 },
   { label: "Models", href: "/models", icon: Brain },
@@ -60,34 +56,52 @@ const NAV = [
 
 export const OPEN_COMMAND_EVENT = "open-command-palette";
 
-export function CommandPalette() {
+export function CommandPalette({ selection, query }: { selection: Selection; query: string }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
-  const [index, setIndex] = React.useState<SearchIndex | null>(null);
-  const loadingRef = React.useRef(false);
-  const loadedRef = React.useRef(false);
+  const [clubs, setClubs] = React.useState<SearchClub[]>([]);
+  const [players, setPlayers] = React.useState<SearchPlayer[]>([]);
+  const loadedFor = React.useRef<string>("");
 
-  // Stable loader (no reactive deps) so it can be triggered from event
-  // handlers without an effect. Guards against duplicate fetches.
-  const loadIndex = React.useCallback(async () => {
-    if (loadedRef.current || loadingRef.current) return;
-    loadingRef.current = true;
+  const key = `${selection.league}/${selection.season}`;
+
+  const load = React.useCallback(async () => {
+    if (loadedFor.current === key) return;
+    loadedFor.current = key;
     try {
-      const res = await fetch("/data/search.json");
-      loadedRef.current = true;
-      setIndex((await res.json()) as SearchIndex);
+      const [c, p] = await Promise.all([
+        fetch(`/data/${key}/clubs.json`).then((r) => r.json()),
+        fetch(`/data/${key}/players.json`).then((r) => r.json()),
+      ]);
+      setClubs(
+        (c as Array<{ code: string; name: string; short: string; standing: { position: number }; odds: { title: number } }>).map((x) => ({
+          code: x.code,
+          name: x.name,
+          short: x.short,
+          position: x.standing.position,
+          title: x.odds.title,
+        })),
+      );
+      setPlayers(
+        (p as { players: Array<{ id: string; name: string; club: string; clubName: string; nationIso2: string; position: string }> }).players.map((x) => ({
+          id: x.id,
+          name: x.name,
+          club: x.club,
+          clubName: x.clubName,
+          nationIso2: x.nationIso2,
+          position: x.position,
+        })),
+      );
     } catch {
-      loadedRef.current = true;
-      setIndex({ teams: [], players: [] });
-    } finally {
-      loadingRef.current = false;
+      setClubs([]);
+      setPlayers([]);
     }
-  }, []);
+  }, [key]);
 
   const openPalette = React.useCallback(() => {
     setOpen(true);
-    void loadIndex();
-  }, [loadIndex]);
+    void load();
+  }, [load]);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -106,35 +120,26 @@ export function CommandPalette() {
     };
   }, [openPalette]);
 
-  const handleOpenChange = (next: boolean) => {
-    setOpen(next);
-    if (next) void loadIndex();
-  };
-
   const go = (href: string) => {
     setOpen(false);
     router.push(href);
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog open={open} onOpenChange={(next) => (next ? openPalette() : setOpen(false))}>
       <DialogContent hideClose className="max-w-xl gap-0 overflow-hidden p-0">
         <DialogTitle className="sr-only">Search</DialogTitle>
-        <Command
-          filter={(value, search) =>
-            value.toLowerCase().includes(search.toLowerCase()) ? 1 : 0
-          }
-        >
-          <CommandInput placeholder="Search teams, players, or pages…" />
+        <Command filter={(value, search) => (value.toLowerCase().includes(search.toLowerCase()) ? 1 : 0)}>
+          <CommandInput placeholder="Search clubs, players, or pages…" />
           <CommandList>
-            <CommandEmpty>{open && !index ? "Loading…" : "No results found."}</CommandEmpty>
+            <CommandEmpty>No results found.</CommandEmpty>
 
             <CommandGroup heading="Navigate">
               {NAV.map((item) => (
                 <CommandItem
                   key={item.href}
                   value={`page ${item.label}`}
-                  onSelect={() => go(item.href)}
+                  onSelect={() => go(`${item.href}${query}`)}
                 >
                   <item.icon className="size-4 text-muted-foreground" />
                   {item.label}
@@ -142,38 +147,34 @@ export function CommandPalette() {
               ))}
             </CommandGroup>
 
-            {index && index.teams.length > 0 && (
-              <CommandGroup heading="Teams">
-                {index.teams.slice(0, 60).map((t) => (
+            {clubs.length > 0 && (
+              <CommandGroup heading="Clubs">
+                {clubs.map((c) => (
                   <CommandItem
-                    key={t.code}
-                    value={`team ${t.name} ${t.code} ${t.group}`}
-                    onSelect={() => go(`/countries/${t.code.toLowerCase()}`)}
+                    key={c.code}
+                    value={`club ${c.name} ${c.code}`}
+                    onSelect={() => go(`/clubs/${c.code.toLowerCase()}${query}`)}
                   >
-                    <Flag iso2={t.iso2} size="sm" />
-                    <span className="flex-1">{t.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      Grp {t.group} · {pct(t.championProb)}
-                    </span>
+                    <Shield className="size-4 text-muted-foreground" />
+                    <span className="flex-1">{c.name}</span>
+                    <span className="text-xs tabular-nums text-muted-foreground">#{c.position}</span>
                   </CommandItem>
                 ))}
               </CommandGroup>
             )}
 
-            {index && index.players.length > 0 && (
+            {players.length > 0 && (
               <CommandGroup heading="Players">
-                {index.players.slice(0, 80).map((p) => (
+                {players.slice(0, 120).map((p) => (
                   <CommandItem
                     key={p.id}
-                    value={`player ${p.name} ${p.country} ${p.club} ${p.position}`}
-                    onSelect={() => go(`/players/${p.id}`)}
+                    value={`player ${p.name} ${p.clubName} ${p.position}`}
+                    onSelect={() => go(`/players/${p.id}${query}`)}
                   >
                     <User className="size-4 text-muted-foreground" />
                     <span className="flex-1">{p.name}</span>
-                    <Flag iso2={p.iso2} size="sm" />
-                    <span className="w-10 text-right text-xs text-muted-foreground">
-                      {p.position}
-                    </span>
+                    <Flag iso2={p.nationIso2} size="sm" />
+                    <span className="w-10 text-right text-xs text-muted-foreground">{p.position}</span>
                   </CommandItem>
                 ))}
               </CommandGroup>
