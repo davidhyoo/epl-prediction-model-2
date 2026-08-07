@@ -28,7 +28,7 @@ describe("index.json", () => {
     expect(index.datasets.some((d) => d.league === league && d.season === season)).toBe(true);
   });
 
-  it("lists two leagues, each with a validation and a deliverable season", () => {
+  it("lists every league with a validation and a deliverable season", () => {
     expect(index.leagues.length).toBeGreaterThanOrEqual(2);
     for (const lg of index.leagues) {
       const roles = lg.seasons.map((s) => s.role);
@@ -54,12 +54,23 @@ for (const ds of index.datasets) {
     const race = read<TitleRace>(...dir, "race.json");
     const players = playersData.players;
     const preseason = summary.played === 0;
+    const meta = index.leagues.find((l) => l.id === ds.league);
+    const isCup = meta?.format === "tournament";
+    // Domestic leagues are 20-club double round-robins (380 games); the Champions
+    // League is a 36-club league phase + knockout bracket (189 games). Parametrise
+    // the structural assertions by the actual field size so both formats validate.
+    const nClubs = clubs.length;
 
-    it("has a 20-club, 380-match league season", () => {
-      expect(clubs).toHaveLength(20);
-      expect(standings).toHaveLength(20);
-      expect(matches).toHaveLength(380);
-      expect(summary.totalMatches).toBe(380);
+    it("has the expected club count and a fully-scheduled fixture list", () => {
+      expect(standings).toHaveLength(nClubs);
+      expect(matches).toHaveLength(summary.totalMatches);
+      if (isCup) {
+        expect(nClubs).toBe(36);
+        expect(matches).toHaveLength(189);
+      } else {
+        expect(nClubs).toBe(20);
+        expect(matches).toHaveLength(380);
+      }
     });
 
     it("reconciles the completed/upcoming split with the schedule", () => {
@@ -110,9 +121,9 @@ for (const ds of index.datasets) {
       }
     });
 
-    it("produces a standings table with unique positions 1..20", () => {
+    it("produces a standings table with unique positions 1..N", () => {
       const positions = standings.map((s) => s.position).sort((a, b) => a - b);
-      expect(positions).toEqual(Array.from({ length: 20 }, (_, i) => i + 1));
+      expect(positions).toEqual(Array.from({ length: nClubs }, (_, i) => i + 1));
       for (const s of standings) {
         expect(s.pts).toBe(s.win * 3 + s.draw);
         expect(s.played).toBe(s.win + s.draw + s.loss);
@@ -126,11 +137,11 @@ for (const ds of index.datasets) {
           expect(v).toBeGreaterThanOrEqual(0);
           expect(v).toBeLessThanOrEqual(1);
         }
-        expect(c.odds.positionDist).toHaveLength(20);
+        expect(c.odds.positionDist).toHaveLength(nClubs);
         const distTotal = c.odds.positionDist.reduce((s, x) => s + x, 0);
         expect(Math.abs(distTotal - 1)).toBeLessThan(0.02);
       }
-      // Title odds across the league sum to ~1 (exactly one champion).
+      // Title odds across the field sum to ~1 (exactly one champion).
       const titleTotal = clubs.reduce((s, c) => s + c.odds.title, 0);
       expect(Math.abs(titleTotal - 1)).toBeLessThan(0.02);
     });
@@ -214,16 +225,16 @@ for (const ds of index.datasets) {
       }
     });
 
-    it("exposes eight ranking views, each covering all 20 clubs", () => {
+    it("exposes eight ranking views, each covering all clubs", () => {
       const keys = Object.keys(rankings);
       expect(keys).toHaveLength(8);
       for (const key of keys) {
-        expect(rankings[key as keyof Rankings]).toHaveLength(20);
+        expect(rankings[key as keyof Rankings]).toHaveLength(nClubs);
       }
     });
 
-    it("publishes a coherent title-race timeline for all 20 clubs", () => {
-      expect(race.clubs).toHaveLength(20);
+    it("publishes a coherent title-race timeline for all clubs", () => {
+      expect(race.clubs).toHaveLength(nClubs);
       // Every club has a series aligned to the checkpoint axis.
       for (const c of race.clubs) {
         const series = race.series[c.code];
@@ -247,11 +258,19 @@ for (const ds of index.datasets) {
         expect(race.checkpoints[0]).toBe(0);
         expect(race.checkpoints.at(-1)).toBe(race.lastCompletedRound);
         expect(race.playedAt).toHaveLength(race.checkpoints.length);
-        // Played counts never decrease across matchdays.
+        // Progress never decreases across the x-axis (matchdays or knockout rounds).
         for (let i = 1; i < race.playedAt.length; i += 1) {
           expect(race.playedAt[i]).toBeGreaterThanOrEqual(race.playedAt[i - 1]);
         }
-        expect(race.playedAt.at(-1)).toBe(summary.played);
+        if (isCup) {
+          // The cup race is plotted over knockout stages, so the x-axis carries a
+          // human label per checkpoint ("Round of 16" … "Final") rather than a
+          // cumulative played-match count.
+          expect(race.labels?.length).toBe(race.checkpoints.length);
+          expect(race.xLabel).toBeTruthy();
+        } else {
+          expect(race.playedAt.at(-1)).toBe(summary.played);
+        }
         // At every checkpoint exactly one champion emerges: probabilities sum to ~100.
         for (let k = 0; k < race.checkpoints.length; k += 1) {
           const total = race.clubs.reduce((s, c) => s + race.series[c.code][k], 0);

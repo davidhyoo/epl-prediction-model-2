@@ -30,6 +30,8 @@ const DATASETS = [
   ["epl", "2026-27"],
   ["laliga", "2025-26"],
   ["laliga", "2026-27"],
+  ["ucl", "2024-25"],
+  ["ucl", "2025-26"],
 ] as const;
 
 function readJson<T>(league: string, season: string, file: string): T {
