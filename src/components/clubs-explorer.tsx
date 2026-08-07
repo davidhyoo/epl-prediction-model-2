@@ -25,13 +25,17 @@ export function ClubsExplorer({
   clubs,
   query,
   preseason,
+  format,
 }: {
   clubs: Club[];
   query: string;
   preseason: boolean;
+  format?: string;
 }) {
   const [q, setQ] = React.useState("");
   const [sort, setSort] = React.useState<SortKey>(preseason ? "title" : "position");
+  const isCup = format === "tournament";
+  const titleWord = isCup ? "trophy" : "title";
 
   const filtered = React.useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -90,7 +94,7 @@ export function ClubsExplorer({
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold">{c.short}</p>
                     <p className="text-xs text-muted-foreground">
-                      {preseason ? `${oddsPct(c.odds.title)} title` : `#${c.standing.position} · ${c.standing.pts} pts`}
+                      {preseason ? `${oddsPct(c.odds.title)} ${titleWord}` : `#${c.standing.position} · ${c.standing.pts} pts`}
                     </p>
                   </div>
                   {!preseason && (
@@ -102,8 +106,8 @@ export function ClubsExplorer({
 
                 <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
                   <Metric label="Strength" value={c.strength.overall.toFixed(0)} />
-                  <Metric label="Title" value={oddsPct(c.odds.title)} />
-                  <Metric label="Relegn" value={oddsPct(c.odds.relegation)} />
+                  <Metric label={isCup ? "Trophy" : "Title"} value={oddsPct(c.odds.title)} />
+                  <Metric label={isCup ? "Out" : "Relegn"} value={oddsPct(c.odds.relegation)} />
                 </div>
 
                 {!preseason && (

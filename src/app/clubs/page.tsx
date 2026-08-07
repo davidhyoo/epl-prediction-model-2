@@ -23,10 +23,19 @@ export default async function ClubsPage({
       <PageHeader
         eyebrow={`${summary.league.name} · ${summary.season.label}`}
         title="Clubs"
-        description="Every club in the division with its live position, projected finish and squad strength. Open a club for its full profile, squad, key players and season odds."
+        description={
+          summary.league.format === "tournament"
+            ? "Every club in the competition with its live league-phase position, projected finish and squad strength. Open a club for its full profile, squad, key players and knockout odds."
+            : "Every club in the division with its live position, projected finish and squad strength. Open a club for its full profile, squad, key players and season odds."
+        }
         actions={<Badge variant="muted">{clubs.length} clubs</Badge>}
       />
-      <ClubsExplorer clubs={clubs} query={query} preseason={preseason} />
+      <ClubsExplorer
+        clubs={clubs}
+        query={query}
+        preseason={preseason}
+        format={summary.league.format}
+      />
     </div>
   );
 }

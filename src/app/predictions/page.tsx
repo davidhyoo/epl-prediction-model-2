@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ClubBadge } from "@/components/club-badge";
 import { SeasonOdds, type OddsClub } from "@/components/season-odds";
 import { getSelection, getClubs, getSummary } from "@/lib/data";
-import { queryFor } from "@/lib/league";
+import { queryFor, oddsLabelsFor } from "@/lib/league";
 import { oddsPct } from "@/lib/format";
 import type { SearchParams } from "@/lib/league";
 import type { Club } from "@/lib/types";
@@ -22,6 +22,8 @@ export default async function PredictionsPage({
   const sel = await getSelection(sp);
   const [clubs, summary] = await Promise.all([getClubs(sel), getSummary(sel)]);
   const query = queryFor(sel);
+  const isCup = summary.league.format === "tournament";
+  const oddsLabels = oddsLabelsFor(summary.league.format);
 
   const oddsClubs: OddsClub[] = clubs.map((c) => ({
     code: c.code,
@@ -46,7 +48,11 @@ export default async function PredictionsPage({
       <PageHeader
         eyebrow="Season simulation"
         title="Predictions"
-        description="Each remaining fixture is simulated 10,000 times using the ensemble's win/draw/loss probabilities to estimate every club's chance of winning the title, qualifying for Europe, or being relegated."
+        description={
+          isCup
+            ? "The 36-team league phase is simulated 10,000 times to estimate every club's chance of reaching the Round of 16 or the knockout play-offs, while the trophy odds come from a Monte-Carlo run of the actual knockout bracket."
+            : "Each remaining fixture is simulated 10,000 times using the ensemble's win/draw/loss probabilities to estimate every club's chance of winning the title, qualifying for Europe, or being relegated."
+        }
         actions={
           <Badge variant="outline" className="gap-1.5">
             <Sparkles className="size-3" /> Monte-Carlo · 10k seasons
@@ -57,14 +63,15 @@ export default async function PredictionsPage({
       <section className="grid gap-4 md:grid-cols-3">
         <HighlightCard
           icon={<Trophy className="size-4 text-warning" />}
-          title="Title favourite"
+          title={isCup ? "Trophy favourite" : "Title favourite"}
           club={favourite}
           value={`${oddsPct(favourite.odds.title)} to win`}
           query={query}
         />
         <Card className="p-5">
           <div className="mb-3 flex items-center gap-2 text-sm font-semibold">
-            <ShieldCheck className="size-4 text-primary" /> Champions League race
+            <ShieldCheck className="size-4 text-primary" />{" "}
+            {isCup ? "Race for the last 16" : "Champions League race"}
           </div>
           <div className="space-y-2">
             {topFour.map((c) => (
@@ -74,7 +81,8 @@ export default async function PredictionsPage({
         </Card>
         <Card className="p-5">
           <div className="mb-3 flex items-center gap-2 text-sm font-semibold">
-            <TrendingDown className="size-4 text-destructive" /> Relegation battle
+            <TrendingDown className="size-4 text-destructive" />{" "}
+            {isCup ? "Elimination zone" : "Relegation battle"}
           </div>
           <div className="space-y-2">
             {releg.map((c) => (
@@ -85,14 +93,18 @@ export default async function PredictionsPage({
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold tracking-tight">Full-season projection</h2>
+        <h2 className="text-lg font-semibold tracking-tight">
+          {isCup ? "League-phase projection" : "Full-season projection"}
+        </h2>
         <Card className="p-4 sm:p-5">
-          <SeasonOdds clubs={oddsClubs} query={query} />
+          <SeasonOdds clubs={oddsClubs} query={query} format={summary.league.format} />
         </Card>
         <p className="text-xs text-muted-foreground">
           {summary.played === 0
             ? "Pre-season: every club starts from zero points, so these are pure prior-strength projections that will sharpen as real results arrive."
-            : "Odds combine points already banked with simulated outcomes for the remaining fixtures. A club already crowned or relegated shows 100% / 0%."}
+            : isCup
+              ? `Odds combine league-phase points already banked with simulated outcomes for the remaining games. "${oddsLabels.ucl}" is a top-8 finish; "${oddsLabels.europa}" is a top-24 finish.`
+              : "Odds combine points already banked with simulated outcomes for the remaining fixtures. A club already crowned or relegated shows 100% / 0%."}
         </p>
       </section>
     </div>

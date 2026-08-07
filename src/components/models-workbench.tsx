@@ -27,14 +27,18 @@ export function ModelsWorkbench({
   models,
   race,
   champion,
+  format,
 }: {
   models: ModelsData;
   race: TitleRace;
   champion: { code: string; name: string; probability: number } | null;
+  format?: string;
 }) {
   const hasTimeline = race.checkpoints.length >= 2;
   const leader = race.clubs[0];
   const champClub = champion ? race.clubs.find((c) => c.code === champion.code) : undefined;
+  const isCup = format === "tournament";
+  const trophyWord = isCup ? "trophy" : "title";
 
   return (
     <Tabs defaultValue="per-game" className="space-y-4">
@@ -58,23 +62,41 @@ export function ModelsWorkbench({
 
       <TabsContent value="winner" className="space-y-4">
         <p className="text-sm text-muted-foreground">
-          A separate <strong className="text-foreground">Monte-Carlo simulation</strong> turns the
-          game-level edges into a season-long answer: it replays the remaining fixtures thousands of
-          times to estimate each club&rsquo;s chance of lifting the trophy. The chart traces how that
-          championship probability has shifted <strong className="text-foreground">matchday by
-          matchday</strong> — wide open early, sharpening toward the eventual winner.
+          {isCup ? (
+            <>
+              A separate <strong className="text-foreground">Monte-Carlo simulation</strong> of the
+              actual knockout bracket turns the game-level edges into a tournament-long answer: it
+              replays every remaining tie thousands of times to estimate each club&rsquo;s chance of
+              lifting the trophy. The chart traces how that championship probability sharpens{" "}
+              <strong className="text-foreground">round by round</strong> — wide open when the bracket
+              is set, converging on the eventual winner by the final.
+            </>
+          ) : (
+            <>
+              A separate <strong className="text-foreground">Monte-Carlo simulation</strong> turns the
+              game-level edges into a season-long answer: it replays the remaining fixtures thousands
+              of times to estimate each club&rsquo;s chance of lifting the trophy. The chart traces how
+              that championship probability has shifted{" "}
+              <strong className="text-foreground">matchday by matchday</strong> — wide open early,
+              sharpening toward the eventual winner.
+            </>
+          )}
         </p>
 
         <Card>
           <CardHeader className="flex-row items-center justify-between gap-2 pb-2">
             <div>
-              <CardTitle className="text-base">Title race · championship probability</CardTitle>
+              <CardTitle className="text-base">
+                {isCup ? "Championship probability · knockout bracket" : "Title race · championship probability"}
+              </CardTitle>
               <p className="text-sm text-muted-foreground">
-                One line per club, {race.clubs.length} teams over {race.lastCompletedRound} matchdays.
+                {isCup
+                  ? `One line per club, ${race.clubs.length} teams across the knockout rounds.`
+                  : `One line per club, ${race.clubs.length} teams over ${race.lastCompletedRound} matchdays.`}
               </p>
             </div>
             <Badge variant="outline" className="shrink-0 gap-1.5">
-              <Dice5 className="size-3" /> Monte-Carlo · 4k seasons
+              <Dice5 className="size-3" /> Monte-Carlo · {isCup ? "10k brackets" : "4k seasons"}
             </Badge>
           </CardHeader>
           <CardContent>
@@ -101,7 +123,7 @@ export function ModelsWorkbench({
                   <div>
                     <p className="font-semibold">{champion.name}</p>
                     <p className="text-sm text-muted-foreground">
-                      {champion.probability.toFixed(1)}% title probability
+                      {champion.probability.toFixed(1)}% {trophyWord} probability
                     </p>
                   </div>
                 </div>
@@ -139,22 +161,49 @@ export function ModelsWorkbench({
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2.5 text-sm text-muted-foreground">
-              <p>
-                <strong className="text-foreground">Points already banked</strong> are fixed to their
-                real results. Every remaining fixture is sampled from an independent-Poisson score
-                model whose expected goals come from the two clubs&rsquo; Elo gap (home edge included).
-              </p>
-              <p>
-                We run <strong className="text-foreground">thousands of full seasons</strong>, rank
-                each simulated table by points → goal-difference → goals-for, and count how often each
-                club finishes first. That share is its championship probability.
-              </p>
-              <p>
-                For the timeline, ratings are <strong className="text-foreground">frozen at each
-                matchday</strong> — so an early-season forecast can&rsquo;t peek at later form, which
-                is exactly why the lines start uncertain and converge as results land. A club that is{" "}
-                <strong className="text-foreground">mathematically eliminated</strong> is hard-zeroed.
-              </p>
+              {isCup ? (
+                <>
+                  <p>
+                    Ties already decided are <strong className="text-foreground">fixed to their real
+                    aggregate winners</strong>. Every remaining tie is sampled leg by leg from an
+                    independent-Poisson score model whose expected goals come from the two clubs&rsquo;
+                    Elo gap, with the single-leg final played on neutral ground and level ties settled
+                    on penalties.
+                  </p>
+                  <p>
+                    We run <strong className="text-foreground">thousands of full brackets</strong> and
+                    count how often each club lifts the trophy. That share is its championship
+                    probability.
+                  </p>
+                  <p>
+                    For the timeline, the bracket is re-simulated at each{" "}
+                    <strong className="text-foreground">knockout round</strong> with the earlier ties
+                    fixed to their actual winners — so the lines start wide open when the bracket is
+                    set and converge on the champion by the final. A club knocked out is hard-zeroed.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    <strong className="text-foreground">Points already banked</strong> are fixed to
+                    their real results. Every remaining fixture is sampled from an independent-Poisson
+                    score model whose expected goals come from the two clubs&rsquo; Elo gap (home edge
+                    included).
+                  </p>
+                  <p>
+                    We run <strong className="text-foreground">thousands of full seasons</strong>, rank
+                    each simulated table by points → goal-difference → goals-for, and count how often
+                    each club finishes first. That share is its championship probability.
+                  </p>
+                  <p>
+                    For the timeline, ratings are <strong className="text-foreground">frozen at each
+                    matchday</strong> — so an early-season forecast can&rsquo;t peek at later form,
+                    which is exactly why the lines start uncertain and converge as results land. A club
+                    that is <strong className="text-foreground">mathematically eliminated</strong> is
+                    hard-zeroed.
+                  </p>
+                </>
+              )}
             </CardContent>
           </Card>
         </div>

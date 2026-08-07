@@ -53,7 +53,12 @@ export default async function ModelsPage({
         />
       </div>
 
-      <ModelsWorkbench models={models} race={race} champion={summary.champion} />
+      <ModelsWorkbench
+        models={models}
+        race={race}
+        champion={summary.champion}
+        format={summary.league.format}
+      />
 
       <div className="rounded-xl border border-border bg-card/50 p-5 text-sm text-muted-foreground">
         <h2 className="mb-2 text-sm font-semibold text-foreground">How the leaderboard stays honest</h2>

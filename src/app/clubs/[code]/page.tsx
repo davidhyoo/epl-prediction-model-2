@@ -30,8 +30,9 @@ import {
   getPlayersByClub,
   getMatchesForClub,
   getModels,
+  getSummary,
 } from "@/lib/data";
-import { queryFor } from "@/lib/league";
+import { queryFor, oddsLabelsFor } from "@/lib/league";
 import { oddsPct } from "@/lib/format";
 import type { SearchParams } from "@/lib/league";
 
@@ -57,14 +58,17 @@ export default async function ClubDetail({
   const club = await getClubByCode(sel, code);
   if (!club) notFound();
 
-  const [squad, clubMatches, models] = await Promise.all([
+  const [squad, clubMatches, models, summary] = await Promise.all([
     getPlayersByClub(sel, club.code),
     getMatchesForClub(sel, club.code),
     getModels(sel),
+    getSummary(sel),
   ]);
   const query = queryFor(sel);
   const modelMeta = buildModelMeta(models.leaderboard);
   const preseason = club.standing.played === 0;
+  const isCup = summary.league.format === "tournament";
+  const oddsLabels = oddsLabelsFor(summary.league.format);
 
   const played = clubMatches.filter((m) => m.status === "completed").slice(-6).reverse();
   const upcoming = clubMatches.filter((m) => m.status !== "completed").slice(0, 6);
@@ -102,7 +106,9 @@ export default async function ClubDetail({
                   #{club.standing.position} · {club.standing.pts} pts
                 </Badge>
               )}
-              <Badge variant="outline">{oddsPct(club.odds.title)} title</Badge>
+              <Badge variant="outline">
+                {oddsPct(club.odds.title)} {isCup ? "trophy" : "title"}
+              </Badge>
               <Badge variant="secondary">{club.squadSize} players</Badge>
               {!preseason && <FormPills form={club.standing.form} />}
             </div>
@@ -131,21 +137,21 @@ export default async function ClubDetail({
           accent="warning"
         />
         <StatCard
-          label="Title chance"
+          label={isCup ? "Trophy chance" : "Title chance"}
           value={oddsPct(club.odds.title)}
           sub="Monte-Carlo (10k)"
           icon={<Trophy />}
           accent="primary"
         />
         <StatCard
-          label="Champions League"
+          label={oddsLabels.ucl}
           value={oddsPct(club.odds.ucl)}
-          sub={`Europa ${oddsPct(club.odds.europa)}`}
+          sub={`${oddsLabels.europa} ${oddsPct(club.odds.europa)}`}
           icon={<ShieldCheck />}
           accent="info"
         />
         <StatCard
-          label="Relegation risk"
+          label={isCup ? "Elimination risk" : "Relegation risk"}
           value={oddsPct(club.odds.relegation)}
           sub={`Elo ${club.strength.elo.toFixed(0)}`}
           icon={<TrendingDown />}

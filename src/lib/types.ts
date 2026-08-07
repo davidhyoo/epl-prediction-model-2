@@ -15,6 +15,8 @@ export type Outcome = "home" | "draw" | "away";
 export type MatchStatus = "completed" | "upcoming" | "live";
 export type Position = "GK" | "DEF" | "MID" | "FWD";
 export type SeasonRole = "validation" | "deliverable";
+/** Round-robin domestic league vs a knockout-bearing tournament (UCL). */
+export type LeagueFormat = "domestic" | "tournament";
 
 /* ------------------------------------------------------------------ */
 /*  Catalogue (index.json)                                             */
@@ -33,6 +35,7 @@ export interface LeagueRef {
   country: string;
   iso2: string;
   accent: string;
+  format?: LeagueFormat;
   seasons: SeasonRef[];
 }
 
@@ -67,6 +70,7 @@ export interface LeagueMeta {
   country: string;
   iso2: string;
   accent: string;
+  format?: LeagueFormat;
 }
 
 export interface Summary {
@@ -172,6 +176,8 @@ export interface Match {
   awayGoals: number | null;
   eloHome: number;
   eloAway: number;
+  /** Knockout stage for tournament matches ("league"/"playoff"/"r16"/…); absent for domestic. */
+  stage?: string | null;
   prediction: MatchPrediction;
   scorers: Scorer[];
   matchStats: MatchStats | null;
@@ -348,6 +354,13 @@ export interface TitleRace {
   lastCompletedRound: number;
   clubs: RaceClub[];
   series: Record<string, number[]>;
+  /**
+   * Tournament races (UCL) label each checkpoint with a knockout stage
+   * ("Bracket set", "Round of 16", …) instead of a matchday number, and
+   * override the x-axis caption. Absent for round-robin leagues.
+   */
+  labels?: string[];
+  xLabel?: string;
 }
 
 /* ------------------------------------------------------------------ */

@@ -20,12 +20,14 @@ export interface Zones {
   europa: number;
   /** Bottom `releg` positions are relegated. */
   releg: number;
+  /** Human labels for each zone (tournament vs domestic). */
+  labels: { ucl: string; europa: string; releg: string };
 }
 
 function zoneFor(pos: number, total: number, z: Zones): { cls: string; label: string } | null {
-  if (pos <= z.ucl) return { cls: "before:bg-primary", label: "Champions League" };
-  if (pos <= z.europa) return { cls: "before:bg-info", label: "Europa League" };
-  if (pos > total - z.releg) return { cls: "before:bg-destructive", label: "Relegation" };
+  if (pos <= z.ucl) return { cls: "before:bg-primary", label: z.labels.ucl };
+  if (pos <= z.europa) return { cls: "before:bg-info", label: z.labels.europa };
+  if (pos > total - z.releg) return { cls: "before:bg-destructive", label: z.labels.releg };
   return null;
 }
 
@@ -134,13 +136,15 @@ export function ZoneLegend({ zones }: { zones: Zones }) {
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
       <span className="flex items-center gap-1.5">
-        <span className="inline-block size-2.5 rounded-full bg-primary" /> Champions League (top {zones.ucl})
+        <span className="inline-block size-2.5 rounded-full bg-primary" /> {zones.labels.ucl} (top{" "}
+        {zones.ucl})
       </span>
       <span className="flex items-center gap-1.5">
-        <span className="inline-block size-2.5 rounded-full bg-info" /> Europa League
+        <span className="inline-block size-2.5 rounded-full bg-info" /> {zones.labels.europa}
       </span>
       <span className="flex items-center gap-1.5">
-        <span className="inline-block size-2.5 rounded-full bg-destructive" /> Relegation (bottom {zones.releg})
+        <span className="inline-block size-2.5 rounded-full bg-destructive" /> {zones.labels.releg}{" "}
+        (bottom {zones.releg})
       </span>
     </div>
   );

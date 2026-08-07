@@ -17,6 +17,19 @@ import type { TitleRace } from "@/lib/types";
 const MAX_LINES = 8; // how many contenders get a highlighted colour + legend slot
 const MUTED = "hsl(220 12% 55%)";
 
+/** Compact knockout-stage labels so the x-axis ticks never overlap. */
+const STAGE_ABBREV: Record<string, string> = {
+  "Bracket set": "Bracket",
+  "Play-offs": "PO",
+  "Round of 16": "R16",
+  "Quarter-finals": "QF",
+  "Semi-finals": "SF",
+  Final: "Final",
+};
+function abbrevStage(label: string): string {
+  return STAGE_ABBREV[label] ?? label;
+}
+
 type TipPayload = { dataKey?: string | number; value?: number; color?: string };
 
 /**
@@ -29,7 +42,13 @@ export function TitleRaceChart({ race, height = 380 }: { race: TitleRace; height
   const [focus, setFocus] = React.useState<string | null>(null);
   const [showAll, setShowAll] = React.useState(true);
 
-  const { data, contenders, others, colorOf, shortOf, playedByMd } = React.useMemo(() => {
+  // Tournament races (UCL) tag each checkpoint with a knockout stage rather than
+  // a matchday number; switch the axis + tooltip into "stage" mode when present.
+  const stageLabels =
+    race.labels && race.labels.length === race.checkpoints.length ? race.labels : null;
+  const xCaption = race.xLabel ?? "Matchday";
+
+  const { data, contenders, others, colorOf, shortOf, playedByMd, labelByCp } = React.useMemo(() => {
     const contenders = race.clubs.filter((c) => c.peak >= 1).slice(0, MAX_LINES);
     // guarantee at least the leader is drawn even in a flat/early race
     if (contenders.length === 0 && race.clubs.length > 0) contenders.push(race.clubs[0]);
@@ -48,9 +67,11 @@ export function TitleRaceChart({ race, height = 380 }: { race: TitleRace; height
     });
     const playedByMd: Record<number, number> = {};
     race.checkpoints.forEach((cp, i) => (playedByMd[cp] = race.playedAt[i] ?? 0));
+    const labelByCp: Record<number, string> = {};
+    if (stageLabels) race.checkpoints.forEach((cp, i) => (labelByCp[cp] = stageLabels[i]));
 
-    return { data, contenders, others, colorOf, shortOf, playedByMd };
-  }, [race]);
+    return { data, contenders, others, colorOf, shortOf, playedByMd, labelByCp };
+  }, [race, stageLabels]);
 
   if (race.checkpoints.length < 2) {
     return (
@@ -62,8 +83,11 @@ export function TitleRaceChart({ race, height = 380 }: { race: TitleRace; height
   }
 
   const tickStep = Math.max(1, Math.ceil(race.checkpoints.length / 9));
-  const ticks = race.checkpoints.filter((cp) => cp % tickStep === 0);
-  if (ticks[ticks.length - 1] !== race.lastCompletedRound) ticks.push(race.lastCompletedRound);
+  const ticks = stageLabels
+    ? race.checkpoints
+    : race.checkpoints.filter((cp) => cp % tickStep === 0);
+  if (!stageLabels && ticks[ticks.length - 1] !== race.lastCompletedRound)
+    ticks.push(race.lastCompletedRound);
 
   const dim = (code: string) => focus != null && focus !== code;
 
@@ -81,8 +105,11 @@ export function TitleRaceChart({ race, height = 380 }: { race: TitleRace; height
               tick={{ fill: CHART.axis, fontSize: 11 }}
               tickLine={false}
               axisLine={false}
+              tickFormatter={
+                stageLabels ? (v: number) => abbrevStage(labelByCp[v] ?? String(v)) : undefined
+              }
               label={{
-                value: "Matchday",
+                value: xCaption,
                 position: "insideBottom",
                 offset: -8,
                 fill: CHART.axis,
@@ -116,7 +143,9 @@ export function TitleRaceChart({ race, height = 380 }: { race: TitleRace; height
                 return (
                   <div style={tooltipContentStyle} className="min-w-[9rem]">
                     <div style={tooltipLabelStyle}>
-                      Matchday {md} · {playedByMd[md] ?? 0} played
+                      {stageLabels
+                        ? (labelByCp[md] ?? `Round ${md}`)
+                        : `Matchday ${md} · ${playedByMd[md] ?? 0} played`}
                     </div>
                     {rows.length === 0 ? (
                       <div className="text-xs text-muted-foreground">Wide open</div>

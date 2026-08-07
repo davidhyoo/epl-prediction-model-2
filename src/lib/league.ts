@@ -52,6 +52,7 @@ export function leagueRef(index: IndexData, id: string): LeagueRef {
 export const LEAGUE_ACCENT: Record<string, string> = {
   epl: "#a855f7", // electric violet (Premier League identity)
   laliga: "#ff5a5f", // vivid red (La Liga identity)
+  ucl: "#2f6bff", // UEFA Champions League blue (starball identity)
 };
 
 export function accentFor(league: string): string {
@@ -66,6 +67,62 @@ export const LEAGUE_ZONES: Record<string, { ucl: number; europa: number; releg: 
 
 export function zonesFor(league: string): { ucl: number; europa: number; releg: number } {
   return LEAGUE_ZONES[league] ?? { ucl: 4, europa: 6, releg: 3 };
+}
+
+export interface ZoneConfig {
+  ucl: number;
+  europa: number;
+  releg: number;
+  labels: { ucl: string; europa: string; releg: string };
+}
+
+const DOMESTIC_ZONE_LABELS = {
+  ucl: "Champions League",
+  europa: "Europa League",
+  releg: "Relegation",
+};
+/**
+ * The Champions League "league phase" is a 36-team table: the top 8 go straight
+ * to the Round of 16, 9th–24th enter the knockout play-offs, and 25th–36th are
+ * eliminated. Those are the zone semantics for a tournament dataset.
+ */
+const TOURNAMENT_ZONE_LABELS = {
+  ucl: "Round of 16",
+  europa: "Knockout play-offs",
+  releg: "Eliminated",
+};
+
+/** Zone thresholds + human labels, tournament-aware via the dataset `format`. */
+export function zoneConfigFor(league: string, format?: string): ZoneConfig {
+  if (format === "tournament") {
+    return { ucl: 8, europa: 24, releg: 12, labels: TOURNAMENT_ZONE_LABELS };
+  }
+  return { ...zonesFor(league), labels: DOMESTIC_ZONE_LABELS };
+}
+
+export interface OddsLabels {
+  title: string;
+  ucl: string;
+  europa: string;
+  relegation: string;
+}
+
+/** Metric labels for the season-odds toggle, tournament-aware. */
+export function oddsLabelsFor(format?: string): OddsLabels {
+  if (format === "tournament") {
+    return {
+      title: "Win trophy",
+      ucl: "Reach last 16",
+      europa: "Reach knockouts",
+      relegation: "Eliminated",
+    };
+  }
+  return {
+    title: "Win title",
+    ucl: "Champions League",
+    europa: "Europa League",
+    relegation: "Relegation",
+  };
 }
 
 /** The query string that pins the current selection onto internal links. */

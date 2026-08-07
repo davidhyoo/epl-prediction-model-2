@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/page-header";
 import { StandingsTable, ZoneLegend } from "@/components/standings-table";
 import { Badge } from "@/components/ui/badge";
 import { getSelection, getStandings, getClubs, getSummary } from "@/lib/data";
-import { queryFor, zonesFor } from "@/lib/league";
+import { queryFor, zoneConfigFor } from "@/lib/league";
 import type { SearchParams } from "@/lib/league";
 
 export const metadata = { title: "League Table" };
@@ -20,7 +20,7 @@ export default async function TablePage({
     getSummary(sel),
   ]);
   const query = queryFor(sel);
-  const zones = zonesFor(sel.league);
+  const zones = zoneConfigFor(sel.league, summary.league.format);
   const preseason = summary.played === 0;
 
   return (

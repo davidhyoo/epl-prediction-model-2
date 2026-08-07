@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ClubBadge } from "@/components/club-badge";
 import { cn } from "@/lib/utils";
 import { oddsPct, oddsWidth } from "@/lib/format";
+import { oddsLabelsFor } from "@/lib/league";
 
 export interface OddsClub {
   code: string;
@@ -22,20 +23,38 @@ export interface OddsClub {
 
 type Metric = "title" | "ucl" | "europa" | "relegation";
 
-const METRICS: { id: Metric; label: string; color: string }[] = [
-  { id: "title", label: "Win title", color: "from-primary to-accent" },
-  { id: "ucl", label: "Champions League", color: "from-primary to-primary" },
-  { id: "europa", label: "Europa League", color: "from-info to-info" },
-  { id: "relegation", label: "Relegation", color: "from-destructive to-destructive" },
-];
+const METRIC_COLORS: Record<Metric, string> = {
+  title: "from-primary to-accent",
+  ucl: "from-primary to-primary",
+  europa: "from-info to-info",
+  relegation: "from-destructive to-destructive",
+};
 
 /**
  * Interactive Monte-Carlo season odds. A metric toggle re-sorts the field and
  * repaints the probability bars; every club links through to its detail page.
+ * Metric labels adapt to the dataset `format` (domestic league vs UCL).
  */
-export function SeasonOdds({ clubs, query }: { clubs: OddsClub[]; query: string }) {
+export function SeasonOdds({
+  clubs,
+  query,
+  format,
+}: {
+  clubs: OddsClub[];
+  query: string;
+  format?: string;
+}) {
   const [metric, setMetric] = React.useState<Metric>("title");
-  const active = METRICS.find((m) => m.id === metric)!;
+
+  const metrics = React.useMemo(() => {
+    const labels = oddsLabelsFor(format);
+    return (["title", "ucl", "europa", "relegation"] as Metric[]).map((id) => ({
+      id,
+      label: labels[id],
+      color: METRIC_COLORS[id],
+    }));
+  }, [format]);
+  const active = metrics.find((m) => m.id === metric)!;
 
   const rows = React.useMemo(() => {
     return [...clubs].sort((a, b) => {
@@ -49,7 +68,7 @@ export function SeasonOdds({ clubs, query }: { clubs: OddsClub[]; query: string 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-1 rounded-lg border border-border bg-card p-1">
-        {METRICS.map((m) => (
+        {metrics.map((m) => (
           <button
             key={m.id}
             onClick={() => setMetric(m.id)}

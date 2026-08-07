@@ -16,6 +16,20 @@ function pick(p: Probabilities): Outcome {
   return "draw";
 }
 
+/** Knockout-stage labels for tournament fixtures; league phase shows the matchday. */
+const STAGE_LABEL: Record<string, string> = {
+  playoff: "Play-off",
+  r16: "Round of 16",
+  qf: "Quarter-final",
+  sf: "Semi-final",
+  final: "Final",
+};
+function roundLabel(match: Match): string {
+  const stage = match.stage;
+  if (stage && stage !== "league" && STAGE_LABEL[stage]) return STAGE_LABEL[stage];
+  return `MW ${match.round}`;
+}
+
 export const MatchCard = React.memo(function MatchCard({
   match,
   onOpenPrediction,
@@ -34,7 +48,7 @@ export const MatchCard = React.memo(function MatchCard({
     <Card className="card-hover overflow-hidden p-0">
       <div className="flex items-center justify-between border-b border-border/60 px-4 py-2 text-xs text-muted-foreground">
         <span className="flex items-center gap-2">
-          <span className="font-medium text-foreground">MW {match.round}</span>
+          <span className="font-medium text-foreground">{roundLabel(match)}</span>
           <span>·</span>
           <span>
             {date} · {time}
