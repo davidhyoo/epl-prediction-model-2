@@ -231,7 +231,8 @@ def championship(codes: list[str], elo: dict[str, float],
     ``elo`` maps club code → current strength Elo. ``ko_matches`` are the
     tournament's knockout matches (stage != "league").
     """
-    empty = {"odds": {c: 0.0 for c in codes}, "champion": None,
+    empty = {"odds": {c: 0.0 for c in codes},
+             "currentOdds": {c: 0.0 for c in codes}, "champion": None,
              "stages": [], "timeline": _empty_timeline(codes)}
     final_tie, all_ties, stages = build_tree(ko_matches)
     if final_tie is None:
@@ -239,16 +240,26 @@ def championship(codes: list[str], elo: dict[str, float],
 
     gen = np.random.default_rng(SEED)
 
-    # bracket-set odds: nothing fixed, simulate the whole tree from Elo
+    # bracket-set odds: nothing fixed, simulate the whole tree from Elo. This is
+    # the *pre-knockout* forecast — useful as the timeline's opening snapshot.
     odds = _run_mc(final_tie, {}, elo, N_SIMS, gen)
     odds = {c: round(float(odds.get(c, 0.0)), 4) for c in codes}
+
+    # current odds: fix every tie already decided to its real winner and simulate
+    # only what remains. This reflects the tournament's *present* state, so a
+    # finished bracket collapses to the actual champion at 100% (and everyone
+    # else 0%) instead of the stale pre-knockout forecast. This is what the app
+    # shows as the live "trophy chance".
+    fixed_now = {t.id: t.winner for t in all_ties if t.winner}
+    current = _run_mc(final_tie, fixed_now, elo, N_SIMS, gen)
+    current = {c: round(float(current.get(c, 0.0)), 4) for c in codes}
 
     # actual champion, if the final has been decided
     champion = final_tie.winner
 
     timeline = _timeline(codes, elo, final_tie, all_ties, stages)
-    return {"odds": odds, "champion": champion, "stages": stages,
-            "timeline": timeline}
+    return {"odds": odds, "currentOdds": current, "champion": champion,
+            "stages": stages, "timeline": timeline}
 
 
 def _empty_timeline(codes: list[str]) -> dict:

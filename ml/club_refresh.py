@@ -137,8 +137,22 @@ def refresh_combo(league_id: str, season_id: str) -> dict:
 
     # The Champions League has no football-data / FPL feed — its schedule,
     # results and knockout bracket all come from the single openfootball file
-    # above, so we're done for a tournament.
+    # above. Its per-player goal stats come from the free Wikipedia/UEFA
+    # "Top goalscorers" table, refreshed here so the in-app refresh button keeps
+    # UCL scorers live as the tournament is played.
     if LEAGUES[league_id].format == "tournament":
+        try:
+            import ucl_stats
+            rows = ucl_stats.refresh_season(season_id)
+            if rows:
+                stats["updated"] += 1
+                print(f"    ok {len(rows)} top scorers  topscorers.json")
+            else:
+                stats["kept"] += 1
+                print("    . no top scorers parsed — keeping cache")
+        except Exception as exc:  # noqa: BLE001 - keep the committed cache
+            stats["kept"] += 1
+            print(f"    ! ucl top-scorer fetch failed ({exc.__class__.__name__}: {exc}) — keeping cache")
         return stats
 
     # football-data is optional: a not-yet-started season has no stats CSV yet.

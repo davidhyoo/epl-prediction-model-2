@@ -31,6 +31,7 @@ import club_players as P
 import club_simulate as SIM
 import club_fpl as FPL
 import ucl_bracket as BR
+import ucl_stats as UST
 from club_features import outcome_label
 from club_modeling import (ensemble_proba, evaluate_model, inverse_logloss_weights,
                            log_loss)
@@ -167,8 +168,6 @@ def _match_records(league_id: str, pred: dict, weights: dict[str, float]) -> lis
                 "topFactors": contrib[i],
             },
             "scorers": _clean_scorers(league_id, m.get("scorers") or []),
-            "matchStats": m.get("matchStats"),
-            "marketOdds": m.get("marketOdds"),
         }
         if m["status"] == "completed":
             actual = ["home", "draw", "away"][outcome_label(m["homeGoals"], m["awayGoals"])]
@@ -352,10 +351,13 @@ def build_combo(league_id: str, season_id: str) -> dict:
                            europa=UCL_LEAGUE_BRACKET["europa"],
                            releg=UCL_LEAGUE_BRACKET["releg"])
         # replace the league-phase "title" (topping the 36-team table) with the
-        # real thing: championship probability from the knockout-bracket sim.
+        # real thing: championship probability from the knockout-bracket sim. We
+        # use *current* odds (ties already decided are fixed) so a finished
+        # bracket reads as the actual champion at 100%, not a stale forecast.
         champ_res = BR.championship(codes, elos, ko_matches)
+        ko_odds = champ_res.get("currentOdds") or champ_res["odds"]
         for c in codes:
-            sim.setdefault(c, {})["title"] = round(float(champ_res["odds"].get(c, 0.0)), 4)
+            sim.setdefault(c, {})["title"] = round(float(ko_odds.get(c, 0.0)), 4)
         standings_matches = league_matches
     else:
         br = BRACKETS[league_id]
@@ -372,7 +374,12 @@ def build_combo(league_id: str, season_id: str) -> dict:
 
     squads = _load_squads(league_id)
     squads = {k: v for k, v in squads.items() if k in codes}
-    pdata = P.build_players(league_id, season_id, squads, strength, matches_raw)
+    # The Champions League has no openfootball goalscorer feed, so its real goals
+    # + minutes come from the UEFA/Wikipedia top-scorers cache instead (same shape
+    # the domestic scorer aggregation produces). Empty when uncached → goals 0.
+    goal_stats = UST.load_goal_stats(season_id) if is_tournament else None
+    pdata = P.build_players(league_id, season_id, squads, strength, matches_raw,
+                            goal_stats=goal_stats)
     players = pdata["players"]
     # Enrich with real assists / minutes / cards (EPL only; La Liga has no free
     # key-less per-player feed, so its stats stay null). No-op if the cache is

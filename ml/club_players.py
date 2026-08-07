@@ -61,9 +61,16 @@ def aggregate_goals(matches: list[dict]) -> dict[str, dict]:
 
 
 def build_players(league_id: str, season_id: str, squads: dict,
-                  strength: dict, matches: list[dict]) -> dict:
-    """Return {'players': [...], 'topScorers': [...]} for one combo."""
-    goals = aggregate_goals(matches)
+                  strength: dict, matches: list[dict],
+                  goal_stats: dict | None = None) -> dict:
+    """Return {'players': [...], 'topScorers': [...]} for one combo.
+
+    Goals normally come from the openfootball inline scorers of ``matches``. For
+    a competition with no scorer feed (the Champions League), ``goal_stats`` may
+    supply a pre-aggregated ``{(clubCode, name-key): {...}}`` map (same shape as
+    :func:`aggregate_goals`, plus a real ``minutesPlayed``) sourced elsewhere.
+    """
+    goals = goal_stats if goal_stats is not None else aggregate_goals(matches)
 
     # index real-goal records by club so we can spot un-rostered scorers
     by_club: dict[str, dict[str, dict]] = {}
@@ -71,37 +78,49 @@ def build_players(league_id: str, season_id: str, squads: dict,
         by_club.setdefault(club, {})[key] = rec
 
     players: list[dict] = []
-    used: set[tuple[str, str]] = set()
 
     for club_code, roster in squads.items():
         club_goals = by_club.get(club_code, {})
+        claimed: set[str] = set()          # scorer keys taken by a roster player
+        matched: dict[str, tuple[dict, str]] = {}   # player id -> (rec, key)
+
+        # pass 1 — exact full-name matches take priority so a shared surname
+        # (e.g. Lautaro vs Josep Martínez) can never steal another player's goals.
+        for p in roster:
+            key = _name_key(p["name"])
+            if key in club_goals and key not in claimed:
+                matched[p["id"]] = (club_goals[key], key)
+                claimed.add(key)
+
+        # pass 2 — surname fallback, only for still-unmatched roster players and
+        # only against scorers no exact match already claimed.
         surname_idx: dict[str, str] = {}
         for k in club_goals:
             surname_idx.setdefault(k.split()[-1] if k.split() else k, k)
+        for p in roster:
+            if p["id"] in matched:
+                continue
+            mk = surname_idx.get(_surname_key(p["name"]))
+            if mk and mk not in claimed:
+                matched[p["id"]] = (club_goals[mk], mk)
+                claimed.add(mk)
 
         for p in roster:
-            key = _name_key(p["name"])
-            rec = club_goals.get(key)
-            if rec is None:
-                sk = _surname_key(p["name"])
-                mk = surname_idx.get(sk)
-                if mk and (club_code, mk) not in used:
-                    rec = club_goals.get(mk)
-                    key = mk
+            rec = matched.get(p["id"], (None, None))[0]
             g = rec["goals"] if rec else 0
             pens = rec["penalties"] if rec else 0
             mins = rec["minutes"] if rec else []
-            if rec:
-                used.add((club_code, key))
-            players.append(_finalize(club_code, p, g, pens, mins, strength))
+            mins_played = rec.get("minutesPlayed") if rec else None
+            players.append(_finalize(club_code, p, g, pens, mins, strength,
+                                     mins_played))
 
         # real scorers not matched to a rostered player (departed / parse gaps)
         for key, rec in club_goals.items():
-            if (club_code, key) in used:
+            if key in claimed:
                 continue
             players.append(_orphan_scorer(club_code, rec, strength))
-            used.add((club_code, key))
 
+    players = _dedupe_transfers(players)
     _rank_ratings(players)
     top = sorted([p for p in players if p["goals"] > 0],
                  key=lambda p: (-p["goals"], -p["penalties"], p["name"]))[:25]
@@ -110,8 +129,28 @@ def build_players(league_id: str, season_id: str, squads: dict,
     return {"players": players, "topScorers": [t["id"] for t in top]}
 
 
+def _dedupe_transfers(players: list[dict]) -> list[dict]:
+    """Drop anachronistic duplicates left by the current-squad approach.
+
+    Because rosters are each club's *current* squad, a player who scored for club
+    A in the season but has since moved to club B appears twice: once as A's real
+    scorer (the ``-x-`` orphan record, with goals) and once in B's current roster
+    (with 0 goals for that season). We drop the 0-goal roster copy only when a
+    same-name **orphan** scorer exists — i.e. a genuinely departed player — so two
+    different players who merely share a common name are never merged.
+    """
+    orphan_names = {p["name"].strip().lower()
+                    for p in players if "-x-" in p["id"] and (p["goals"] or 0) > 0}
+    if not orphan_names:
+        return players
+    return [p for p in players
+            if not ((p["goals"] or 0) == 0 and "-x-" not in p["id"]
+                    and p["name"].strip().lower() in orphan_names)]
+
+
 def _finalize(club_code: str, p: dict, goals: int, pens: int,
-              minutes: list, strength: dict) -> dict:
+              minutes: list, strength: dict,
+              minutes_played: int | None = None) -> dict:
     st = strength.get(club_code, {})
     return {
         "id": p["id"], "name": p["name"], "wiki": p.get("wiki"),
@@ -121,7 +160,7 @@ def _finalize(club_code: str, p: dict, goals: int, pens: int,
         "nationIso2": p.get("nationIso2"), "nationName": p.get("nationName"),
         "headshot": p.get("headshot"), "photoCredit": p.get("photoCredit"),
         "goals": goals, "penalties": pens, "goalMinutes": minutes,
-        "assists": None, "appearances": None, "minutes": None,
+        "assists": None, "appearances": None, "minutes": minutes_played,
         "yellowCards": None, "redCards": None,
         "clubStrength": st.get("overall", 50.0),
         "rating": 0.0,  # filled by _rank_ratings
@@ -135,11 +174,13 @@ def _orphan_scorer(club_code: str, rec: dict, strength: dict) -> dict:
         "id": f"{club_code}-x-{normalize_name(name).replace(' ', '-')}",
         "name": name, "wiki": name, "club": club_code,
         "clubName": None, "position": "FWD", "detailedPosition": "Forward",
-        "shirtNumber": 0, "nationIso2": None, "nationName": None,
+        "shirtNumber": 0, "nationIso2": rec.get("nationIso2"),
+        "nationName": rec.get("nationName"),
         "headshot": None, "photoCredit": None,
         "goals": rec["goals"], "penalties": rec["penalties"],
         "goalMinutes": rec["minutes"], "assists": None, "appearances": None,
-        "minutes": None, "yellowCards": None, "redCards": None,
+        "minutes": rec.get("minutesPlayed"), "yellowCards": None,
+        "redCards": None,
         "clubStrength": st.get("overall", 50.0), "rating": 0.0,
     }
 
