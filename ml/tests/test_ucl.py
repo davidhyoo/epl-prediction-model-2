@@ -147,3 +147,43 @@ def test_championship_odds_normalise_and_pick_the_real_champion():
     assert tl["checkpoints"][0] == 0
     assert len(tl["labels"]) == len(tl["checkpoints"])
     assert tl["series"]["PSG"][-1] == pytest.approx(100.0, abs=1.0)
+
+
+def test_championship_currentodds_collapse_to_the_realised_champion():
+    # A fully-decided bracket: `currentOdds` fixes every played tie to its real
+    # winner, so the live "trophy chance" must read champion 100% / others 0%.
+    # This is the field the completed-season summary shows (regression guard for
+    # the "champion displayed as a pre-knockout %" bug).
+    codes = ["PSG", "RMA", "BAR", "LIV"]
+    elo = {"PSG": 1900.0, "RMA": 1880.0, "BAR": 1850.0, "LIV": 1860.0}
+    ko = [
+        _ko("sf", "PSG", "RMA", 2, 0),
+        _ko("sf", "BAR", "LIV", 1, 0),
+        _ko("final", "PSG", "BAR", 1, 0, date="2025-06-01"),
+    ]
+    res = championship(codes, elo, ko)
+
+    assert "currentOdds" in res
+    assert res["currentOdds"]["PSG"] == pytest.approx(1.0, abs=1e-6)
+    assert sum(v for c, v in res["currentOdds"].items() if c != "PSG") == pytest.approx(0.0, abs=1e-6)
+    # The pre-knockout `odds` are still a spread over the field (not collapsed).
+    assert res["odds"]["PSG"] < 1.0
+
+
+def test_championship_currentodds_on_undecided_final_is_a_distribution():
+    # If the final isn't played yet, currentOdds must remain a probability spread
+    # over the still-alive finalists (no premature 100%).
+    codes = ["PSG", "RMA", "BAR", "LIV"]
+    elo = {"PSG": 1900.0, "RMA": 1880.0, "BAR": 1850.0, "LIV": 1860.0}
+    ko = [
+        _ko("sf", "PSG", "RMA", 2, 0),
+        _ko("sf", "BAR", "LIV", 1, 0),
+        _ko("final", "PSG", "BAR", None, None, date="2025-06-01"),  # not played
+    ]
+    res = championship(codes, elo, ko)
+    # only the two finalists can still win; each strictly between 0 and 1
+    assert 0.0 < res["currentOdds"]["PSG"] < 1.0
+    assert 0.0 < res["currentOdds"]["BAR"] < 1.0
+    assert res["currentOdds"]["RMA"] == pytest.approx(0.0, abs=1e-6)
+    assert res["currentOdds"]["LIV"] == pytest.approx(0.0, abs=1e-6)
+    assert sum(res["currentOdds"].values()) == pytest.approx(1.0, abs=0.02)

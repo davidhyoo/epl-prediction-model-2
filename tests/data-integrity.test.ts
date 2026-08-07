@@ -225,6 +225,46 @@ for (const ds of index.datasets) {
       }
     });
 
+    it("collapses title odds onto the realised champion once the season is complete", () => {
+      // Regression guard for the "champion shown as a pre-tournament %" bug: a
+      // fully-played competition must read the actual winner at ~100% and every
+      // other club at ~0% (tournament `currentOdds`, domestic settled table).
+      if (summary.played !== summary.totalMatches || !summary.champion) return;
+      const champ = clubs.find((c) => c.code === summary.champion!.code);
+      expect(champ).toBeDefined();
+      expect((champ as Club).odds.title).toBeGreaterThan(0.99);
+      for (const c of clubs) {
+        if (c.code !== summary.champion!.code) {
+          expect(c.odds.title).toBeLessThan(0.01);
+        }
+      }
+    });
+
+    it("never lists the same player twice under one club", () => {
+      const seen = new Set<string>();
+      for (const p of players) {
+        const key = `${p.club}::${p.name.trim().toLowerCase()}`;
+        expect(seen.has(key)).toBe(false);
+        seen.add(key);
+      }
+    });
+
+    if (ds.league === "ucl") {
+      it("carries real, differentiated Champions League goal output", () => {
+        // openfootball has no UCL scorers, so these come from the Wikipedia/UEFA
+        // top-scorers source. A completed edition must therefore have several
+        // real named scorers with goals > 0 (not an all-zero roster).
+        const scorers = players.filter((p) => p.goals > 0);
+        expect(scorers.length).toBeGreaterThanOrEqual(8);
+        const topGoals = Math.max(...players.map((p) => p.goals));
+        expect(topGoals).toBeGreaterThanOrEqual(10);
+        // The listed scorers carry real UEFA minutes (never null/0 for a scorer).
+        for (const p of scorers) {
+          expect(typeof p.minutes === "number" && (p.minutes as number) > 0).toBe(true);
+        }
+      });
+    }
+
     it("exposes eight ranking views, each covering all clubs", () => {
       const keys = Object.keys(rankings);
       expect(keys).toHaveLength(8);
