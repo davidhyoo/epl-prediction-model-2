@@ -153,17 +153,6 @@ export interface Scorer {
   ownGoal: boolean;
 }
 
-export interface MatchStats {
-  shots?: { home: number; away: number };
-  shotsOnTarget?: { home: number; away: number };
-  corners?: { home: number; away: number };
-  fouls?: { home: number; away: number };
-  yellows?: { home: number; away: number };
-  reds?: { home: number; away: number };
-  marketOdds?: Probabilities;
-  referee?: string | null;
-}
-
 export interface Match {
   id: string;
   round: number;
@@ -180,8 +169,6 @@ export interface Match {
   stage?: string | null;
   prediction: MatchPrediction;
   scorers: Scorer[];
-  matchStats: MatchStats | null;
-  marketOdds: Probabilities | null;
   actual: Outcome | null;
   predictionCorrect: boolean | null;
 }
