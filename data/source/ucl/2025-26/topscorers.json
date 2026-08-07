@@ -1,0 +1,78 @@
+{
+ "season": "2025-26",
+ "source": "wikipedia/uefa",
+ "scorers": [
+  {
+   "player": "Kylian Mbappé",
+   "club": "RMA",
+   "goals": 15,
+   "minutes": 912,
+   "nationIso2": "fr",
+   "nationName": "France"
+  },
+  {
+   "player": "Harry Kane",
+   "club": "FCB",
+   "goals": 14,
+   "minutes": 1039,
+   "nationIso2": "gb-eng",
+   "nationName": "England"
+  },
+  {
+   "player": "Anthony Gordon",
+   "club": "NEW",
+   "goals": 10,
+   "minutes": 771,
+   "nationIso2": "gb-eng",
+   "nationName": "England"
+  },
+  {
+   "player": "Khvicha Kvaratskhelia",
+   "club": "PSG",
+   "goals": 10,
+   "minutes": 1141,
+   "nationIso2": "ge",
+   "nationName": "Georgia"
+  },
+  {
+   "player": "Julián Alvarez",
+   "club": "ATM",
+   "goals": 10,
+   "minutes": 1240,
+   "nationIso2": "ar",
+   "nationName": "Argentina"
+  },
+  {
+   "player": "Erling Haaland",
+   "club": "MCI",
+   "goals": 8,
+   "minutes": 756,
+   "nationIso2": "no",
+   "nationName": "Norway"
+  },
+  {
+   "player": "Ousmane Dembélé",
+   "club": "PSG",
+   "goals": 8,
+   "minutes": 827,
+   "nationIso2": "fr",
+   "nationName": "France"
+  },
+  {
+   "player": "Victor Osimhen",
+   "club": "GAL",
+   "goals": 7,
+   "minutes": 841,
+   "nationIso2": "ngr",
+   "nationName": "NGR"
+  },
+  {
+   "player": "Luis Díaz",
+   "club": "FCB",
+   "goals": 7,
+   "minutes": 980,
+   "nationIso2": "co",
+   "nationName": "Colombia"
+  }
+ ]
+}

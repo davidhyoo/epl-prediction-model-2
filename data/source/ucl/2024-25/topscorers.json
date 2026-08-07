@@ -1,0 +1,102 @@
+{
+ "season": "2024-25",
+ "source": "wikipedia/uefa",
+ "scorers": [
+  {
+   "player": "Serhou Guirassy",
+   "club": "BVB",
+   "goals": 13,
+   "minutes": 1084,
+   "nationIso2": "gn",
+   "nationName": "Guinea"
+  },
+  {
+   "player": "Raphinha",
+   "club": "BAR",
+   "goals": 13,
+   "minutes": 1225,
+   "nationIso2": "br",
+   "nationName": "Brazil"
+  },
+  {
+   "player": "Robert Lewandowski",
+   "club": "BAR",
+   "goals": 11,
+   "minutes": 985,
+   "nationIso2": "pl",
+   "nationName": "Poland"
+  },
+  {
+   "player": "Harry Kane",
+   "club": "FCB",
+   "goals": 11,
+   "minutes": 1120,
+   "nationIso2": "gb-eng",
+   "nationName": "England"
+  },
+  {
+   "player": "Lautaro Martínez",
+   "club": "INT",
+   "goals": 9,
+   "minutes": 857,
+   "nationIso2": "ar",
+   "nationName": "Argentina"
+  },
+  {
+   "player": "Erling Haaland",
+   "club": "MCI",
+   "goals": 8,
+   "minutes": 771,
+   "nationIso2": "no",
+   "nationName": "Norway"
+  },
+  {
+   "player": "Vinícius Júnior",
+   "club": "RMA",
+   "goals": 8,
+   "minutes": 1104,
+   "nationIso2": "br",
+   "nationName": "Brazil"
+  },
+  {
+   "player": "Ousmane Dembélé",
+   "club": "PSG",
+   "goals": 8,
+   "minutes": 1163,
+   "nationIso2": "fr",
+   "nationName": "France"
+  },
+  {
+   "player": "Jonathan David",
+   "club": "LIL",
+   "goals": 7,
+   "minutes": 746,
+   "nationIso2": "ca",
+   "nationName": "Canada"
+  },
+  {
+   "player": "Julián Alvarez",
+   "club": "ATM",
+   "goals": 7,
+   "minutes": 790,
+   "nationIso2": "ar",
+   "nationName": "Argentina"
+  },
+  {
+   "player": "Vangelis Pavlidis",
+   "club": "BEN",
+   "goals": 7,
+   "minutes": 905,
+   "nationIso2": "gr",
+   "nationName": "Greece"
+  },
+  {
+   "player": "Kylian Mbappé",
+   "club": "RMA",
+   "goals": 7,
+   "minutes": 1132,
+   "nationIso2": "fr",
+   "nationName": "France"
+  }
+ ]
+}

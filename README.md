@@ -265,7 +265,7 @@ npm run ml:evaluate         # stage 8 (+ publish JSON, incl. EPL assist enrichme
 ### Tests / lint
 
 ```bash
-npm test          # vitest — 83 frontend tests
+npm test          # vitest — 149 frontend tests
 npm run test:py   # pytest  — 52 pipeline tests
 npm run lint      # eslint
 ```
@@ -345,8 +345,8 @@ ingest → (sources) → features → train → predict → simulate → players
 | 4 | **`club_train.py`**    | Fit the learners on the **training corpus only**: multinomial **logistic regression**, **random forest**, **XGBoost** (falls back to sklearn gradient boosting if xgboost isn't installed) and the auxiliary binary **draw model** used by the Elo baseline. Artifacts saved to `ml/models/{league}-{season}/*.joblib` + `meta.json`. Training is the only reusable step, so it is skipped on refresh unless `--retrain` is passed. |
 | 5 | **`club_predict.py`**  | Score the whole target schedule with every model, blend them into the **ensemble**, pick the predicted outcome + confidence, and attach the **top-5 contributing factors** (from model coefficients / feature importances) for the explanation modal. Also computes per-club team-strength snapshots. |
 | 6 | **`club_simulate.py`** | **Monte-Carlo** the rest of the season (8,000 runs by default): completed matches are fixed to their real result; each remaining fixture is sampled from an independent-Poisson score model driven by the current Elo gap. Produces title / UCL / Europa / relegation probabilities, expected points and the full finishing-position distribution. Mathematically-eliminated clubs are **hard-zeroed** (an eliminated side has exactly 0% title chance). It also builds the **title-race timeline** (`title_race_timeline`, 4,000 runs per matchday) that powers the Models → Final winner chart — see [The title-race timeline](#the-title-race-timeline). |
-| 7 | **`club_players.py`**  | Build each club's squad from the cached Wikipedia rosters, credit goals from the parsed scorers (excluding own goals), and compute a transparent player **rating** from goals, position and squad role. |
-| 8 | **`club_evaluate.py`** | The **self-improvement / backtest** step. For the validation season it grades every completed prediction against the real result, computes accuracy, log-loss, Brier score and calibration (ECE) per model, **re-ranks** the leaderboard and sets the ensemble weights ∝ 1/log-loss (better models get more say). It also invokes `club_fpl.py` to enrich EPL players with real assists/minutes/cards. Then it **publishes** every `public/data/{league}/{season}/*.json` and the top-level `index.json`. For the unplayed 2026-27 season it publishes blank metrics (nothing to score yet). |
+| 7 | **`club_players.py`**  | Build each club's squad from the cached Wikipedia rosters, credit goals (excluding own goals) from the parsed openfootball scorers — or, for the Champions League, from the injected **UEFA top-scorer** goals+minutes (`ucl_stats.py`) — using exact-name-first matching so a shared surname can never steal another player's tally, add any real scorer missing from the current squad as a "departed scorer" record, de-duplicate transferred players, and compute a transparent player **rating** from goals, position and squad role. |
+| 8 | **`club_evaluate.py`** | The **self-improvement / backtest** step. For the validation season it grades every completed prediction against the real result, computes accuracy, log-loss, Brier score and calibration (ECE) per model, **re-ranks** the leaderboard and sets the ensemble weights ∝ 1/log-loss (better models get more say). It also invokes `club_fpl.py` to enrich EPL players with real assists/minutes/cards, and loads `ucl_stats.py` goal data for the Champions League. Then it **publishes** every `public/data/{league}/{season}/*.json` and the top-level `index.json`. For the unplayed 2026-27 season it publishes blank metrics (nothing to score yet). |
 
 `club_fetch_squads.py` is a separate, network-using helper (run via
 `--squads`) that fetches rosters from Wikipedia and free-licensed headshots from
@@ -364,6 +364,14 @@ Two more helpers run alongside stage 8:
   skipped for a season with no completed matches so an unstarted 2026-27 never
   inherits last season's totals. La Liga has no equivalent free feed, so it is a
   no-op there and those fields stay `null`.
+- **`ucl_stats.py`** supplies real **Champions-League goals + minutes** for the
+  tournament's leading scorers by parsing the official UEFA-cited "Top
+  goalscorers" wikitable on the season's Wikipedia article, resolving each row to
+  a UCL club code and caching it to `data/source/ucl/{season}/topscorers.json`.
+  openfootball carries no UCL goalscorers, so this is the single source of truth
+  for who scored in the Champions League; it is fetched by the in-app refresh and
+  by `npm run data:fetch`, and there is no free per-player *assists* feed so those
+  stay `null`.
 - **`club_crests.py`** builds the club-code → crest-URL map. Each candidate URL
   (from TheSportsDB's free-key name search, with a football-data.org CDN
   fallback) is **verified** — the returned team must resolve back to the same
@@ -566,6 +574,7 @@ payment, or scraping of disallowed content.
 | **openfootball** ([github.com/openfootball](https://github.com/openfootball)) — `england/1-premierleague.txt`, `espana/1-liga.txt`, `champions-league/{season}/cl.txt` | Fixtures, results, and (2025-26+) inline goalscorers with minutes/penalties/own-goals; for the UCL the full league phase + knockout bracket (with a.e.t. / penalty shootouts) | **CC0** (public domain) | Cached; refreshable live |
 | **football-data.co.uk** (`mmz4281/{yyyy}/{E0,SP1}.csv`) | Per-match shots, shots-on-target, corners, fouls, cards + **closing market odds** | Free for personal use | Cached; refreshable live |
 | **Fantasy Premier League archive** ([vaastav/Fantasy-Premier-League](https://github.com/vaastav/Fantasy-Premier-League)) — `data/{season}/players_raw.csv` | Real per-player **assists, minutes, yellow/red cards** for the Premier League (goals stay sourced from openfootball) | Open GitHub data, snapshot of the public FPL API | Cached in `data/source/epl/{season}/fpl_players.csv`; refreshable live |
+| **Wikipedia / UEFA "Top goalscorers" table** (season article, e.g. *2024–25 UEFA Champions League*) | Real Champions-League per-player **goals + minutes** for the tournament's leading scorers (openfootball carries no UCL goalscorers) — parsed from the official UEFA-cited wikitable | CC BY-SA (text/data) | Cached in `data/source/ucl/{season}/topscorers.json`; refreshable live |
 | **Wikipedia** (club squad pages) | Player rosters (name, position, nationality, club) | CC BY-SA | Cached; refreshable via `--squads` |
 | **Wikimedia Commons** | Player **headshots** (free-licensed images only) | Per-file (CC BY / CC BY-SA / public domain) — attribution stored in `headshot_credits.json` and shown on player profiles | Cached in `public/headshots/{league}/` |
 | **TheSportsDB** (free key `3`) + **football-data.org crest CDN** | Club **crest** image URLs (verified by name + country, never the wrong club) | Hot-linked at render only — **no crest image is ever committed**; each club falls back to a coloured monogram if the image can't load | URL map cached in `data/source/crests.json` → bundled to `src/lib/crests.json`; refreshable via `--crests` |
@@ -589,7 +598,7 @@ unmapped club).
 
 **202 tests total**, all green, split across the two toolchains:
 
-### Frontend — Vitest (`npm test`) — 135 tests
+### Frontend — Vitest (`npm test`) — 149 tests
 
 - `tests/format.test.ts` — percentage/odds/label formatting helpers.
 - `tests/model-meta.test.ts` — model registry ordering & metadata.
@@ -611,8 +620,13 @@ unmapped club).
   clubs ordered by peak, per-checkpoint probabilities summing to ~100, and the
   highest-finishing club matching the projected champion). Preseason vs
   validation vs tournament datasets are checked with the appropriate expectations.
+  It also guards that a **completed** competition collapses its title odds onto the
+  realised champion (~100% for the winner, ~0% for everyone else — the fix for the
+  "champion shown as a pre-tournament %" bug), that **no player is listed twice**
+  under one club, and that the **Champions League carries real, differentiated
+  goal output** (≥8 named scorers, a ≥10-goal leader, real minutes for each).
 
-### Pipeline — pytest (`npm run test:py`) — 67 tests
+### Pipeline — pytest (`npm run test:py`) — 79 tests
 
 - `test_club_modeling.py` — Elo baseline (rows sum to 1, monotonic in rating gap,
   home-advantage tie-break, draw-model coupling), ensemble blending, and the
@@ -638,7 +652,17 @@ unmapped club).
   parser (stage headers, score tails with extra-time / penalty shootouts,
   league-vs-knockout round numbering) and the knockout-bracket championship model
   (bracket reconstruction from played ties, a decided champion, a normalised odds
-  distribution and a convergence timeline).
+  distribution, a convergence timeline, and the **`currentOdds`** collapse to
+  100% for a finished bracket / a valid spread while the final is unplayed).
+- `test_ucl_stats.py` — the UEFA "Top goalscorers" wikitable parser: nationality
+  flag extraction, rowspan goal carry-forward, the player-vs-team template
+  discriminator, "Seven players" summary-row skipping, and the offline
+  `load_goal_stats` cache reader shape.
+- `test_club_players.py` — the roster + goal merge: injected UCL goal_stats are
+  consumed verbatim with real minutes, exact-name matching beats a shared surname,
+  an un-rostered real scorer becomes a nationality-tagged "departed" record, a
+  transferred player's 0-goal roster copy is de-duplicated, and two different
+  players who share a name are both kept.
 
 Run everything:
 
@@ -667,21 +691,31 @@ itself reads no environment variables and needs no API keys**.
   from prior seasons + squad strength), and its model leaderboard is blank until
   real results exist to score against. This is by design — hit Refresh once the
   season starts and the numbers become live.
-- **Player stats: EPL is rich, La Liga & UCL are roster-only.** openfootball
+- **Player stats: EPL is richest; La Liga & UCL are more limited.** openfootball
   provides goalscorers with minutes for the domestic leagues. For the **Premier
   League** we additionally merge real **assists, minutes and cards** from the
   free, key-less Fantasy Premier League archive (goals still come from
   openfootball, the single source of truth). **La Liga has no equivalent free
   per-player feed**, so its assists/minutes stay `null`. The **Champions League**
-  openfootball files carry no goalscorer blocks, so UCL players are a real
-  Wikipedia roster (name, position, nationality) with headshots and a derived
-  model rating, but per-player goals/assists show a tasteful "—". Everything
-  degrades gracefully; the app never invents a stat it can't source.
+  openfootball files carry no goalscorer blocks, so UCL **goals + minutes come
+  from the official UEFA "Top goalscorers" table on Wikipedia** — real and exact
+  for the tournament's leading scorers (down to a ~6–7-goal threshold); everyone
+  below that shows 0 goals, and there is no free UCL **assists** feed so those
+  stay "—". The app never invents a stat it can't source.
+- **Squads are each club's _current_ roster.** Rosters come from the live
+  Wikipedia squad pages, so a player who has since transferred is attributed to
+  the club he actually scored for that season (via a real "departed scorer"
+  record), and a 0-goal duplicate of that same player is de-duplicated out — two
+  genuinely different players who merely share a name are both kept.
 - **Crest coverage is near-complete, with a safe fallback.** All 40 domestic
   clubs and 52/54 Champions-League clubs map to a real, verified crest URL; any
   club that ever can't load its crest simply shows a coloured monogram.
-- **Match stats depend on football-data.co.uk cadence.** Shots/odds appear once a
-  season is under way; before then those fields are empty.
+- **Match stats power the models, not the payload.** football-data.co.uk shots /
+  shots-on-target / corners / cards feed the feature engineering and Elo, but the
+  raw per-match stat block is intentionally **not** shipped in `matches.json`
+  (nothing in the UI reads it) — this keeps the client payload ~17% smaller. Those
+  inputs only exist once a season is under way; before then the models lean on
+  Elo + squad-strength priors.
 - **Headshot coverage is partial.** Only players with a free-licensed Commons
   image get a photo; everyone else gets a clean initials avatar.
 - **Refresh runs a local process.** It's meant for a trusted machine; it's off by
