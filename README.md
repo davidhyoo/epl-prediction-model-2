@@ -1,12 +1,13 @@
-# ⚽ Data Driven Soccer — EPL & La Liga Prediction & Analytics Dashboard
+# ⚽ Data Driven Soccer — EPL, La Liga & Champions League Prediction & Analytics Dashboard
 
 _Developed by **David Yoo** — [LinkedIn](https://www.linkedin.com/in/david-h-yoo) · [GitHub](https://github.com/davidhyoo/epl-prediction-model-2)_
 
-A production-quality web app for exploring the **English Premier League** and
-**Spanish La Liga** — standings, fixtures & results, match predictions, club
-profiles, real squads with headshots, player stats, multi-view rankings and a
-transparent machine-learning model leaderboard — backed by a fully reproducible,
-**offline-first** Python ML pipeline that pulls only free, openly-licensed data.
+A production-quality web app for exploring the **English Premier League**,
+**Spanish La Liga** and the **UEFA Champions League** — standings/league phase,
+fixtures & results, match predictions, club profiles, real squads with headshots,
+player stats, multi-view rankings and a transparent machine-learning model
+leaderboard — backed by a fully reproducible, **offline-first** Python ML pipeline
+that pulls only free, openly-licensed data.
 
 > **Branch:** shipped on `main` (mirrored on the `soccer-agent` development
 > branch). The earlier `worldcup-prediction` branch holds the World Cup agent
@@ -111,20 +112,31 @@ Football data is only trustworthy if the pipeline that produces it has been
 proven against **real, completed results**. So the app ships **two seasons per
 league** and you can switch between them live (top-left league + season switcher):
 
-| Season    | Role          | State                                   | Why it exists                                             |
-| --------- | ------------- | --------------------------------------- | --------------------------------------------------------- |
-| `2025-26` | **validation**| complete — real results + scorers       | Proves the ingest → features → predict → evaluate loop is correct against ground truth. |
-| `2026-27` | **deliverable**| fixtures only (season not yet kicked off)| The real target. Predictions are made **pre-season** from priors; as the season is played, hitting **Refresh** flows real results straight into standings, odds and the model leaderboard. |
+| League | Season | Role | State | Why it exists |
+| ------ | --------- | ------------- | --------------------------------------- | -------------------------------- |
+| EPL / La Liga | `2025-26` | **validation**| complete — real results + scorers       | Proves the ingest → features → predict → evaluate loop is correct against ground truth. |
+| EPL / La Liga | `2026-27` | **deliverable**| fixtures only (season not yet kicked off)| The real target. Predictions are made **pre-season** from priors; as the season is played, hitting **Refresh** flows real results straight into standings, odds and the model leaderboard. |
+| Champions League | `2024-25` | **validation**| complete — PSG champion | Proves the tournament pipeline (36-club league phase + knockout bracket) against a finished edition. |
+| Champions League | `2025-26` | **deliverable**| complete — PSG champion | The most recent finished edition, shipped as the ready-for-next-season deliverable (the UCL has no fixtures-only future season yet). |
 
-This is the core idea the brief asked for: **use 2025-26 to guarantee the plumbing
-works, and have 2026-27 fully wired so that the moment the league kicks off the
-same refresh path produces correct, live data** — no code changes required.
+This is the core idea the brief asked for: **use a completed season to guarantee
+the plumbing works, and have the deliverable season fully wired so that the moment
+new matches are played the same refresh path produces correct, live data** — no
+code changes required.
+
+The Champions League is a **tournament-format** league: a 36-club single-table
+league phase feeds a knockout bracket. The pipeline reconstructs the real bracket
+tree from the played knockout ties and runs a Monte-Carlo simulation for the
+trophy, so odds, zone labels ("Round of 16" / "Knockout play-offs") and the
+winner-convergence chart (plotted over knockout **rounds** rather than matchdays)
+are all tournament-aware.
 
 Datasets available in the app:
 
 ```
 epl/2025-26      epl/2026-27
 laliga/2025-26   laliga/2026-27
+ucl/2024-25      ucl/2025-26
 ```
 
 ---
@@ -137,7 +149,8 @@ Every page is league- and season-aware (state lives in the URL as
 - **Home dashboard** — summary cards (matches played/upcoming, predicted
   champion, highest-confidence upcoming fixture, best-performing model), the live
   standings snapshot, title-race odds and recent/upcoming fixtures.
-- **Matches** — full 380-match fixture/results list with club badges, kickoff
+- **Matches** — full fixture/results list (380 league games, or 189 for the
+  Champions League incl. the knockout bracket) with club badges, kickoff
   times, scores for completed games and **W / D / L probability bars** for
   upcoming ones. Filter by round/completed/upcoming/club; sort by date,
   confidence or round. Click any prediction to open the **explanation modal**.
@@ -149,8 +162,8 @@ Every page is league- and season-aware (state lives in the URL as
   and promotion/UCL/Europa/relegation zone colouring.
 - **Predictions** — season-outcome projections from the Monte-Carlo simulation:
   title %, top-4/UCL %, Europa %, relegation %, plus expected finishing position.
-- **Clubs** — searchable/sortable grid of all 20 clubs with title odds; click
-  through to a **club detail** page: strength radar, SWOT-style
+- **Clubs** — searchable/sortable grid of every club with title/trophy odds;
+  click through to a **club detail** page: strength radar, SWOT-style
   strengths/weaknesses, key players, full squad and the club's fixtures.
 - **Players** — every real squad player, with **Wikimedia-licensed headshots**
   (or a clean initials placeholder), club, position, nationality flag, goals and
@@ -550,7 +563,7 @@ payment, or scraping of disallowed content.
 
 | Source | Used for | License | Live/cached |
 | ------ | -------- | ------- | ----------- |
-| **openfootball** ([github.com/openfootball](https://github.com/openfootball)) — `england/1-premierleague.txt`, `espana/1-liga.txt` | Fixtures, results, and (2025-26+) inline goalscorers with minutes/penalties/own-goals | **CC0** (public domain) | Cached; refreshable live |
+| **openfootball** ([github.com/openfootball](https://github.com/openfootball)) — `england/1-premierleague.txt`, `espana/1-liga.txt`, `champions-league/{season}/cl.txt` | Fixtures, results, and (2025-26+) inline goalscorers with minutes/penalties/own-goals; for the UCL the full league phase + knockout bracket (with a.e.t. / penalty shootouts) | **CC0** (public domain) | Cached; refreshable live |
 | **football-data.co.uk** (`mmz4281/{yyyy}/{E0,SP1}.csv`) | Per-match shots, shots-on-target, corners, fouls, cards + **closing market odds** | Free for personal use | Cached; refreshable live |
 | **Fantasy Premier League archive** ([vaastav/Fantasy-Premier-League](https://github.com/vaastav/Fantasy-Premier-League)) — `data/{season}/players_raw.csv` | Real per-player **assists, minutes, yellow/red cards** for the Premier League (goals stay sourced from openfootball) | Open GitHub data, snapshot of the public FPL API | Cached in `data/source/epl/{season}/fpl_players.csv`; refreshable live |
 | **Wikipedia** (club squad pages) | Player rosters (name, position, nationality, club) | CC BY-SA | Cached; refreshable via `--squads` |
@@ -574,26 +587,32 @@ unmapped club).
 
 ## Testing
 
-**127 tests total**, all green, split across the two toolchains:
+**202 tests total**, all green, split across the two toolchains:
 
-### Frontend — Vitest (`npm test`) — 83 tests
+### Frontend — Vitest (`npm test`) — 135 tests
 
 - `tests/format.test.ts` — percentage/odds/label formatting helpers.
 - `tests/model-meta.test.ts` — model registry ordering & metadata.
 - `tests/probability-bar.test.tsx` — the W/D/L bar, rendered to static markup
   with `react-dom/server` (keeps the suite in a fast plain-Node environment).
+- `tests/client-render.test.tsx` — mounts the click-only prediction modal, the
+  match card, every player row's leaf components and every club badge against the
+  **real cached JSON for all six datasets** (incl. UCL knockout matches), so a
+  missing field would throw exactly as it would in the browser.
 - `tests/data-integrity.test.ts` — iterates **every** shipped dataset and
-  asserts: 20 clubs / 380 matches, probabilities that sum to 1, **no leakage**
-  (upcoming games carry no result), consistent grading, valid standings maths,
-  season-odds in `[0,1]` with title odds summing to ~1, a correctly-ranked model
-  leaderboard, calibration bins in range, well-formed & attributed headshots,
-  all eight ranking views, and a coherent **title-race timeline** (`race.json`:
-  20 clubs, series aligned to the checkpoint axis, values in `[0,100]`, clubs
-  ordered by peak, per-checkpoint probabilities summing to ~100, and the
-  highest-finishing club matching the projected champion). Preseason (2026-27) vs
-  validation (2025-26) datasets are checked with the appropriate expectations.
+  asserts: the correct field size (20 clubs / 380 matches for a domestic league,
+  36 clubs / 189 matches for the Champions League), probabilities that sum to 1,
+  **no leakage** (upcoming games carry no result), consistent grading, valid
+  standings maths, season-odds in `[0,1]` with title odds summing to ~1, a
+  correctly-ranked model leaderboard, calibration bins in range, well-formed &
+  attributed headshots, all eight ranking views, and a coherent **title-race
+  timeline** (`race.json`: one series per club aligned to the checkpoint axis —
+  matchdays for a league, knockout **rounds** for a cup — values in `[0,100]`,
+  clubs ordered by peak, per-checkpoint probabilities summing to ~100, and the
+  highest-finishing club matching the projected champion). Preseason vs
+  validation vs tournament datasets are checked with the appropriate expectations.
 
-### Pipeline — pytest (`npm run test:py`) — 52 tests
+### Pipeline — pytest (`npm run test:py`) — 67 tests
 
 - `test_club_modeling.py` — Elo baseline (rows sum to 1, monotonic in rating gap,
   home-advantage tie-break, draw-model coupling), ensemble blending, and the
@@ -615,6 +634,11 @@ unmapped club).
 - `test_club_crests.py` — the crest **verification** guard (accepts spelling
   variants, rejects the wrong sport / country / club) so a badge is never
   mis-attributed.
+- `test_ucl.py` — the Champions-League tournament pieces: the openfootball UCL
+  parser (stage headers, score tails with extra-time / penalty shootouts,
+  league-vs-knockout round numbering) and the knockout-bracket championship model
+  (bracket reconstruction from played ties, a decided champion, a normalised odds
+  distribution and a convergence timeline).
 
 Run everything:
 
@@ -643,16 +667,19 @@ itself reads no environment variables and needs no API keys**.
   from prior seasons + squad strength), and its model leaderboard is blank until
   real results exist to score against. This is by design — hit Refresh once the
   season starts and the numbers become live.
-- **Player stats: EPL is rich, La Liga is goals-only.** openfootball provides
-  goalscorers with minutes for both leagues. For the **Premier League** we
-  additionally merge real **assists, minutes and cards** from the free, key-less
-  Fantasy Premier League archive (goals still come from openfootball, the single
-  source of truth). **La Liga has no equivalent free per-player feed**, so its
-  assists/minutes stay `null` and the UI shows a tasteful "—". Both degrade
-  gracefully; the app never invents a stat it can't source.
-- **Crest coverage is near-complete, with a safe fallback.** 46/46 clubs across
-  both leagues map to a real, verified crest URL; any club that ever can't load
-  its crest simply shows a coloured monogram.
+- **Player stats: EPL is rich, La Liga & UCL are roster-only.** openfootball
+  provides goalscorers with minutes for the domestic leagues. For the **Premier
+  League** we additionally merge real **assists, minutes and cards** from the
+  free, key-less Fantasy Premier League archive (goals still come from
+  openfootball, the single source of truth). **La Liga has no equivalent free
+  per-player feed**, so its assists/minutes stay `null`. The **Champions League**
+  openfootball files carry no goalscorer blocks, so UCL players are a real
+  Wikipedia roster (name, position, nationality) with headshots and a derived
+  model rating, but per-player goals/assists show a tasteful "—". Everything
+  degrades gracefully; the app never invents a stat it can't source.
+- **Crest coverage is near-complete, with a safe fallback.** All 40 domestic
+  clubs and 52/54 Champions-League clubs map to a real, verified crest URL; any
+  club that ever can't load its crest simply shows a coloured monogram.
 - **Match stats depend on football-data.co.uk cadence.** Shots/odds appear once a
   season is under way; before then those fields are empty.
 - **Headshot coverage is partial.** Only players with a free-licensed Commons
