@@ -116,8 +116,8 @@ league** and you can switch between them live (top-left league + season switcher
 | ------ | --------- | ------------- | --------------------------------------- | -------------------------------- |
 | EPL / La Liga | `2025-26` | **validation**| complete — real results + scorers       | Proves the ingest → features → predict → evaluate loop is correct against ground truth. |
 | EPL / La Liga | `2026-27` | **deliverable**| fixtures only (season not yet kicked off)| The real target. Predictions are made **pre-season** from priors; as the season is played, hitting **Refresh** flows real results straight into standings, odds and the model leaderboard. |
-| Champions League | `2024-25` | **validation**| complete — PSG champion | Proves the tournament pipeline (36-club league phase + knockout bracket) against a finished edition. |
-| Champions League | `2025-26` | **deliverable**| complete — PSG champion | The most recent finished edition, shipped as the ready-for-next-season deliverable (the UCL has no fixtures-only future season yet). |
+| Champions League | `2025-26` | **validation**| complete — PSG champion | Proves the tournament pipeline (36-club league phase + knockout bracket) against a finished edition. |
+| Champions League | `2026-27` | **deliverable**| **preseason** — league-phase draw not yet made | The real target. The 36-club field is a projection carried forward from 2025-26 and the trophy odds are a pure Elo forecast; there are **no fabricated fixtures**. The moment openfootball publishes the late-August draw, **Refresh** fills in the real bracket, fixtures, results, standings and scorers automatically. |
 
 This is the core idea the brief asked for: **use a completed season to guarantee
 the plumbing works, and have the deliverable season fully wired so that the moment
@@ -131,12 +131,33 @@ trophy, so odds, zone labels ("Round of 16" / "Knockout play-offs") and the
 winner-convergence chart (plotted over knockout **rounds** rather than matchdays)
 are all tournament-aware.
 
+**UCL 2026-27 preseason handling.** A tournament season is unusual in that its
+fixtures don't exist until the draw is published (late August), whereas a domestic
+league always ships a full fixture list. So for a *not-yet-drawn* Champions League
+edition the pipeline runs an **honest preseason** path:
+
+- The 36-club field is seeded from `data/source/ucl/2026-27/participants.json`
+  (carried forward from the previous edition, clearly labelled provisional) —
+  `club_ingest.py` falls back to it when there are no fixtures.
+- Trophy odds come from `ucl_bracket.preseason_odds()`, a strength-only Elo Monte
+  Carlo (shuffle the field into a random single-elimination bracket, play every
+  round from the neutral Elo/Poisson score model, tally champions) — a transparent
+  forecast that rewards stronger sides without pretending to know a draw that
+  hasn't happened.
+- No fixtures are fabricated; the Matches/Predictions/Home pages show a
+  **"League-phase draw pending"** banner, and the model leaderboard stays blank
+  (nothing to backtest yet).
+- `club_refresh.py` treats the missing openfootball file as **non-fatal** for a
+  tournament season, so the in-app **Refresh** button works pre-draw and starts
+  pulling the real bracket, fixtures, results and UEFA scorers the instant they
+  publish — no code change needed.
+
 Datasets available in the app:
 
 ```
 epl/2025-26      epl/2026-27
 laliga/2025-26   laliga/2026-27
-ucl/2024-25      ucl/2025-26
+ucl/2025-26      ucl/2026-27
 ```
 
 ---
@@ -533,7 +554,11 @@ when a club is promoted/relegated into a league.
 - **New-season resilient.** football-data.co.uk only publishes a division CSV
   *after* a season kicks off, and the 2026-27 openfootball file starts with
   fixtures and no results. Both are expected; a missing football-data file for an
-  unstarted season is never fatal.
+  unstarted season is never fatal. For the **Champions League 2026-27** the
+  openfootball fixtures file itself doesn't exist until the late-August draw, so
+  a tournament season treats even that as non-fatal — the field falls back to the
+  committed participants bootstrap and the download begins succeeding (filling in
+  real fixtures/results) the moment the draw is published.
 
 ### Debugging checklist (if Refresh "doesn't update")
 
@@ -574,7 +599,7 @@ payment, or scraping of disallowed content.
 | **openfootball** ([github.com/openfootball](https://github.com/openfootball)) — `england/1-premierleague.txt`, `espana/1-liga.txt`, `champions-league/{season}/cl.txt` | Fixtures, results, and (2025-26+) inline goalscorers with minutes/penalties/own-goals; for the UCL the full league phase + knockout bracket (with a.e.t. / penalty shootouts) | **CC0** (public domain) | Cached; refreshable live |
 | **football-data.co.uk** (`mmz4281/{yyyy}/{E0,SP1}.csv`) | Per-match shots, shots-on-target, corners, fouls, cards + **closing market odds** | Free for personal use | Cached; refreshable live |
 | **Fantasy Premier League archive** ([vaastav/Fantasy-Premier-League](https://github.com/vaastav/Fantasy-Premier-League)) — `data/{season}/players_raw.csv` | Real per-player **assists, minutes, yellow/red cards** for the Premier League (goals stay sourced from openfootball) | Open GitHub data, snapshot of the public FPL API | Cached in `data/source/epl/{season}/fpl_players.csv`; refreshable live |
-| **Wikipedia / UEFA "Top goalscorers" table** (season article, e.g. *2024–25 UEFA Champions League*) | Real Champions-League per-player **goals + minutes** for the tournament's leading scorers (openfootball carries no UCL goalscorers) — parsed from the official UEFA-cited wikitable | CC BY-SA (text/data) | Cached in `data/source/ucl/{season}/topscorers.json`; refreshable live |
+| **Wikipedia / UEFA "Top goalscorers" table** (season article, e.g. *2025–26 UEFA Champions League*) | Real Champions-League per-player **goals + minutes** for the tournament's leading scorers (openfootball carries no UCL goalscorers) — parsed from the official UEFA-cited wikitable | CC BY-SA (text/data) | Cached in `data/source/ucl/{season}/topscorers.json`; refreshable live |
 | **Wikipedia** (club squad pages) | Player rosters (name, position, nationality, club) | CC BY-SA | Cached; refreshable via `--squads` |
 | **Wikimedia Commons** | Player **headshots** (free-licensed images only) | Per-file (CC BY / CC BY-SA / public domain) — attribution stored in `headshot_credits.json` and shown on player profiles | Cached in `public/headshots/{league}/` |
 | **TheSportsDB** (free key `3`) + **football-data.org crest CDN** | Club **crest** image URLs (verified by name + country, never the wrong club) | Hot-linked at render only — **no crest image is ever committed**; each club falls back to a coloured monogram if the image can't load | URL map cached in `data/source/crests.json` → bundled to `src/lib/crests.json`; refreshable via `--crests` |
@@ -690,7 +715,11 @@ itself reads no environment variables and needs no API keys**.
 - **2026-27 is pre-season.** Its predictions come from priors (Elo carried over
   from prior seasons + squad strength), and its model leaderboard is blank until
   real results exist to score against. This is by design — hit Refresh once the
-  season starts and the numbers become live.
+  season starts and the numbers become live. The **Champions League 2026-27** goes
+  a step further: its league-phase draw isn't made until late August, so its
+  36-club field is a **projection** and its trophy odds are a pure Elo forecast
+  (shown behind a "League-phase draw pending" banner) with no fixtures until the
+  real draw lands — at which point Refresh fills everything in automatically.
 - **Player stats: EPL is richest; La Liga & UCL are more limited.** openfootball
   provides goalscorers with minutes for the domestic leagues. For the **Premier
   League** we additionally merge real **assists, minutes and cards** from the

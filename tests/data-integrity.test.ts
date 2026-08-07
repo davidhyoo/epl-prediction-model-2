@@ -66,7 +66,9 @@ for (const ds of index.datasets) {
       expect(matches).toHaveLength(summary.totalMatches);
       if (isCup) {
         expect(nClubs).toBe(36);
-        expect(matches).toHaveLength(189);
+        // A published Champions League edition is a 189-game field; a preseason
+        // edition (draw not yet made) legitimately ships 0 fixtures.
+        if (!preseason) expect(matches).toHaveLength(189);
       } else {
         expect(nClubs).toBe(20);
         expect(matches).toHaveLength(380);
@@ -229,6 +231,9 @@ for (const ds of index.datasets) {
       // Regression guard for the "champion shown as a pre-tournament %" bug: a
       // fully-played competition must read the actual winner at ~100% and every
       // other club at ~0% (tournament `currentOdds`, domestic settled table).
+      // A preseason edition (0 played === 0 total) has a *forecast* favourite at a
+      // realistic sub-100% share, so the collapse only applies once games exist.
+      if (preseason) return;
       if (summary.played !== summary.totalMatches || !summary.champion) return;
       const champ = clubs.find((c) => c.code === summary.champion!.code);
       expect(champ).toBeDefined();
@@ -253,7 +258,12 @@ for (const ds of index.datasets) {
       it("carries real, differentiated Champions League goal output", () => {
         // openfootball has no UCL scorers, so these come from the Wikipedia/UEFA
         // top-scorers source. A completed edition must therefore have several
-        // real named scorers with goals > 0 (not an all-zero roster).
+        // real named scorers with goals > 0 (not an all-zero roster). A preseason
+        // edition has played no games, so an all-zero roster is correct there.
+        if (preseason) {
+          expect(players.every((p) => p.goals === 0)).toBe(true);
+          return;
+        }
         const scorers = players.filter((p) => p.goals > 0);
         expect(scorers.length).toBeGreaterThanOrEqual(8);
         const topGoals = Math.max(...players.map((p) => p.goals));

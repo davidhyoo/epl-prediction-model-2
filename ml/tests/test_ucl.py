@@ -14,7 +14,7 @@ from club_sources import (
     _ucl_stage,
     parse_openfootball_ucl,
 )
-from ucl_bracket import build_tree, championship
+from ucl_bracket import build_tree, championship, preseason_odds
 
 
 # --------------------------------------------------------------------------- #
@@ -187,3 +187,36 @@ def test_championship_currentodds_on_undecided_final_is_a_distribution():
     assert res["currentOdds"]["RMA"] == pytest.approx(0.0, abs=1e-6)
     assert res["currentOdds"]["LIV"] == pytest.approx(0.0, abs=1e-6)
     assert sum(res["currentOdds"].values()) == pytest.approx(1.0, abs=0.02)
+
+
+# --------------------------------------------------------------------------- #
+# Preseason (no-fixtures) Elo forecast
+# --------------------------------------------------------------------------- #
+def test_preseason_odds_normalise_and_favour_strength():
+    # Before the draw is published there is no bracket, so the forecast is a
+    # strength-only Monte Carlo. Odds must be a proper distribution over the
+    # field and rank the strongest club ahead of the weakest.
+    codes = ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF"]
+    elo = {
+        "AAA": 2000.0, "BBB": 1900.0, "CCC": 1800.0,
+        "DDD": 1700.0, "EEE": 1600.0, "FFF": 1500.0,
+    }
+    odds = preseason_odds(codes, elo, n_sims=4000)
+
+    assert set(odds) == set(codes)
+    assert abs(sum(odds.values()) - 1.0) < 0.02
+    for v in odds.values():
+        assert 0.0 <= v <= 1.0
+    # The clear Elo favourite must out-rank the clear underdog.
+    assert odds["AAA"] > odds["FFF"]
+    # A 500-Elo gap can't leave the underdog as the projected winner.
+    assert odds["AAA"] == max(odds.values())
+
+
+def test_preseason_odds_edge_cases():
+    # A tilde-prefixed placeholder code (bye/qualifier slot) is excluded, and the
+    # trivial one/zero-club fields degenerate gracefully.
+    assert preseason_odds([], {}) == {}
+    assert preseason_odds(["ONE"], {"ONE": 1500.0}) == {"ONE": 1.0}
+    odds = preseason_odds(["AAA", "~TBD"], {"AAA": 1800.0}, n_sims=200)
+    assert odds == {"AAA": 1.0}
