@@ -224,6 +224,59 @@ def _run_mc(final_tie: Tie, fixed: dict[str, str], elo: dict[str, float],
 # --------------------------------------------------------------------------- #
 # Public API
 # --------------------------------------------------------------------------- #
+def preseason_odds(codes: list[str], elo: dict[str, float],
+                   n_sims: int = N_SIMS) -> dict[str, float]:
+    """Elo-based championship forecast for a field with *no fixtures yet*.
+
+    Before the league-phase draw is published there is no bracket to simulate,
+    so we can't use :func:`championship`. Instead we run a strength-only Monte
+    Carlo: each simulated tournament shuffles the field into a single-elimination
+    bracket (padded with byes to the next power of two) and plays every round
+    from the neutral Elo/Poisson score model, tallying how often each club wins.
+
+    This is a deliberately simple, transparent *preseason* estimate — it rewards
+    stronger sides without pretending to know a draw that hasn't happened. The
+    real forecast takes over the instant openfootball publishes the fixtures.
+    Returns ``{code: probability}`` summing to ~1 over the field.
+    """
+    field = [c for c in codes if not c.startswith("~")]
+    n = len(field)
+    if n == 0:
+        return {}
+    if n == 1:
+        return {field[0]: 1.0}
+
+    gen = np.random.default_rng(SEED)
+    size = 1 << (n - 1).bit_length()          # next power of two ≥ n
+    counts: dict[str, int] = defaultdict(int)
+
+    for _ in range(n_sims):
+        bracket: list[str | None] = list(field)
+        gen.shuffle(bracket)
+        bracket += [None] * (size - n)        # byes fall to random teams (shuffled)
+        while len(bracket) > 1:
+            nxt: list[str | None] = []
+            for i in range(0, len(bracket), 2):
+                a, b = bracket[i], bracket[i + 1]
+                if a is None or b is None:
+                    nxt.append(a if a is not None else b)
+                    continue
+                la, lb = _neutral_goals(elo.get(a, 1500), elo.get(b, 1500))
+                ga, gb = gen.poisson(la), gen.poisson(lb)
+                if ga > gb:
+                    nxt.append(a)
+                elif gb > ga:
+                    nxt.append(b)
+                else:
+                    nxt.append(_pen_pick(a, b, elo, gen.random()))
+            bracket = nxt
+        champ = bracket[0]
+        if champ:
+            counts[champ] += 1
+
+    return {c: round(counts[c] / n_sims, 4) for c in field}
+
+
 def championship(codes: list[str], elo: dict[str, float],
                  ko_matches: list[dict]) -> dict:
     """Championship probabilities + the real champion + a convergence timeline.

@@ -116,6 +116,23 @@ def predict_combo(league_id: str, season_id: str) -> dict:
     _, _, eng = build_training_matrix(corpus)
     X, ordered = build_season_features(eng, data["matches"])
 
+    codes = [c for c in data["codes"] if not c.startswith("~")]
+    strength = team_strength(eng, codes)
+
+    # A preseason tournament (e.g. UCL 2026-27 before the draw) has a club field
+    # but no fixtures yet. There is nothing to score, so return empty prediction
+    # arrays — build_combo forecasts the title from Elo strength instead.
+    if len(ordered) == 0:
+        empty = np.zeros((0, 3))
+        return {
+            "league": league_id, "season": season_id,
+            "ordered": [], "X": np.zeros((0, len(FEATURE_ORDER))),
+            "y": np.zeros(0, dtype=int),
+            "proba": {n: empty for n in (*ML_MODELS, "elo", "ensemble")},
+            "market": np.zeros((0, 3)), "contributions": [],
+            "strength": strength, "codes": codes, "engine": eng,
+        }
+
     proba: dict[str, np.ndarray] = {}
     for name in ML_MODELS:
         proba[name] = models[name].predict_proba(X)
@@ -136,9 +153,6 @@ def predict_combo(league_id: str, season_id: str) -> dict:
         o = m.get("marketOdds")
         if o:
             market[i] = [o["home"], o["draw"], o["away"]]
-
-    codes = [c for c in data["codes"] if not c.startswith("~")]
-    strength = team_strength(eng, codes)
 
     # true labels for completed matches (evaluate uses these; leakage-free since
     # they are never fed back into features)

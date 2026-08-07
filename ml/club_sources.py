@@ -485,10 +485,20 @@ def _combo_source_dir(league_id: str, season_id: str) -> str:
 
 
 def load_matches(league_id: str, season_id: str) -> list[dict]:
-    """Load + merge openfootball results with football-data stats for one combo."""
+    """Load + merge openfootball results with football-data stats for one combo.
+
+    A tournament season whose openfootball file has not been published yet (the
+    Champions League 2026-27 before the late-August draw) has no fixtures source
+    on disk. That is expected for a preseason edition, so we return an empty
+    match list rather than raising — the club field is seeded from the committed
+    ``participants.json`` bootstrap instead (see ``club_ingest.ingest_season``).
+    """
     d = _combo_source_dir(league_id, season_id)
     of_path = os.path.join(d, "openfootball.txt")
     fd_path = os.path.join(d, "footballdata.csv")
+
+    if not os.path.exists(of_path):
+        return []
 
     with open(of_path, "r", encoding="utf-8") as fh:
         text = fh.read()

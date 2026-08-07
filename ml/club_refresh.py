@@ -128,19 +128,27 @@ def refresh_combo(league_id: str, season_id: str) -> dict:
     d = source_dir(league_id, season_id)
     print(f"- {league_id} {season_id}")
     stats = {"updated": 0, "kept": 0, "absent": 0}
+    is_tournament = LEAGUES[league_id].format == "tournament"
 
-    # openfootball is required (fixtures always exist for a scheduled season).
+    # openfootball carries the fixtures/results. For a domestic league it is
+    # required (a scheduled season always has a fixture list). For the Champions
+    # League it is required only *once the draw is published*: a preseason edition
+    # (UCL 2026-27 before the late-August draw) legitimately 404s upstream, so we
+    # don't treat a missing file as fatal — the club field falls back to the
+    # committed participants bootstrap and this download starts succeeding (and
+    # filling in real fixtures/results) the moment openfootball publishes it.
     up, st = _fetch_one(openfootball_urls(league_id, season_id),
                         os.path.join(d, "openfootball.txt"),
-                        min_bytes=1_500, marker="", required=True)
+                        min_bytes=1_500, marker="", required=not is_tournament)
     stats["updated" if up else st] += 1
 
     # The Champions League has no football-data / FPL feed — its schedule,
     # results and knockout bracket all come from the single openfootball file
     # above. Its per-player goal stats come from the free Wikipedia/UEFA
     # "Top goalscorers" table, refreshed here so the in-app refresh button keeps
-    # UCL scorers live as the tournament is played.
-    if LEAGUES[league_id].format == "tournament":
+    # UCL scorers live as the tournament is played. (A preseason edition has no
+    # scorers table yet — refresh_season returns nothing and the cache is kept.)
+    if is_tournament:
         try:
             import ucl_stats
             rows = ucl_stats.refresh_season(season_id)
@@ -177,12 +185,13 @@ def refresh_combo(league_id: str, season_id: str) -> dict:
 
 
 # Past Champions-League editions used to train the models + grow Elo. These are
-# strictly earlier than the shipped seasons (2024-25 / 2025-26), so training
+# strictly earlier than the shipped seasons (2025-26 / 2026-27), so training
 # never sees a match it will later be evaluated on. They almost never change, but
 # refreshing them keeps a fresh clone self-healing if a history file goes missing.
+# 2024-25 moved here when the app rolled forward to ship 2025-26 + 2026-27.
 UCL_HISTORY_SEASONS = [
     "2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2017-18",
-    "2018-19", "2019-20", "2020-21", "2021-22", "2022-23", "2023-24",
+    "2018-19", "2019-20", "2020-21", "2021-22", "2022-23", "2023-24", "2024-25",
 ]
 
 
@@ -256,8 +265,15 @@ def main(argv: list[str] | None = None) -> None:
     t0 = time.time()
     if args.offline:
         print("[refresh] --offline: skipping downloads, using committed caches")
-        missing = [f"{lg}/{sn}" for lg, sn in combos
-                   if not os.path.exists(os.path.join(SOURCE_DIR, lg, sn, "openfootball.txt"))]
+        # A combo is only "missing" if it has neither an openfootball fixtures
+        # cache nor a participants bootstrap (the latter seeds a preseason cup
+        # whose fixtures aren't published yet, e.g. UCL 2026-27 before the draw).
+        def _has_cache(lg: str, sn: str) -> bool:
+            base = os.path.join(SOURCE_DIR, lg, sn)
+            return (os.path.exists(os.path.join(base, "openfootball.txt"))
+                    or os.path.exists(os.path.join(base, "participants.json")))
+
+        missing = [f"{lg}/{sn}" for lg, sn in combos if not _has_cache(lg, sn)]
         if missing:
             raise SystemExit(f"FATAL: offline but caches missing: {missing}")
     else:

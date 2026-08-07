@@ -236,7 +236,7 @@ LEAGUES: dict[str, League] = {
         id="ucl", name="UEFA Champions League", short="Champions League",
         country="Europe", iso2="eu", accent="#0A1E5A",
         of_repo="champions-league", of_file="cl.txt", fd_code="",
-        clubs=_ucl_clubs(), seasons=("2024-25", "2025-26"),
+        clubs=_ucl_clubs(), seasons=("2025-26", "2026-27"),
         format="tournament",
     ),
 }
@@ -265,13 +265,14 @@ SEASONS: dict[str, Season] = {
 
 SEASON_IDS = list(SEASONS.keys())
 
-# Season roles are otherwise global per season id, but the Champions League ships
-# two completed editions (it has no fixtures-only "next" season yet), so its most
-# recent edition doubles as the deliverable. This per-league override lets one
-# season id carry different roles in different leagues.
-_SEASON_ROLE_OVERRIDE: dict[tuple[str, str], str] = {
-    ("ucl", "2025-26"): "deliverable",
-}
+# Season roles are global per season id and now apply uniformly across every
+# league: 2024-25 / 2025-26 are completed "validation" editions and 2026-27 is
+# the upcoming "deliverable" season. The Champions League used to lack a
+# fixtures-only next season (so its latest complete edition doubled as the
+# deliverable), but it now ships an upcoming 2026-27 edition like the domestic
+# leagues, so no per-league override is needed. The hook is kept (empty) so a
+# future season can carry a different role in one competition without a refactor.
+_SEASON_ROLE_OVERRIDE: dict[tuple[str, str], str] = {}
 
 
 def season_role(league_id: str, season_id: str) -> str:
@@ -280,9 +281,10 @@ def season_role(league_id: str, season_id: str) -> str:
 
 
 # The combinations the pipeline builds and the app exposes. Each league declares
-# its own season set (domestic leagues run 2025-26/2026-27; the Champions League
-# ships the two most recent complete editions, 2024-25/2025-26), so combos are
-# the union of each league's own seasons rather than a full cross-product.
+# its own season set (every competition now runs a completed 2025-26 validation
+# edition plus an upcoming 2026-27 deliverable edition — the Champions League's
+# 2026-27 starts as a fixtures-less "preseason" until the late-August draw is
+# published), so combos are the union of each league's own seasons.
 COMBOS = [(lg.id, sn) for lg in LEAGUES.values() for sn in lg.seasons]
 
 # Default view the app opens on: a completed season (rich data on first load).

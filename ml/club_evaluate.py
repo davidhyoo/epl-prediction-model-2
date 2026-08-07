@@ -341,7 +341,30 @@ def build_combo(league_id: str, season_id: str) -> dict:
     # separately: the league phase for the qualification odds + table, and the
     # actual knockout bracket for the trophy.
     champ_res = None
-    if is_tournament:
+    preseason_cup = is_tournament and not matches_raw
+    if preseason_cup:
+        # No fixtures published yet (UCL 2026-27 before the draw). There is no
+        # bracket or league phase to simulate, so forecast the title purely from
+        # Elo strength and present empty qualification/finishing distributions
+        # (they are undefined until the draw is made). standings/race stay empty.
+        title = BR.preseason_odds(codes, elos)
+        n = len(codes) or 1
+        sim = {c: {
+            "title": round(float(title.get(c, 0.0)), 4),
+            # Base qualification rates (top 8 / top 24 / bottom 12 of 36) — a
+            # draw-free uniform prior, sharpened once real fixtures arrive.
+            "ucl": round(UCL_LEAGUE_BRACKET["ucl"] / n, 4),
+            "europa": round(UCL_LEAGUE_BRACKET["europa"] / n, 4),
+            "relegation": round(UCL_LEAGUE_BRACKET["releg"] / n, 4),
+            "expectedPoints": 0.0,
+            "expectedPosition": round((n + 1) / 2, 2),
+            "positionDist": [round(1.0 / n, 4)] * n,
+            "maxPoints": 0,
+            "canWinTitle": True,
+        } for c in codes}
+        standings_matches = []
+        completed_lg = []
+    elif is_tournament:
         league_matches = [m for m in matches_raw if m.get("stage", "league") == "league"]
         ko_matches = [m for m in matches_raw if m.get("stage", "league") != "league"]
         completed_lg = [m for m in league_matches if m["status"] == "completed"]
@@ -451,9 +474,23 @@ def _title_race_ucl(league_id: str, codes: list[str], champ_res: dict,
     JSON shape, with human stage labels for the chart's x-axis."""
     tl = champ_res.get("timeline") if champ_res else None
     if not tl or not tl.get("checkpoints"):
+        # No knockout timeline yet — either a preseason edition (no fixtures) or
+        # a league phase still in progress. Still list every club, ordered by the
+        # forecast title odds, so the race legend/table renders (empty series).
+        def fc(c: str) -> float:
+            return round(float(sim.get(c, {}).get("title", 0.0)) * 100, 2)
+
+        ordered = sorted(codes, key=lambda c: -fc(c))
+        club_rows = []
+        for c in ordered:
+            cm = _club_meta(league_id, c)
+            club_rows.append({"code": cm["code"], "short": cm["short"],
+                              "name": cm["name"], "primary": cm["primary"],
+                              "secondary": cm["secondary"],
+                              "peak": fc(c), "final": fc(c)})
         return {"checkpoints": [], "labels": [], "xLabel": "Knockout round",
                 "playedAt": [], "maxRound": 0, "lastCompletedRound": 0,
-                "clubs": [], "series": {c: [] for c in codes}}
+                "clubs": club_rows, "series": {c: [] for c in codes}}
 
     series = tl["series"]  # already in percent
 

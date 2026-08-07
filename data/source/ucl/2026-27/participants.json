@@ -1,0 +1,12 @@
+{
+  "season": "2026-27",
+  "status": "preseason",
+  "note": "PROJECTED / PROVISIONAL field for the 2026-27 UEFA Champions League. The real 36-club league-phase field and the fixture draw are not published until late August 2026, so this bootstrap carries forward the 2025-26 participants as a placeholder purely so the app can render a preseason forecast (participants + Elo-based champion odds) before the draw. It is NOT the confirmed field. The in-app Refresh replaces it the moment openfootball publishes 2026-27/cl.txt: from then on the real field, fixtures, results, standings, scorers and champion are derived from the live source and this file is ignored.",
+  "source": "carried forward from public/data/ucl/2025-26 (provisional projection)",
+  "codes": [
+    "AJA", "ARS", "ASM", "ATA", "ATH", "ATM", "B04", "BAR", "BEN", "BOD",
+    "BVB", "CHE", "CLB", "FCB", "FCK", "GAL", "INT", "JUV", "KAI", "LIV",
+    "MCI", "NAP", "NEW", "OLY", "OMA", "PAF", "PSG", "PSV", "QAR", "RMA",
+    "SCP", "SGE", "SLA", "TOT", "USG", "VIL"
+  ]
+}

@@ -119,6 +119,27 @@ def training_rows(league_id: str, target_season: str) -> list[dict]:
     return [r for r in load_history(league_id) if r["startYear"] < cutoff]
 
 
+def _load_participants(league_id: str, season_id: str) -> list[str]:
+    """Projected club field for a preseason tournament with no fixtures yet.
+
+    The Champions League 2026-27 has no openfootball file until the late-August
+    draw, so its 36-club field is seeded from a committed ``participants.json``
+    bootstrap (a provisional projection). Returns the club codes that resolve to
+    the league's registry; empty if the file is absent or unreadable.
+    """
+    path = os.path.join(SOURCE_DIR, league_id, season_id, "participants.json")
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            payload = json.load(fh)
+    except (ValueError, OSError):
+        return []
+    valid = {c.code for c in league_clubs(league_id)}
+    codes = [c for c in payload.get("codes", []) if c in valid]
+    return sorted(set(codes))
+
+
 def ingest_season(league_id: str, season_id: str) -> dict:
     """The target season's matches with ids + status, plus its club list."""
     matches = S.load_matches(league_id, season_id)
@@ -143,6 +164,13 @@ def ingest_season(league_id: str, season_id: str) -> dict:
 
     # the set of clubs actually contesting this season (handles promotion/relegation)
     codes = sorted({m["home"] for m in out} | {m["away"] for m in out})
+
+    # A tournament whose fixtures haven't been published yet (a preseason edition
+    # such as UCL 2026-27 before the draw) yields no matches, so derive the club
+    # field from the committed participants bootstrap instead. Once the real
+    # openfootball file lands, `out` is non-empty and this branch is skipped.
+    if not codes and LEAGUES[league_id].format == "tournament":
+        codes = _load_participants(league_id, season_id)
 
     return {"league": league_id, "season": season_id, "matches": out, "codes": codes}
 
