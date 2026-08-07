@@ -5,8 +5,9 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ClubBadge } from "@/components/club-badge";
 import { SeasonOdds, type OddsClub } from "@/components/season-odds";
+import { DrawPendingBanner } from "@/components/draw-pending-banner";
 import { getSelection, getClubs, getSummary } from "@/lib/data";
-import { queryFor, oddsLabelsFor } from "@/lib/league";
+import { queryFor, oddsLabelsFor, isDrawPending } from "@/lib/league";
 import { oddsPct } from "@/lib/format";
 import type { SearchParams } from "@/lib/league";
 import type { Club } from "@/lib/types";
@@ -23,6 +24,7 @@ export default async function PredictionsPage({
   const [clubs, summary] = await Promise.all([getClubs(sel), getSummary(sel)]);
   const query = queryFor(sel);
   const isCup = summary.league.format === "tournament";
+  const drawPending = isDrawPending(summary.league.format, summary.totalMatches);
   const oddsLabels = oddsLabelsFor(summary.league.format);
 
   const oddsClubs: OddsClub[] = clubs.map((c) => ({
@@ -59,6 +61,8 @@ export default async function PredictionsPage({
           </Badge>
         }
       />
+
+      {drawPending && <DrawPendingBanner />}
 
       <section className="grid gap-4 md:grid-cols-3">
         <HighlightCard

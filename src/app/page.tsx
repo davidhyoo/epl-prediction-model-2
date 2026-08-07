@@ -15,9 +15,10 @@ import { ClubBadge } from "@/components/club-badge";
 import { PlayerAvatar } from "@/components/player-avatar";
 import { FormPills } from "@/components/form-pills";
 import { MatchList } from "@/components/match/match-list";
+import { DrawPendingBanner } from "@/components/draw-pending-banner";
 import { buildModelMeta } from "@/lib/model-meta";
 import { getSelection, getDataset, getIndex } from "@/lib/data";
-import { queryFor } from "@/lib/league";
+import { queryFor, isDrawPending } from "@/lib/league";
 import { pct, pctRaw, oddsPct, oddsWidth, formatDateTime } from "@/lib/format";
 import type { SearchParams } from "@/lib/league";
 import type { Club } from "@/lib/types";
@@ -34,6 +35,7 @@ export default async function HomePage({
   const query = queryFor(sel);
   const modelMeta = buildModelMeta(models.leaderboard);
   const preseason = summary.played === 0;
+  const drawPending = isDrawPending(summary.league.format, summary.totalMatches);
 
   const clubMap = new Map(clubs.map((c) => [c.code, c]));
   const league = index.leagues.find((l) => l.id === sel.league);
@@ -102,6 +104,7 @@ export default async function HomePage({
       </section>
 
       <div className="container-page space-y-10 py-8">
+        {drawPending && <DrawPendingBanner />}
         {/* Summary cards */}
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           <StatCard
@@ -225,7 +228,14 @@ export default async function HomePage({
               View all matches →
             </Link>
           </div>
-          <MatchList matches={showcase} modelMeta={modelMeta} />
+          {showcase.length > 0 ? (
+            <MatchList matches={showcase} modelMeta={modelMeta} />
+          ) : (
+            <Card className="p-6 text-center text-sm text-muted-foreground">
+              Fixtures appear here once the league-phase draw is published. Refresh then to load the
+              real schedule and results.
+            </Card>
+          )}
         </section>
       </div>
     </div>

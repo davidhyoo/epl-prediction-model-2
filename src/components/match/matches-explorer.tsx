@@ -171,8 +171,12 @@ export function MatchesExplorer({
       {filtered.length === 0 ? (
         <EmptyState
           icon={<CalendarX2 />}
-          title="No matches match these filters"
-          description="Try widening the status filter or clearing the club selection."
+          title={counts.all === 0 ? "Fixtures not published yet" : "No matches match these filters"}
+          description={
+            counts.all === 0
+              ? "The league-phase draw hasn't been made yet, so there are no fixtures to show. Refresh once the draw lands to pull the real schedule."
+              : "Try widening the status filter or clearing the club selection."
+          }
         />
       ) : (
         <>

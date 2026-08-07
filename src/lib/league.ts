@@ -129,3 +129,12 @@ export function oddsLabelsFor(format?: string): OddsLabels {
 export function queryFor(sel: Selection): string {
   return `?${LEAGUE_PARAM}=${sel.league}&${SEASON_PARAM}=${sel.season}`;
 }
+
+/**
+ * True when a tournament dataset has no fixtures yet — the league-phase draw
+ * hasn't been published, so the field/odds are a preseason projection. Domestic
+ * preseasons (which always ship a full fixture list) are never "draw pending".
+ */
+export function isDrawPending(format: string | undefined, totalMatches: number): boolean {
+  return format === "tournament" && totalMatches === 0;
+}
