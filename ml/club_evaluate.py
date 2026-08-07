@@ -30,6 +30,7 @@ import numpy as np
 import club_players as P
 import club_simulate as SIM
 import club_fpl as FPL
+import ucl_bracket as BR
 from club_features import outcome_label
 from club_modeling import (ensemble_proba, evaluate_model, inverse_logloss_weights,
                            log_loss)
@@ -42,6 +43,10 @@ BRACKETS = {
     "epl": {"ucl": 5, "europa": 7, "releg": 3},      # 5th earns UCL via coefficient
     "laliga": {"ucl": 5, "europa": 7, "releg": 3},
 }
+# Champions-League league-phase brackets: top 8 go straight to the Round of 16,
+# 9-24 enter the knockout play-offs, 25-36 are eliminated. Reuses the same three
+# slots (ucl/europa/releg) with a tournament meaning; labelled per-format in the UI.
+UCL_LEAGUE_BRACKET = {"ucl": 8, "europa": 24, "releg": 12}
 MODEL_LABELS = {
     "logreg": "Logistic Regression", "forest": "Random Forest",
     "xgb": "XGBoost", "elo": "Elo Baseline", "market": "Market Baseline",
@@ -153,6 +158,7 @@ def _match_records(league_id: str, pred: dict, weights: dict[str, float]) -> lis
             "away": _club_meta(league_id, m["away"]),
             "homeGoals": m.get("homeGoals"), "awayGoals": m.get("awayGoals"),
             "eloHome": m.get("_elo_home"), "eloAway": m.get("_elo_away"),
+            "stage": m.get("stage"),
             "prediction": {
                 "ensemble": ens_probs,
                 "models": models,
@@ -204,18 +210,17 @@ def _model_leaderboard(pred: dict, weights: dict) -> tuple[list[dict], dict]:
                           "gamesEvaluated": 0})
         board.append(entry)
 
-    # market baseline only where odds exist
+    # Market baseline only where odds exist. Leagues with no odds feed (e.g. the
+    # Champions League — football-data.co.uk carries no UCL prices) never get a
+    # dead, unevaluated placeholder row: the model is omitted from the board
+    # entirely rather than ranked "N/A".
     market = pred["market"]
     mk_mask = mask & ~np.isnan(market).any(axis=1)
-    mk_entry = {"id": "market", "name": MODEL_LABELS["market"],
-                "blurb": MODEL_BLURB["market"], "weight": 0.0}
     if mk_mask.sum() > 0:
+        mk_entry = {"id": "market", "name": MODEL_LABELS["market"],
+                    "blurb": MODEL_BLURB["market"], "weight": 0.0}
         mk_entry.update(evaluate_model(y[mk_mask], market[mk_mask]))
-    else:
-        mk_entry.update({"accuracy": None, "logLoss": None, "brier": None,
-                         "avgConfidence": None, "ece": None, "calibration": [],
-                         "gamesEvaluated": 0})
-    board.append(mk_entry)
+        board.append(mk_entry)
 
     # ensemble row
     w = np.array([weights[m] for m in ML_MODELS] + [weights["elo"]])
@@ -327,15 +332,40 @@ def build_combo(league_id: str, season_id: str) -> dict:
     codes = pred["codes"]
     strength = pred["strength"]
     matches_raw = pred["ordered"]
+    lg = LEAGUES[league_id]
+    is_tournament = lg.format == "tournament"
+    elos = {c: strength[c]["elo"] for c in codes}
 
-    br = BRACKETS[league_id]
-    completed = [m for m in matches_raw if m["status"] == "completed"]
-    remaining = [m for m in matches_raw if m["status"] != "completed"]
-    sim = SIM.simulate(codes, {c: strength[c]["elo"] for c in codes},
-                       completed, remaining,
-                       ucl=br["ucl"], europa=br["europa"], releg=br["releg"])
+    # A cup and a league answer different questions. For a domestic league the
+    # whole fixture list is one round-robin; for the Champions League the 36-team
+    # "league phase" seeds a single-elimination knockout, so we simulate the two
+    # separately: the league phase for the qualification odds + table, and the
+    # actual knockout bracket for the trophy.
+    champ_res = None
+    if is_tournament:
+        league_matches = [m for m in matches_raw if m.get("stage", "league") == "league"]
+        ko_matches = [m for m in matches_raw if m.get("stage", "league") != "league"]
+        completed_lg = [m for m in league_matches if m["status"] == "completed"]
+        remaining_lg = [m for m in league_matches if m["status"] != "completed"]
+        sim = SIM.simulate(codes, elos, completed_lg, remaining_lg,
+                           ucl=UCL_LEAGUE_BRACKET["ucl"],
+                           europa=UCL_LEAGUE_BRACKET["europa"],
+                           releg=UCL_LEAGUE_BRACKET["releg"])
+        # replace the league-phase "title" (topping the 36-team table) with the
+        # real thing: championship probability from the knockout-bracket sim.
+        champ_res = BR.championship(codes, elos, ko_matches)
+        for c in codes:
+            sim.setdefault(c, {})["title"] = round(float(champ_res["odds"].get(c, 0.0)), 4)
+        standings_matches = league_matches
+    else:
+        br = BRACKETS[league_id]
+        completed_lg = [m for m in matches_raw if m["status"] == "completed"]
+        remaining_lg = [m for m in matches_raw if m["status"] != "completed"]
+        sim = SIM.simulate(codes, elos, completed_lg, remaining_lg,
+                           ucl=br["ucl"], europa=br["europa"], releg=br["releg"])
+        standings_matches = matches_raw
 
-    standings = _standings(league_id, codes, matches_raw, sim)
+    standings = _standings(league_id, codes, standings_matches, sim)
     weights = _compute_weights(pred)
     matches = _match_records(league_id, pred, weights)
     board, board_meta = _model_leaderboard(pred, weights)
@@ -347,7 +377,7 @@ def build_combo(league_id: str, season_id: str) -> dict:
     # Enrich with real assists / minutes / cards (EPL only; La Liga has no free
     # key-less per-player feed, so its stats stay null). No-op if the cache is
     # missing or the league is unsupported — never fabricates a number.
-    cov = FPL.enrich_players(league_id, season_id, players, played=len(completed))
+    cov = FPL.enrich_players(league_id, season_id, players, played=len(completed_lg))
     if cov["matched"]:
         print(f"  [fpl] {league_id} {season_id}: assists/minutes for "
               f"{cov['matched']}/{cov['total']} players "
@@ -360,22 +390,31 @@ def build_combo(league_id: str, season_id: str) -> dict:
     rankings = _rankings(codes, strength, sim, standings, squad_rating)
     clubs = _clubs(league_id, codes, standings, strength, sim, players, matches)
 
-    # Title-race timeline: how each club's championship probability evolves
-    # matchday by matchday (empty until the season has completed matches).
-    race = _title_race(league_id, codes, matches_raw, sim)
+    # Championship-forecast timeline: for a league it evolves matchday by
+    # matchday; for a cup it sharpens round by round through the knockout bracket.
+    if is_tournament:
+        race = _title_race_ucl(league_id, codes, champ_res, sim)
+    else:
+        race = _title_race(league_id, codes, matches_raw, sim)
 
-    # champion = highest title probability
-    champ = max(codes, key=lambda c: sim.get(c, {}).get("title", 0)) if codes else None
-    played_n = len(completed)
+    # champion = the actual trophy winner where known (cup final / league leader),
+    # otherwise the club the model makes favourite.
+    if is_tournament and champ_res and champ_res.get("champion"):
+        champ = champ_res["champion"]
+    else:
+        champ = max(codes, key=lambda c: sim.get(c, {}).get("title", 0)) if codes else None
+
+    played_n = sum(1 for m in matches if m["status"] == "completed")
     upcoming = [m for m in matches if m["status"] != "completed"]
     best_model = next((b for b in board if b.get("rank") == 1), None)
     top_scorer = next((p for p in sorted(players, key=lambda p: -p["goals"])
                        if p["goals"] > 0), None)
 
-    lg = LEAGUES[league_id]; sn = SEASONS[season_id]
+    sn = SEASONS[season_id]
     summary = {
         "league": {"id": lg.id, "name": lg.name, "short": lg.short,
-                   "country": lg.country, "iso2": lg.iso2, "accent": lg.accent},
+                   "country": lg.country, "iso2": lg.iso2, "accent": lg.accent,
+                   "format": lg.format},
         "season": {"id": sn.id, "label": sn.label, "role": sn.role},
         "lastUpdated": _now_iso(),
         "totalMatches": len(matches), "played": played_n,
@@ -396,6 +435,47 @@ def build_combo(league_id: str, season_id: str) -> dict:
                    "weights": {k: round(v, 4) for k, v in weights.items()}},
         "clubs": clubs, "players": players, "rankings": rankings,
         "topScorers": pdata["topScorers"], "race": race,
+    }
+
+
+def _title_race_ucl(league_id: str, codes: list[str], champ_res: dict,
+                    sim: dict) -> dict:
+    """Format the knockout-bracket convergence timeline into the shared race
+    JSON shape, with human stage labels for the chart's x-axis."""
+    tl = champ_res.get("timeline") if champ_res else None
+    if not tl or not tl.get("checkpoints"):
+        return {"checkpoints": [], "labels": [], "xLabel": "Knockout round",
+                "playedAt": [], "maxRound": 0, "lastCompletedRound": 0,
+                "clubs": [], "series": {c: [] for c in codes}}
+
+    series = tl["series"]  # already in percent
+
+    def final_p(c: str) -> float:
+        vals = series.get(c) or []
+        return vals[-1] if vals else round(float(sim.get(c, {}).get("title", 0.0)) * 100, 2)
+
+    def peak_p(c: str) -> float:
+        vals = series.get(c) or []
+        return max(vals) if vals else round(float(sim.get(c, {}).get("title", 0.0)) * 100, 2)
+
+    ordered_codes = sorted(codes, key=lambda c: (-peak_p(c), -final_p(c)))
+    club_rows = []
+    for c in ordered_codes:
+        cm = _club_meta(league_id, c)
+        club_rows.append({"code": cm["code"], "short": cm["short"],
+                          "name": cm["name"], "primary": cm["primary"],
+                          "secondary": cm["secondary"],
+                          "peak": round(peak_p(c), 2), "final": round(final_p(c), 2)})
+    last = tl["checkpoints"][-1]
+    return {
+        "checkpoints": tl["checkpoints"],
+        "labels": tl.get("labels", []),
+        "xLabel": "Knockout round",
+        "playedAt": tl["checkpoints"],
+        "maxRound": last,
+        "lastCompletedRound": last,
+        "clubs": club_rows,
+        "series": {c: series.get(c, []) for c in codes},
     }
 
 
@@ -473,20 +553,43 @@ def publish_combo(league_id: str, season_id: str) -> dict:
 
 
 def write_index(results: list[dict]) -> None:
-    from leagues import DEFAULT_LEAGUE, DEFAULT_SEASON
+    from leagues import DEFAULT_LEAGUE, DEFAULT_SEASON, season_role
+
+    # A per-league pipeline run only publishes its own combos, so merge this run's
+    # results with whatever is already advertised on disk (and prune datasets whose
+    # files no longer exist). This keeps index.json a faithful catalogue of every
+    # published dataset regardless of which league was rebuilt.
+    catalogue: dict[tuple[str, str], dict] = {}
+    index_path = os.path.join(PUBLIC_DATA_DIR, "index.json")
+    if os.path.exists(index_path):
+        try:
+            with open(index_path, encoding="utf-8") as fh:
+                for ds in json.load(fh).get("datasets", []):
+                    catalogue[(ds["league"], ds["season"])] = ds
+        except (ValueError, OSError, KeyError):
+            catalogue = {}
+    for ds in results:
+        catalogue[(ds["league"], ds["season"])] = ds
+    datasets = [
+        ds for (lg_id, sn), ds in catalogue.items()
+        if os.path.exists(os.path.join(PUBLIC_DATA_DIR, lg_id, sn, "summary.json"))
+    ]
+    datasets.sort(key=lambda d: (d["league"], d["season"]))
+
     idx = {
         "generatedAt": _now_iso(),
         "default": {"league": DEFAULT_LEAGUE, "season": DEFAULT_SEASON},
         "leagues": [
             {"id": lg.id, "name": lg.name, "short": lg.short, "country": lg.country,
-             "iso2": lg.iso2, "accent": lg.accent,
-             "seasons": [{"id": sn.id, "label": sn.label, "role": sn.role}
-                         for sn in SEASONS.values()]}
+             "iso2": lg.iso2, "accent": lg.accent, "format": lg.format,
+             "seasons": [{"id": SEASONS[sid].id, "label": SEASONS[sid].label,
+                          "role": season_role(lg.id, sid)}
+                         for sid in lg.seasons]}
             for lg in LEAGUES.values()
         ],
-        "datasets": results,
+        "datasets": datasets,
     }
-    _write(os.path.join(PUBLIC_DATA_DIR, "index.json"), idx)
+    _write(index_path, idx)
 
 
 def main(combos=None) -> None:

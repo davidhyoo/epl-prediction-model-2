@@ -203,8 +203,20 @@ class League:
     accent: str        # brand accent colour used in the UI
     of_repo: str       # openfootball repo
     of_file: str       # openfootball file within a season directory
-    fd_code: str       # football-data.co.uk division code (E0 / SP1)
+    fd_code: str       # football-data.co.uk division code (E0 / SP1); "" if none
     clubs: tuple[Club, ...]
+    seasons: tuple[str, ...]     # the season ids this league exposes
+    format: str = "domestic"     # "domestic" (round-robin) | "tournament" (UCL)
+
+
+def _ucl_clubs() -> tuple[Club, ...]:
+    """Build the Champions-League field from the raw rows in ``ucl_clubs.py``."""
+    from ucl_clubs import UCL_CLUB_ROWS
+    return tuple(
+        Club(code=code, name=name, short=short, primary=primary,
+             secondary=secondary, wiki=wiki, aliases=tuple(aliases))
+        for (code, name, short, primary, secondary, wiki, aliases) in UCL_CLUB_ROWS
+    )
 
 
 LEAGUES: dict[str, League] = {
@@ -212,13 +224,20 @@ LEAGUES: dict[str, League] = {
         id="epl", name="English Premier League", short="Premier League",
         country="England", iso2="gb-eng", accent="#37003C",
         of_repo="england", of_file="1-premierleague.txt", fd_code="E0",
-        clubs=tuple(_EPL_CLUBS),
+        clubs=tuple(_EPL_CLUBS), seasons=("2025-26", "2026-27"),
     ),
     "laliga": League(
         id="laliga", name="Spanish La Liga", short="La Liga",
         country="Spain", iso2="es", accent="#E4002B",
         of_repo="espana", of_file="1-liga.txt", fd_code="SP1",
-        clubs=tuple(_LALIGA_CLUBS),
+        clubs=tuple(_LALIGA_CLUBS), seasons=("2025-26", "2026-27"),
+    ),
+    "ucl": League(
+        id="ucl", name="UEFA Champions League", short="Champions League",
+        country="Europe", iso2="eu", accent="#0A1E5A",
+        of_repo="champions-league", of_file="cl.txt", fd_code="",
+        clubs=_ucl_clubs(), seasons=("2024-25", "2025-26"),
+        format="tournament",
     ),
 }
 
@@ -239,18 +258,41 @@ class Season:
 
 
 SEASONS: dict[str, Season] = {
+    "2024-25": Season("2024-25", "2024/25", "validation", 2024),
     "2025-26": Season("2025-26", "2025/26", "validation", 2025),
     "2026-27": Season("2026-27", "2026/27", "deliverable", 2026),
 }
 
 SEASON_IDS = list(SEASONS.keys())
 
-# The combinations the pipeline builds and the app exposes.
-COMBOS = [(lg, sn) for lg in LEAGUE_IDS for sn in SEASON_IDS]
+# Season roles are otherwise global per season id, but the Champions League ships
+# two completed editions (it has no fixtures-only "next" season yet), so its most
+# recent edition doubles as the deliverable. This per-league override lets one
+# season id carry different roles in different leagues.
+_SEASON_ROLE_OVERRIDE: dict[tuple[str, str], str] = {
+    ("ucl", "2025-26"): "deliverable",
+}
+
+
+def season_role(league_id: str, season_id: str) -> str:
+    """The role of a season *within a given league* (honours per-league overrides)."""
+    return _SEASON_ROLE_OVERRIDE.get((league_id, season_id), SEASONS[season_id].role)
+
+
+# The combinations the pipeline builds and the app exposes. Each league declares
+# its own season set (domestic leagues run 2025-26/2026-27; the Champions League
+# ships the two most recent complete editions, 2024-25/2025-26), so combos are
+# the union of each league's own seasons rather than a full cross-product.
+COMBOS = [(lg.id, sn) for lg in LEAGUES.values() for sn in lg.seasons]
 
 # Default view the app opens on: a completed season (rich data on first load).
 DEFAULT_LEAGUE = "epl"
 DEFAULT_SEASON = "2025-26"
+
+
+def league_seasons(league_id: str) -> list[str]:
+    """The season ids a given league exposes."""
+    return list(LEAGUES[league_id].seasons)
 
 
 # --------------------------------------------------------------------------- #

@@ -236,6 +236,157 @@ def parse_openfootball(text: str, league_id: str) -> list[dict]:
 
 
 # --------------------------------------------------------------------------- #
+# openfootball Champions-League parsing
+# --------------------------------------------------------------------------- #
+# UCL team lines carry a 3-letter country code suffix, e.g. "Real Madrid CF (ESP)".
+_UCL_COUNTRY_RE = re.compile(r"\s*\([A-Z]{3}\)\s*$")
+# whole match line: optional kickoff time, Home (XXX) v Away (XXX), optional score
+_UCL_LINE_RE = re.compile(
+    r"^\s*(?:(\d{1,2}:\d{2})\s+)?(.+?\([A-Z]{3}\))\s+v\s+(.+?\([A-Z]{3}\))\s*(.*?)\s*$")
+# stage round assigned to knockout matches so they sort after the league phase
+_UCL_STAGE_ROUND = {"playoff": 20, "r16": 30, "qf": 40, "sf": 50, "final": 60}
+
+
+def _ucl_strip_country(name: str) -> str:
+    return _UCL_COUNTRY_RE.sub("", name).strip()
+
+
+def _ucl_stage(header: str) -> tuple[str | None, int | None]:
+    """Map a ``▪`` stage header to (stage, matchday). Handles the modern
+    league-phase files ("League, Matchday N" / "Playoffs, ..." / "Finals, ...")
+    and the pre-2024 group-stage files ("Group A" / "Round of 16" / ...)."""
+    h = header.lstrip("▪» ").strip().lower()
+    if h.startswith("league"):
+        md = re.search(r"matchday\s+(\d+)", h)
+        return "league", int(md.group(1)) if md else 0
+    if h.startswith("group"):
+        return "league", 0
+    if h.startswith("playoff"):
+        md = re.search(r"matchday\s+(\d+)", h)
+        return "playoff", int(md.group(1)) if md else 1
+    if "round of 16" in h:
+        return "r16", None
+    if "quarterfinal" in h:
+        return "qf", None
+    if "semifinal" in h:
+        return "sf", None
+    if h.endswith("final"):
+        return "final", None
+    return None, None
+
+
+def _parse_ucl_score(tail: str) -> tuple[int | None, int | None,
+                                         tuple[int, int] | None]:
+    """Extract (homeGoals, awayGoals, penalties) from a UCL score tail.
+
+    Handles ``4-2 (1-0)`` / ``0-0`` (normal), ``0-1 a.e.t. (0-1, 0-1)``
+    (extra time — the pre-a.e.t. number is the match result) and
+    ``1-4 pen. 0-1 a.e.t. (0-1, 0-1)`` (shootout — penalties come first,
+    then the on-pitch result). ``@ Venue`` annotations are ignored.
+    """
+    tail = tail.strip()
+    if not tail:
+        return None, None, None
+    pens: tuple[int, int] | None = None
+    mp = re.match(r"(\d+)-(\d+)\s+pen\.\s+(.*)$", tail)
+    if mp:
+        pens = (int(mp.group(1)), int(mp.group(2)))
+        tail = mp.group(3).strip()
+    ms = re.match(r"(\d+)-(\d+)", tail)
+    if not ms:
+        return None, None, pens
+    return int(ms.group(1)), int(ms.group(2)), pens
+
+
+def parse_openfootball_ucl(text: str, league_id: str,
+                           loose: bool = False) -> list[dict]:
+    """Parse an openfootball Champions-League file into normalised match rows.
+
+    ``loose`` uses the fuzzy resolver (synthetic codes for clubs outside the
+    registry) so the historical back-catalogue can train the models even though
+    only the two shipped seasons' clubs are in ``ucl_clubs.py``.
+    """
+    resolve = resolve_club_loose if loose else resolve_club
+    matches: list[dict] = []
+    year: int | None = None
+    cur_date: date | None = None
+    cur_time = ""
+    stage = "league"
+    matchday = 0
+
+    for raw in text.splitlines():
+        line = raw.rstrip()
+        stripped = line.strip()
+        if not stripped:
+            continue
+
+        # stage header
+        if stripped.startswith(("▪", "»")):
+            st, md = _ucl_stage(stripped)
+            if st:
+                stage = st
+                matchday = md if md is not None else 0
+            continue
+
+        # date line
+        dm = _DATE_RE.match(stripped)
+        if dm:
+            mon = _MONTHS.get(dm.group(2))
+            day = int(dm.group(3))
+            if dm.group(4):
+                year = int(dm.group(4))
+            if mon and year:
+                cur_date, year = _roll_date(mon, day, year, cur_date)
+            cur_time = ""
+            continue
+
+        lm = _UCL_LINE_RE.match(line)
+        if not lm:
+            continue
+        t, home_raw, away_raw, tail = lm.groups()
+        if t:
+            cur_time = t
+
+        home_code = resolve(league_id, _ucl_strip_country(home_raw))
+        away_code = resolve(league_id, _ucl_strip_country(away_raw))
+        if not home_code or not away_code:
+            continue
+
+        hg, ag, pens = _parse_ucl_score(tail or "")
+
+        if stage == "league":
+            rnd = matchday
+        else:
+            rnd = _UCL_STAGE_ROUND.get(stage, 0) + matchday
+
+        dt_iso = None
+        if cur_date is not None:
+            hh_mm = cur_time or "21:00"
+            hour, minute = (int(x) for x in hh_mm.split(":"))
+            dt = datetime(cur_date.year, cur_date.month, cur_date.day,
+                          hour, minute, tzinfo=timezone.utc)
+            dt_iso = dt.isoformat()
+
+        matches.append({
+            "round": rnd,
+            "stage": stage,
+            "date": cur_date.isoformat() if cur_date else None,
+            "datetime": dt_iso,
+            "home": home_code,
+            "away": away_code,
+            "homeGoals": hg,
+            "awayGoals": ag,
+            "htHome": None,
+            "htAway": None,
+            "homePens": pens[0] if pens else None,
+            "awayPens": pens[1] if pens else None,
+            "scorers": [],
+        })
+
+    return matches
+
+
+# --------------------------------------------------------------------------- #
 # football-data.co.uk parsing
 # --------------------------------------------------------------------------- #
 def _to_int(v: str) -> int | None:
@@ -340,7 +491,18 @@ def load_matches(league_id: str, season_id: str) -> list[dict]:
     fd_path = os.path.join(d, "footballdata.csv")
 
     with open(of_path, "r", encoding="utf-8") as fh:
-        matches = parse_openfootball(fh.read(), league_id)
+        text = fh.read()
+
+    if LEAGUES[league_id].format == "tournament":
+        # the Champions League has no football-data feed (no shots/odds); its
+        # matches are results-only plus knockout metadata (stage, penalties).
+        matches = parse_openfootball_ucl(text, league_id)
+        for m in matches:
+            m["matchStats"] = None
+            m["marketOdds"] = None
+        return matches
+
+    matches = parse_openfootball(text, league_id)
 
     stats: dict[tuple[str, str], dict] = {}
     if os.path.exists(fd_path):

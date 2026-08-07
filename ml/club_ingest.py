@@ -20,7 +20,8 @@ import json
 import os
 
 import club_sources as S
-from leagues import LEAGUES, SEASONS, SOURCE_DIR, league_clubs, raw_path
+from leagues import (LEAGUES, SEASONS, SOURCE_DIR, league_clubs, league_seasons,
+                     raw_path)
 
 
 def _fd_code_start_year(code: str) -> int:
@@ -29,7 +30,17 @@ def _fd_code_start_year(code: str) -> int:
 
 
 def load_history(league_id: str) -> list[dict]:
-    """All completed football-data rows we have for a league (past + current)."""
+    """All completed match rows we have for a league (past + current), used to
+    train the models and grow Elo.
+
+    Domestic leagues use football-data.co.uk CSVs (rich per-match stats + odds).
+    The Champions League has no football-data feed, so it walks the openfootball
+    Champions-League back-catalogue instead (results only — plenty for Elo + the
+    result-based features). See ``load_history_ucl``.
+    """
+    if LEAGUES[league_id].format == "tournament":
+        return load_history_ucl(league_id)
+
     rows: list[dict] = []
     seen_files: set[str] = set()
 
@@ -43,7 +54,7 @@ def load_history(league_id: str) -> list[dict]:
                 rows.append(r)
 
     # the current-season football-data file (if the season has started)
-    for season_id in SEASONS:
+    for season_id in league_seasons(league_id):
         cur = os.path.join(SOURCE_DIR, league_id, season_id, "footballdata.csv")
         if os.path.exists(cur):
             with open(cur, "r", encoding="utf-8", errors="replace") as fh:
@@ -52,6 +63,52 @@ def load_history(league_id: str) -> list[dict]:
                     rows.append(r)
 
     rows = [r for r in rows if r["date"]]
+    rows.sort(key=lambda r: r["date"])
+    return rows
+
+
+def load_history_ucl(league_id: str) -> list[dict]:
+    """Completed Champions-League matches from the openfootball back-catalogue,
+    one row per finished game. Two sources are merged:
+
+      * ``data/source/ucl/history/{season}.txt`` — older editions (training only).
+      * ``data/source/ucl/{season}/openfootball.txt`` — the seasons the app ships
+        (2024-25, 2025-26). These double as training data for *later* seasons;
+        ``training_rows`` keeps things leakage-free via the ``startYear`` cutoff.
+
+    Unknown historical clubs (long since out of Europe) keep contributing to the
+    training set + Elo history via the loose name resolver's synthetic codes.
+    """
+    def _emit(text: str, start_year: int, out: list[dict]) -> None:
+        for m in S.parse_openfootball_ucl(text, league_id, loose=True):
+            if m["homeGoals"] is None or m["awayGoals"] is None or not m.get("date"):
+                continue
+            out.append({
+                "date": m["date"], "home": m["home"], "away": m["away"],
+                "homeGoals": m["homeGoals"], "awayGoals": m["awayGoals"],
+                "startYear": start_year,
+                "shotsOnTarget": {"home": None, "away": None},
+                "marketOdds": None,
+            })
+
+    rows: list[dict] = []
+    hist_glob = os.path.join(SOURCE_DIR, league_id, "history", "*.txt")
+    for path in sorted(glob.glob(hist_glob)):
+        stem = os.path.splitext(os.path.basename(path))[0]  # e.g. "2022-23"
+        try:
+            start_year = int(stem[:4])
+        except ValueError:
+            continue
+        with open(path, "r", encoding="utf-8", errors="replace") as fh:
+            _emit(fh.read(), start_year, rows)
+
+    # the shipped seasons also serve as training data for later seasons
+    for season_id in league_seasons(league_id):
+        cur = os.path.join(SOURCE_DIR, league_id, season_id, "openfootball.txt")
+        if os.path.exists(cur):
+            with open(cur, "r", encoding="utf-8", errors="replace") as fh:
+                _emit(fh.read(), SEASONS[season_id].start_year, rows)
+
     rows.sort(key=lambda r: r["date"])
     return rows
 
@@ -68,11 +125,19 @@ def ingest_season(league_id: str, season_id: str) -> dict:
     valid_codes = {c.code for c in league_clubs(league_id)}
 
     out: list[dict] = []
+    seen_ids: set[str] = set()
     for m in matches:
         if m["home"] not in valid_codes or m["away"] not in valid_codes:
             continue
         completed = m["homeGoals"] is not None
-        m["id"] = f"{league_id}-{season_id}-{m['home']}-{m['away']}"
+        mid = f"{league_id}-{season_id}-{m['home']}-{m['away']}"
+        if mid in seen_ids:
+            # tournaments can pair the same clubs more than once (two-legged ties,
+            # or a league-phase meeting that recurs in the knockouts) — keep ids
+            # unique by appending the round.
+            mid = f"{mid}-r{m.get('round', 0)}"
+        seen_ids.add(mid)
+        m["id"] = mid
         m["status"] = "completed" if completed else "upcoming"
         out.append(m)
 
@@ -98,6 +163,6 @@ def main(league_id: str, season_id: str) -> dict:
 
 
 if __name__ == "__main__":
-    for lg in LEAGUES:
-        for sn in SEASONS:
-            main(lg, sn)
+    from leagues import COMBOS
+    for lg, sn in COMBOS:
+        main(lg, sn)

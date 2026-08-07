@@ -135,6 +135,12 @@ def refresh_combo(league_id: str, season_id: str) -> dict:
                         min_bytes=1_500, marker="", required=True)
     stats["updated" if up else st] += 1
 
+    # The Champions League has no football-data / FPL feed — its schedule,
+    # results and knockout bracket all come from the single openfootball file
+    # above, so we're done for a tournament.
+    if LEAGUES[league_id].format == "tournament":
+        return stats
+
     # football-data is optional: a not-yet-started season has no stats CSV yet.
     up, st = _fetch_one([football_data_url(league_id, season_id)],
                         os.path.join(d, "footballdata.csv"),
@@ -156,8 +162,36 @@ def refresh_combo(league_id: str, season_id: str) -> dict:
     return stats
 
 
+# Past Champions-League editions used to train the models + grow Elo. These are
+# strictly earlier than the shipped seasons (2024-25 / 2025-26), so training
+# never sees a match it will later be evaluated on. They almost never change, but
+# refreshing them keeps a fresh clone self-healing if a history file goes missing.
+UCL_HISTORY_SEASONS = [
+    "2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2017-18",
+    "2018-19", "2019-20", "2020-21", "2021-22", "2022-23", "2023-24",
+]
+
+
+def refresh_history_ucl(league_id: str) -> dict:
+    """Fetch the past-edition openfootball ``cl.txt`` files (results only) that
+    train the Champions-League models, storing each as ``history/{season}.txt``."""
+    lg = LEAGUES[league_id]
+    d = history_dir(league_id)
+    stats = {"updated": 0, "kept": 0, "absent": 0}
+    print(f"- {league_id} history ({len(UCL_HISTORY_SEASONS)} editions)")
+    for season in UCL_HISTORY_SEASONS:
+        url = f"{RAW}/openfootball/{lg.of_repo}/master/{season}/{lg.of_file}"
+        dest = os.path.join(d, f"{season}.txt")
+        up, st = _fetch_one([url], dest, min_bytes=1_500, marker="", required=False)
+        stats["updated" if up else st] += 1
+    return stats
+
+
 def refresh_history(league_id: str) -> dict:
     """Fetch the past-season football-data CSVs used for training + Elo."""
+    if LEAGUES[league_id].format == "tournament":
+        return refresh_history_ucl(league_id)
+
     lg = LEAGUES[league_id]
     d = history_dir(league_id)
     stats = {"updated": 0, "kept": 0, "absent": 0}

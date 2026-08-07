@@ -51,6 +51,12 @@ _OVERRIDE: dict[str, dict[str, str]] = {
     "epl": {
         "NFO": "https://crests.football-data.org/351.png",  # Nottingham Forest FC
     },
+    "ucl": {
+        # Reigning champion — TheSportsDB's free search rate-limits/mismatches the
+        # accented/short name, so pin the correct badge from football-data.org's
+        # stable, key-less, hot-link-friendly crest CDN.
+        "PSG": "https://crests.football-data.org/524.png",  # Paris Saint-Germain FC
+    },
 }
 
 
